@@ -1,0 +1,39 @@
+T H E  K I T C H E N  S I N K
+
+Includes standard utility nav + primary navigation for all site
+sections that are under the control of the centralized marketing team.
+Anyone can use the entire top header area. If your content lives within
+one of the primary navigation sections, it should highlight accordingly and
+show the correct on-state and section of the site structure.
+
+..........................................................................
+
+T H E  K I T C H E N  S I N K  S A N S  P R I M A R Y  N A V I G A T I O N
+
+Standard and complete top utility banner that anyone can
+utilize and incorporate into their site.  Does not contain the primary 
+navigation bar.
+
+..........................................................................
+
+N O N - I N T R U S I V E  S U P E R  S E A R C H  S A N S  U W  S E A R C H
+
+Utility navigation banner that can be used when you have your own search 
+box on the page, but you still want to take advantage of the SuperSearch 
+functionality.
+
+..........................................................................
+
+S T A N D A R D  H E A D E R  S A N S  S U P E R  S E A R C H
+
+Sites that do not want to leverage the SuperSearch functionality but still
+want to take advantage of the "Search the UW" search capability can use
+this option.
+
+..........................................................................
+
+S T A N D A R D  H E A D E R  L I G H T  s A N S  A N Y  S E A R C H
+
+Sites that do not want to leverage any of the centralized search
+functionality can use this option and still get the added advantage of the
+common utility banner.

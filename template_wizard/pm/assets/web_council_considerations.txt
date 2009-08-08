@@ -1,0 +1,6 @@
+Web Council considerations:
+
+[] Browser compatibility matrix
+[] Provide various syntax output options (HTML4, XHTML, HTML5, different doctypes, etc)
+[] 
+[]

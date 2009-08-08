@@ -1,0 +1,20 @@
+Elements common across every banner:
+
+Brand (required):
+
+[] Purple
+[] W
+[] Wordmark (University of Washington)
+
+Content (required):
+
+[] Navigation
+   - UW Home
+   - Directories
+   - Calendar
+   - Maps
+   - My UW
+
+Design:
+
+[] Purple or gold

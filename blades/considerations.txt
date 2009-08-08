@@ -1,0 +1,9 @@
+blade considerations:
+
+[] Is there any motion when the page opens? If so, what?
+[] What scrolls the boxes through the cycle?  The slider, the user's mouse (rollover or click)
+[] What happens to the boxes when they fall "off" to the right or left?  Wrap back around?  Just stop, fade away?
+[] S-curve still ok?
+[] Is the whole box clickable or just the "Discover more"?
+[] What happens when you click?  It expands some and provides additional content (links, video, description, images, etc.)
+[] How many boxes?  We need a fairly predictable amount, I would think.  Four isn't enough and eight seems like too many (according to Gina)
