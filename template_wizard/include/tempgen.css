@@ -1,0 +1,114 @@
+body {
+	background-color: #39275b;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
+}
+img {
+    border: 0;
+}
+div {
+}
+a:link, a:visited, a:hover, a:active {
+	color: #39275b;
+}
+
+/*** Header CSS ***/
+#searchb {
+	width: 165px;
+	float: right;
+	height: 25px;
+	overflow: hidden;
+}
+#lgo {
+	float: left;
+}
+#rhtlnks {
+	text-align: right;
+	height: 25px;
+}
+#searcha {
+	width: 415px;
+	float: right;
+}
+#searcha ul {
+	margin-top: 2px;
+	text-decoration: none;
+	display: inline;
+}
+#searcha ul li {
+	display: inline;
+	padding-right: 2px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #fff;
+	font-family: "Lucida Grande", geneva, helvetica, sans-serif;
+	text-decoration: none;
+}
+#rhtlnks a {
+	color: #fff;
+}
+#rhtlnks a:link {
+	color: #fff;
+	text-decoration: none;
+}
+#rhtlnks a:visited {
+	color: #ccc;
+	text-decoration: none;
+}
+#rhtlnks a:hover {
+	color: #c90;
+}
+#rhtlnks input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #999;
+}
+#header {
+	background-image: url(../images/header_bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999;
+}
+#header img {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	margin-left: 10px;
+}
+
+/*** Body CSS ***/
+#centered {
+    width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url(../images/bg.jpg);
+	background-repeat: repeat-y;
+	padding-bottom: 10px;
+}
+#content {
+    font-size: 12px;
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#content div {
+	border: 1px dotted #ccc;
+}
+
+.clear {
+	clear: both;
+}
+
+/** Steps Attributes **/
+#step1, #step2 {
+	float: left;
+	width: 48%;
+}
+
+#step2_sub {
+}
