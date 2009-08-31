@@ -1,8 +1,27 @@
+<?php
+
+include_once('include/global.inc.php');
+
+?>
+
 <html>
 <head>
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tempgen.css" /> 
+<script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="tempgen.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+   $('#strip').click(function(){
+     $('#step2_sub').show();
+   });
+   $('#sink').click(function(){
+     $('#step2_sub').hide();
+   });
+});
+</script>
+
 </head>
 <body>
 
@@ -34,7 +53,7 @@
  <div id="content">
   <h1>Template Generator 1.0</h1>
   <div id="step1">
-   <h2>Step 1: User information</h2>
+   <h2>Step 1: <?php echo USER_INFO; ?></h2>
    <form name="" id="" action="">
     <label for="fname">First name:</label>
     <input type="text" name="fname" maxlength="20" />
@@ -49,64 +68,45 @@
     <input type="text" name="url" maxlength="150" />
   </div>
   <div id="step2">
-   <h2>Step 2: Kitchen sink or thin strip?</h2>
+   <h2>Step 2: <?php echo THIN_STRIP; ?> or <?php echo KITCHEN_SINK; ?>?</h2>
    <label for="sinkOrStrip"></label>
-   <input type="radio" name="sinkOrStrip" value="strip" /> <img src="images/thin_strip.jpg" width="300" height="8" alt="Thin strip sample" /><br />
-   <input type="radio" name="sinkOrStrip" value="sink" disabled="disabled" /> <img src="images/kitchen_sink.jpg" width="300" height="56" alt="Kitchen sink sample" />
+   <input type="radio" name="sinkOrStrip" value="strip" id="strip" /> <?php echo THIN_STRIP; ?><br />
+   <input type="radio" name="sinkOrStrip" value="sink" id="sink"  /> <?php echo KITCHEN_SINK ?>
   </div>
   <div class="clear"></div>
   <div id="step2_sub">
    
-   <h2>Step 2a: Gold or purple background?</h2>
-   <label for="goldOrPurple"></label>
-   <input type="radio" name="goldOrPurple" value="purple" /> <img src="images/thin_strip_purple_base.jpg" width="300" height="8" alt="Purple base sample" /><br />
-   <input type="radio" name="goldOrPurple" value="gold" /> <img src="images/thin_strip_gold_base.jpg" width="300" height="8" alt="Gold base sample" />
+   <h3>Step 2a: Gold or purple background?</h3>
+   <label for="purpleOrGold"></label>
+   <input type="radio" name="purpleOrGold" value="purple" /> Purple<br />
+   <input type="radio" name="purpleOrGold" value="gold" /> Gold
    <div class="dash"></div>
    
    
-   <h2>Step 2b: W or no W?</h2>
+   <h3>Step 2b: W or no W?</h3>
    <label for="wOrNot"></label>
-   <input type="radio" name="wOrNot" value="purpleW" /> <img src="images/thin_strip_purple_base.jpg" width="300" height="8" alt="Purple with W sample" /><br />
-   <input type="radio" name="wOrNot" value="purpleNoW" /> <img src="images/thin_strip_purple_base.jpg" width="300" height="8" alt="Purple without W sample" /><br />
-   
-   <input type="radio" name="wOrNot" value="goldW" /> <img src="images/thin_strip_purple_base.jpg" width="300" height="8" alt="Purple with W sample" /><br />
-   <input type="radio" name="wOrNot" value="goldNoW" /> <img src="images/thin_strip_purple_base.jpg" width="300" height="8" alt="Purple without W sample" />
+   <input type="radio" name="wOrNot" value="W" /> W<br />
+   <input type="radio" name="wOrNot" value="noW" /> No W
    <div class="dash"></div>
    
    
-   <h2>Step 2c: Search?</h2>
+   <h3>Step 2c: Search</h3>
    <label for="search"></label>
    <div id="sbPurpleW">
-   <input type="radio" name="search" value="purpleWBasicSearch" /> <img src="images/thin_strip_purple_search.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="purpleWSuperSearchNoTab" disabled="disabled" /> <img src="images/thin_strip_purple_super_search_inline.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="purpleWSuperSearch" disabled="disabled" /> <img src="images/thin_strip_purple_super_search.jpg" width="300" height="23" alt="" />
-   </div>
-   
-   <div id="sbGoldW">
-   <input type="radio" name="search" value="goldWBasicSearch" /> <img src="images/thin_strip_purple_search.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="goldWSuperSearchNoTab" disabled="disabled" /> <img src="images/thin_strip_purple_super_search_inline.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="goldWSuperSearch" disabled="disabled" /> <img src="images/thin_strip_purple_super_search.jpg" width="300" height="23" alt="" />
-   </div>
-   
-   <div id="sbPurpleNoW">
-   <input type="radio" name="search" value="purpleNoWBasicSearch" /> <img src="images/thin_strip_purple_search.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="purpleNoWSuperSearchNoTab" disabled="disabled" /> <img src="images/thin_strip_purple_super_search_inline.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="purpleNoWSuperSearch" disabled="disabled" /> <img src="images/thin_strip_purple_super_search.jpg" width="300" height="23" alt="" />
-   </div>
-   
-   <div id="sbGoldNoW">
-   <input type="radio" name="search" value="goldNoWBasicSearch" /> <img src="images/thin_strip_purple_search.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="goldNoWSuperSearchNoTab" disabled="disabled" /> <img src="images/thin_strip_purple_super_search_inline.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="search" value="goldNoWSuperSearch" disabled="disabled" /> <img src="images/thin_strip_purple_super_search.jpg" width="300" height="23" alt="" />
+   <input type="radio" name="search" value="basic" /> Basic<br />
+   <input type="radio" name="search" value="superInline" disabled="disabled" /> Super search (inline)<br />
+   <input type="radio" name="search" value="superTab" disabled="disabled" /> Super search (tab)
    </div>
   
   </div>
   <div id="step3">
    
-   <input type="radio" name="footer" value="footerBasic" /> <img src="images/footer_base.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="footer" value="footerW" /> <img src="images/footer_base.jpg" width="300" height="8" alt="" /><br />
-   <input type="radio" name="footer" value="footerGoldPatch" /> <img src="images/footer_w_purple.jpg" width="300" height="27" alt="" /><br />
-   <input type="radio" name="footer" value="footerPurplePatch" /> <img src="images/footer_w_gold.jpg" width="300" height="27" alt="" /><br />
+   <h2>Step 3: Footer</h2>
+   <label for="search"></label>
+   <input type="radio" name="footer" value="footerBasic" /> Basic<br />
+   <input type="radio" name="footer" value="footerW" /> With "W"<br />
+   <input type="radio" name="footer" value="footerGoldPatch" /> With gold patch<br />
+   <input type="radio" name="footer" value="footerPurplePatch" /> With purple patch<br />
    <input type="radio" name="footer" value="noFooter" /> I'll pass on the footer, thanks anyway!!!
   
   </div>
