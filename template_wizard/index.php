@@ -7,7 +7,7 @@ include_once('include/global.inc.php');
 <html>
 <head>
 <title>Template Generator 1.0</title>
-<link rel="stylesheet" type="text/css" href="include/tempgen.css" /> 
+<link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
 <script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="tempgen.js"></script>
 
@@ -50,8 +50,9 @@ $(document).ready(function() {
  </div>
 </div>
 <div id="centered">
- <div id="content">
+ <div id="content"> 
   <h1>Template Generator 1.0</h1>
+  <div id="stepsCol">
   <div id="step1">
    <h2>Step 1: <?php echo USER_INFO; ?></h2>
    <form name="" id="" action="">
@@ -110,7 +111,14 @@ $(document).ready(function() {
    <input type="radio" name="footer" value="noFooter" /> I'll pass on the footer, thanks anyway!!!
   
   </div>
-  <div id="step4"></form></div>
+  <div id="step4">
+   
+   <h2>Step4: Generate code</h2>
+   
+   <input type="submit" name="generate" value="Show me the code" /></form>
+  </div>
+  </div>
+  <div id="prevCodeCol">Preview and generated code goes in this column.</div>
  </div>
 </div>
 
