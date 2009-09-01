@@ -197,6 +197,7 @@
 <node CREATED="1251758658211" ID="Freemind_Link_1581318764" LINK="http://www.washington.edu/externalaffairs/staterelations/" MODIFIED="1251758679294" TEXT="Capitol Update Blog"/>
 <node CREATED="1251760238777" ID="Freemind_Link_140310894" LINK="http://www.washington.edu/research/gca/recovery/" MODIFIED="1251760249957" TEXT="Stimulus Package Information"/>
 <node CREATED="1251760260377" ID="Freemind_Link_1519341104" LINK="http://www.washington.edu/admin/rules/wac/rulesindex.html" MODIFIED="1251760281725" TEXT="UW Rule-Making Docket"/>
+<node CREATED="1251839434887" ID="Freemind_Link_198479051" LINK="http://www.whitehouse.gov/" MODIFIED="1251839473531" TEXT="Obama is president"/>
 </node>
 <node CREATED="1251760467689" ID="Freemind_Link_1605993119" LINK="http://www.washington.edu/emergency/" MODIFIED="1251760546446" POSITION="right" TEXT="H1N1 Flu Updates"/>
 <node CREATED="1251760486969" ID="Freemind_Link_748709630" LINK="http://www.youtube.com/user/uwhuskies" MODIFIED="1251760558373" POSITION="right" TEXT="YouTube"/>
