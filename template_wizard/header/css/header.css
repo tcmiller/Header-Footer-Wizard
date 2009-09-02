@@ -1,0 +1,84 @@
+@charset "utf-8";
+#wheader {
+	background-image: url(../img/bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	padding: 0 0 0 30px;
+	background-position: 0px -75px;
+}
+#wlogo {
+	height: 25px;
+	width: 250px;
+	float: left;
+	background-image: url(../img/w_logo_white.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-position: 0px 4px;
+}
+#wlogo p {
+	display: none;
+}
+#wtext {
+	height: 25px;
+	float: right;
+}
+#wsearch {
+	height: 25px;
+	float: right;
+	margin-left: 20px;
+}
+#wheader ul{
+	margin: 0;
+}
+#wheader li{
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+
+	font-weight: bold;
+}
+#wheader li a {
+	text-decoration: none;
+	color: #333333;
+	display:block;
+	float: left;
+	padding: 8px 6px 6px 6px;
+}
+#wheader li a:hover {
+	color: #000000;
+	background-image: url(../img/notch.gif);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+.border {
+	background-image: url(../img/leftbar.png);
+	background-repeat: no-repeat;
+	background-position: left center;	
+}
+
+/*-- Search --*/
+
+.wfield
+{
+	width: 142px;
+	height: 17px;
+	background: url(../img/tfbg2.gif) no-repeat;
+	float: left;
+}
+.wbutton
+{
+	width: 20px;
+	height: 17px;
+	background: url(../img/tfbg2.gif) no-repeat;
+	float: left;
+}
+.wTextInput
+{
+	width: 142px;
+	height: 17px;
+	background: none;
+	border: none;
+	color: #000000;
+	margin-left: 5px;
+}
