@@ -4,14 +4,31 @@ include_once('include/global.inc.php');
 
 ?>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
-<script type="text/javascript" src="include/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="tempgen.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+<!--<script type="text/javascript" src="include/additional-methods.js"></script>-->
+<script type="text/javascript" src="tmplgen.js"></script>
 
 <script type="text/javascript">
+$(document).ready(function() {
+	
+	$("#tmplgenForm").validate({	
+		errorPlacement: function(error, element) {
+			error.appendTo( element.parent("p").next("div") );	
+		},
+		debug:true
+		
+	})
+});
+
+</script>
+
+<!--<script type="text/javascript">
 $(document).ready(function() {
    $('#strip').click(function(){
      $('#step2_sub').show();
@@ -20,7 +37,9 @@ $(document).ready(function() {
      $('#step2_sub').hide();
    });
 });
-</script>
+</script>-->
+
+
 
 </head>
 <body>
@@ -49,77 +68,110 @@ $(document).ready(function() {
   </div>
  </div>
 </div>
+
 <div id="centered">
  <div id="content"> 
+  <div id="bodyPanel">
   <h1>Template Generator 1.0</h1>
   <div id="stepsCol">
-  <div id="step1">
-   <h2>Step 1: <?php echo USER_INFO; ?></h2>
-   <form name="" id="" action="">
-    <label for="fname">First name:</label>
-    <input type="text" name="fname" maxlength="20" />
-    <br />
-    <label for="lname">Last name:</label>
-    <input type="" name="lname" maxlength="20" />
-    <br />
-    <label for="email">Email:</label>
-    <input type="text" name="email" maxlength="40" />
-    <br />
-    <label for="url">Site URL:</label>
-    <input type="text" name="url" maxlength="150" />
-  </div>
-  <div id="step2">
-   <h2>Step 2: <?php echo THIN_STRIP; ?> or <?php echo KITCHEN_SINK; ?>?</h2>
-   <label for="sinkOrStrip"></label>
-   <input type="radio" name="sinkOrStrip" value="strip" id="strip" /> <?php echo THIN_STRIP; ?><br />
-   <input type="radio" name="sinkOrStrip" value="sink" id="sink"  /> <?php echo KITCHEN_SINK ?>
-  </div>
-  <div class="clear"></div>
-  <div id="step2_sub">
-   
-   <h3>Step 2a: Gold or purple background?</h3>
-   <label for="purpleOrGold"></label>
-   <input type="radio" name="purpleOrGold" value="purple" /> Purple<br />
-   <input type="radio" name="purpleOrGold" value="gold" /> Gold
-   <div class="dash"></div>
-   
-   
-   <h3>Step 2b: W or no W?</h3>
-   <label for="wOrNot"></label>
-   <input type="radio" name="wOrNot" value="W" /> W<br />
-   <input type="radio" name="wOrNot" value="noW" /> No W
-   <div class="dash"></div>
-   
-   
-   <h3>Step 2c: Search</h3>
-   <label for="search"></label>
-   <div id="sbPurpleW">
-   <input type="radio" name="search" value="basic" /> Basic<br />
-   <input type="radio" name="search" value="superInline" disabled="disabled" /> Super search (inline)<br />
-   <input type="radio" name="search" value="superTab" disabled="disabled" /> Super search (tab)
+   <div id="step1">
+    <h2>Step 1: <?php echo USER_INFO; ?></h2>
+    <form name="tmplgenForm" id="tmplgenForm" method="post" action="generate.php">
+     <fieldset>
+     <legend></legend>
+     <input type="hidden" name="requester" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
+     <div>
+      <label for="netid">Dept. net ID:</label>
+      <p><input type="text" name="owner" maxlength="40" class="required email" /></p>
+      <div></div>
+     </div>
+     <div>
+      <label for="email">Contact email:</label>
+      <p><input type="text" name="email" maxlength="40" class="required email" /></p>
+      <div></div>
+     </div>
+     <div>
+      <label for="url">Site URL:</label>
+      <p><input type="text" name="site_url" maxlength="150" size="30" class="required url" /></p>
+      <div></div>
+     </div>
    </div>
+   <div id="step2">
+    
+    <h2>Step 2: <?php echo THIN_STRIP; ?> or <?php echo KITCHEN_SINK; ?>?</h2>
+    <div>
+     <label for="sinkOrStrip"></label>
+     <input type="radio" name="kitchen_sink" value="0" id="strip" checked="checked" /> <?php echo THIN_STRIP; ?><br />
+     <div style="position: absolute;"><input type="radio" name="kitchen_sink" value="1" id="sink" disabled="disabled" /> <?php echo KITCHEN_SINK ?> <img src="images/kitchen_sink.jpg" width="170" height="32" alt="Kitchen sink sample graphic" style="position: absolute; left: 96px; top: 4px;" /></div>
+    </div>
+   </div>
+   <div id="step2_sub">   
+    
+    <h3>Step 2a: Gold or purple background?</h3>
+    <div>
+     <label for="purpleOrGold"></label>
+     <input type="radio" name="color" value="purple" /> Purple<br />
+     <input type="radio" name="color" value="gold" /> Gold
+    </div>
+    <div class="dash"></div>
+   
+    <h3>Step 2b: W or no W?</h3>
+    <div>
+     <label for="wOrNot"></label>
+     <input type="radio" name="blockw" value="1" /> W<br />
+     <input type="radio" name="blockw" value="0" /> No W
+    </div>
+    <div class="dash"></div>
+      
+    <h3>Step 2c: Search</h3>
+    <div>
+     <label for="search"></label>
+     <input type="radio" name="search" value="basic" /> Basic<br />
+     <input type="radio" name="search" value="super-inline" disabled="disabled" /> Super search (inline)<br />
+     <input type="radio" name="search" value="super-tab" disabled="disabled" /> Super search (tab)
+    </div>
   
-  </div>
-  <div id="step3">
+   </div>
+   <div id="step3">
    
-   <h2>Step 3: Footer</h2>
-   <label for="search"></label>
-   <input type="radio" name="footer" value="footerBasic" /> Basic<br />
-   <input type="radio" name="footer" value="footerW" /> With "W"<br />
-   <input type="radio" name="footer" value="footerGoldPatch" /> With gold patch<br />
-   <input type="radio" name="footer" value="footerPurplePatch" /> With purple patch<br />
-   <input type="radio" name="footer" value="noFooter" /> I'll pass on the footer, thanks anyway!!!
-  
-  </div>
-  <div id="step4">
+    <h2>Step 3: Footer</h2>
+    <div>
+     <label for="search"></label>
+     <input type="radio" name="footer" value="basic" /> Basic<br />
+     <input type="radio" name="footer" value="w" /> With "W"<br />
+     <input type="radio" name="footer" value="goldPatch" /> With gold patch<br />
+     <input type="radio" name="footer" value="purplePatch" /> With purple patch<br />
+     <input type="radio" name="footer" value="no" /> I'll pass on the footer, thanks anyway!!!
+    </div>
    
-   <h2>Step4: Generate code</h2>
+   </div>
+   <div id="step4">
    
-   <input type="submit" name="generate" value="Show me the code" /></form>
-  </div>
+    <h2>Step4: Generate code</h2>
+   
+    <?php
+    
+    /** @todo - add tooltips that provide a little more explanation about the various code output options **/
+    
+    ?>
+    
+    <div>
+     <label for="code_pref">How would you like your code?</label><br />
+     <input type="radio" name="code_pref" value="copy-paste" /> <a href="">Copy &amp; Paste</a>&nbsp;&nbsp;
+     <input type="radio" name="code_pref" value="include" /> <a href="">Include</a>&nbsp;&nbsp;
+     <input type="radio" name="code_pref" value="both" /> <a href="">Both</a>
+    </div>
+    
+    <div>
+     <input type="submit" name="generate" value="Generate my code" /></fieldset></form>
+    </div>
+   </div>
   </div>
   <div id="prevCodeCol">Preview and generated code goes in this column.</div>
+  </div>
+  <div class="clear">&nbsp;</div>
  </div>
+ <div id="footer"><div class="footerText"><strong><a href="http://www.washington.edu/home/siteinfo/" class="whitetext">FAQ</a>&nbsp;   |&nbsp;<a href="http://www.washington.edu/jobs/" class="whitetext">Employment</a>&nbsp;   |&nbsp; <a href="http://myuw.washington.edu/" class="whitetext">MyUW</a>&nbsp;   |&nbsp; <a href="http://www.washington.edu/uwin/" class="whitetext">UWIN</a>&nbsp;   |&nbsp; </strong><strong class="whitetext"><a href="http://www.washington.edu/home/siteinfo/form/" class="whitetext"><strong>Contact Us</strong></a></strong><br />  Copyright &copy; <?php echo date('Y'); ?> University of Washington</div></div>
 </div>
 
 <script type="text/javascript">
