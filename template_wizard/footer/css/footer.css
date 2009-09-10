@@ -1,0 +1,123 @@
+@charset "utf-8";
+body {
+	margin: 0px;
+}
+#footerLogo {
+	height: 25px;
+	float: left;
+	background-image: url(../img/w_logo_white.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-position: 0 4px;
+}
+#wlogoShort {
+	height: 25px;
+	width: 250px;
+	float: left;
+	background-image: url(../img/w_logo_white.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-position: -32px 4px;
+}
+#wlogoShort a, #footerLogo a{
+	display: none;
+	text-indent: -1000px;
+}
+#footerLinks {
+	height: 25px;
+	width: 70%;
+	margin: 0 auto;
+}
+#wsearch {
+	height: 25px;
+	float: right;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+.wTextInput
+{
+	width: 142px;
+	height: 17px;
+	background: none;
+	border: none;
+	color: #999999;
+	margin-left: 5px;
+	font-size: 10px;
+}
+
+/*-- Text for Purple --*/
+
+#footerMain {
+	background-image: url(../img/bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	background-position: 0px 0px;
+	overflow: hidden;
+}
+#footerMain ul{
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+#footerMain li{
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#footerMain li a {
+	text-decoration: none;
+	color: #FFF;
+	float: left;
+	padding: 8px 6px 7px 0;
+	white-space: nowrap;
+}
+#footerMain li a:hover {
+	color: #CCC;
+	background-image: url(../img/notch.gif);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+#footerMain li a:active {
+	color: #FFFFCC;
+}
+.logoAbsolute {
+	position: absolute;
+	margin-top: -50px;
+	height: 75px;
+	width: 76px;
+	background-color: #39275B;
+	background-image: url(../img/w.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#footerLinks h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	position: absolute;
+	margin-left: 95px;
+	margin-top: -25px;
+	color: #39275B;
+}
+
+#blanky{
+	background-color: #CC3300;
+	height: 300px;
+}
+.leftText {
+	margin-left: 45px;
+}
+.rightText {
+	padding-left: 10px;
+	background-image: url(../img/leftbar.png);
+	background-repeat: no-repeat;
+	background-position: 0px 6px;
+}
+.centerText {
+	padding-left: 5%;
+}
+#footerLinks li {
+	float: left;
+}

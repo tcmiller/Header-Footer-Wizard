@@ -1,0 +1,65 @@
+@charset "utf-8";
+body {
+	margin: 0px;
+	background-color: #006699;
+}
+
+
+
+#footerMain {
+	background-image: url(../img/bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	overflow: hidden;
+}
+#footerMain ul{
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+#footerMain li{
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#footerMain li a {
+	text-decoration: none;
+	color: #FFF;
+	float: left;
+	padding: 8px 6px 7px 0;
+}
+#footerMain li a:hover {
+	color: #CCC;
+	background-image: url(../img/notch.gif);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+#footerMain li a:active {
+	color: #FFFFCC;
+}
+
+#blanky{
+	background-color: #CC3300;
+	height: 300px;
+}
+#footerLeft {
+	float: left;
+	padding-left: 40px;
+}
+#footerRight {
+	float: right;
+	padding-right: 40px;	
+}
+#footerCenter {
+	width: 200px;
+	margin: 0 auto;
+}
+.footerLinkBorder {
+	float: left;
+	padding-left: 10px;
+	background-image: url(../img/leftbar.png);
+	background-repeat: no-repeat;
+	background-position: 0px 6px;
+}
