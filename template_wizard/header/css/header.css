@@ -11,6 +11,17 @@ body {
 	overflow: hidden;
 	background-position: 0 4px;
 }
+#wlogoShortPatch {
+	height: 25px;
+	width: 250px;
+	float: left;
+	background-image: url(../img/w_logo_white.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-position: -32px 4px;
+	position: absolute;
+	margin-left: 100px;
+}
 #wlogoShort {
 	height: 25px;
 	width: 250px;
@@ -19,10 +30,12 @@ body {
 	background-repeat: no-repeat;
 	overflow: hidden;
 	background-position: -32px 4px;
+	margin-left: 100px;
 }
 #wlogoShort a, #wlogoLong a{
 	display: block;
-	text-indent: -1000px;	
+	text-indent: -1000px;
+	overflow:hidden;
 }
 #wtext {
 	height: 25px;
@@ -176,4 +189,19 @@ body {
 }
 #wheaderPurple li a:active {
 	color: #FFFFCC;
+}
+.logoAbsolute {
+	position: absolute;
+	height: 75px;
+	width: 76px;
+	background-color: #39275B;
+	background-image: url(../img/w.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-left: -85px;
+}
+#wlogoLink {
+	display: block;
+	width: 74px;
+	height: 74px;
 }
