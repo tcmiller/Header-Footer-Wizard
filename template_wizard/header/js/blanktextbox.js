@@ -1,4 +1,4 @@
 function make_blank()
 {
-document.form1.field.value ="";
+document.form1.q.value ="";
 }
