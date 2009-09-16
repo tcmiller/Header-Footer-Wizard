@@ -127,11 +127,11 @@ body {
 }
 .wheader li a {
 	text-decoration: none;
-
 	display:block;
 	float: left;
 	padding: 8px 6px 7px 6px;
 	white-space: nowrap;
+	text-transform: uppercase;
 }
 .wheader li a:hover {
 	background-image: url(../img/notch.gif);
@@ -171,6 +171,6 @@ body {
 }
 #autoMargin {
 	display: block;
-	width: 100%;
+	width: 950px;
 	margin: 0 auto;
 }
