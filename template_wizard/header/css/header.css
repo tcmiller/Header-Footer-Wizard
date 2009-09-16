@@ -15,6 +15,7 @@ body {
 	padding-left: 100px;
 }
 
+
 /*-- Color --*/
 .colorGold {
 	background-position: 0px -75px;
@@ -80,6 +81,11 @@ body {
 	background-position: left center;	
 	display: block;
 	float: left;	
+}
+
+/*-- Logo Small --*/
+.wNo .wlogoSmall {
+	background-position: -28px 5px;
 }
 
 /*-- Search --*/
@@ -165,6 +171,6 @@ body {
 }
 #autoMargin {
 	display: block;
-	width: 970px;
+	width: 100%;
 	margin: 0 auto;
 }
