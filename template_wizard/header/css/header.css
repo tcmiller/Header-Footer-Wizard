@@ -2,20 +2,6 @@
 body {
 	margin: 0px;
 }
-
-/*-- Patch --*/
-.patchNo .logoAbsolute {
-	display: none;
-}
-.patchNo .wlogoSmall {
-	background-position: 0px 5px;
-	padding-left: 0px;
-}
-.patchYes .wlogoSmall {
-	padding-left: 100px;
-}
-
-
 /*-- Color --*/
 .colorGold {
 	background-position: 0px -75px;
@@ -29,9 +15,15 @@ body {
 .colorGold li a:hover {
 	color: #000;
 }
+.colorGold  .wlogoSmall {
+	background-position: 68px 5px;
+}
 
 .colorPurple {
 	background-position: 0px 0px;
+}
+.colorPurple .wlogoSmall {
+	background-position: 68px -19px;
 }
 .colorPurple .logoAbsolute {
 	background-color: #D7A900;
@@ -61,10 +53,9 @@ body {
 	height: 25px;
 	width: 250px;
 	float: left;
-	background-image: url(../img/w_logo_white.png);
+	background-image: url(../img/w.gif);
 	background-repeat: no-repeat;
 	overflow: hidden;
-	background-position: 68px 5px;
 }
 .wlogoSmall a {
 	display: block;
@@ -83,10 +74,7 @@ body {
 	float: left;	
 }
 
-/*-- Logo Small --*/
-.wNo .wlogoSmall {
-	background-position: -28px 5px;
-}
+
 
 /*-- Search --*/
 
@@ -173,4 +161,31 @@ body {
 	display: block;
 	width: 950px;
 	margin: 0 auto;
+}
+/*-- Patch --*/
+
+.patchNo .logoAbsolute {
+	display: none;
+}
+.patchNo .wlogoSmall {
+	background-position: 0px -19px;
+	padding-left: 0px;
+}
+.patchYes .wlogoSmall {
+	padding-left: 100px;
+}
+
+/*-- With or without W --*/
+
+.wNo .wlogoSmall {
+	background-position: -28px 5px;
+}
+.colorPurple.wNo .wlogoSmall {
+	background-position: -28px -19px;
+}
+.colorGold.patchNo .wlogoSmall {
+	background-position: 0px 5px;
+}
+.colorGold.wNo .wlogoSmall {
+	background-position: -28px 5px;
 }
