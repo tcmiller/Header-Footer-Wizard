@@ -140,17 +140,22 @@ a:link, a:visited, a:hover, a:active {
 }
 
 fieldset {
-	border: 0;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+legend {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.unavailable {
+	color: #ccc;
 }
 
 #step1, #step2, #step2_sub, #step3, #step4 {
 	font-size: 11px;
 	/*background-color: #c79900;*/
-}
-
-#step2_sub {
-	/** display: none; **/
-	padding-top: 30px;
 }
 
 #step1 label {
@@ -171,4 +176,26 @@ fieldset {
 #step1 div {
 	clear: both;
 	margin-bottom: 6px;
+}
+
+#step2_sub {
+	display: none;
+	border-top: 1px dotted #ccc;
+	padding-top: 6px;
+	margin-top: 30px;
+	height: 100px;
+	overflow: auto;
+}
+
+#step2_sub div {
+	padding-top: 10px;
+}
+
+#step2_sub label {
+ 	display: block;
+	font-weight: bold;
+}
+
+#blockw {
+	display: none;
 }

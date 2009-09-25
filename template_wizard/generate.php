@@ -1,5 +1,7 @@
 <?php
 
+header("Cache-Control: no-cache");
+
 require_once('include/global.inc.php');
 require_once('tmplgen-db.inc.php');
 
@@ -7,20 +9,87 @@ require_once('tmplgen-db.inc.php');
 $values = array();
 $values = $_POST;
 
-/**
- * @name - insertAccountInfo() - Insert our account information
- *
- * @param array $values
- * @return true
- */
-function insertAccountInfo($values) {
+echo '<pre>';
+print_r($values);
+echo '</pre>';
+
+/*function initializeAccount($values) {
 	
 	global $mdb2;
 	
 	// call and prepare the table and data for insertion
 	$table_name = 'account';
-
+	
 	$fields_values = array(
+		'requester' => $values['requester'],
+		'active' => 0,
+		'created_date' => date('Y-m-d H:i:s'),
+		'modified_date' => '0000-00-00 00:00:00',
+		'last_accessed' => '0000-00-00 00:00:00'
+	);
+	
+	$types = array(
+	
+}*/
+
+/**
+ * @name - processAccountInfo() - Initialize, update and finalize our account info
+ *
+ * @param array $values
+ * @return true
+ */
+function processAccountInfo($values) {
+	
+	global $mdb2;
+	
+	// call and prepare the table and data for insertion or updating
+	$table_name = 'account';
+
+	switch ($values['processType']) {
+		
+		case 'initA':
+			$fields_values = array('requester'=>$values['requester'],
+			                       'active'=>0,
+			                       'created_date' => date('Y-m-d H:i:s'),
+								   'modified_date' => '0000-00-00 00:00:00',
+								   'last_accessed' => '0000-00-00 00:00:00');
+			$procType = 'MDB2_AUTOQUERY_INSERT';
+			$join = 'null';			
+			$types = array('text','integer','text','text','text');
+			break;
+			
+		case 'updtA':
+			$fields_values = array('owner'=>$values['owner'],
+			                       'email'=>$values['email'],
+			                       'site_url'=>$values['site_url'],
+			                       'modified_date'=>date('Y-m-d H:i:s'));
+			$procType = 'MDB2_AUTOQUERY_UPDATE';
+			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
+			$types = array('text','text','text','text');
+			break;
+			
+		case 'fnlzA':
+			$fields_values = array('active'=>1,
+			                       'code_pref'=>$values['code_pref'],
+			                       'modified_date'=>date('Y-m-d H:i:s'));
+			$procType = 'MDB2_AUTOQUERY_UPDATE';
+			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
+			$types = array('integer','text','text');
+			break;
+		
+	}
+	
+	/*$fields_values = array('requester'=>$values['requester'],
+			                       'active'=>'0',
+			                       'created_date' => date('Y-m-d H:i:s'),
+								   'modified_date' => '0000-00-00 00:00:00',
+								   'last_accessed' => '0000-00-00 00:00:00');
+								   
+								   $procType = 'MDB2_AUTOQUERY_INSERT';
+								   
+								   $types = array('text','integer','text','text','text');*/
+	
+	/*$fields_values = array(
 	    'requester' => $values['requester'],
 	    'owner' => $values['owner'],
 	    'email' => $values['email'],
@@ -30,46 +99,91 @@ function insertAccountInfo($values) {
 		'created_date' => date('Y-m-d H:i:s'),
 		'modified_date' => '0000-00-00 00:00:00',
 		'last_accessed' => '0000-00-00 00:00:00'
-	);
+	);*/
+	
+	//$types = array('text', 'text', 'text', 'text', 'integer', 'text', 'text', 'text');
 
-	$types = array('text', 'text', 'text', 'text', 'integer', 'text', 'text', 'text');
-
+	//echo $procType;
+	
 	$mdb2->loadModule('Extended');
 	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
-							MDB2_AUTOQUERY_INSERT, null, $types);
+							constant($procType), $join, $types);
 
+		/*echo '<pre>';
+							print_r($affectedRows);
+							echo '</pre>';*/
+							
 	if (PEAR::isError($affectedRows)) {
+		
 		die($affectedRows->getMessage());
 		
 		// add an error message to the exceptions handler or something
 		
 	} else {
+		
 		return true;
 	}
 	
 }
 
 /**
- * @name - insertHeaderInfo() - Insert the user's header preferences
+ * @name - processHeaderInfo() - Initialize and update the user's header preferences
  *
  * @param array $values
  * @return true
  */
-function insertHeaderInfo($values) {
+function processHeaderInfo($values) {
 
 	global $mdb2;
 	
-	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this db connection
-	$account_id = $mdb2->lastInsertID('account', 'id');
-	if (PEAR::isError($account_id)) {
-    	die($account_id->getMessage());
-	}
+	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
+	// we use the requester id to look up the id that must now be the $account_id
+	$mdb2->loadModule('Extended');
+	$query = 'SELECT id FROM account WHERE requester = ?';
+	$data = $mdb2->extended->getRow($query, null, array($values['requester']), array('text'));
+	// $data[0] is a reference simply to the value of id
 	
 	$table_name = 'header';
 	
-	$fields_values = array(
-	    'kitchen_sink' => $values['kitchen_sink'],
-	    'blockw' => $values['blockw'],
+	switch($values['processType']) {
+		
+		case 'initH':
+			$fields_values = array('kitchen_sink' => $values['kitchen_sink'],
+								   'created_date' => date('Y-m-d H:i:s'),
+								   'last_modified' => '0000-00-00 00:00:00',
+						 		   'account_id' => $data[0]);
+			$procType = 'MDB2_AUTOQUERY_INSERT';
+			$join = 'null';
+			$types = array('integer','text','text','integer');
+			break;
+			
+		case 'updtH':
+			
+			// quite possible that they select the patch, in which case they will never see the option for blockw... thus, we handle it for them by setting it to 0
+			if (empty($values['blockw'])) {
+				$blockw = 0;
+			} else {
+				$blockw = $values['blockw'];
+			}
+			
+			$fields_values = array('blockw' => $blockw,
+			                       'patch' => $values['patch'],
+			                       'wordmark' => 1,
+			                       'color' => $values['color'],
+			                       'search' => $values['search'],
+			                       'last_modified' => date('Y-m-d H:i:s'));
+			$procType = 'MDB2_AUTOQUERY_UPDATE';
+			$join = 'account_id = '.$mdb2->quote($data[0], 'integer').'';
+			$types = array('integer','integer','integer','text','text','text');
+			break;
+		
+	}
+	
+	
+	/*$fields_values = array(
+	    'kitchen_sink' => KITCHEN_SINK,
+	    'blockw' => $blockw,
+	    'patch' => $values['patch'],
 	    'wordmark' => HEADER_WORDMARK,
 	    'color' => $values['color'],
 	    'search' => $values['search'],
@@ -78,11 +192,13 @@ function insertHeaderInfo($values) {
 		'account_id' => $account_id
 	);
 	
-	$types = array('integer','integer','integer','text','text','text','text','integer');
+	$procType = 'MDB2_AUTOQUERY_INSERT';
+	
+	$types = array('integer','integer','integer','integer','text','text','text','text','integer');*/
 
 	$mdb2->loadModule('Extended');
 	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
-							MDB2_AUTOQUERY_INSERT, null, $types);
+							constant($procType), $join, $types);
 
 	if (PEAR::isError($affectedRows)) {
 		die($affectedRows->getMessage());
@@ -97,12 +213,12 @@ function insertHeaderInfo($values) {
 
 /**
  * 
- * @name insertFooterInfo() - Insert the user's footer preference
+ * @name processFooterInfo() - Process the user's footer preference
  * 
  * @param array $values
  * @return true
  */
-function insertFooterInfo($values) {
+function processFooterInfo($values) {
 	
 	global $mdb2;
 	
@@ -130,27 +246,59 @@ function insertFooterInfo($values) {
 			break;						
 	}
 	
-	$account_id = $mdb2->lastInsertID('account', 'id');
-	if (PEAR::isError($account_id)) {
-    	die($account_id->getMessage());
+	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
+	// we use the requester id to look up the id that must now be the $account_id
+	$mdb2->loadModule('Extended');
+	$query = 'SELECT id FROM account WHERE requester = ?';
+	$accountInfo = $mdb2->extended->getRow($query, null, array($values['requester']), array('text'));
+	// $accountInfo[0] is a reference simply to the value of id
+	
+	/*echo '<pre>';
+	print_r($accountInfo);
+	echo '</pre>';*/
+	
+	// check to see if the footer row exists for this particular "requester"... this helps us know if we're going to be updating or inserting
+	$mdb2->loadModule('Extended');
+	$query = 'SELECT * FROM footer WHERE account_id = ?';
+	$footerInfo = $mdb2->extended->getRow($query, null, array($accountInfo[0]), array('text'));
+	
+	/*echo '<pre>';
+	print_r($footerInfo);
+	echo '</pre>';*/
+	
+	// initialize our query mode string
+	$qmode = 'MDB2_AUTOQUERY';
+	
+	if (!empty($footerInfo) && is_array($footerInfo)) {
+		// set the query mode to "UPDATE"		
+		$qmode .= '_UPDATE';
+		$join = 'account_id = '.$mdb2->quote($accountInfo[0], 'integer').'';
+		$fields_values = array(
+		    'blockw' => $blockw,
+		    'wordmark' => $wordmark,
+		    'patch' => $patch,
+			'last_modified' => date('Y-m-d H:i:s'));		
+		$types = array('integer','integer','text','text');
+		
+	} else {
+		// set the query mode to "INSERT"
+		$qmode .= '_INSERT';
+		$join = '';
+		$fields_values = array(
+		    'blockw' => $blockw,
+		    'wordmark' => $wordmark,
+		    'patch' => $patch,
+			'created_date' => date('Y-m-d H:i:s'),
+			'last_modified' => '0000-00-00 00:00:00',
+			'account_id' => $accountInfo[0]);		
+		$types = array('integer','integer','text','text','text','integer');
 	}
 	
 	$table_name = 'footer';
 	
-	$fields_values = array(
-	    'blockw' => $blockw,
-	    'wordmark' => $wordmark,
-	    'patch' => $patch,
-		'created_date' => date('Y-m-d H:i:s'),
-		'last_modified' => '0000-00-00 00:00:00',
-		'account_id' => $account_id
-	);
-	
-	$types = array('integer','integer','text','text','text','integer');
-
 	$mdb2->loadModule('Extended');
 	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
-							MDB2_AUTOQUERY_INSERT, null, $types);
+							constant($qmode), $join, $types);
 
 	if (PEAR::isError($affectedRows)) {
 		die($affectedRows->getMessage());
@@ -163,14 +311,31 @@ function insertFooterInfo($values) {
 	
 }
 
+function runtheGenerator($values) {
 
-// process the user's selected header/footer preferences
-insertAccountInfo($values);
-insertHeaderInfo($values);
-
-// don't run the insertFooterInfo() function if they don't want a footer
-if ($values['footer'] !== 'no') {
-	insertFooterInfo($values);	
+	// process the user's selected header/footer preferences
+	// only run this if certain processType values come through (initA || updtA || fnlzA)
+	if ($values['processType'] == 'initA' || $values['processType'] == 'updtA' || $values['processType'] == 'fnlzA') {
+		processAccountInfo($values);		
+	}
+	
+	// only run this if certain processType values come through (initH || updtH)
+	if ($values['processType'] == 'initH' || $values['processType'] == 'updtH') {
+		processHeaderInfo($values);
+	}
+	
+	// only run this if certain processType values come through (initF)
+	if ($values['processType'] == 'initF' && $values['footer'] !== 'no') {
+		processFooterInfo($values);
+	}
+	
+	echo '<pre>';
+	print_r($values);
+	echo '</pre>';
+	
 }
+
+// call our "constructor"
+runtheGenerator($values);
 
 ?>
