@@ -9,28 +9,9 @@ require_once('tmplgen-db.inc.php');
 $values = array();
 $values = $_POST;
 
-echo '<pre>';
+/*echo '<pre>';
 print_r($values);
-echo '</pre>';
-
-/*function initializeAccount($values) {
-	
-	global $mdb2;
-	
-	// call and prepare the table and data for insertion
-	$table_name = 'account';
-	
-	$fields_values = array(
-		'requester' => $values['requester'],
-		'active' => 0,
-		'created_date' => date('Y-m-d H:i:s'),
-		'modified_date' => '0000-00-00 00:00:00',
-		'last_accessed' => '0000-00-00 00:00:00'
-	);
-	
-	$types = array(
-	
-}*/
+echo '</pre>';*/
 
 /**
  * @name - processAccountInfo() - Initialize, update and finalize our account info
@@ -62,19 +43,19 @@ function processAccountInfo($values) {
 			$fields_values = array('owner'=>$values['owner'],
 			                       'email'=>$values['email'],
 			                       'site_url'=>$values['site_url'],
-			                       'modified_date'=>date('Y-m-d H:i:s'));
-			$procType = 'MDB2_AUTOQUERY_UPDATE';
-			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
-			$types = array('text','text','text','text');
-			break;
-			
-		case 'fnlzA':
-			$fields_values = array('active'=>1,
 			                       'code_pref'=>$values['code_pref'],
 			                       'modified_date'=>date('Y-m-d H:i:s'));
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
 			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
-			$types = array('integer','text','text');
+			$types = array('text','text','text','text','text');
+			break;
+			
+		case 'fnlzA':
+			$fields_values = array('active'=>1,
+			                       'modified_date'=>date('Y-m-d H:i:s'));
+			$procType = 'MDB2_AUTOQUERY_UPDATE';
+			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
+			$types = array('integer','text');
 			break;
 		
 	}
@@ -149,24 +130,21 @@ function processHeaderInfo($values) {
 		
 		case 'initH':
 			$fields_values = array('kitchen_sink' => $values['kitchen_sink'],
+								   'blockw' => $values['blockw'],
+								   'patch' => $values['patch'],
+								   'wordmark' => 1,                       
+								   'color' => $values['color'],       
+			                       'search' => $values['search'],
 								   'created_date' => date('Y-m-d H:i:s'),
 								   'last_modified' => '0000-00-00 00:00:00',
 						 		   'account_id' => $data[0]);
 			$procType = 'MDB2_AUTOQUERY_INSERT';
 			$join = 'null';
-			$types = array('integer','text','text','integer');
+			$types = array('integer','integer','integer','integer','text','text','text','text','integer');
 			break;
 			
-		case 'updtH':
-			
-			// quite possible that they select the patch, in which case they will never see the option for blockw... thus, we handle it for them by setting it to 0
-			if (empty($values['blockw'])) {
-				$blockw = 0;
-			} else {
-				$blockw = $values['blockw'];
-			}
-			
-			$fields_values = array('blockw' => $blockw,
+		case 'updtH':			
+			$fields_values = array('blockw' => $values['blockw'],
 			                       'patch' => $values['patch'],
 			                       'wordmark' => 1,
 			                       'color' => $values['color'],
@@ -311,7 +289,7 @@ function processFooterInfo($values) {
 	
 }
 
-function runtheGenerator($values) {
+function runGenerator($values) {
 
 	// process the user's selected header/footer preferences
 	// only run this if certain processType values come through (initA || updtA || fnlzA)
@@ -329,13 +307,17 @@ function runtheGenerator($values) {
 		processFooterInfo($values);
 	}
 	
-	echo '<pre>';
-	print_r($values);
-	echo '</pre>';
+	return true;
 	
 }
 
 // call our "constructor"
-runtheGenerator($values);
+if (runGenerator($values)) {
+	$msg = '      Success!       ';
+} else {
+	$msg = 'Try again';
+}
+
+echo $msg;
 
 ?>

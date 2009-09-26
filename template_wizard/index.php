@@ -31,7 +31,17 @@ $(document).ready(function() {
 <script type="text/javascript">
   
 $(document).ready(function() {
+   
+	// Form defaults
+	$('#sink').attr('disabled','disabled');
+	$('#gold_bg').attr('checked','checked');
+	$('#patch').attr('checked','checked');
+	$('#w_no').attr('checked','checked');
+	$('#s_basic').attr('checked','checked');
+	$('#ss_inline').attr('disabled','disabled');
+	$('#ss_tab').attr('disabled','disabled');
 	
+   // UI
    $('#strip').click(function(){
      $('#step2_sub').show();
    });
@@ -53,18 +63,7 @@ $(document).ready(function() {
 	 .removeAttr('selected');
    });
    
-   <?php $requester = $_SERVER['REMOTE_USER']; ?>
-   
-   /*$(function () {
-	    if ($.browser.msie) {
-	        $('input:radio').click(function () {
-	            this.blur();
-	            this.focus();
-	        });
-	    }
-	});*/
-
-   
+   // AJAX DB interface
    	// initialize our account
    	$(window).load(function () {
   		// run code
@@ -85,23 +84,17 @@ $(document).ready(function() {
     	$('#results').text(data);
     },'html');  
       	
-    });
-    
-    // finalize our account
-    $('form#tmplgenForm').submit(function() {
-    	$.post('generate.php',{ requester: $('#requester').val(),
-    							code_pref: $('input[name=code_pref]:checked').val(),
-    	                        processType: 'fnlzA' },function(data) {
-    	$('#results').text(data);
-    },'html');
-     return false;
-    });
-    
+    });    
     
     // initialize our header
     $('input[name=kitchen_sink]').click(function() {
     	$.post('generate.php',{ requester: $('#requester').val(),
     		                    kitchen_sink: $('input[name=kitchen_sink]:checked').val(),
+    		                    color: $('input[name=color]:checked').val(),
+    		                    blockw: $('input[name=blockw]:checked').val(),
+    		                    patch: $('input[name=patch]:checked').val(),
+    		                    search: $('input[name=search]:checked').val(),
+    		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH' },function(data) {
     	$('#results').text(data);
     },'html');
@@ -131,40 +124,58 @@ $(document).ready(function() {
   	 
     });
     
-   
-   // this is our database insert code
-   /*$('form#tmplgenForm').submit(function() {
-   	 $.post('generate.php',$('form#tmplgenForm').serialize(),function(data){
-   	     $("#loadSelections").text(data);
-   	 },'html');
+    // process our code preference selection
+    $("input[name='code_pref']").click(function() {
+    	$.post('generate.php',{ requester: $('#requester').val(),
+    	                        owner: $('#owner').val(),
+    	                        email: $('#email').val(),
+    	                        site_url: $('#site_url').val(),
+    		                    code_pref: $("input[name='code_pref']:checked").val(),
+    	                        processType: 'updtA'},function(data) {
+    	$('#results').text(data);              	
+  	},'html');
+  	 
+    });   
+    
+    // finalize our account
+    /*$('form#tmplgenForm').submit(function() {
+    	$('#generate').attr('disabled','disabled');
+    	$('#generate').attr('value','Generating.... code');
+    	$.post('generate.php',{ requester: $('#requester').val(),
+    	                        processType: 'fnlzA' },function(data) {
+    	//$('#results').text(data);
+    	//if ()
+    },'html');
      return false;
-   });*/
-   
-   // test to see if rows would get inserted with each radio button click
-   /*$(':radio').click(function() {
-   	 $.post('generate.php',$('form#tmplgenForm').serialize(),function(data){
-   	     $("#loadSelections").text(data);
-   	 },'html');
-     return false;
-   });*/
-   
-   // this is our dynamic template preview code + form logging code
-   /*$(':radio').click(function() {
-     $.post('.pl'),$('form#tmplgenForm').serializeArray(),function(data) {
-     	$('#loadPreview').text(data);
-     },'html');
-     $.post('log.php',$('form#tmplgenForm').serialize(),function(data) {
-   	     $('#loadLog').text(data);
-     },'html');
-     return false;
-   });*/
-   
+    });*/
+    
+    $('form#tmplgenForm').submit(function() {
+    	$('#generate').attr('value','Please wait............');
+    	$('#generate').attr('disabled','disabled');
+    	$.ajax({
+		   type: "POST",
+		   url: "generate.php",
+		   timeout: 2000,
+		   data: ({ requester : $('#requester').val(),
+		            processType: 'fnlzA' }),
+		   error: function() {
+               $('#generate').attr('value','Failed to submit');
+               $('#generate').removeAttr('disabled');},
+		   success: function(msg) {
+		     setTimeout(function() {
+		     	$('#generate').attr('value',msg);
+		     	$('#generate').removeAttr('disabled');
+		     }, 750);
+		   }
+		 });
+	 return false;
+    }); 
       
     /*function showValues() {
       var str = $("form#tmplgenForm").serialize();
       $("#results").text(str);
     }*/
-    function showValues() {
+    /*function showValues() {
       var fields = $("form#tmplgenForm").serializeArray();
       $("#results").empty();
       jQuery.each(fields, function(i, field){
@@ -175,7 +186,7 @@ $(document).ready(function() {
     $(":checkbox, :radio").click(showValues);
     $(":input").change(showValues);
     $("select").change(showValues);
-    showValues();
+    showValues();*/
   
    
 });
@@ -242,15 +253,15 @@ $(document).ready(function() {
     <div>
      <label for="kitchen_sink"></label>
      <input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip<br />
-     <div style="position: relative; margin-bottom: 12px;"><input type="radio" name="kitchen_sink" value="1" id="sink" disabled="disabled" /> <span class="unavailable">Kitchen sink</span><img src="images/kitchen_sink.jpg" width="170" height="32" alt="Kitchen sink sample graphic" style="position: absolute; left: 96px; top: 4px;" /></div>
+     <div style="position: relative; margin-bottom: 12px;"><input type="radio" name="kitchen_sink" value="1" id="sink" /> <span class="unavailable">Kitchen sink</span><img src="images/kitchen_sink.jpg" width="170" height="32" alt="Kitchen sink sample graphic" style="position: absolute; left: 96px; top: 4px;" /></div>
     </div>
    
    <div id="step2_sub">   
 
     <div style="padding-top: 0;">
      <label for="color">Gold or purple background?</label>
-     <input type="radio" name="color" value="purple" /> Purple<br />
-     <input type="radio" name="color" value="gold" /> Gold
+     <input type="radio" name="color" value="purple" id="purple_bg" /> Purple<br />
+     <input type="radio" name="color" value="gold" id="gold_bg" /> Gold
     </div>
     <div class="dash"></div>
    
@@ -263,17 +274,17 @@ $(document).ready(function() {
     
     <div id="blockw">
      <label for="blockw">W or no W?</label>
-     <input type="radio" name="blockw" value="1" /> W<br />
-     <input type="radio" name="blockw" value="0" /> No W
+     <input type="radio" name="blockw" value="1" id="w_yes" /> W<br />
+     <input type="radio" name="blockw" value="0" id="w_no" /> No W
     </div>
     <div class="dash"></div>
 
     <div>
      <label for="search">Search</label>
-     <input type="radio" name="search" value="basic" /> Basic<br />
-     <input type="radio" name="search" value="no" /> No search<br />
-     <input type="radio" name="search" value="super-inline" disabled="disabled" /> <span class="unavailable">Super (inline)</span><br />
-     <input type="radio" name="search" value="super-tab" disabled="disabled" /> <span class="unavailable">Super (tab)</span>
+     <input type="radio" name="search" value="basic" id="s_basic" /> Basic<br />
+     <input type="radio" name="search" value="no" id="s_no" /> No search<br />
+     <input type="radio" name="search" value="super-inline" id="ss_inline" /> <span class="unavailable">Super (inline)</span><br />
+     <input type="radio" name="search" value="super-tab" id="ss_tab" /> <span class="unavailable">Super (tab)</span>
     </div>
     
    </fieldset>
@@ -317,7 +328,7 @@ $(document).ready(function() {
   </div>
   <div id="prevCodeCol">Preview and generated code goes in this column.
   
-    <p><tt id="results"></tt></p>
+    <p><tt id="lresults"></tt></p>
   
   	<div id="loadSelections"></div>
   
