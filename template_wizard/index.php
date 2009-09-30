@@ -10,7 +10,7 @@ include_once('include/global.inc.php');
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+<!--<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>-->
 <!--<script type="text/javascript" src="include/additional-methods.js"></script>-->
 <script type="text/javascript" src="tmplgen.js"></script>
 
@@ -32,6 +32,15 @@ $(document).ready(function() {
   
 $(document).ready(function() {
    
+	// initialize validation script
+	/*$("#tmplgenForm").validate({	
+		errorPlacement: function(error, element) {
+			error.appendTo( element.parent("p").next("div") );	
+		},
+		debug:true
+		
+	})*/
+	
 	// Form defaults
 	$('#sink').attr('disabled','disabled');
 	$('#gold_bg').attr('checked','checked');
@@ -74,6 +83,38 @@ $(document).ready(function() {
       return false;
    	});
    
+   	/*$('#owner').change(function() {
+    	$.get('error.php',{ owner: $('#owner').val() },function(data) {
+    	$('#error-owner').html(data);
+    },'html');  
+      	
+    });*/
+   	
+   	// validate owner
+   	/*$('#owner').bind('blur',function(e){
+	    $.get("error.php", { owner: $('#owner').val()
+	                         errorType:  }, function(data) {
+	      //$('#error-owner').html(data);
+	      $('#error-owner').html(data);
+	    }, 'html');
+	  });*/
+   	
+   	//$.get("test.php", { 'choices[]': ["Jon", "Susan"]} );
+   	
+   	$('#owner').bind('blur',function(){
+	    $.get("error.php", { 'owner[]': [$('#owner').val(), 'required'] }, function(data) {
+
+	      $('#error-owner').html(data);
+	    }, 'html');
+	  });
+	  
+	$('#email').bind('blur',function(){
+		$.get("error.php", { 'email[]': [$('#email').val(), 'requiredAndEmail'] }, function(data) {
+		                     	
+		  $('#error-email').html(data);
+	  },'html');
+	});
+   	
     // update our account
     $('#owner,#email,#site_url').change(function() {
     	$.post('generate.php',{ requester: $('#requester').val(),
@@ -82,6 +123,10 @@ $(document).ready(function() {
     	                        site_url: $('#site_url').val(),
     	                        processType: 'updtA' },function(data) {
     	$('#results').text(data);
+    	/*$.post('error.php',{ owner: $('#owner').val(),
+    	                     email: $('#email').val(),
+    	                     site_url: $('#site_url').val() },function(data) {
+    	$('.error').text(data);*/
     },'html');  
       	
     });    
@@ -233,12 +278,12 @@ $(document).ready(function() {
      <div>
       <label for="netid">Dept. net ID:</label>
       <p><input type="text" name="owner" id="owner" maxlength="40" class="required" /></p>
-      <div></div>
+      <div id="error-owner"></div>
      </div>
      <div>
       <label for="email">Contact email:</label>
       <p><input type="text" name="email" id="email" maxlength="40" class="required email" /></p>
-      <div></div>
+      <div id="error-email"></div>
      </div>
      <div>
       <label for="url">Site URL:</label>
@@ -328,7 +373,9 @@ $(document).ready(function() {
   </div>
   <div id="prevCodeCol">Preview and generated code goes in this column.
   
-    <p><tt id="lresults"></tt></p>
+    <p><tt id="results"></tt></p>
+    
+    
   
   	<div id="loadSelections"></div>
   

@@ -1,0 +1,30 @@
+TODOS
+
+[x] Step 4: data insert on click
+[x] setup defaults for the header choices
+[] work on use cases
+[x] "Generate my code" button should change to "Finished or Success :)"
+[] Add validation rules, server side first and then maybe client side
+[] fix UI to accommodate the header and footer preview below the generator
+[] get the template preview working
+[] test the includes
+[] cross-browser test
+[] xhtml test the include and copy and paste code
+[] add the super search "coming soon" graphics
+[] remove the footer row if user selects "No footer please", after a footer preference was provided
+[] "Step 4: Generate Code" links, rollover or click provides preview or explanation
+[] Add button called "Clear Form" which does what the "Start over" button does
+[] Start over refreshes the entire page/generator
+[] Required fields: Dept. net ID, Contact email, Site URL:, Generate Code
+[] Four things, which show up in the "results" <div>:
+   1) Documentation showing users what to do, explanation of code
+   2) Include code (text area that auto copies, selects all, when clicking in area)
+   3) Copy & Paste code (text area that auto copies, selects all, when selecting area)
+   4) Header/footer preview (output showing user what they will get)
+
+
+NICE TO HAVE
+
+[] width option
+[] store the user's platform, browser, screen res, etc. info as a serialized array in a field, may be useful for debugging somebody's installation later or the wizard itself
+[] log back in and "update" and retrieve different header/footer code
