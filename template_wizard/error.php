@@ -8,6 +8,10 @@ require_once('include/global.inc.php');
 $formData = array();
 $formData = $_GET;
 
+/*echo '<pre>';
+print_r($formData);
+echo '</pre>';*/
+
 //echo $values['owner'].$values['blah'];
 
 $values = array();
@@ -17,9 +21,9 @@ foreach ($formData as $key => $value) {
 	$values = $value; 			
 }
 
-/*echo '<pre>';
+echo '<pre>';
 print_r($values);
-echo '</pre>';*/
+echo '</pre>';
 
 function errorHandler($values) {
 
@@ -28,16 +32,6 @@ function errorHandler($values) {
 	
 	// get and store the error type
 	$errorType = $values[1];
-	
-	//$msg = $errorType;
-	
-	/*if (!empty($values['errorType']) && is_string($values['errorType'])) {
-		$errorType = $values['errorType'];
-	} else {
-		$errorType = '';
-	}*/
-	
-	//echo $errorType;
 	
 	switch ($errorType) {
 		
@@ -57,10 +51,6 @@ function errorHandler($values) {
 //echo errorHandler($values);
 
 function required($value) {
-
-	//$msg = $values['blah'];
-	
-	//$errorType = $values['blah'];
 	
 	if (empty($value)) {	
 		$msg = 'This field is required';
@@ -127,6 +117,6 @@ function check_email_address($email) {
  	return true;
 }
 
-echo errorHandler($values);
+//echo errorHandler($values);
 
 ?>

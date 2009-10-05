@@ -9,37 +9,46 @@ include_once('include/global.inc.php');
 <head>
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
+<link rel="stylesheet" type="text/css" href="include/jquery.validate.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<!--<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>-->
+<!--<script type="text/javascript" src="include/jquery.validate.js"></script>-->
 <!--<script type="text/javascript" src="include/additional-methods.js"></script>-->
+<script src="include/jquery.validate.js" type="text/javascript"></script>
+<script src="include/jquery.validation.functions.js" type="text/javascript"></script>
+
 <script type="text/javascript" src="tmplgen.js"></script>
-
-<!--<script type="text/javascript">
-$(document).ready(function() {
-	
-	$("#tmplgenForm").validate({	
-		errorPlacement: function(error, element) {
-			error.appendTo( element.parent("p").next("div") );	
-		},
-		debug:true
-		
-	})
-});
-
-</script>-->
 
 <script type="text/javascript">
   
 $(document).ready(function() {
    
-	// initialize validation script
-	/*$("#tmplgenForm").validate({	
-		errorPlacement: function(error, element) {
-			error.appendTo( element.parent("p").next("div") );	
-		},
-		debug:true
-		
-	})*/
+	// Form validation           
+    $("#owner").validate({
+        expression: "if (VAL) return true; else return false;",
+        message: "Please enter the required field"
+    });
+    $("#email").validate({
+        expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+        message: "Please enter a valid email"
+    });
+    $("#site_url").validate({
+        expression: "if (VAL) return true; else return false;",
+        message: "Please enter the required field"
+    });
+   
+    $("#headerSelect").validate({
+        expression: "if (isChecked(SelfID)) return true; else return false;",
+        message: "Please make a selection"
+    });
+    $("#footerSelect").validate({
+        expression: "if (isChecked(SelfID)) return true; else return false;",
+        message: "Please make a selection"
+    });
+    $("#codePrefSelect").validate({
+        expression: "if (isChecked(SelfID)) return true; else return false;",
+        message: "Please make a selection"
+    });
+               	
 	
 	// Form defaults
 	$('#sink').attr('disabled','disabled');
@@ -64,7 +73,7 @@ $(document).ready(function() {
      $('#blockw').hide();
    });   
    $('#reset').click(function(){
-   	 $('#step2_sub').hide();
+   	 //$('#step2_sub').hide();
    	 $(':input')
 	 .not(':button, :submit, :reset, :hidden')
 	 .val('')
@@ -80,40 +89,8 @@ $(document).ready(function() {
                                 processType: 'initA' },function(data) {
      	$('#results').text(data);
      },'html');
-      return false;
+      
    	});
-   
-   	/*$('#owner').change(function() {
-    	$.get('error.php',{ owner: $('#owner').val() },function(data) {
-    	$('#error-owner').html(data);
-    },'html');  
-      	
-    });*/
-   	
-   	// validate owner
-   	/*$('#owner').bind('blur',function(e){
-	    $.get("error.php", { owner: $('#owner').val()
-	                         errorType:  }, function(data) {
-	      //$('#error-owner').html(data);
-	      $('#error-owner').html(data);
-	    }, 'html');
-	  });*/
-   	
-   	//$.get("test.php", { 'choices[]': ["Jon", "Susan"]} );
-   	
-   	$('#owner').bind('blur',function(){
-	    $.get("error.php", { 'owner[]': [$('#owner').val(), 'required'] }, function(data) {
-
-	      $('#error-owner').html(data);
-	    }, 'html');
-	  });
-	  
-	$('#email').bind('blur',function(){
-		$.get("error.php", { 'email[]': [$('#email').val(), 'requiredAndEmail'] }, function(data) {
-		                     	
-		  $('#error-email').html(data);
-	  },'html');
-	});
    	
     // update our account
     $('#owner,#email,#site_url').change(function() {
@@ -123,10 +100,6 @@ $(document).ready(function() {
     	                        site_url: $('#site_url').val(),
     	                        processType: 'updtA' },function(data) {
     	$('#results').text(data);
-    	/*$.post('error.php',{ owner: $('#owner').val(),
-    	                     email: $('#email').val(),
-    	                     site_url: $('#site_url').val() },function(data) {
-    	$('.error').text(data);*/
     },'html');  
       	
     });    
@@ -182,18 +155,7 @@ $(document).ready(function() {
   	 
     });   
     
-    // finalize our account
-    /*$('form#tmplgenForm').submit(function() {
-    	$('#generate').attr('disabled','disabled');
-    	$('#generate').attr('value','Generating.... code');
-    	$.post('generate.php',{ requester: $('#requester').val(),
-    	                        processType: 'fnlzA' },function(data) {
-    	//$('#results').text(data);
-    	//if ()
-    },'html');
-     return false;
-    });*/
-    
+    // finalize our account    
     $('form#tmplgenForm').submit(function() {
     	$('#generate').attr('value','Please wait............');
     	$('#generate').attr('disabled','disabled');
@@ -214,25 +176,7 @@ $(document).ready(function() {
 		   }
 		 });
 	 return false;
-    }); 
-      
-    /*function showValues() {
-      var str = $("form#tmplgenForm").serialize();
-      $("#results").text(str);
-    }*/
-    /*function showValues() {
-      var fields = $("form#tmplgenForm").serializeArray();
-      $("#results").empty();
-      jQuery.each(fields, function(i, field){
-        $("#results").append(field.value + " ");
-      });
-    }
-
-    $(":checkbox, :radio").click(showValues);
-    $(":input").change(showValues);
-    $("select").change(showValues);
-    showValues();*/
-  
+    });  
    
 });
 </script>
@@ -269,37 +213,38 @@ $(document).ready(function() {
  <div id="content"> 
   <div id="bodyPanel">
   <h1>Template Generator 1.0</h1>
-  <div id="stepsCol">
+  
    <div id="step1">
-    <form name="tmplgenForm" id="tmplgenForm" action="">
+    <form name="tmplgenForm" id="tmplgenForm" action="" method="post">
      <fieldset>
      <legend>Step 1: User Info</legend>
      <input type="hidden" name="requester" id="requester" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
      <div>
-      <label for="netid">Dept. net ID:</label>
-      <p><input type="text" name="owner" id="owner" maxlength="40" class="required" /></p>
-      <div id="error-owner"></div>
+      <label for="owner">Dept. net ID:</label>
+      <input type="text" name="owner" id="owner" maxlength="40" class="required" />
      </div>
      <div>
       <label for="email">Contact email:</label>
-      <p><input type="text" name="email" id="email" maxlength="40" class="required email" /></p>
-      <div id="error-email"></div>
+      <input type="text" name="email" id="email" maxlength="40" class="email" />
      </div>
      <div>
-      <label for="url">Site URL:</label>
-      <p><input type="text" name="site_url" id="site_url" maxlength="150" size="30" class="required url" /></p>
-      <div></div>
+      <label for="site_url">Site URL:</label>
+      <input type="text" name="site_url" id="site_url" maxlength="150" size="30" class="required" />
      </div>
      </fieldset>
    </div>
    <div id="step2">
     <fieldset>
     <legend>Step 2: Thin Strip or Kitchen Sink?</legend>
-    <div>
-     <label for="kitchen_sink"></label>
-     <input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip<br />
-     <div style="position: relative; margin-bottom: 12px;"><input type="radio" name="kitchen_sink" value="1" id="sink" /> <span class="unavailable">Kitchen sink</span><img src="images/kitchen_sink.jpg" width="170" height="32" alt="Kitchen sink sample graphic" style="position: absolute; left: 96px; top: 4px;" /></div>
-    </div>
+    <span id="headerSelect" class="InputGroup">
+	 <label for="strip">
+	  <input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip
+	 </label>
+	 <br />
+	 <label for="sink">
+	  <input type="radio" name="kitchen_sink" value="1" id="sink" /> Kitchen sink
+	 </label>
+	</span>
    
    <div id="step2_sub">   
 
@@ -333,50 +278,47 @@ $(document).ready(function() {
     </div>
     
    </fieldset>
-  
+   
    </div>
    
    <div id="step3">
     <fieldset>
     <legend>Step 3: Footer</legend>
-    <div>
-     <label for="search"></label>
-     <input type="radio" name="footer" value="basic" /> Basic<br />
-     <input type="radio" name="footer" value="w" /> With "W"<br />
-     <input type="radio" name="footer" value="goldPatch" /> With gold patch<br />
-     <input type="radio" name="footer" value="purplePatch" /> With purple patch<br />
-     <input type="radio" name="footer" value="no" /> I'll pass on the footer, thanks anyway!!!
-    </div>
-    </fieldset>   
+    <span id="footerSelect" class="InputGroup">
+     <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" /> Basic</label>
+     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" /> With "W"</label>
+     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" /> With gold patch</label>
+     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" /> With purple patch</label>
+     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" /> I'll pass on the footer, thanks anyway!!!</label>
+   </span>
+   </fieldset>
    </div>
    <div id="step4">
     <fieldset>
-    <legend>Step 4: Generate Code</legend>
+     <legend>Step 4: Code Preference</legend>
    
     <?php
     
     /** @todo - add tooltips that provide a little more explanation about the various code output options **/
     
     ?>
-    
-    <div>
-     <label for="code_pref">How would you like your code?</label><br />
-     <input type="radio" name="code_pref" value="copy-paste" /> <a href="">Copy &amp; Paste</a>&nbsp;&nbsp;
-     <input type="radio" name="code_pref" value="include" /> <a href="">Include</a>&nbsp;&nbsp;
-     <input type="radio" name="code_pref" value="both" /> <a href="">Both</a>
-    </div>
+     <span id="codePrefSelect" class="InputGroup">
+      <label for="cde-prf-cp"><input type="radio" name="code_pref" value="copy-paste" id="cde-prf-cp" /> <a href="">Copy &amp; Paste</a></label>
+      <label for="cde-prf-inc"><input type="radio" name="code_pref" value="include" id="cde-prf-inc" /> <a href="">Include</a></label>
+      <label for="cde-prf-bth"><input type="radio" name="code_pref" value="both" id="cde-prf-bth" /> <a href="">Both</a></label>
+     </span>
     </fieldset>
+    </div>
     <div>
-     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" />&nbsp;&nbsp;&nbsp;<input type="button" value="Start over" id="reset" /></form>
+     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" />&nbsp;&nbsp;&nbsp;<input type="button" value="Start over" id="reset" />
+     </form>
     </div>
    </div>
-  </div>
+  
   <div id="prevCodeCol">Preview and generated code goes in this column.
   
     <p><tt id="results"></tt></p>
-    
-    
-  
+ 
   	<div id="loadSelections"></div>
   
   </div>

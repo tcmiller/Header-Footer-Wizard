@@ -175,7 +175,7 @@ legend {
 }
 #step1 div {
 	clear: both;
-	margin-bottom: 6px;
+	margin-bottom: 8px;
 }
 
 #step2_sub {
@@ -196,6 +196,20 @@ legend {
 	font-weight: bold;
 }
 
+#step3 label {
+	display: block;
+	padding-bottom: 2px;
+}
+
+#step4 label {
+	display: block;
+	padding-bottom: 2px;
+}
+
 #blockw {
 	display: none;
+}
+
+#strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#cde-prf-cp,#cde-prf-inc,#cde-prf-bth {
+	border: 0;
 }

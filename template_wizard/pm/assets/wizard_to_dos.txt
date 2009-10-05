@@ -22,6 +22,7 @@ TODOS
    3) Copy & Paste code (text area that auto copies, selects all, when selecting area)
    4) Header/footer preview (output showing user what they will get)
 
+[] make sure validation works on submit too
 
 NICE TO HAVE
 
