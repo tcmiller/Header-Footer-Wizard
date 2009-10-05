@@ -1,5 +1,5 @@
 body {
-	background-color: #39275b;
+	background-color: #fff;
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
@@ -151,6 +151,11 @@ legend {
 
 .unavailable {
 	color: #ccc;
+}
+
+#step1, #step2, #step3 {
+	float: left;
+	width: 50%;
 }
 
 #step1, #step2, #step2_sub, #step3, #step4 {

@@ -10,9 +10,8 @@ include_once('include/global.inc.php');
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
 <link rel="stylesheet" type="text/css" href="include/jquery.validate.css" />
+<link rel="stylesheet" type="text/css" href="http://staff.washington.edu/kilianf/headfoot/header/css/header.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<!--<script type="text/javascript" src="include/jquery.validate.js"></script>-->
-<!--<script type="text/javascript" src="include/additional-methods.js"></script>-->
 <script src="include/jquery.validate.js" type="text/javascript"></script>
 <script src="include/jquery.validation.functions.js" type="text/javascript"></script>
 
@@ -107,28 +106,30 @@ $(document).ready(function() {
     // initialize our header
     $('input[name=kitchen_sink]').click(function() {
     	$.post('generate.php',{ requester: $('#requester').val(),
-    		                    kitchen_sink: $('input[name=kitchen_sink]:checked').val(),
+    		                    owner: $('#owner').val(),
+    	                        kitchen_sink: $('input[name=kitchen_sink]:checked').val(),
     		                    color: $('input[name=color]:checked').val(),
     		                    blockw: $('input[name=blockw]:checked').val(),
     		                    patch: $('input[name=patch]:checked').val(),
     		                    search: $('input[name=search]:checked').val(),
     		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH' },function(data) {
-    	$('#results').text(data);
-    },'html');
-
+    	$('#preview').html(data);
+    	});
+    	
     });
     
     // update our header
     $("input[name='blockw'],input[name='patch'],input[name='color'],input[name='search']").click(function() {
     	$.post('generate.php',{ requester: $('#requester').val(),
-    		                    blockw: $("input[name='blockw']:checked").val(),
+    		                    owner: $('#owner').val(),
+    	                        blockw: $("input[name='blockw']:checked").val(),
     	                        patch: $("input[name='patch']:checked").val(),
     	                        color: $("input[name='color']:checked").val(),
     	                        search: $("input[name='search']:checked").val(),
     	                        processType: 'updtH'},function(data) {
-    	$('#results').text(data);              	
-  	},'html');
+    	$('#preview').html(data);              	
+  		});
   	 
     });
     
@@ -214,6 +215,7 @@ $(document).ready(function() {
   <div id="bodyPanel">
   <h1>Template Generator 1.0</h1>
   
+  <div>  
    <div id="step1">
     <form name="tmplgenForm" id="tmplgenForm" action="" method="post">
      <fieldset>
@@ -280,7 +282,10 @@ $(document).ready(function() {
    </fieldset>
    
    </div>
+  </div>
    
+  <div class="clear"></div>
+  
    <div id="step3">
     <fieldset>
     <legend>Step 3: Footer</legend>
@@ -293,6 +298,9 @@ $(document).ready(function() {
    </span>
    </fieldset>
    </div>
+   
+   <div class="clear"></div>
+   
    <div id="step4">
     <fieldset>
      <legend>Step 4: Code Preference</legend>
@@ -318,15 +326,14 @@ $(document).ready(function() {
   <div id="prevCodeCol">Preview and generated code goes in this column.
   
     <p><tt id="results"></tt></p>
- 
-  	<div id="loadSelections"></div>
   
   </div>
   </div>
   <div class="clear">&nbsp;</div>
  </div>
- <div id="footer"><div class="footerText"><strong><a href="http://www.washington.edu/home/siteinfo/" class="whitetext">FAQ</a>&nbsp;   |&nbsp;<a href="http://www.washington.edu/jobs/" class="whitetext">Employment</a>&nbsp;   |&nbsp; <a href="http://myuw.washington.edu/" class="whitetext">MyUW</a>&nbsp;   |&nbsp; <a href="http://www.washington.edu/uwin/" class="whitetext">UWIN</a>&nbsp;   |&nbsp; </strong><strong class="whitetext"><a href="http://www.washington.edu/home/siteinfo/form/" class="whitetext"><strong>Contact Us</strong></a></strong><br />  Copyright &copy; <?php echo date('Y'); ?> University of Washington</div></div>
 </div>
+
+<div id="preview"></div>
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

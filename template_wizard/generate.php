@@ -137,7 +137,32 @@ function processHeaderInfo($values) {
 		// add an error message to the exceptions handler or something
 		
 	} else {
-		return true;
+		
+		/**
+		 * on success, use CURL to update the preview via a global cgi script Chris has set up
+		 */
+		
+		// create a new cURL resource
+		$ch = curl_init();
+		
+		// set URL and other appropriate options
+		curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
+		
+		// return the transfer as a string of the return value of curl_exec instead of outputting directly
+		//curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		
+		// we want html as the output
+		//curl_setopt($ch, CURLOPT_HEADER, 1);
+		
+		// grab URL and pass it to the browser
+		//$preview = curl_exec($ch);
+		
+		curl_exec($ch);
+		
+		// close cURL resource, and free up system resources
+		curl_close($ch);
+		
+		//echo $preview;
 	}
 	
 }
@@ -265,12 +290,14 @@ function runGenerator($values) {
 }
 
 // call our "constructor"
-if (runGenerator($values)) {
+/*if (runGenerator($values)) {
 	$msg = '      Success!       ';
 } else {
 	$msg = 'Try again';
 }
 
-echo $msg;
+echo $msg;*/
+
+runGenerator($values);
 
 ?>
