@@ -126,23 +126,6 @@ function processHeaderInfo($values) {
 			break;
 		
 	}
-	
-	
-	/*$fields_values = array(
-	    'kitchen_sink' => KITCHEN_SINK,
-	    'blockw' => $blockw,
-	    'patch' => $values['patch'],
-	    'wordmark' => HEADER_WORDMARK,
-	    'color' => $values['color'],
-	    'search' => $values['search'],
-		'created_date' => date('Y-m-d H:i:s'),
-		'last_modified' => '0000-00-00 00:00:00',
-		'account_id' => $account_id
-	);
-	
-	$procType = 'MDB2_AUTOQUERY_INSERT';
-	
-	$types = array('integer','integer','integer','integer','text','text','text','text','integer');*/
 
 	$mdb2->loadModule('Extended');
 	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,

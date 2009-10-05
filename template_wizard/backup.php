@@ -24,6 +24,23 @@
 
 	//echo $procType;
 	
+
+/*$fields_values = array(
+	    'kitchen_sink' => KITCHEN_SINK,
+	    'blockw' => $blockw,
+	    'patch' => $values['patch'],
+	    'wordmark' => HEADER_WORDMARK,
+	    'color' => $values['color'],
+	    'search' => $values['search'],
+		'created_date' => date('Y-m-d H:i:s'),
+		'last_modified' => '0000-00-00 00:00:00',
+		'account_id' => $account_id
+	);
+	
+	$procType = 'MDB2_AUTOQUERY_INSERT';
+	
+	$types = array('integer','integer','integer','integer','text','text','text','text','integer');*/
+	
 	
 	// Server-side form validation   
    /*$('#owner').bind('blur',function(){
