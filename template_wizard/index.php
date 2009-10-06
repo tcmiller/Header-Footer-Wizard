@@ -115,6 +115,7 @@ $(document).ready(function() {
     		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH' },function(data) {
     	$('#preview').html(data);
+    	$('#results').text(data);
     	});
     	
     });
@@ -128,7 +129,8 @@ $(document).ready(function() {
     	                        color: $("input[name='color']:checked").val(),
     	                        search: $("input[name='search']:checked").val(),
     	                        processType: 'updtH'},function(data) {
-    	$('#preview').html(data);              	
+    	$('#preview').html(data);
+    	$('#results').text(data);              	
   		});
   	 
     });
@@ -323,17 +325,13 @@ $(document).ready(function() {
     </div>
    </div>
   
-  <div id="prevCodeCol">Preview and generated code goes in this column.
-  
-    <p><tt id="results"></tt></p>
-  
-  </div>
   </div>
   <div class="clear">&nbsp;</div>
  </div>
 </div>
 
 <div id="preview"></div>
+<div id="results"></div>
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
