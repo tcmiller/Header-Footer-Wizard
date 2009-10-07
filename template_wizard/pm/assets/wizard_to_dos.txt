@@ -2,8 +2,8 @@ TODOS
 
 [x] Step 4: data insert on click
 [x] setup defaults for the header choices
-[] work on use cases
 [x] "Generate my code" button should change to "Finished or Success :)"
+[] work on use cases
 [] Add validation rules, server side first and then maybe client side
 [] fix UI to accommodate the header and footer preview below the generator
 [] get the template preview working

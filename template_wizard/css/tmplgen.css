@@ -1,0 +1,205 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #fff;
+	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
+}
+img {
+    border: 0;
+}
+a:link, a:visited, a:hover, a:active {
+	color: #39275b;
+}
+
+/*** Header CSS ***/
+#searchb {
+	width: 165px;
+	float: right;
+	height: 25px;
+	overflow: hidden;
+}
+#lgo {
+	float: left;
+}
+#rhtlnks {
+	text-align: right;
+	height: 25px;
+}
+#searcha {
+	width: 415px;
+	float: right;
+}
+#searcha ul {
+	margin-top: 2px;
+	text-decoration: none;
+	display: inline;
+}
+#searcha ul li {
+	display: inline;
+	padding-right: 2px;
+	font-size: 10px;
+	font-weight: 400;
+	color: #fff;
+	font-family: "Lucida Grande", geneva, helvetica, sans-serif;
+	text-decoration: none;
+}
+#rhtlnks a {
+	color: #fff;
+}
+#rhtlnks a:link {
+	color: #fff;
+	text-decoration: none;
+}
+#rhtlnks a:visited {
+	color: #ccc;
+	text-decoration: none;
+}
+#rhtlnks a:hover {
+	color: #c90;
+}
+#rhtlnks input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #999;
+}
+#header {
+	background-image: url(../images/header_bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #999;
+}
+#header img {
+	margin-top: 3px;
+	margin-bottom: 4px;
+	margin-left: 10px;
+}
+
+/*** Body CSS ***/
+.clear {
+	clear: both;
+}
+
+/*** Form Attributes ***/
+#tmplgenForm form {
+	font-size: 16px;
+}
+#tmplgenForm input {
+	font-size: 16px;
+}
+fieldset {
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 500px;
+}
+legend {
+	font-weight: bold;
+	font-size: 13px;
+}
+.unavailable {
+	color: #ccc;
+}
+#step1 label {
+	float: left;
+	width: 8em;
+}
+#step1 div {
+	clear: both;
+	margin-bottom: 8px;
+}
+#step2_sub {
+	display: none;
+	padding-top: 6px;
+	margin-top: 30px;
+}
+#step2_sub div {
+	padding-top: 10px;
+}
+#step2_sub label {
+	display: block;
+	font-weight: bold;
+}
+#blockw {
+	display: none;
+}
+#step3 label {
+	display: block;
+	padding-bottom: 2px;
+}
+#step4 label {
+	display: block;
+	padding-bottom: 2px;
+}
+#strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#cde-prf-cp,#cde-prf-inc,#cde-prf-bth {
+	border: 0;
+}
+
+/*********/
+
+
+/*#step1, #step2, #step3 {
+	float: left;
+	width: 50%;
+}
+
+#step1, #step2, #step2_sub, #step3, #step4 {
+	font-size: 11px;
+	background-color: #c79900;
+}
+
+#step1 label {
+	width: 8em;
+	float: left;
+}
+#step1 div p {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+#step1 label.error {
+	float: none;
+	color: red;
+	padding-left: 2.5em;
+	vertical-align: top;
+}
+#step1 div {
+	clear: both;
+	margin-bottom: 8px;
+}
+
+#step2_sub {
+	
+	border-top: 1px dotted #ccc;
+	padding-top: 6px;
+	margin-top: 30px;
+	height: 100px;
+}
+
+#step2_sub div {
+	padding-top: 10px;
+}
+
+#step2_sub label {
+ 	display: block;
+	font-weight: bold;
+}
+
+#step3 label {
+	display: block;
+	padding-bottom: 2px;
+}
+
+#step4 label {
+	display: block;
+	padding-bottom: 2px;
+}
+
+#blockw {
+	display: none;
+}*/
