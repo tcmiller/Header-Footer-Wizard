@@ -1,26 +1,17 @@
-<?php
-
-include_once('include/global.inc.php');
-
-?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     
-    <title>Template Generator 1.0</title>
+    <title>anythingSlider</title>
     
     <link rel="stylesheet" href="css/page.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/slider.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="http://staff.washington.edu/kilianf/headfoot/header/css/header.css" type="text/css" media="screen" />
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.easing.1.2.js"></script>
 	<script src="js/jquery.anythingslider.js" type="text/javascript" charset="utf-8"></script>
-	
 
     <script type="text/javascript">
     
@@ -28,155 +19,167 @@ include_once('include/global.inc.php');
 		  return index + "";
 	    }
     
+        $(function () {
+        
+            $('.anythingSlider').anythingSlider({
+                easing: "easeInOutExpo",        // Anything other than "linear" or "swing" requires the easing plugin
+                autoPlay: true,                 // This turns off the entire FUNCTIONALY, not just if it starts running or not.
+                delay: 3000,                    // How long between slide transitions in AutoPlay mode
+                startStopped: false,            // If autoPlay is on, this can force it to start stopped
+                animationTime: 600,             // How long the slide transition takes
+                hashTags: true,                 // Should links change the hashtag in the URL?
+                buildNavigation: true,          // If true, builds and list of anchor links to link to each slide
+        		pauseOnHover: true,             // If true, and autoPlay is enabled, the show will pause on hover
+        		startText: "Go",             // Start text
+		        stopText: "Stop",               // Stop text
+		        navigationFormatter: formatText       // Details at the top of the file on this use (advanced use)
+            });
+            
+            $("#slide-jump").click(function(){
+                $('.anythingSlider').anythingSlider(6);
+            });
+            
+        });
     </script>
-    
-    <script src="js/tmplgen.js" type="text/javascript"></script>
-    
 </head>
 
 <body>
 
-<div class="wheader patchYes colorGold">	
-  <span id="autoMargin">
-  
-    <div class="wlogoSmall">
-            <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
-
-      <div><a href="http://www.washington.edu/">University of Washington</a></div>
-    </div>
-    
-	<div id="wsearch">        
-      <form name=form1 id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
-			 <div class="wfield">
-                <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
-				<input type="hidden" name="cof" value="FORID:0" />
-		       <input name="q" type="text" value="Search the UW" class="wTextInput" onClick="make_blank();"/>			   
-             </div>   
-	  			<input type="submit" class="formbutton" name="sa" value="Go" />
-
-      </form>
-    </div>
-    
-	<div id="wtext">
-   	  <ul>
-      		<li><a href="http://www.washington.edu/">UW Home</a></li>
-        	<li><span class="border"><a href="http://www.washington.edu/home/directories.html">Directories</a></span></li>
-       	  	<li><span class="border"><a href="http://www.washington.edu/visit/events.html">Calendar</a></span></li>
-
-       	  	<li><span class="border"><a href="http://www.washington.edu/maps/">Maps</a></span></li>
-       	  	<li><span class="border"><a href="http://myuw.washington.edu/">My UW</a></span></li>
-      </ul>
-    </div>
-    
-  </span>
-</div>
-
     <div id="page-wrap">
     
-        <h1>Template Generator</h1>
+        <a href="http://css-tricks.com/examples/AnythingSlider.zip" id="dl">Download v1.2</a>
+    
+        <h5>By <a href="http://css-tricks.com">Chris Coyier</a>, based upon lots of smart stuff by <a href="http://jqueryfordesigners.com/">Remy Sharp</a>,<br />
+        significantly improved by <a href="http://pixelgraphics.us/">Douglas Neiner</a></h5>
+    
+        <h1>AnythingSlider</h1>
     
         <div class="anythingSlider">
         
           <div class="wrapper">
             <ul>
-               <li id="step1">
+               <li>
                     <form name="tmplgenForm" id="tmplgenForm" action="" method="post">
 				     <fieldset>
 				     <legend>Step 1: User Info</legend>
 				     <input type="hidden" name="requester" id="requester" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
-				     
-				      <div>
-				       <label for="owner">Dept. net ID:</label>  <input type="text" name="owner" id="owner" maxlength="40" class="required" />
-				      </div>
-				      <div>
-				       <label for="email">Contact email:</label> <input type="text" name="email" id="email" maxlength="40" class="email" />
-				      </div>
-				      <div>
-				       <label for="site_url">Site URL:</label> <input type="text" name="site_url" id="site_url" maxlength="150" size="30" class="required" />
-				      </div>
-				     
+				     <div>
+				      <label for="owner">Dept. net ID:</label>
+				      <input type="text" name="owner" id="owner" maxlength="40" class="required" />
+				     </div>
+				     <div>
+				      <label for="email">Contact email:</label>
+				      <input type="text" name="email" id="email" maxlength="40" class="email" />
+				     </div>
+				     <div>
+				      <label for="site_url">Site URL:</label>
+				      <input type="text" name="site_url" id="site_url" maxlength="150" size="30" class="required" />
+				     </div>
 				     </fieldset>
                </li>
               <li>
                  
-                 <fieldset>
-				    <legend>Step 2: Thin Strip or Kitchen Sink?</legend>
-				    
-					 <label for="strip"><input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip</label><br />
-					 <label for="sink"><input type="radio" name="kitchen_sink" value="1" id="sink" /> Kitchen sink</label>
-				   
-				   <div id="step2_sub">   
-				
-				     <div>
-				      <label for="color">Gold or purple background?</label>
-				      <input type="radio" name="color" value="purple" id="purple_bg" /> Purple<br />
-				      <input type="radio" name="color" value="gold" id="gold_bg" /> Gold
-				     </div>
-				    
-				     <div>
-				      <label for="patch">Patch or no patch?</label>
-				      <input type="radio" name="patch" value="1" id="patch" /> Patch<br />
-				      <input type="radio" name="patch" value="0" id="no_patch" /> No patch
-				     </div>
-				      
-				     <div id="blockw">
-				      <label for="blockw">W or no W?</label>
-				      <input type="radio" name="blockw" value="1" id="w_yes" /> W<br />
-				      <input type="radio" name="blockw" value="0" id="w_no" /> No W
-				     </div>
-				     
-				     <div>			    
-				      <label for="search">Search</label>
-				      <input type="radio" name="search" value="basic" id="s_basic" /> Basic<br />
-				      <input type="radio" name="search" value="no" id="s_no" /> No search<br />
-				      <input type="radio" name="search" value="super-inline" id="ss_inline" /> <span class="unavailable">Super (inline)</span><br />
-				      <input type="radio" name="search" value="super-tab" id="ss_tab" /> <span class="unavailable">Super (tab)</span>
-				     </div>
-				    
-				   </div>
-				    
-				   </fieldset>
+                 <div id="textSlide">
+                 
+                    <img src="images/251356.jpg" alt="tomato sandwich" style="float: right; margin: 0 0 2px 10px;" />
+                    
+                    <h3>Queenie's Killer Tomato Bagel Sandwich</h3>
+                    
+                    <h4>Ingredients</h4>
+
+                    <ul>
+                        <li>1 bagel, split and toasted</li>
+                        <li>2 tablespoons cream cheese</li>
+                        <li>1 roma (plum) tomatoes, thinly sliced</li>
+                        <li>salt and pepper to taste</li>
+                        <li>4 leaves fresh basil</li>
+                    </ul>
+
+                    
+                 </div>
                  
               </li>
-              <li id="step3">
-                 <fieldset>
-			    <legend>Step 3: Footer</legend>
-			    
-			     <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" /> Basic</label>
-			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" /> With "W"</label>
-			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" /> With gold patch</label>
-			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" /> With purple patch</label>
-			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" /> I'll pass on the footer, thanks anyway!!!</label>
-			   
-			   </fieldset>
+              <li>
+                 <img src="images/slide-env-1.jpg" alt="" />
               </li>
-              <li id="step4">
-                 <fieldset>
-			     <legend>Step 4: Code Preference</legend>
-			     
-			      <label for="cde-prf-cp"><input type="radio" name="code_pref" value="copy-paste" id="cde-prf-cp" /> <a href="">Copy &amp; Paste</a></label>
-			      <label for="cde-prf-inc"><input type="radio" name="code_pref" value="include" id="cde-prf-inc" /> <a href="">Include</a></label>
-			      <label for="cde-prf-bth"><input type="radio" name="code_pref" value="both" id="cde-prf-bth" /> <a href="">Both</a></label>
-			     
-			    </fieldset>
-			    <div>
-			     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" />
-			     </form>
-			    </div>
+              <li>
+                 <img src="images/slide-civil-2.jpg" alt=""  />
+              </li>
+              <li>
+                 <div id="quoteSlide">
+                 
+                    <blockquote>Life is conversational. Web design should be the same way. On the web, you&#8217;re talking to someone you&#8217;ve probably never met – so it&#8217;s important to be clear and precise. Thus, well structured navigation and content organization goes hand in hand with having a good conversation.</blockquote>
+                    <p> - <a id='perma' href='http://quotesondesign.com/chikezie-ejiasi/'>Chikezie Ejiasi</a></p>
+                 
+                 </div>
+              </li>
+              <li>
+                 <img src="images/slide-env-2.jpg" alt="" />
               </li>
             </ul>        
           </div>
           
         </div> <!-- END AnythingSlider -->
+
+      
+        <h2>Features</h2>
+        <ul>
+            <li>Slides are HTML Content (can be anything)</li>
+            <li>Next Slide / Previous Slide Arrows</li>
+            <li>Navigation tabs are built and added dynamically (any number of slides)</li>
+            <li>Optional custom function for formatting navigation text</li>
+            <li>Auto-playing (optional feature, can start playing or stopped)</li>
+            <li>Each slide has a hashtag (can link directly to specific slides)</li>
+            <li>Infinite/Continuous sliding (always slides in the direction you are going, even at "last" slide)</li>
+            <li>Multiple sliders allowable per-page (hashtags only work on first)</li>     
+            <li>Pauses autoPlay on hover (option)</li>
+            <li>Link to specific slides from static text links (<a href="#" id="slide-jump">Slide 6</a>)</li>  
+        </ul>
+                
+        
+        <h2>Usage &amp; Options (defaults)</h2>
+        <pre>$('.anythingSlider').anythingSlider({
+        easing: "swing",                // Anything other than "linear" or "swing" requires the easing plugin
+        autoPlay: true,                 // This turns off the entire FUNCTIONALY, not just if it starts running or not
+        startStopped: false,            // If autoPlay is on, this can force it to start stopped
+        delay: 3000,                    // How long between slide transitions in AutoPlay mode
+        animationTime: 600,             // How long the slide transition takes
+        hashTags: true,                 // Should links change the hashtag in the URL?
+        buildNavigation: true,          // If true, builds and list of anchor links to link to each slide
+        pauseOnHover: true,             // If true, and autoPlay is enabled, the show will pause on hover
+        startText: "Start",             // Start text
+        stopText: "Stop",               // Stop text
+        navigationFormatter: null       // Details at the top of the file on this use (advanced use)
+});</pre>
+
+        <h3>Linking directly to slides</h3>
+        <pre>$("#slide-jump").click(function(){
+     $('.anythingSlider').anythingSlider(6);
+});</pre>
+        
+        <h2>Changelog</h2>
+        
+		<h3>Version 1.2</h3>
+		<ul>
+			<li>Bug Fix: When autoPlay was set to false, any interaction with the control would cause a javascript error.</li>
+		</ul>
+
+        <h3>Version 1.1</h3>
+        <ul>
+            <li>Changed default easing to "swing" so didn't depend on any other plugins</li>
+            <li>Removed extra junk (other plugins used for design, etc)</li>
+            <li>Added Pause on Hover option</li>
+            <li>Added options for passing in HTML for the start and stop button</li>
+            <li>Added option to use custom function for formatting the titles of the navigation</li>
+            <li>Added public interface for linking directly to certain slides</li>
+        </ul>
+        
+        <h3>Version 1.0</h3>
+        <ul>
+            <li>First version</li>
+        </ul>
     
     </div>
-    
-    <div id="preview"></div>
-    <br />
-    <br />
-    <br />
-	<br />
-	<div id="results"></div>
         
 </body>
 

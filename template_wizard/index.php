@@ -9,46 +9,47 @@ include_once('include/global.inc.php');
 <head>
 <title>Template Generator 1.0</title>
 <link rel="stylesheet" type="text/css" href="include/tmplgen.css" /> 
-<link rel="stylesheet" type="text/css" href="include/jquery.validate.css" />
+<!-- link rel="stylesheet" type="text/css" href="include/jquery.validate.css" / -->
 <link rel="stylesheet" type="text/css" href="http://staff.washington.edu/kilianf/headfoot/header/css/header.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="include/jquery.validate.js" type="text/javascript"></script>
-<script src="include/jquery.validation.functions.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
+<!-- Custom Includes -->
+<!-- script type="text/javascript" src="tmplgen.js"></script -->
 
-<script type="text/javascript" src="tmplgen.js"></script>
-
+<!-- http://bassistance.de/2007/07/04/about-client-side-form-validation-and-frameworks/ -->
 <script type="text/javascript">
-  
-$(document).ready(function() {
-   
-	// Form validation           
-    $("#owner").validate({
-        expression: "if (VAL) return true; else return false;",
-        message: "Please enter the required field"
-    });
-    $("#email").validate({
-        expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
-        message: "Please enter a valid email"
-    });
-    $("#site_url").validate({
-        expression: "if (VAL) return true; else return false;",
-        message: "Please enter the required field"
-    });
-   
-    $("#headerSelect").validate({
-        expression: "if (isChecked(SelfID)) return true; else return false;",
-        message: "Please make a selection"
-    });
-    $("#footerSelect").validate({
-        expression: "if (isChecked(SelfID)) return true; else return false;",
-        message: "Please make a selection"
-    });
-    $("#codePrefSelect").validate({
-        expression: "if (isChecked(SelfID)) return true; else return false;",
-        message: "Please make a selection"
-    });
-               	
-	
+/* <![CDATA[ */
+$().ready(function(){
+    $("#tmplgenForm").validate({
+    errorClass: "error",
+        rules: {
+         owner: "required",
+         email: {
+           required: true,
+           email: true
+         },
+         site_url: {
+            required: true,
+            url: true
+        },
+         kitchen_sink: "required",
+         code_pref: "required",
+       },
+       messages: {
+         owner: "Please specify your name",
+         email: {
+           required: "We need your email address to spam you",
+           email: "Your email address must be in the format of name@domain.com"
+         },
+         site_url: {
+           required: "Please specify a site url",
+           url: "We need a valid url for a records"
+         },
+         kitchen_sink: "Please specify the type of option",
+         code_pref: "Please specify a delivery option",
+       }
+    })
+
 	// Form defaults
 	$('#sink').attr('disabled','disabled');
 	$('#gold_bg').attr('checked','checked');
@@ -150,38 +151,10 @@ $(document).ready(function() {
     	$.post('generate.php',{ requester: $('#requester').val(),
     	                        owner: $('#owner').val(),
     	                        email: $('#email').val(),
-    	                        site_url: $('#site_url').val(),
-    		                    code_pref: $("input[name='code_pref']:checked").val(),
-    	                        processType: 'updtA'},function(data) {
-    	$('#results').text(data);              	
-  	},'html');
-  	 
-    });   
-    
-    // finalize our account    
-    $('form#tmplgenForm').submit(function() {
-    	$('#generate').attr('value','Please wait............');
-    	$('#generate').attr('disabled','disabled');
-    	$.ajax({
-		   type: "POST",
-		   url: "generate.php",
-		   timeout: 2000,
-		   data: ({ requester : $('#requester').val(),
-		            processType: 'fnlzA' }),
-		   error: function() {
-               $('#generate').attr('value','Failed to submit');
-               $('#generate').removeAttr('disabled');},
-		   success: function(msg) {
-		     setTimeout(function() {
-		     	$('#generate').attr('value',msg);
-		     	$('#generate').removeAttr('disabled');
-		     }, 750);
-		   }
-		 });
-	 return false;
-    });  
-   
+    });
+    });
 });
+/* ]]> */
 </script>
 
 </head>
@@ -225,7 +198,7 @@ $(document).ready(function() {
      <input type="hidden" name="requester" id="requester" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
      <div>
       <label for="owner">Dept. net ID:</label>
-      <input type="text" name="owner" id="owner" maxlength="40" class="required" />
+      <input type="text" name="owner" id="owner" maxlength="40" />
      </div>
      <div>
       <label for="email">Contact email:</label>
@@ -240,7 +213,7 @@ $(document).ready(function() {
    <div id="step2">
     <fieldset>
     <legend>Step 2: Thin Strip or Kitchen Sink?</legend>
-    <span id="headerSelect" class="InputGroup">
+    <span id="kitchen_sink" class="InputGroup">
 	 <label for="strip">
 	  <input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip
 	 </label>
@@ -291,7 +264,7 @@ $(document).ready(function() {
    <div id="step3">
     <fieldset>
     <legend>Step 3: Footer</legend>
-    <span id="footerSelect" class="InputGroup">
+    <span id="footer" class="InputGroup">
      <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" /> Basic</label>
      <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" /> With "W"</label>
      <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" /> With gold patch</label>
@@ -312,7 +285,7 @@ $(document).ready(function() {
     /** @todo - add tooltips that provide a little more explanation about the various code output options **/
     
     ?>
-     <span id="codePrefSelect" class="InputGroup">
+     <span id="code_pref" class="InputGroup">
       <label for="cde-prf-cp"><input type="radio" name="code_pref" value="copy-paste" id="cde-prf-cp" /> <a href="">Copy &amp; Paste</a></label>
       <label for="cde-prf-inc"><input type="radio" name="code_pref" value="include" id="cde-prf-inc" /> <a href="">Include</a></label>
       <label for="cde-prf-bth"><input type="radio" name="code_pref" value="both" id="cde-prf-bth" /> <a href="">Both</a></label>

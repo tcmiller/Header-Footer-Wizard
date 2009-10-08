@@ -24,6 +24,7 @@ function isValidDate(year, month, day){
  * @id: The ID of the check-box or radio-button group
  */
 function isChecked(id){
+    alert('isChecked Called');
     var ReturnVal = false;
     $("#" + id).find('input[type="radio"]').each(function(){
         if ($(this).is(":checked")) 

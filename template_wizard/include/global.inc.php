@@ -2,7 +2,7 @@
 
 define('CHARSET','utf-8');
 define('BASE_URL',$_SERVER['DOCUMENT_ROOT']);
-define('BASE_FOLDER','tmplgen/');
+define('BASE_FOLDER','wizard/');
 define('URL_FOLDER',BASE_URL.BASE_FOLDER);
 define('SITE_URL','http://depts.washington.edu/'.BASE_FOLDER);
 

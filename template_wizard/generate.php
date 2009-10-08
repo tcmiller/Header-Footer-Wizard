@@ -3,7 +3,7 @@
 header("Cache-Control: no-cache");
 
 require_once('include/global.inc.php');
-require_once('tmplgen-db.inc.php');
+require_once('include/tmplgen-db.inc.php');
 
 // capture, process and clean our POST vars
 $values = array();
@@ -23,6 +23,7 @@ function processAccountInfo($values) {
 	
 	global $mdb2;
 	
+    // TODO: Switch fields to NOT NULL so error works properly
 	// call and prepare the table and data for insertion or updating
 	$table_name = 'account';
 

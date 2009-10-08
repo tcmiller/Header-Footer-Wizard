@@ -10,6 +10,9 @@ img {
 a:link, a:visited, a:hover, a:active {
 	color: #39275b;
 }
+.error {
+	color: red;
+}
 #centered {
     width: 1000px;
 	font-size: 12px;
