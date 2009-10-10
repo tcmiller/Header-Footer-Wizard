@@ -3,7 +3,7 @@
 header("Cache-Control: no-cache");
 
 require_once('include/global.inc.php');
-require_once('include/tmplgen-db.inc.php');
+require_once('tmplgen-db.inc.php');
 
 // capture, process and clean our POST vars
 $values = array();

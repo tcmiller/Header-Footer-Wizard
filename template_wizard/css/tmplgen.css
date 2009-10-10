@@ -3,7 +3,7 @@
 	padding: 0;
 }
 body {
-	background-color: #fff;
+	background: #fff url(../images/bg_body.gif) repeat-x;
 	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
 }
 img {
@@ -85,6 +85,13 @@ a:link, a:visited, a:hover, a:active {
 .clear {
 	clear: both;
 }
+.subHead {
+	display: block;
+	padding: 0 0 10px 0;
+	font-weight: bold;
+	font-size: 13px;
+	color: #39275b;
+}
 
 /*** Form Attributes ***/
 #tmplgenForm form {
@@ -94,38 +101,78 @@ a:link, a:visited, a:hover, a:active {
 	font-size: 16px;
 }
 fieldset {
-	margin-bottom: 20px;
-	padding: 10px;
-	width: 500px;
+	padding: 20px;
+	margin: 10px 0 0 20px;
+	width: 615px;
 }
 legend {
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 17px;
+	color: #39275b;
+	padding: 0 3px;
 }
-.unavailable {
+
+span.unavailable {
 	color: #ccc;
+	border-bottom: 3px double;
+}
+span:hover.unavailable {
+	cursor: default;
+}
+#step1 p {
+	clear: both;
 }
 #step1 label {
 	float: left;
 	width: 8em;
 }
+#step1 label.error {
+	font-size: 11px;
+	float: none;
+	color: red;
+	padding-left: .5em;
+}
 #step1 div {
 	clear: both;
 	margin-bottom: 8px;
 }
-#step2_sub {
-	display: none;
-	padding-top: 6px;
-	margin-top: 30px;
+#step2_main {
+	float: left;
+	width: 30%;
 }
-#step2_sub div {
-	padding-top: 10px;
+#step2_sub {
+	font-size: 11px;
+	float: right;
+	width: 70%;
+	display: none;
+}
+#step2_sub #colorSrchBlk {
+	float: left;
+	width: 50%;
+}
+#step2_sub #patchBlockwBlk {
+	float: left;
+	width: 50%;
 }
 #step2_sub label {
 	display: block;
 	font-weight: bold;
+	padding-bottom: 4px;
 }
-#blockw {
+#step2_sub input {
+	margin-left: 4px;
+}
+fieldset#options {
+	width: 400px;
+	padding: 10px 0 20px 15px;
+	margin: 0;
+}
+fieldset#options legend {
+	font-weight: bold;
+	font-size: 13px;
+	color: #39275b;
+}
+#blockwBlk {
 	display: none;
 }
 #step3 label {
@@ -140,66 +187,3 @@ legend {
 	border: 0;
 }
 
-/*********/
-
-
-/*#step1, #step2, #step3 {
-	float: left;
-	width: 50%;
-}
-
-#step1, #step2, #step2_sub, #step3, #step4 {
-	font-size: 11px;
-	background-color: #c79900;
-}
-
-#step1 label {
-	width: 8em;
-	float: left;
-}
-#step1 div p {
-	float: left;
-	margin: 0;
-	padding: 0;
-}
-#step1 label.error {
-	float: none;
-	color: red;
-	padding-left: 2.5em;
-	vertical-align: top;
-}
-#step1 div {
-	clear: both;
-	margin-bottom: 8px;
-}
-
-#step2_sub {
-	
-	border-top: 1px dotted #ccc;
-	padding-top: 6px;
-	margin-top: 30px;
-	height: 100px;
-}
-
-#step2_sub div {
-	padding-top: 10px;
-}
-
-#step2_sub label {
- 	display: block;
-	font-weight: bold;
-}
-
-#step3 label {
-	display: block;
-	padding-bottom: 2px;
-}
-
-#step4 label {
-	display: block;
-	padding-bottom: 2px;
-}
-
-#blockw {
-	display: none;
-}*/

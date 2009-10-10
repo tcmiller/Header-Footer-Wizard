@@ -43,12 +43,12 @@ $().ready(function(){
          },
          site_url: {
            required: "Please specify a site url",
-           url: "We need a valid url for a records"
+           url: "We need a valid url for our records"
          },
          kitchen_sink: "Please specify the type of option",
          code_pref: "Please specify a delivery option",
        }
-    })
+    });
 
 	// Form defaults
 	$('#sink').attr('disabled','disabled');
@@ -202,11 +202,11 @@ $().ready(function(){
      </div>
      <div>
       <label for="email">Contact email:</label>
-      <input type="text" name="email" id="email" maxlength="40" class="email" />
+      <input type="text" name="email" id="email" maxlength="40" />
      </div>
      <div>
       <label for="site_url">Site URL:</label>
-      <input type="text" name="site_url" id="site_url" maxlength="150" size="30" class="required" />
+      <input type="text" name="site_url" id="site_url" maxlength="150" size="30" />
      </div>
      </fieldset>
    </div>
