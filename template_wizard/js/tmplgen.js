@@ -1,5 +1,54 @@
 $(function () {               	
 	
+    /* prevent tab idea
+    $.fn.preventTab = function(options) {
+
+        return this.each(function(){
+            $(this).bind('keydown', function(e){
+                if(e.which == 9){
+                    return false;
+                }
+            });
+        });
+    };
+    
+    $('.preventTab', $('#site_url')).preventTab();*/
+    
+	$('#q').click(function(){
+		$('#q').attr('value','');
+	});
+	
+	// Form validation
+	$("#tmplgenForm").validate({
+    errorClass: "error",
+        rules: {
+         owner: "required",
+         email: {
+           required: true,
+           email: true
+         },
+         site_url: {
+            required: true,
+            url: true
+        },
+         kitchen_sink: "required",
+         code_pref: "required",
+       },
+       messages: {
+         owner: "Please provide a department net id",
+         email: {
+           required: "Please provide an email address",
+           email: "Invalid email, try again"
+         },
+         site_url: {
+           required: "Please specify a site url",
+           url: "We need a valid url for our records"
+         },
+         kitchen_sink: "Please specify the type of option",
+         code_pref: "Please specify a delivery option",
+       }
+    });
+	
 	// Form defaults
 	$('#sink').attr('disabled','disabled');
 	$('#gold_bg').attr('checked','checked');
@@ -17,10 +66,10 @@ $(function () {
      $('#step2_sub').hide();
    });
    $('#no_patch').click(function(){
-     $('#blockw').show();
+     $('#blockwBlk').show();
    });
    $('#patch').click(function(){
-     $('#blockw').hide();
+     $('#blockwBlk').hide();
    });   
    $('#reset').click(function(){
    	 //$('#step2_sub').hide();
@@ -130,24 +179,6 @@ $(function () {
 		   }
 		 });
 	 return false;
-    });
-        	
-    $('.anythingSlider').anythingSlider({
-        easing: "easeInOutExpo",        // Anything other than "linear" or "swing" requires the easing plugin
-        autoPlay: false,                // This turns off the entire FUNCTIONALY, not just if it starts running or not.
-        delay: 3000,                    // How long between slide transitions in AutoPlay mode
-        startStopped: false,            // If autoPlay is on, this can force it to start stopped
-        animationTime: 600,             // How long the slide transition takes
-        hashTags: true,                 // Should links change the hashtag in the URL?
-        buildNavigation: false,          // If true, builds and list of anchor links to link to each slide
-		pauseOnHover: true,             // If true, and autoPlay is enabled, the show will pause on hover
-		startText: "Go",                // Start text
-        stopText: "Stop",               // Stop text
-        navigationFormatter: formatText       // Details at the top of the file on this use (advanced use)
-    });
-    
-    $("#slide-jump").click(function(){
-        $('.anythingSlider').anythingSlider(4);
     });
     
 });
