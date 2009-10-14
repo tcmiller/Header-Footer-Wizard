@@ -293,21 +293,24 @@ function setFooterDefault() {
 	
 }
 
-/*function setCodePref() {
+/**
+ * createAndSetAppDefaults() - This function just sets things in motion
+ *
+ */
+function createAndSetAppDefaults() {
 	
-	$account = accountLookup();
+	// create the account if it doesn't already exist
+	createAccount();
 	
-	$codePrefDefault = '';
+	// set some account defaults
+	setAccountDefaults();
 	
-	// see if they have a preference and show as default if so
-	if (!empty($account['code_pref'])) {
-		
-		$codePrefDefault .= '$(\'#'.$account['code_pref'].'\').attr(\'checked\',\'checked\');';
-		
-	}
+	// set some header defaults
+	setHeaderDefaults();
 	
-	echo $codePrefDefault;
+	// set a footer default
+	setFooterDefault();
 	
-}*/
+}
 
 ?>

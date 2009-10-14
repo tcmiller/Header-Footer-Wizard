@@ -1,6 +1,5 @@
 <?php
 
-include_once('include/global.inc.php');
 include_once('include/functions.inc.php');
 
 ?>
@@ -8,7 +7,7 @@ include_once('include/functions.inc.php');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Easy Slider jQuery Plugin Demo</title>
+	<title>Template Wizard 1.0</title>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/easySlider1.5.js"></script>
@@ -20,20 +19,7 @@ include_once('include/functions.inc.php');
 			
 			<?php
 			
-			// create the account if it doesn't already exist
-			createAccount();
-			
-			// set some account defaults
-			setAccountDefaults();
-			
-			// set some header defaults
-			setHeaderDefaults();
-			
-			// set a footer default
-			setFooterDefault();
-			
-			// set a code preference default
-			//setCodePref();
+			createAndSetAppDefaults();
 								
 			?>
 			
@@ -260,12 +246,22 @@ include_once('include/functions.inc.php');
 
 </div>
 
-<div id="preview"></div>
+<div id="hdr-preview"></div>
 <br />
 <br />
 <br />
+<!--<div id="code"></div>-->
+<div><form><textarea id="hdr-code" readonly="readonly" cols="120" rows="20"></textarea></form></div>
+
+body text goes here
+
+<div id="ftr-preview"></div>
 <br />
-<div id="results"></div>
+<br />
+<br />
+<!--<div id="code"></div>-->
+<div><form><textarea id="ftr-code" readonly="readonly" cols="120" rows="20"></textarea></form></div>
+
 
 </body>
 </html>

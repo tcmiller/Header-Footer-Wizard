@@ -9,10 +9,6 @@ require_once('tmplgen-db.inc.php');
 $values = array();
 $values = $_POST;
 
-/*echo '<pre>';
-print_r($values);
-echo '</pre>';*/
-
 /**
  * @name - processAccountInfo() - Initialize, update and finalize our account info
  *
@@ -114,9 +110,15 @@ function processHeaderInfo($values) {
 	// Step 2: Determine update or create
 	if (!empty($headerData) && is_array($headerData)) {
 			
+		if ($values['patch'] == 1) {
+			$blockw = 1;			
+		} else {
+			$blockw = $values['blockw'];
+		}
+		
 		// no need to create a header record, one already exists
 		$fields_values = array('selection' => $values['selection'],
-		                       'blockw' => $values['blockw'],
+		                       'blockw' => $blockw,
 		                       'patch' => $values['patch'],
 		                       'wordmark' => 1,
 		                       'color' => $values['color'],
@@ -155,22 +157,24 @@ function processHeaderInfo($values) {
 		
 	} else {
 		
-		/**
-		 * on success, use CURL to update the preview via a global cgi script Chris has set up
-		 */
+		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
+		if ($values['selection'] == 'strip') {
 		
-		// create a new cURL resource
-		$ch = curl_init();
+			// create a new cURL resource to call our "preview" script
+			$ch = curl_init();
+			
+			// set URL and other appropriate options
+			curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/header.cgi?i='.$values['owner']);
+			//curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			
+			// grab URL and pass it to the browser
+			curl_exec($ch);
+			
+			// close cURL resource, and free up system resources
+			curl_close($ch);
 		
-		// set URL and other appropriate options
-		curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		
-		// grab URL and pass it to the browser
-		curl_exec($ch);
-		
-		// close cURL resource, and free up system resources
-		curl_close($ch);
+		}
 		
 	}
 	
@@ -228,19 +232,11 @@ function processFooterInfo($values) {
 	$accountInfo = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
 	// $accountInfo[0] is a reference simply to the value of id
 	
-	/*echo '<pre>';
-	print_r($accountInfo);
-	echo '</pre>';*/
-	
 	// check to see if the footer row exists for this particular "owner"... this helps us know if we're going to be updating/deleting or inserting
 	$mdb2->loadModule('Extended');
 	$query = 'SELECT * FROM footer WHERE account_id = ?';
 	$footerInfo = $mdb2->extended->getRow($query, null, array($accountInfo[0]), array('text'));
-	
-	/*echo '<pre>';
-	print_r($footerInfo);
-	echo '</pre>';*/
-	
+		
 	// initialize our query mode string
 	$qmode = 'MDB2_AUTOQUERY';
 	
@@ -284,7 +280,26 @@ function processFooterInfo($values) {
 		// add an error message to the exceptions handler or something
 		
 	} else {
-		return true;
+		
+		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
+		if ($selected == '1') {
+		
+			// create a new cURL resource to call our "preview" script
+			$ch = curl_init();
+			
+			// set URL and other appropriate options
+			//curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/footer.cgi?i='.$values['owner']);
+			//curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/footer.cgi?i='.$values['owner']);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			
+			// grab URL and pass it to the browser
+			curl_exec($ch);
+			
+			// close cURL resource, and free up system resources
+			curl_close($ch);
+		
+		}
+		
 	}
 	
 }

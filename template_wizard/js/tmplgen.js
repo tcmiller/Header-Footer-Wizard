@@ -77,19 +77,27 @@ $(function () {
 	 .removeAttr('checked')
 	 .removeAttr('selected');
    });
+   $('#code').focus(
+	 function()
+	 {
+	  // only select if the text has not changed
+	  if(this.value == this.defaultValue)
+	  {
+	   this.select();
+	  }
+	 }
+	)
    
    // AJAX DB interface
    
     
-    // update our account
+    // update account
     $('#email,#site_url').change(function() {
     	$.post('generate.php',{ owner: $('#owner').val(),
     	                        email: $('#email').val(),
     	                        site_url: $('#site_url').val(),
     	                        code_pref: $('input[name=code_pref]:checked').val(),
-    	                        processType: 'updtA' },function(data) {
-    	$('#results').text(data);
-    },'html');  
+    	                        processType: 'updtA' } );  
       	
     });
     
@@ -103,19 +111,21 @@ $(function () {
     		                    search: $('input[name=search]:checked').val(),
     		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH'},function(data) {
-    	$('#preview').html(data);
-    	$('#results').text(data);
+    	$('#hdr-preview').html(data);
+    	$('#hdr-code').text(data);
     	});
     	
     });    
     
-    // initialize our footer
+    // initialize/update footer
     $("input[name='footer']").click(function() {
     	$.post('generate.php',{ owner: $('#owner').val(),
     		                    footer: $('input[name=footer]:checked').val(),
     	                        processType: 'initF'},function(data) {
-    	$('#results').text(data);              	
-  	},'html');
+    	$('#ftr-preview').html(data);
+    	$('#ftr-code').text(data);
+    	});
+    	                        
   	 
     });
     
@@ -125,14 +135,20 @@ $(function () {
     	                        email: $('#email').val(),
     	                        site_url: $('#site_url').val(),
     		                    code_pref: $('input[name=code_pref]:checked').val(),
-    	                        processType: 'updtA'},function(data) {
-    	$('#results').text(data);              	
-  	},'html');
+    	                        processType: 'updtA'} );
   	 
     });   
     
     // finalize our account    
     $('form#tmplgenForm').submit(function() {
+    	
+    	// what needs to be done before finalizing account and displaying code
+    	// validate step 4
+    	
+    	// what needs to display after all is kosher
+    	// depending on the code preference selection, a textarea containing the copy and paste code AND/OR the include scripts they need to copy
+    	// depending on header AND/OR footer, just the code for what they want, maybe in a modal window or maybe just below 
+    	
     	$('#generate').attr('value','Please wait............');
     	$('#generate').attr('disabled','disabled');
     	$.ajax({
