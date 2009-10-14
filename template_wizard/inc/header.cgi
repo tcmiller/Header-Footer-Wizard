@@ -27,15 +27,17 @@ def main():
     from uwtempl import Header
     f = cgi.FieldStorage()
     head = Header()
-    head.owner = f.getfirst("i","").lower()
+    if f.getfirst("i","").lower():
+        head.owner = f.getfirst("i","").lower()
     head.lookup()
 
     ## I feel like this shoud be inside a class
     color = {'gold':'colorGold','purple':'colorPurple'}
-    blockw = {'1':'patchYes','0':'patchNo'}
+    patch = {'1':'patchYes','0':'patchNo'}
+    blockw = {'1':'','0':'wNo'}
 
     ## How to handle this in the final stage?
-    sTemplate = """<div class="wheader %s %s">   
+    sTemplate = """<div class="wheader %s %s %s">   
   <span id="autoMargin">
     <div class="wlogoSmall">
             <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
@@ -61,7 +63,7 @@ def main():
        </ul>
     </div>
   </span>
-</div>""" % (color[head.color],blockw[str(head.blockw)])
+</div>""" % (color[head.color],blockw[head.blockw],patch[head.patch])
 
     print "Content-type: text/html"
     print

@@ -27,7 +27,8 @@ def main():
     from uwtempl import Footer
     f = cgi.FieldStorage()
     foot = Footer()
-    foot.owner = f.getfirst("i","").lower()
+    if f.getfirst("i","").lower():
+        foot.owner = f.getfirst("i","").lower()
     foot.lookup()
 
     ## sTemplate = """<div class="wfooter %s %s">   

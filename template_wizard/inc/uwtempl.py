@@ -1,6 +1,6 @@
 import _mysql
 from string import Template
-## import pdb
+import pdb
 
 class MySQL(object):
     """
@@ -34,14 +34,19 @@ class Header(object):
 
     def __init__(self):
         self.id = ""
-        self.color = ""
-        self.wordmark = ""
-        self.blockw = ""
-        self.search = ""
-        self.date_created = ""
-        self.date_modified = ""
-        self.date_accessed = ""
-        self._template = ""
+        self._owner = ""
+        self._color = "purple"
+        self._wordmark = "1"
+        self._blockw = "0"
+        self._patch = "1"
+        self._search = "basic"
+        self._date_created = ""
+        self._date_modified = ""
+        self._date_accessed = ""
+    def get_owner(self):
+        return "%s" % (self._owner)
+    def set_owner(self, owner):
+        self._owner = owner
     def get_color(self):
         return "%s" % (self._color)
     def set_color(self, color):
@@ -52,6 +57,10 @@ class Header(object):
         self._wordmark = wordmark
     def get_blockw(self):
         return self._blockw
+    def set_patch(self, patch):
+        self._patch = patch
+    def get_patch(self):
+        return self._patch
     def set_blockw(self, blockw):
         self._blockw = blockw
     def get_search(self):
@@ -71,25 +80,21 @@ class Header(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
-        if self.owner is None:
-            return 'Error: set owner first'
         ## pdb.set_trace()
-        ## Data connection here?
-        db = MySQL()
-        db.connect()
-        db.load("""select header.id,header.blockw,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
-        self.id = db.data[0][0]
-        self.blockw = db.data[0][1]
-        self.color = str(db.data[0][2])
-        self.search = str(db.data[0][3])
-        self.wordmark = db.data[0][4]
-    ##def display(self,sTempl):
-        ## self._template = Template(sTempl)
-        ## d = dict(blockw=self.blockw)
-        ## return self._template.substitute(d)
+        if len(self.owner) > 0:
+            db = MySQL()
+            db.connect()
+            db.load("""select header.id,header.blockw,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
+            self.id = db.data[0][0]
+            self.blockw = db.data[0][1]
+            self.color = str(db.data[0][2])
+            self.search = str(db.data[0][3])
+            self.wordmark = db.data[0][4]
 
+    owner = property(get_owner, set_owner)
     color = property(get_color, set_color)
     wordmark = property(get_wordmark, set_wordmark)
+    patch = property(get_patch, set_patch)
     blockw = property(get_blockw, set_blockw)
     search = property(get_search, set_search)
     date_created = property(get_date_created, set_date_created)
@@ -104,13 +109,17 @@ class Footer(object):
     """
     def __init__(self):
         self.id = ""
-        self.wordmark = ""
-        self.blockw = ""
-        self.patch = ""
-        self.date_created = ""
-        self.date_modified = ""
-        self.date_accessed = ""
-        self.template = ""
+        self._owner = ""
+        self._wordmark = "1"
+        self._blockw = "0"
+        self._patch = "purple"
+        self._date_created = ""
+        self._date_modified = ""
+        self._date_accessed = ""
+    def get_owner(self):
+        return "%s" % (self._owner)
+    def set_owner(self, owner):
+        self._owner = owner
     def get_color(self):
         return "%s" % (self._color)
     def set_color(self, color):
@@ -140,22 +149,17 @@ class Footer(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
-        if self.owner is None:
-            return 'Error: set owner first'
-        db = MySQL()
-        db.connect()
-        db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s'""" % (self.owner))
         ## pdb.set_trace()
-        ## for row in data:
-        self.id = db.data[0][0]
-        self.blockw = db.data[0][1]
-        self.patch = str(db.data[0][2])
-        self.wordmark = db.data[0][3]
-    def display(self,sTempl):
-        self._template = Template(sTempl)
-        d = dict(blockw=self.blockw)
-        return self._template.substitute(d)
+        if len(self.owner) > 0:
+            db = MySQL()
+            db.connect()
+            db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s'""" % (self.owner))
+            self.id = db.data[0][0]
+            self.blockw = db.data[0][1]
+            self.patch = str(db.data[0][2])
+            self.wordmark = db.data[0][3]
 
+    owner = property(get_owner, set_owner)
     color = property(get_color, set_color)
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)
@@ -163,4 +167,3 @@ class Footer(object):
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)
     date_accessed = property(get_date_accessed, set_date_accessed)
-
