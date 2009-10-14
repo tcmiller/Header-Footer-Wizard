@@ -84,12 +84,19 @@ class Header(object):
         if len(self.owner) > 0:
             db = MySQL()
             db.connect()
-            db.load("""select header.id,header.blockw,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
+            db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
             self.id = db.data[0][0]
             self.blockw = db.data[0][1]
-            self.color = str(db.data[0][2])
-            self.search = str(db.data[0][3])
-            self.wordmark = db.data[0][4]
+            self.patch = db.data[0][2]
+            self.color = str(db.data[0][3])
+            self.search = str(db.data[0][4])
+            self.wordmark = db.data[0][5]
+    def display(self):
+        ## I feel like this shoud be inside a class
+        color = {'gold':'colorGold','purple':'colorPurple'}
+        patch = {'1':'patchYes','0':'patchNo'}
+        blockw = {'1':'','0':'wNo'}
+    return color[head.color],blockw[head.blockw],patch[head.patch] 
 
     owner = property(get_owner, set_owner)
     color = property(get_color, set_color)

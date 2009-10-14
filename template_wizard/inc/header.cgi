@@ -31,11 +31,6 @@ def main():
         head.owner = f.getfirst("i","").lower()
     head.lookup()
 
-    ## I feel like this shoud be inside a class
-    color = {'gold':'colorGold','purple':'colorPurple'}
-    patch = {'1':'patchYes','0':'patchNo'}
-    blockw = {'1':'','0':'wNo'}
-
     ## How to handle this in the final stage?
     sTemplate = """<div class="wheader %s %s %s">   
   <span id="autoMargin">
@@ -63,7 +58,7 @@ def main():
        </ul>
     </div>
   </span>
-</div>""" % (color[head.color],blockw[head.blockw],patch[head.patch])
+</div>""" % (head.display())
 
     print "Content-type: text/html"
     print
