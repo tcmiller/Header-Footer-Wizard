@@ -24,6 +24,8 @@ Installation Instructions
  * Copy the entire inc/ folder on the server using a secure ftp program.
  * Run the following set of commands to create the virtual environment.
 
+ $# Set the .cgi files to executable
+ $ chmod +x *.cgi
  $# Create the virtual environment
  $ virtualenv-2.5 py
  $# untar the MySQL-python package to the virtualenv directory
