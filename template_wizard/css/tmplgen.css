@@ -172,9 +172,6 @@ fieldset#options legend {
 	font-size: 13px;
 	color: #39275b;
 }
-#blockwBlk {
-	display: none;
-}
 #step3 label {
 	display: block;
 	padding-bottom: 2px;
@@ -183,7 +180,7 @@ fieldset#options legend {
 	display: block;
 	padding-bottom: 2px;
 }
-#strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#cde-prf-cp,#cde-prf-inc,#cde-prf-bth {
+#strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#copy-paste,#include,#both {
 	border: 0;
 }
 

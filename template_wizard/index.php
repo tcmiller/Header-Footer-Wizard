@@ -1,6 +1,7 @@
 <?php
 
 include_once('include/global.inc.php');
+include_once('include/functions.inc.php');
 
 ?>
 
@@ -16,6 +17,26 @@ include_once('include/global.inc.php');
 	<script type="text/javascript">
 		$(document).ready(function(){	
 			$("#slider").easySlider();
+			
+			<?php
+			
+			// create the account if it doesn't already exist
+			createAccount();
+			
+			// set some account defaults
+			setAccountDefaults();
+			
+			// set some header defaults
+			setHeaderDefaults();
+			
+			// set a footer default
+			setFooterDefault();
+			
+			// set a code preference default
+			//setCodePref();
+								
+			?>
+			
 		});	
 	</script>
 	<link rel="stylesheet" href="css/header.css" type="text/css" media="screen" />
@@ -96,7 +117,7 @@ include_once('include/global.inc.php');
 </head>
 <body>
 
-<div class="wheader patchYes colorGold wNo">	
+<!--<div class="wheader patchYes colorGold wNo">	
   <span id="autoMargin">
   
     <div class="wlogoSmall">
@@ -126,7 +147,7 @@ include_once('include/global.inc.php');
     </div>
     
   </span>
-</div>
+</div>-->
 
 <div id="container">
 
@@ -139,12 +160,7 @@ include_once('include/global.inc.php');
                     <form name="tmplgenForm" id="tmplgenForm" action="" method="post">
 				     <fieldset>
 				     <legend>Step 1: User Info</legend>
-				     <input type="hidden" name="requester" id="requester" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
-				     
-				      <div>
-				       <label for="owner">Dept. net ID:</label>
-				       <input type="text" name="owner" id="owner" maxlength="40" />
-				      </div>
+				     <input type="hidden" name="owner" id="owner" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
 				      <div>
 				       <label for="email">Contact email:</label>
 				       <input type="text" name="email" id="email" maxlength="40" />
@@ -163,8 +179,9 @@ include_once('include/global.inc.php');
 				   
 				   <div id="step2_main"> 
 					 
-				   	 <label for="strip"><input type="radio" name="kitchen_sink" value="0" id="strip" /> Thin strip</label><br />
-					 <label for="sink"><input type="radio" name="kitchen_sink" value="1" id="sink" /> <span class="unavailable">Kitchen sink</span></label>
+				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" /> Thin strip</label><br />
+					 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" /> No header for me</label><br />
+				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" /> <span class="unavailable">Kitchen sink</span></label>
 				   
 				   </div>
 					 
@@ -217,7 +234,7 @@ include_once('include/global.inc.php');
 			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" /> With "W"</label>
 			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" /> With gold patch</label>
 			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" /> With purple patch</label>
-			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" /> I'll pass on the footer, thanks anyway!!!</label>
+			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" /> No thanks, I'll pass on the footer</label>
 			   
 			   </fieldset>
               </li>
@@ -225,9 +242,9 @@ include_once('include/global.inc.php');
                  <fieldset>
 			     <legend>Step 4: Code Preference</legend>
 			     
-			      <label for="cde-prf-cp"><input type="radio" name="code_pref" value="copy-paste" id="cde-prf-cp" /> <a href="">Copy &amp; Paste</a></label>
-			      <label for="cde-prf-inc"><input type="radio" name="code_pref" value="include" id="cde-prf-inc" /> <a href="">Include</a></label>
-			      <label for="cde-prf-bth"><input type="radio" name="code_pref" value="both" id="cde-prf-bth" /> <a href="">Both</a></label>
+			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" /> <a href="">Copy &amp; Paste</a></label>
+			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" /> <a href="">Include</a></label>
+			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" /> <a href="">Both</a></label>
 			     
 			    </fieldset>
 			    <div>

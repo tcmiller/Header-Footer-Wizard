@@ -30,7 +30,7 @@ function processAccountInfo($values) {
 	switch ($values['processType']) {
 		
 		case 'initA':
-			$fields_values = array('requester'=>$values['requester'],
+			$fields_values = array('owner'=>$values['owner'],
 			                       'active'=>0,
 			                       'created_date' => date('Y-m-d H:i:s'),
 								   'modified_date' => '0000-00-00 00:00:00',
@@ -41,21 +41,20 @@ function processAccountInfo($values) {
 			break;
 			
 		case 'updtA':
-			$fields_values = array('owner'=>$values['owner'],
-			                       'email'=>$values['email'],
+			$fields_values = array('email'=>$values['email'],
 			                       'site_url'=>$values['site_url'],
 			                       'code_pref'=>$values['code_pref'],
 			                       'modified_date'=>date('Y-m-d H:i:s'));
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
-			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
-			$types = array('text','text','text','text','text');
+			$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';			
+			$types = array('text','text','text','text');
 			break;
 			
 		case 'fnlzA':
 			$fields_values = array('active'=>1,
 			                       'modified_date'=>date('Y-m-d H:i:s'));
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
-			$join = 'requester = '.$mdb2->quote($values['requester'], 'text').'';			
+			$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';			
 			$types = array('integer','text');
 			break;
 		
@@ -89,42 +88,59 @@ function processHeaderInfo($values) {
 	global $mdb2;
 	
 	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
-	// we use the requester id to look up the id that must now be the $account_id
+	// we use the owner id to look up the id that must now be the $account_id
 	$mdb2->loadModule('Extended');
-	$query = 'SELECT id FROM account WHERE requester = ?';
-	$data = $mdb2->extended->getRow($query, null, array($values['requester']), array('text'));
+	$query = 'SELECT id FROM account WHERE owner = ?';
+	$data = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
 	// $data[0] is a reference simply to the value of id
 	
-	$table_name = 'header';
+	// Step 1: Attempt to retrieve a user's row from the header table
+	$query = sprintf('SELECT hdr.color
+	                    FROM header as hdr,
+	                         account as acct
+	                   WHERE acct.owner = \'%s\'
+	                     AND hdr.account_id = acct.id',$_SERVER['REMOTE_USER']);
 	
-	switch($values['processType']) {
+	// Proceed with getting some data...
+	$res =& $mdb2->query($query);
 		
-		case 'initH':
-			$fields_values = array('kitchen_sink' => $values['kitchen_sink'],
-								   'blockw' => $values['blockw'],
-								   'patch' => $values['patch'],
-								   'wordmark' => 1,                       
-								   'color' => $values['color'],       
-			                       'search' => $values['search'],
-								   'created_date' => date('Y-m-d H:i:s'),
-								   'last_modified' => '0000-00-00 00:00:00',
-						 		   'account_id' => $data[0]);
-			$procType = 'MDB2_AUTOQUERY_INSERT';
-			$join = 'null';
-			$types = array('integer','integer','integer','integer','text','text','text','text','integer');
-			break;
+	// build the header data array
+	while (($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC))) {
+		$headerData = $row;
+	}
+		
+	$table_name = 'header';
+
+	// Step 2: Determine update or create
+	if (!empty($headerData) && is_array($headerData)) {
 			
-		case 'updtH':			
-			$fields_values = array('blockw' => $values['blockw'],
-			                       'patch' => $values['patch'],
-			                       'wordmark' => 1,
-			                       'color' => $values['color'],
-			                       'search' => $values['search'],
-			                       'last_modified' => date('Y-m-d H:i:s'));
-			$procType = 'MDB2_AUTOQUERY_UPDATE';
-			$join = 'account_id = '.$mdb2->quote($data[0], 'integer').'';
-			$types = array('integer','integer','integer','text','text','text');
-			break;
+		// no need to create a header record, one already exists
+		$fields_values = array('selection' => $values['selection'],
+		                       'blockw' => $values['blockw'],
+		                       'patch' => $values['patch'],
+		                       'wordmark' => 1,
+		                       'color' => $values['color'],
+		                       'search' => $values['search'],
+		                       'last_modified' => date('Y-m-d H:i:s'));
+		$procType = 'MDB2_AUTOQUERY_UPDATE';
+		$join = 'account_id = '.$mdb2->quote($data[0], 'integer').'';
+		$types = array('text','integer','integer','integer','text','text','text');
+		
+	} else {
+	
+		// no account exists, create one
+		$fields_values = array('selection' => $values['selection'],
+							   'blockw' => $values['blockw'],
+							   'patch' => $values['patch'],
+							   'wordmark' => 1,                       
+							   'color' => $values['color'],       
+			                   'search' => $values['search'],
+							   'created_date' => date('Y-m-d H:i:s'),
+							   'last_modified' => '0000-00-00 00:00:00',
+						 	   'account_id' => $data[0]);
+		$procType = 'MDB2_AUTOQUERY_INSERT';
+		$join = 'null';
+		$types = array('text','integer','integer','integer','text','text','text','text','integer');
 		
 	}
 
@@ -142,36 +158,6 @@ function processHeaderInfo($values) {
 		/**
 		 * on success, use CURL to update the preview via a global cgi script Chris has set up
 		 */
-		
-		/*// create a new cURL resource
-		$ch = curl_init();
-		
-		// set URL and other appropriate options
-		curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
-		
-		//$html = curl_exec($ch);
-		
-		// return the transfer as a string of the return value of curl_exec instead of outputting directly
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
-		
-		// grab URL and pass it to the browser via $preview
-		$preview = curl_exec($ch);
-		
-		curl_exec($ch);
-		
-		// close cURL resource, and free up system resources
-		curl_close($ch);
-		
-		echo $preview;*/
-		
-		/*$ch = curl_init();
-		//curl_setopt($ch, CURLOPT_USERAGENT, 'WhateverBrowser1.45');
-		curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
-		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-		//curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
-		//curl_setopt ($ch, CURLOPT_TIMEOUT, 60);
-		$result = curl_exec($ch);
-		echo "<pre>$result</pre>";*/
 		
 		// create a new cURL resource
 		$ch = curl_init();
@@ -204,39 +190,49 @@ function processFooterInfo($values) {
 	switch ($values['footer']) {
 		
 		case 'basic':
+			$selected = '1';
 			$blockw = '0';
 			$wordmark = '1';
 			$patch = '0';
 			break;
 		case 'w':
+			$selected = '1';
 			$blockw = '1';
 			$wordmark = '1';
 			$patch = '0';
 			break;
 		case 'goldPatch':
+			$selected = '1';
 			$blockw = '0';
 			$wordmark = '0';
 			$patch = 'gold';
 			break;
 		case 'purplePatch':
+			$selected = '1';
 			$blockw = '0';
 			$wordmark = '0';
 			$patch = 'purple';
-			break;						
+			break;
+		case 'no':
+			$selected = '0';
+			$blockw = '0';
+			$wordmark = '0';
+			$patch = '0';
+			break;			
 	}
 	
 	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
-	// we use the requester id to look up the id that must now be the $account_id
+	// we use the owner id to look up the id that must now be the $account_id
 	$mdb2->loadModule('Extended');
-	$query = 'SELECT id FROM account WHERE requester = ?';
-	$accountInfo = $mdb2->extended->getRow($query, null, array($values['requester']), array('text'));
+	$query = 'SELECT id FROM account WHERE owner = ?';
+	$accountInfo = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
 	// $accountInfo[0] is a reference simply to the value of id
 	
 	/*echo '<pre>';
 	print_r($accountInfo);
 	echo '</pre>';*/
 	
-	// check to see if the footer row exists for this particular "requester"... this helps us know if we're going to be updating or inserting
+	// check to see if the footer row exists for this particular "owner"... this helps us know if we're going to be updating/deleting or inserting
 	$mdb2->loadModule('Extended');
 	$query = 'SELECT * FROM footer WHERE account_id = ?';
 	$footerInfo = $mdb2->extended->getRow($query, null, array($accountInfo[0]), array('text'));
@@ -249,28 +245,31 @@ function processFooterInfo($values) {
 	$qmode = 'MDB2_AUTOQUERY';
 	
 	if (!empty($footerInfo) && is_array($footerInfo)) {
+		
 		// set the query mode to "UPDATE"		
 		$qmode .= '_UPDATE';
 		$join = 'account_id = '.$mdb2->quote($accountInfo[0], 'integer').'';
 		$fields_values = array(
-		    'blockw' => $blockw,
+		    'selected' => $selected,
+			'blockw' => $blockw,
 		    'wordmark' => $wordmark,
 		    'patch' => $patch,
 			'last_modified' => date('Y-m-d H:i:s'));		
-		$types = array('integer','integer','text','text');
-		
+		$types = array('integer','integer','integer','text','text');
+			
 	} else {
 		// set the query mode to "INSERT"
 		$qmode .= '_INSERT';
 		$join = '';
 		$fields_values = array(
+			'selected' => $selected,
 		    'blockw' => $blockw,
 		    'wordmark' => $wordmark,
 		    'patch' => $patch,
 			'created_date' => date('Y-m-d H:i:s'),
 			'last_modified' => '0000-00-00 00:00:00',
 			'account_id' => $accountInfo[0]);		
-		$types = array('integer','integer','text','text','text','integer');
+		$types = array('integer','integer','integer','text','text','text','integer');
 	}
 	
 	$table_name = 'footer';
@@ -298,13 +297,13 @@ function runGenerator($values) {
 		processAccountInfo($values);		
 	}
 	
-	// only run this if certain processType values come through (initH || updtH)
-	if ($values['processType'] == 'initH' || $values['processType'] == 'updtH') {
+	// only run this if certain processType values come through (initH)
+	if ($values['processType'] == 'initH') {
 		processHeaderInfo($values);
 	}
 	
 	// only run this if certain processType values come through (initF)
-	if ($values['processType'] == 'initF' && $values['footer'] !== 'no') {
+	if ($values['processType'] == 'initF') {
 		processFooterInfo($values);
 	}
 	
