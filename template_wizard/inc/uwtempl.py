@@ -80,7 +80,6 @@ class Header(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
-        ## pdb.set_trace()
         if len(self.owner) > 0:
             db = MySQL()
             db.connect()
@@ -96,7 +95,7 @@ class Header(object):
         color = {'gold':'colorGold','purple':'colorPurple'}
         patch = {'1':'patchYes','0':'patchNo'}
         blockw = {'1':'','0':'wNo'}
-    	return color[self.color],blockw[self.blockw],patch[self.patch]
+    	return (color[self.color],blockw[self.blockw],patch[self.patch])
 
     owner = property(get_owner, set_owner)
     color = property(get_color, set_color)

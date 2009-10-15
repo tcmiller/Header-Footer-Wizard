@@ -10,41 +10,41 @@ class TestHeader(unittest.TestCase):
     def setUp(self):
         self.Header1 = Header()
         self.Header1.color = ('purple')
-        self.Header1.wordmark = 1
-        self.Header1.blockw = 1
-        self.Header1.patch = 1
+        self.Header1.wordmark = '1'
+        self.Header1.blockw = '0'
+        self.Header1.patch = '1'
         self.Header1.search = ('basic')
         self.Header1.owner = ('cheiland')
         self.Header2 = Header()
-        self.Header2.owner = ('cheiland')
+        self.Header2.owner = ('tcmiller')
 
     def testload(self):
         self.assertEqual(self.Header1.color, 'purple')
         self.assertEqual(self.Header1._color, self.Header1.color)
-        self.assertEqual(self.Header1.wordmark, 1)
+        self.assertEqual(self.Header1.wordmark, '1')
         self.assertEqual(self.Header1._wordmark, self.Header1.wordmark)
-        self.assertEqual(self.Header1.patch, 1)
+        self.assertEqual(self.Header1.patch, '1')
         self.assertEqual(self.Header1._patch, self.Header1.patch)
-        self.assertEqual(self.Header1.blockw, 1)
+        self.assertEqual(self.Header1.blockw, '0')
         self.assertEqual(self.Header1._blockw, self.Header1.blockw)
         self.assertEqual(self.Header1.search, 'basic')
         self.assertEqual(self.Header1._search, self.Header1.search)
 
     def testlookup(self):
         self.Header2.lookup()
-        self.assertEqual(self.Header2.color, 'gold')
+        self.assertEqual(self.Header2.color, 'purple')
         self.assertEqual(self.Header2._color, self.Header2.color)
-        self.assertEqual(self.Header2.wordmark, 1)
+        self.assertEqual(self.Header2.wordmark, '1')
         self.assertEqual(self.Header2._wordmark, self.Header2.wordmark)
-        self.assertEqual(self.Header2.patch, 0)
+        self.assertEqual(self.Header2.patch, '0')
         self.assertEqual(self.Header2._patch, self.Header2.patch)
-        self.assertEqual(self.Header2.blockw, 0)
+        self.assertEqual(self.Header2.blockw, '1')
         self.assertEqual(self.Header2._blockw, self.Header2.blockw)
         self.assertEqual(self.Header2.search, 'basic')
         self.assertEqual(self.Header2._search, self.Header2.search)
 
     def testdisplay(self):
-        self.assertEqual(self.Header1.display(), '')
+        self.assertEqual(self.Header1.display(), ('colorPurple', 'wNo', 'patchYes'))
 
 class TestFooter(unittest.TestCase):
 
