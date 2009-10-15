@@ -87,10 +87,15 @@ body {
 	margin-top: -50px;
 	height: 75px;
 	width: 76px;
-	background-color: #39275B;
 	background-image: url(../img/w.png);
 	background-repeat: no-repeat;
 	background-position: center center;
+}
+.purple .logoAbsolute {
+	background-color: #39275B;
+}
+.gold .logoAbsolute {
+	background-color: #D7A900;
 }
 #footerLinks h3 {
 	font-family: Arial, Helvetica, sans-serif;

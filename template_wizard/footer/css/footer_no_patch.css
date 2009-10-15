@@ -63,3 +63,21 @@ body {
 	background-repeat: no-repeat;
 	background-position: 0px 6px;
 }
+.logoYes #footerLeft a {
+	text-indent: -9999px;
+	background-image: url(../img/w_logo_white.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	width: 237px;
+}
+.logoYes #footerLeft li a:hover {
+	color: #CCC;
+	background-image: url(../img/w_logo_white.gif);
+	background-repeat: no-repeat;
+}
+.wNo #footerLeft li a {
+	background-position: -25px center;
+}
+.wYes #footerLeft li a {
+	background-position: left center;
+}
