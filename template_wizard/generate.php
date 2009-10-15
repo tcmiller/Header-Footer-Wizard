@@ -47,6 +47,10 @@ function processAccountInfo($values) {
 			break;
 			
 		case 'fnlzA':
+			
+			// call up our code and display it
+			getCode();
+			
 			$fields_values = array('active'=>1,
 			                       'modified_date'=>date('Y-m-d H:i:s'));
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
@@ -303,6 +307,136 @@ function processFooterInfo($values) {
 	}
 	
 }
+
+/**
+ * getCode() - using CURL, retrieve and display the user's code
+ *
+ */
+function getCode() {
+	
+	global $mdb2;
+	
+	define('INC_BASE_URL','http://depts.washington.edu/uweb/inc/');
+	
+	// we need three pieces of info, acct.code_pref, hdr.selection and ftr.selected
+	$query = sprintf('SELECT acct.owner,
+	                         acct.code_pref,
+	                         hdr.selection,
+	                         ftr.selected
+	                    FROM account as acct,
+	                         header as hdr,
+	                         footer as ftr
+	                   WHERE acct.owner = \'%s\'
+	                     AND hdr.account_id = acct.id
+	                     AND ftr.account_id = acct.id',$_SERVER['REMOTE_USER']);
+	
+	// Proceed with getting some data...
+	$res =& $mdb2->query($query);
+		
+	// build the header data array
+	while (($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC))) {
+		$usersPrefs = $row;
+	}
+
+	// store some reusable html and initialize some vars
+	$header_url = 'header.cgi?i='.$usersPrefs['owner'];
+	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
+	$pv_h = '';
+	$cp_h = '';
+	$inc_h = '';
+	$pv_f = '';
+	$cp_f = '';
+	$inc_f = '';
+	$html = '';
+	
+	// step 1: determine if the user wanted both, header, footer or neither
+	if ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
+		// user wants both
+		
+		// pull the header first
+		//$pv_h .= curlRequestGenerator($header_url);
+		$cp_h .= curlRequestGenerator($header_url,'plain');
+		$inc_h .= INC_BASE_URL.$header_url;
+		
+		// then, the footer
+		//$pv_f .= curlRequestGenerator($footer_url);
+		//$cp_f .= curlRequestGenerator($footer_url,'plain');
+		$inc_f .= INC_BASE_URL.$footer_url;
+		
+		if ($usersPrefs['code_pref'] == 'both') {
+		
+			// display html
+			$html .= '<div><form><textarea cols="40" rows="16">'.$cp_h.'</textarea></form></div>
+			          <div><form><input value="'.$inc_h.'" size="60" /></form></div>
+			          <div class="clear"></div>
+			          <div><form><textarea cols="40" rows="16" class="code-select" readonly="readonly">'.$cp_f.'</textarea></form></div>
+			          <div>'.$inc_f.'</div>';
+		} elseif ($usersPrefs['code_pref'] == 'include') {
+			$html .= '<div>'.$inc_h.'</div>';
+		} else {
+			$html .= 'just copy/paste';
+		}
+		
+	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '0') {
+		// user just wants the header
+		$cp_h .= curlRequestGenerator($header_url,'plain');
+		$inc_h .= INC_BASE_URL.$header_url;
+		
+		//$hf .= '<form><textarea cols="100" rows="40">';
+		
+		//$hf .= '</textarea></form>';
+		
+	} elseif ($usersPrefs['selection'] == 'no-hdr' && $usersPrefs['selected'] == '1') {
+		// user just wants the footer
+		
+		//$cp_f .= curlRequestGenerator($footer_url,'plain');
+		$inc_f .= INC_BASE_URL.$footer_url;
+		
+	} else {
+		// user wanted neither and was able to do this?  maybe some error checking will prevent this case, but for now
+		//$cp .= 'neither';
+	}
+	
+	// step 2: determine what the user's code preference is (copy & paste, include or both)
+	
+	
+	// if code-pref eq both, show copy & paste inside a textarea + the include script
+	
+	echo $html;
+	
+	//echo 'user wants what: '.$hf.'<br /><br />';
+	//echo 'in what format: '.$code_pref;
+	
+	//$html = "our code here, after some logic calls it up via a CURL script";
+	
+	/*echo '<pre>';
+	print_r($usersPrefs);
+	echo '</pre>';*/
+	
+}
+
+function curlRequestGenerator($url,$type = '') {
+	
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/'.$url);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	
+	// we just want the plain text back, not an html preview
+	if ($type == 'plain') {
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$curl = curl_exec($ch);
+		return $curl;
+	} else {
+		curl_exec($ch);
+		curl_close($ch);
+	}
+}
+
+/**
+ * curlRequestGenerator() - takes some inputs and generates a proper, optioned CURL request
+ *
+ * @return string $curl
+ */
 
 function runGenerator($values) {
 

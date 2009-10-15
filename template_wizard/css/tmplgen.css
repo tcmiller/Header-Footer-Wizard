@@ -183,4 +183,22 @@ fieldset#options legend {
 #strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#copy-paste,#include,#both {
 	border: 0;
 }
-
+#prevBlk {
+	width: 100%;
+	text-align: center;
+}
+#bodyTxt {
+	margin: 100px 0;
+	display: none;
+}
+#outputBlk {
+	margin: 100px auto;
+	width: 960px;
+}
+#outputBlk div {
+	width: 450px;
+	float: left;
+}
+#outputBlk input {
+	font-size: 14px;
+}

@@ -246,22 +246,17 @@ include_once('include/functions.inc.php');
 
 </div>
 
-<div id="hdr-preview"></div>
-<br />
-<br />
-<br />
-<!--<div id="code"></div>-->
-<div><form><textarea id="hdr-code" readonly="readonly" cols="120" rows="20"></textarea></form></div>
+<div id="prevBlk">
 
-body text goes here
+	<div id="hdr-preview"></div>
+	
+	<div id="bodyTxt">Insert website here :)</div>
+	
+	<div id="outputBlk"></div>
+	
+	<div id="ftr-preview"></div>
 
-<div id="ftr-preview"></div>
-<br />
-<br />
-<br />
-<!--<div id="code"></div>-->
-<div><form><textarea id="ftr-code" readonly="readonly" cols="120" rows="20"></textarea></form></div>
-
+</div>
 
 </body>
 </html>

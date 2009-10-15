@@ -77,16 +77,6 @@ $(function () {
 	 .removeAttr('checked')
 	 .removeAttr('selected');
    });
-   $('#code').focus(
-	 function()
-	 {
-	  // only select if the text has not changed
-	  if(this.value == this.defaultValue)
-	  {
-	   this.select();
-	  }
-	 }
-	)
    
    // AJAX DB interface
    
@@ -113,6 +103,8 @@ $(function () {
     	                        processType: 'initH'},function(data) {
     	$('#hdr-preview').html(data);
     	$('#hdr-code').text(data);
+    	$('#outputBlk').css('display','none');
+    	$('#bodyTxt').css('display','block');
     	});
     	
     });    
@@ -145,9 +137,10 @@ $(function () {
     	// what needs to be done before finalizing account and displaying code
     	// validate step 4
     	
-    	// what needs to display after all is kosher
+    	// what needs to display and not display after all is kosher
     	// depending on the code preference selection, a textarea containing the copy and paste code AND/OR the include scripts they need to copy
-    	// depending on header AND/OR footer, just the code for what they want, maybe in a modal window or maybe just below 
+    	// depending on header AND/OR footer, just the code for what they want, maybe in a modal window or maybe just below
+    	// get rid of the input previews and show the output previews
     	
     	$('#generate').attr('value','Please wait............');
     	$('#generate').attr('disabled','disabled');
@@ -162,8 +155,19 @@ $(function () {
                $('#generate').removeAttr('disabled');},
 		   success: function(msg) {
 		     setTimeout(function() {
-		     	$('#generate').attr('value',msg);
+		     	$('#generate').attr('value','Success');
 		     	$('#generate').removeAttr('disabled');
+		     	$('#bodyTxt').css('display','none');
+		     	$('#outputBlk').css('display','block');
+		     	$('#outputBlk').html(msg);
+		     	$('#outputBlk input,textarea').attr('readonly','readonly');
+		     	$('#outputBlk input,textarea').focus(function() {
+				  // only select if the text has not changed
+				  if(this.value == this.defaultValue) {
+				  	this.select();
+				  }
+				 }
+				)
 		     }, 750);
 		   }
 		 });
