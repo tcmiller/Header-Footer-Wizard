@@ -96,7 +96,7 @@ class Header(object):
         color = {'gold':'colorGold','purple':'colorPurple'}
         patch = {'1':'patchYes','0':'patchNo'}
         blockw = {'1':'','0':'wNo'}
-    	return color[head.color],blockw[head.blockw],patch[head.patch] 
+    	return color[self.color],blockw[self.blockw],patch[self.patch]
 
     owner = property(get_owner, set_owner)
     color = property(get_color, set_color)
@@ -127,6 +127,10 @@ class Footer(object):
         return "%s" % (self._owner)
     def set_owner(self, owner):
         self._owner = owner
+    def get_color(self):
+        return self._color
+    def set_color(self, color):
+        self._color = color
     def get_wordmark(self):
         return self._wordmark
     def set_wordmark(self, wordmark):

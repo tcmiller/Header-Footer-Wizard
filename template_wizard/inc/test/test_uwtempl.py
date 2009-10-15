@@ -1,5 +1,5 @@
 import sys, os
-import xml.dom.minidom
+#import xml.dom.minidom
 import unittest
 sPath = os.getcwd()       
 sys.path.append(sPath) 
@@ -12,6 +12,7 @@ class TestHeader(unittest.TestCase):
         self.Header1.color = ('purple')
         self.Header1.wordmark = 1
         self.Header1.blockw = 1
+        self.Header1.patch = 1
         self.Header1.search = ('basic')
         self.Header1.owner = ('cheiland')
         self.Header2 = Header()
@@ -22,6 +23,8 @@ class TestHeader(unittest.TestCase):
         self.assertEqual(self.Header1._color, self.Header1.color)
         self.assertEqual(self.Header1.wordmark, 1)
         self.assertEqual(self.Header1._wordmark, self.Header1.wordmark)
+        self.assertEqual(self.Header1.patch, 1)
+        self.assertEqual(self.Header1._patch, self.Header1.patch)
         self.assertEqual(self.Header1.blockw, 1)
         self.assertEqual(self.Header1._blockw, self.Header1.blockw)
         self.assertEqual(self.Header1.search, 'basic')
@@ -33,13 +36,15 @@ class TestHeader(unittest.TestCase):
         self.assertEqual(self.Header2._color, self.Header2.color)
         self.assertEqual(self.Header2.wordmark, 1)
         self.assertEqual(self.Header2._wordmark, self.Header2.wordmark)
+        self.assertEqual(self.Header2.patch, 0)
+        self.assertEqual(self.Header2._patch, self.Header2.patch)
         self.assertEqual(self.Header2.blockw, 0)
         self.assertEqual(self.Header2._blockw, self.Header2.blockw)
         self.assertEqual(self.Header2.search, 'basic')
         self.assertEqual(self.Header2._search, self.Header2.search)
 
     def testdisplay(self):
-        self.assertEqual(self.Header1.display(), '<div id="content">\n\n    <h2>UW Header</h2>\n    <p class="header">\n    Header Content.\n    </p>\n\n    <div id="blockw">\n    \n        <!-- code for blockw-->\n    \n    </div>\n\n    <div id="search">\n    \n        <!-- code for search -->\n    \n    </div>\n\n\n</div>')
+        self.assertEqual(self.Header1.display(), '')
 
 class TestFooter(unittest.TestCase):
 
