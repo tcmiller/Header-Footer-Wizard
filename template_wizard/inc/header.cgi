@@ -32,13 +32,13 @@ def main():
     head.lookup()
 
     ## How to handle this in the final stage?
-    sTemplate = """<div class="wheader %s %s %s">   
-  <span id="autoMargin">
-    <div class="wlogoSmall">
+    sHead = """<div class="wheader %s %s %s">""" % (head.display())   
+    sBody = """<span id="autoMargin">
+	<div class="wlogoSmall">
             <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
             <div><a href="http://www.washington.edu/">University of Washington</a></div>
-    </div>
-    <div id="wsearch">        
+    	</div>""" 
+    sSearch = """<div id="wsearch">        
           <form name=form1 id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
              <div class="wfield">
                 <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
@@ -47,8 +47,8 @@ def main():
              </div>   
                 <input type="submit" class="formbutton" name="sa" value="Go" />
           </form>
-    </div>
-    <div id="wtext">
+    	</div>"""
+    sFoot = """<div id="wtext">
         <ul>
             <li><a href="#">UW Home</a></li>
             <li><span class="border"><a href="#">Directories</a></span></li>
@@ -56,14 +56,19 @@ def main():
             <li><span class="border"><a href="#">Maps</a></span></li>
             <li><span class="border"><a href="#">My UW</a></span></li>
        </ul>
-    </div>
-  </span>
-</div>""" % (head.display())
+	    </div>
+	  </span>
+	</div>"""
+
+    if head.search == 'no':
+    	sOutput = """%s%s%s""" % (sHead,sBody,sFoot)
+    else:
+    	sOutput = """%s%s%s%s""" % (sHead,sBody,sSearch,sFoot)
 
     print "Content-type: text/html"
     print
-    print sTemplate
-    ## print head.display(sTemplate,d)
+    print sOutput
 
 if __name__ == "__main__":
     main()
+    
