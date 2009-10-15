@@ -31,19 +31,14 @@ def main():
         head.owner = f.getfirst("i","").lower()
     head.lookup()
 
-    ## I feel like this shoud be inside a class
-    color = {'gold':'colorGold','purple':'colorPurple'}
-    patch = {'1':'patchYes','0':'patchNo'}
-    blockw = {'1':'','0':'wNo'}
-
     ## How to handle this in the final stage?
-    sTemplate = """<div class="wheader %s %s %s">   
-  <span id="autoMargin">
+    sHead = """<div class="wheader %s %s %s">""" % (head.display())
+    sTemplate = """<span id="autoMargin">
     <div class="wlogoSmall">
             <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
             <div><a href="http://www.washington.edu/">University of Washington</a></div>
-    </div>
-    <div id="wsearch">        
+    </div>"""
+    sSearch = """<div id="wsearch">        
           <form name=form1 id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
              <div class="wfield">
                 <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
@@ -52,8 +47,9 @@ def main():
              </div>   
                 <input type="submit" class="formbutton" name="sa" value="Go" />
           </form>
-    </div>
-    <div id="wtext">
+    </div>"""
+
+   """<div id="wtext">
         <ul>
             <li><a href="#">UW Home</a></li>
             <li><span class="border"><a href="#">Directories</a></span></li>
@@ -63,11 +59,16 @@ def main():
        </ul>
     </div>
   </span>
-</div>""" % (color[head.color],blockw[head.blockw],patch[head.patch])
+</div>"""
+
+    if head.search is 'none':
+        sOutput = sHead . sTemplate 
+    else:
+        sOutput = sHead . sSearch . sTemplate 
 
     print "Content-type: text/html"
     print
-    print sTemplate
+    print sOutput
     ## print head.display(sTemplate,d)
 
 if __name__ == "__main__":
