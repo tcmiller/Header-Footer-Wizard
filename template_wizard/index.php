@@ -44,13 +44,14 @@ include_once('include/functions.inc.php');
     /* // image replacement */
 			
 
-	#container{	
-		margin:0 auto;
-		position:relative;
-		text-align:left;
-		width:696px;
-		background:#fff;		
-		margin-bottom:2em;
+	#container{
+	margin:0 auto;
+	position:relative;
+	text-align:left;
+	width:696px;
+	margin-bottom:2em;
+	padding: 20px;
+	background-image: url(images/bg.png);
 		}	
 	#header{
 		height:80px;
@@ -80,25 +81,33 @@ include_once('include/functions.inc.php');
 		}	
 	#prevBtn, #nextBtn{ 
 		display:block;
-		width:164px;
-		height:32px;
+		width:132px;
+		height:64px;
 		position:absolute;
-		left:-30px;
-		top:71px;
+		left:-120px;
+		top:100px;
 		}	
 	#nextBtn{ 
-		left:696px;
+		left:680px;
 		}														
 	#prevBtn a, #nextBtn a{  
 		display:block;
-		width:30px;
-		height:77px;
+		width:132px;
+		height:64px;
 		background:url(images/btn_prev.png) no-repeat 0 0;	
 		}	
 	#nextBtn a{ 
 		background:url(images/btn_next.png) no-repeat 0 0;	
 		}												
-
+	.title {
+		background:url(images/text.gif) no-repeat 0 0;
+		text-indent: -9999px;
+		overflow: hidden;
+		display: block;
+		height: 32px;
+		width: 650px;
+		margin: 40px auto 20px;
+	}
 /* // Easy Slider */
 
 /*  */
@@ -119,7 +128,7 @@ include_once('include/functions.inc.php');
 	
 </head>
 <body>
-
+<span class="title">Header &amp; Footer Wizard</span>
 <div id="container">
 
 	<div id="content">

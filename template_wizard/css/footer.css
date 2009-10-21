@@ -89,7 +89,7 @@
 	padding: 8px 6px 7px 0;
 	white-space: nowrap;
 }
-#footerMain .logoAbsolute {
+#footerMain .logoAbsoluteFooter {
 	position: absolute;
 	margin-top: -50px;
 	height: 75px;
@@ -98,10 +98,10 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 }
-.purple .logoAbsolute {
+.purple .logoAbsoluteFooter {
 	background-color: #39275B;
 }
-.gold .logoAbsolute {
+.gold .logoAbsoluteFooter {
 	background-color: #D7A900;
 }
 #footerLinks h3 {
