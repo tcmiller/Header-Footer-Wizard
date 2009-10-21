@@ -80,8 +80,8 @@ include_once('include/functions.inc.php');
 		}	
 	#prevBtn, #nextBtn{ 
 		display:block;
-		width:30px;
-		height:77px;
+		width:164px;
+		height:32px;
 		position:absolute;
 		left:-30px;
 		top:71px;
@@ -93,10 +93,10 @@ include_once('include/functions.inc.php');
 		display:block;
 		width:30px;
 		height:77px;
-		background:url(images/btn_prev.gif) no-repeat 0 0;	
+		background:url(images/btn_prev.png) no-repeat 0 0;	
 		}	
 	#nextBtn a{ 
-		background:url(images/btn_next.gif) no-repeat 0 0;	
+		background:url(images/btn_next.png) no-repeat 0 0;	
 		}												
 
 /* // Easy Slider */
