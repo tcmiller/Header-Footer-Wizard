@@ -156,8 +156,6 @@ include_once('include/functions.inc.php');
                  
                  <fieldset>
 				    <legend>Step 2: Header</legend>
-				   
-				    																<!-- <a href="http://www.cssglobe.com" class="screenshot" rel="cssg_screenshot.jpg" title="Web Standards Magazine">Css Globe</a> -->
 				    
 				   <div id="step2_main"> 
 					 

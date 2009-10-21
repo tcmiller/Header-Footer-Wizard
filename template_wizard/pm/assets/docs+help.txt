@@ -1,0 +1,26 @@
+Launch page text
+
+Welcome to the much anticipated Header & Footer wizard.  A few notes before launching:
+
+* We <strong>strongly recommend</strong> that you log in with a departmental net id account or something that your web team shares.  This will ensure that your header/footer preferences, which the wizard can save, are not tied to your personal net id account.
+* There are three code output options: Copy & Paste, Include or Both.  Each option has detailed documentation to help you install the HTML into your sites.
+* The header/footer code has been stress tested on the following browsers:
+
+* As far as we can tell, the code passes XHTML transitional and CSS 2.0.
+* Remember, the wizard and the resulting code it produces are in beta.  Should you stumble across any defects or strange behavior, please <a href="mailto:uweb@uw.edu">notify us</a> immediately and we'll update do our best to fix the wizard and/or code its producing.
+
+Got those down?  Good!  Now, get clicking...
+
+
+BIG BUTTON GOES HERE, says "Launch the Wizard"
+
+
+Help text
+
+Include installation instructions:
+
+<ol>
+ <li>Upon successful completion of the wizard, copy and paste the include code bit into your sites like such:
+     <pre><html><head><title></title>http://depts.washington.edu/uweb/inc/header.cgi?i=tcmiller</body></html></pre></li>
+ <li></li>
+</ol>

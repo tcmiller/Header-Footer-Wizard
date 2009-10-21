@@ -60,7 +60,7 @@ def main():
   <a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a>
  </div>
  <div id="footerLinks">
-  <div class="logoAbsolute"></div>
+  <div class="logoAbsoluteFooter"></div>
   <h3>Discover what's next. It's the Washington Way</h3>
   <ul>
    <li class="leftText"><span>&#169; 2009 University of Washington</span></li>       	
