@@ -143,11 +143,11 @@ include_once('include/functions.inc.php');
 				     <input type="hidden" name="owner" id="owner" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
 				      <div>
 				       <label for="email">Contact email:</label>
-				       <input type="text" name="email" id="email" maxlength="40" />
+				       <input type="text" name="email" id="email" maxlength="40" class="req" />
 				      </div>
 				      <div>
 				       <label for="site_url">Site URL:</label>
-				       <input type="text" name="site_url" id="site_url" maxlength="150" />
+				       <input type="text" name="site_url" id="site_url" maxlength="150" class="req" />
 				      </div>
 				     
 				     </fieldset>
