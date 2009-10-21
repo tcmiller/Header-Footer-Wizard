@@ -27,6 +27,13 @@
  *
  */
 
+/*
+ * There are some local modifications to validate form
+ * elements specifically for the template wizard form
+ * Don't reuse and don't get the latest version of this
+ * script. You've been warned. - October 21, 2009 cheiland
+ */
+
 (function($) {
 
 	$.fn.easySlider = function(options){

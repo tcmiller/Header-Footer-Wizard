@@ -10,7 +10,7 @@ include_once('include/functions.inc.php');
 	<title>Template Wizard 1.0</title>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
 	<script src="js/jquery.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/easySlider1.5.js"></script>
+	<script type="text/javascript" src="js/easySliderUW.js"></script>
 	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
 	<script src="js/tmplgen.js" type="text/javascript"></script>
 	<script src="js/screenshot.js" type="text/javascript"></script>
