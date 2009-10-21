@@ -2,8 +2,8 @@
 
 header("Cache-Control: no-cache");
 
-require_once('include/global.inc.php');
 require_once('tmplgen-db.inc.php');
+require_once('include/functions.inc.php');
 
 // capture, process and clean our POST vars
 $values = array();
@@ -133,10 +133,13 @@ function processHeaderInfo($values) {
 		$types = array('text','integer','integer','integer','text','text','text');
 		
 	} else {
-	
+		
+		// because of how Kilian's css works, this needs to be set to 1 by default, even if the user doesn't really want this to start with
+		$blockw = 1;
+		
 		// no account exists, create one
 		$fields_values = array('selection' => $values['selection'],
-							   'blockw' => $values['blockw'],
+							   'blockw' => 1,
 							   'patch' => $values['patch'],
 							   'wordmark' => 1,                       
 							   'color' => $values['color'],       
@@ -164,20 +167,12 @@ function processHeaderInfo($values) {
 		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
 		if ($values['selection'] == 'strip') {
 		
-			// create a new cURL resource to call our "preview" script
-			$ch = curl_init();
-			
-			// set URL and other appropriate options
-			curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/header.cgi?i='.$values['owner']);
-			//curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/header.cgi?i='.$values['owner']);
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			
-			// grab URL and pass it to the browser
-			curl_exec($ch);
-			
-			// close cURL resource, and free up system resources
-			curl_close($ch);
+			curlRequestGenerator('header.cgi?i='.$values['owner']);
 		
+		} else {
+			
+			echo 'No header selection';
+			
 		}
 		
 	}
@@ -285,23 +280,15 @@ function processFooterInfo($values) {
 		
 	} else {
 		
-		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
+		// only show a preview if they select a footer
 		if ($selected == '1') {
+			
+			curlRequestGenerator('footer.cgi?i='.$values['owner']);
 		
-			// create a new cURL resource to call our "preview" script
-			$ch = curl_init();
+		} else {
 			
-			// set URL and other appropriate options
-			//curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/footer.cgi?i='.$values['owner']);
-			//curl_setopt($ch, CURLOPT_URL, 'http://staff.washington.edu/cheiland/template/footer.cgi?i='.$values['owner']);
-			curl_setopt($ch, CURLOPT_HEADER, false);
+			echo 'No footer selection';
 			
-			// grab URL and pass it to the browser
-			curl_exec($ch);
-			
-			// close cURL resource, and free up system resources
-			curl_close($ch);
-		
 		}
 		
 	}
@@ -309,8 +296,9 @@ function processFooterInfo($values) {
 }
 
 /**
- * getCode() - using CURL, retrieve and display the user's code
- *
+ * getCode() - using CURL, retrieve and display the user's code selections
+ * 
+ * @return string $html
  */
 function getCode() {
 	
@@ -341,103 +329,78 @@ function getCode() {
 	// store some reusable html and initialize some vars
 	$header_url = 'header.cgi?i='.$usersPrefs['owner'];
 	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
-	$pv_h = '';
-	$cp_h = '';
-	$inc_h = '';
-	$pv_f = '';
-	$cp_f = '';
-	$inc_f = '';
+	
+	$cp_h = curlRequestGenerator($header_url,'plain');
+	$inc_h = INC_BASE_URL.$header_url;
+	
+	$cp_f = curlRequestGenerator($footer_url,'plain');
+	$inc_f = INC_BASE_URL.$footer_url;
+	
+	$cp_h_html = '<div><form><textarea cols="40" rows="16">'.$cp_h.'</textarea></form></div>';
+	$inc_h_html = '<div><form><input value="'.$inc_h.'" size="60" /></form></div>';
+	
+	$cp_f_html = '<div><form><textarea cols="40" rows="16">'.$cp_f.'</textarea></form></div>';
+	$inc_f_html = '<div><form><input value="'.$inc_f.'" size="60" /></form></div>';
+
 	$html = '';
 	
-	// step 1: determine if the user wanted both, header, footer or neither
+	// user wants both the header and footer
 	if ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
-		// user wants both
 		
-		// pull the header first
-		//$pv_h .= curlRequestGenerator($header_url);
-		$cp_h .= curlRequestGenerator($header_url,'plain');
-		$inc_h .= INC_BASE_URL.$header_url;
-		
-		// then, the footer
-		//$pv_f .= curlRequestGenerator($footer_url);
-		//$cp_f .= curlRequestGenerator($footer_url,'plain');
-		$inc_f .= INC_BASE_URL.$footer_url;
-		
+		// include + copy & paste
 		if ($usersPrefs['code_pref'] == 'both') {
-		
-			// display html
-			$html .= '<div><form><textarea cols="40" rows="16">'.$cp_h.'</textarea></form></div>
-			          <div><form><input value="'.$inc_h.'" size="60" /></form></div>
-			          <div class="clear"></div>
-			          <div><form><textarea cols="40" rows="16" class="code-select" readonly="readonly">'.$cp_f.'</textarea></form></div>
-			          <div>'.$inc_f.'</div>';
+			$html .= $cp_h_html.$inc_h_html.'<div class="clear"></div><br /><br />'.$cp_f_html.$inc_f_html;
+		// include
 		} elseif ($usersPrefs['code_pref'] == 'include') {
-			$html .= '<div>'.$inc_h.'</div>';
+			$html .= $inc_h_html.'<div class="clear"></div><br /><br />'.$inc_f_html;
+		// copy & paste
 		} else {
-			$html .= 'just copy/paste';
+			$html .= $cp_h_html.'<div class="clear"></div><br /><br />'.$cp_f_html;
 		}
 		
+	// user wants just the header
 	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '0') {
-		// user just wants the header
-		$cp_h .= curlRequestGenerator($header_url,'plain');
-		$inc_h .= INC_BASE_URL.$header_url;
 		
-		//$hf .= '<form><textarea cols="100" rows="40">';
-		
-		//$hf .= '</textarea></form>';
-		
+		// include + copy & paste
+		if ($usersPrefs['code_pref'] == 'both') {
+			$html .= $cp_h_html.$inc_h_html;	
+		// include
+		} elseif ($usersPrefs['code_pref'] == 'include') {
+			$html .= $inc_h_html;
+		// copy & paste
+		} else {
+			$html .= $cp_h_html;
+		}		
+	
+	// user wants just the footer
 	} elseif ($usersPrefs['selection'] == 'no-hdr' && $usersPrefs['selected'] == '1') {
-		// user just wants the footer
 		
-		//$cp_f .= curlRequestGenerator($footer_url,'plain');
-		$inc_f .= INC_BASE_URL.$footer_url;
+		// include + copy & paste
+		if ($usersPrefs['code_pref'] == 'both') {
+			$html .= $cp_f_html.$inc_f_html;	
+		// include
+		} elseif ($usersPrefs['code_pref'] == 'include') {
+			$html .= $inc_f_html;
+		// copy & paste
+		} else {
+			$html .= $cp_f_html;
+		}
 		
 	} else {
-		// user wanted neither and was able to do this?  maybe some error checking will prevent this case, but for now
-		//$cp .= 'neither';
+		$html .= 'You selected nothing... that\'s funny.  Did you really mean to do this?';
 	}
 	
-	// step 2: determine what the user's code preference is (copy & paste, include or both)
-	
-	
-	// if code-pref eq both, show copy & paste inside a textarea + the include script
-	
+	// pass the $html back to the callback function in our ajax post script
 	echo $html;
-	
-	//echo 'user wants what: '.$hf.'<br /><br />';
-	//echo 'in what format: '.$code_pref;
-	
-	//$html = "our code here, after some logic calls it up via a CURL script";
-	
-	/*echo '<pre>';
-	print_r($usersPrefs);
-	echo '</pre>';*/
-	
-}
-
-function curlRequestGenerator($url,$type = '') {
-	
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/'.$url);
-	curl_setopt($ch, CURLOPT_HEADER, false);
-	
-	// we just want the plain text back, not an html preview
-	if ($type == 'plain') {
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$curl = curl_exec($ch);
-		return $curl;
-	} else {
-		curl_exec($ch);
-		curl_close($ch);
-	}
+		
 }
 
 /**
- * curlRequestGenerator() - takes some inputs and generates a proper, optioned CURL request
+ * runGenerator - acts as a constructor of sorts, interprets what functions should be called
  *
- * @return string $curl
+ * @param array $values
+ * @return true
  */
-
 function runGenerator($values) {
 
 	// process the user's selected header/footer preferences
@@ -459,15 +422,6 @@ function runGenerator($values) {
 	return true;
 	
 }
-
-// call our "constructor"
-/*if (runGenerator($values)) {
-	$msg = '      Success!       ';
-} else {
-	$msg = 'Try again';
-}
-
-echo $msg;*/
 
 runGenerator($values);
 

@@ -1,13 +1,8 @@
 @charset "utf-8";
-body {
-	margin: 0px;
-	background-color: #006699;
-}
-
-
 
 #footerMain {
-	background-image: url(../img/bg.gif);
+        clear: both;
+	background-image: url(../img/bg_ftr.gif);
 	background-repeat: repeat-x;
 	height: 25px;
 	overflow: hidden;
@@ -25,6 +20,7 @@ body {
 	white-space: nowrap;
 }
 #footerMain li a {
+	text-transform: uppercase;
 	text-decoration: none;
 	color: #FFF;
 	float: left;
@@ -32,14 +28,21 @@ body {
 }
 #footerMain li a:hover {
 	color: #CCC;
-	background-image: url(../img/notch.gif);
+	background-image: url(../img/notch_ftr.gif);
 	background-position: center bottom;
 	background-repeat: no-repeat;
 }
 #footerMain li a:active {
 	color: #FFFFCC;
 }
-
+#footerMain li span {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #FFF;
+	float: left;
+	padding: 8px 6px 7px 0;
+	white-space: nowrap;
+}
 #blanky{
 	background-color: #CC3300;
 	height: 300px;
@@ -59,20 +62,20 @@ body {
 .footerLinkBorder {
 	float: left;
 	padding-left: 10px;
-	background-image: url(../img/leftbar.png);
+	background-image: url(../img/leftbar_ftr.png);
 	background-repeat: no-repeat;
 	background-position: 0px 6px;
 }
 .logoYes #footerLeft a {
 	text-indent: -9999px;
-	background-image: url(../img/w_logo_white.gif);
+	background-image: url(../img/w_logo_white_ftr.gif);
 	background-repeat: no-repeat;
 	background-position: left center;
 	width: 237px;
 }
 .logoYes #footerLeft li a:hover {
 	color: #CCC;
-	background-image: url(../img/w_logo_white.gif);
+	background-image: url(../img/w_logo_white_ftr.gif);
 	background-repeat: no-repeat;
 }
 .wNo #footerLeft li a {

@@ -1,52 +1,8 @@
 $(function () {               	
-	
-    /* prevent tab idea
-    $.fn.preventTab = function(options) {
-
-        return this.each(function(){
-            $(this).bind('keydown', function(e){
-                if(e.which == 9){
-                    return false;
-                }
-            });
-        });
-    };
-    
-    $('.preventTab', $('#site_url')).preventTab();*/
     
 	$('#q').click(function(){
 		$('#q').attr('value','');
 	});
-	
-	// Form validation
-	/*$("#tmplgenForm").validate({
-    errorClass: "error",
-        rules: {
-         
-         email: {
-           required: true,
-           email: true
-         },
-         site_url: {
-            required: true,
-            url: true
-        },
-         selection: "required",
-         code_pref: "required",
-       },
-       messages: {
-         email: {
-           required: "Please provide an email address",
-           email: "Invalid email, try again"
-         },
-         site_url: {
-           required: "Please specify a site url",
-           url: "We need a valid url for our records"
-         },
-         selection: "Please make a choice",
-         code_pref: "Please specify a delivery option",
-       }
-    });*/
 	
 	// Some form defaults, mostly the disabled radio buttons
 	$('#sink').attr('disabled','disabled');
@@ -101,28 +57,47 @@ $(function () {
     		                    search: $('input[name=search]:checked').val(),
     		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH'},function(data) {
+    	$('#hdr-preview').css('display','block');
     	$('#hdr-preview').html(data);
-    	$('#hdr-code').text(data);
     	$('#outputBlk').css('display','none');
-    	$('#bodyTxt').css('display','block');
+    	var display = '';
+    	if (($('input[name=selection]:checked').val() == 'no-hdr') && ($('input[name=footer]:checked').val() !== 'no')) {
+    		display = 'block';	
+    	} else if ($('input[name=selection]:checked').val() !== 'no-hdr') {
+    		display = 'block';
+    	} else {
+    		display = 'none';
+    	}
+    	$('#bodyTxt').css('display',display);
+    	
     	});
     	
-    });    
+    });
     
     // initialize/update footer
-    $("input[name='footer']").click(function() {
+    $('input[name=footer]').click(function() {
     	$.post('generate.php',{ owner: $('#owner').val(),
     		                    footer: $('input[name=footer]:checked').val(),
     	                        processType: 'initF'},function(data) {
+    	$('#ftr-preview').css('display','block');
     	$('#ftr-preview').html(data);
-    	$('#ftr-code').text(data);
+    	$('#outputBlk').css('display','none');
+    	var display = '';
+    	if (($('input[name=footer]:checked').val() == 'no') && ($('input[name=selection]:checked').val() !== 'no-hdr')) {
+    		display = 'block';	
+    	} else if ($('input[name=footer]:checked').val() !== 'no') {
+    		display = 'block';
+    	} else {
+    		display = 'none';
+    	}
+    	$('#bodyTxt').css('display',display);
+    	
     	});
-    	                        
-  	 
+
     });
     
     // process our code preference selection
-    $("input[name='code_pref']").click(function() {
+    $('input[name=code_pref]').click(function() {
     	$.post('generate.php',{ owner: $('#owner').val(),
     	                        email: $('#email').val(),
     	                        site_url: $('#site_url').val(),
@@ -159,6 +134,7 @@ $(function () {
 		     	$('#generate').removeAttr('disabled');
 		     	$('#bodyTxt').css('display','none');
 		     	$('#outputBlk').css('display','block');
+		     	$('#ftr-preview').css('padding-top','80px');
 		     	$('#outputBlk').html(msg);
 		     	$('#outputBlk input,textarea').attr('readonly','readonly');
 		     	$('#outputBlk input,textarea').focus(function() {

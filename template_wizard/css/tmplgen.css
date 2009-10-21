@@ -189,9 +189,9 @@ fieldset#options legend {
 }
 #bodyTxt {
 	margin: 100px 0;
-	display: none;
 }
 #outputBlk {
+	clear: both;
 	margin: 100px auto;
 	width: 960px;
 }
@@ -201,4 +201,7 @@ fieldset#options legend {
 }
 #outputBlk input {
 	font-size: 14px;
+}
+#ftr-preview {
+	clear: both;
 }

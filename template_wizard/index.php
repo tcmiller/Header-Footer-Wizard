@@ -27,6 +27,8 @@ include_once('include/functions.inc.php');
 	</script>
 	<link rel="stylesheet" href="css/header.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/footer_no_patch.css" type="text/css" media="screen" />
 	
 <style type="text/css">
 		
@@ -103,38 +105,6 @@ include_once('include/functions.inc.php');
 </head>
 <body>
 
-<!--<div class="wheader patchYes colorGold wNo">	
-  <span id="autoMargin">
-  
-    <div class="wlogoSmall">
-            <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
-            <div><a href="http://www.washington.edu/">University of Washington</a></div>
-    </div>
-    
-	<div id="wsearch">        
-          <form name=form1 id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
-			 <div class="wfield">
-                <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
-				<input type="hidden" name="cof" value="FORID:0" />
-			    <input name="q" id="q" type="text" value="Search the UW" class="wTextInput" />			   
-             </div>   
-	  			<input type="submit" class="formbutton" name="sa" value="Go" />
-          </form>
-    </div>
-    
-	<div id="wtext">
-    	<ul>
-      		<li><a href="#">UW Home</a></li>
-        	<li><span class="border"><a href="#">Directories</a></span></li>
-       	  	<li><span class="border"><a href="#">Calendar</a></span></li>
-       	  	<li><span class="border"><a href="#">Maps</a></span></li>
-       	  	<li><span class="border"><a href="#">My UW</a></span></li>
-       </ul>
-    </div>
-    
-  </span>
-</div>-->
-
 <div id="container">
 
 	<div id="content">
@@ -161,13 +131,13 @@ include_once('include/functions.inc.php');
               <li>
                  
                  <fieldset>
-				    <legend>Step 2: Thin Strip or Kitchen Sink?</legend>
+				    <legend>Step 2: Header</legend>
 				   
 				   <div id="step2_main"> 
 					 
-				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" /> Thin strip</label><br />
-					 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" /> No header for me</label><br />
-				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" /> <span class="unavailable">Kitchen sink</span></label>
+				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
+					 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
+				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <span class="unavailable">Kitchen sink</span></label>
 				   
 				   </div>
 					 
@@ -179,30 +149,30 @@ include_once('include/functions.inc.php');
 				     <div id="colorSrchBlk">
 				      <div>
 				       <label for="color">Gold or purple background?</label>
-				       <input type="radio" name="color" value="purple" id="purple_bg" /> Purple<br />
-				       <input type="radio" name="color" value="gold" id="gold_bg" /> Gold
+				       <input type="radio" name="color" value="purple" id="purple_bg" onclick="javascript:pageTracker._trackPageview('/hdr-gold-bg');" /> Purple<br />
+				       <input type="radio" name="color" value="gold" id="gold_bg" onclick="javascript:pageTracker._trackPageview('/hdr-purple-bg');" /> Gold
 				      </div>
 					  <br />				      
 				      <div>			    
 				       <label for="search">Search</label>
-				       <input type="radio" name="search" value="basic" id="s_basic" /> Basic<br />
-				       <input type="radio" name="search" value="no" id="s_no" /> No search<br />
-				       <input type="radio" name="search" value="super-inline" id="ss_inline" /> <span class="unavailable">Super (inline)</span><br />
-				       <input type="radio" name="search" value="super-tab" id="ss_tab" /> <span class="unavailable">Super (tab)</span>
+				       <input type="radio" name="search" value="basic" id="s_basic" onclick="javascript:pageTracker._trackPageview('/hdr-srch-basic');" /> Basic<br />
+				       <input type="radio" name="search" value="no" id="s_no" onclick="javascript:pageTracker._trackPageview('/hdr-srch-no');" /> No search<br />
+				       <input type="radio" name="search" value="super-inline" id="ss_inline" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-inline');" /> <span class="unavailable">Super (inline)</span><br />
+				       <input type="radio" name="search" value="super-tab" id="ss_tab" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-tab');" /> <span class="unavailable">Super (tab)</span>
 				      </div>
 				     </div>
 				    
 				    <div id="patchBlockwBlk">
 				     <div>
 				      <label for="patch">Patch or no patch?</label>
-				      <input type="radio" name="patch" value="1" id="patch" /> Patch<br />
-				      <input type="radio" name="patch" value="0" id="no_patch" /> No patch
+				      <input type="radio" name="patch" value="1" id="patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-yes');" /> Patch<br />
+				      <input type="radio" name="patch" value="0" id="no_patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-no');" /> No patch
 				     </div>
 				     <br />			     
 				     <div id="blockwBlk">
 				      <label for="blockw">W or no W?</label>
-				      <input type="radio" name="blockw" value="1" id="w_yes" /> W<br />
-				      <input type="radio" name="blockw" value="0" id="w_no" /> No W
+				      <input type="radio" name="blockw" value="1" id="w_yes" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-yes');" /> W<br />
+				      <input type="radio" name="blockw" value="0" id="w_no" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-no');" /> No W
 				     </div>
 				    </div>
 				   
@@ -216,11 +186,11 @@ include_once('include/functions.inc.php');
                  <fieldset>
 			    <legend>Step 3: Footer</legend>
 			    
-			     <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" /> Basic</label>
-			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" /> With "W"</label>
-			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" /> With gold patch</label>
-			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" /> With purple patch</label>
-			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" /> No thanks, I'll pass on the footer</label>
+			     <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" onclick="javascript:pageTracker._trackPageview('/ftr-basic');" /> Basic</label>
+			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" onclick="javascript:pageTracker._trackPageview('/ftr-with-w');" /> With "W"</label>
+			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch');" /> With gold patch</label>
+			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch');" /> With purple patch</label>
+			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" onclick="javascript:pageTracker._trackPageview('/ftr-no');" /> No thanks, I'll pass on the footer</label>
 			   
 			   </fieldset>
               </li>
@@ -228,13 +198,13 @@ include_once('include/functions.inc.php');
                  <fieldset>
 			     <legend>Step 4: Code Preference</legend>
 			     
-			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" /> <a href="">Copy &amp; Paste</a></label>
-			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" /> <a href="">Include</a></label>
-			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" /> <a href="">Both</a></label>
+			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" onclick="javascript:pageTracker._trackPageview('/copy-paste');" /> <a href="">Copy &amp; Paste</a></label>
+			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" onclick="javascript:pageTracker._trackPageview('/include');" /> <a href="">Include</a></label>
+			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" onclick="javascript:pageTracker._trackPageview('/both');" /> <a href="">Both</a></label>
 			     
 			    </fieldset>
 			    <div>
-			     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" />
+			     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" onclick="javascript:pageTracker._trackPageview('/wizard-complete');" />
 			     </form>
 			    </div>
               </li>
@@ -248,15 +218,27 @@ include_once('include/functions.inc.php');
 
 <div id="prevBlk">
 
-	<div id="hdr-preview"></div>
+	<div id="hdr-preview"><?php loadHdrPrvw(); ?></div>
 	
 	<div id="bodyTxt">Insert website here :)</div>
 	
 	<div id="outputBlk"></div>
 	
-	<div id="ftr-preview"></div>
+	<div id="ftr-preview"><?php loadFtrPrvw(); ?></div>
 
 </div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- UA-11194387-1 -->
 
 </body>
 </html>

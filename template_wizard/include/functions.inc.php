@@ -3,6 +3,30 @@
 require_once('tmplgen-db.inc.php');
 
 /**
+ * curlRequestGenerator - returns a particular CURL resource, based on some inputs
+ *
+ * @param string $url
+ * @param string $type optional
+ * @return $curl
+ */
+function curlRequestGenerator($url,$type = '') {
+	
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, 'http://depts.washington.edu/uweb/inc/'.$url);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	
+	// we just want the plain text back, not an html preview
+	if ($type == 'plain') {
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$curl = curl_exec($ch);
+		return $curl;
+	} else {
+		curl_exec($ch);
+		curl_close($ch);
+	}
+}
+
+/**
  * accountLookup() - Look up just the owner info
  *
  * @todo - Look up any current info we might have for the logged in user
@@ -90,7 +114,6 @@ function setAccountDefaults() {
 	// see if code preference exists and if so, show it
 	if (!empty($account['code_pref'])) {
 		$accountDefaults .= '$(\'#'.$account['code_pref'].'\').attr(\'checked\',\'checked\');';
-		
 	}
 	
 	echo $accountDefaults;
@@ -294,10 +317,80 @@ function setFooterDefault() {
 }
 
 /**
+ * loadHdrPrvw() - Dynamically load a preview of the user's header
+ *
+ */
+function loadHdrPrvw() {
+	
+	$hdrPrvw = '';
+	
+	// see if a header exists for this user
+	$header = headerLookup();
+
+	// make sure the results exist and are in array format
+	if (!empty($header) && $header['selection'] == 'strip') {
+		$hdrPrvw = curlRequestGenerator('header.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
+	} else {
+		$hdrPrvw = 'No header selection';
+	}
+	
+	echo $hdrPrvw;
+	
+}
+
+/**
+ * loadFtrPrvw() - Dynamically load a preview of the user's footer
+ *
+ */
+function loadFtrPrvw() {
+	
+	$ftrPrvw = '';
+	
+	// see if a footer exists for this user
+	$footer = footerLookup();
+	
+	// make sure the results exist and are in array format
+	if (!empty($footer) && $footer['selected'] == '1') {
+		$ftrPrvw = curlRequestGenerator('footer.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
+	} else {
+		$ftrPrvw = 'No footer selection';
+	}
+	
+	echo $ftrPrvw;
+	
+}
+
+/**
+ * setStyleDefaults() - This sets some style defaults for the page, based on certain user info we know
+ *
+ */
+function setStyleDefaults() {
+	
+	$styleDefaults = '';
+	
+	// look for a header or a footer
+	$header = headerLookup();
+	$footer = footerLookup();	
+	
+	// does a user have a header or footer selected in the system?
+	if ((!empty($header) && $header['selection'] == 'strip') || (!empty($footer) && $footer['selected'] == '1')) {
+		$styleDefaults .= '$(\'#bodyTxt\').css(\'display\',\'block\');';
+	} else {
+		$styleDefaults .= '$(\'#bodyTxt\').css(\'display\',\'none\');';
+	}
+	
+	echo $styleDefaults;
+	
+}
+
+/**
  * createAndSetAppDefaults() - This function just sets things in motion
  *
  */
 function createAndSetAppDefaults() {
+	
+	// set some dynamic styles
+	setStyleDefaults();
 	
 	// create the account if it doesn't already exist
 	createAccount();

@@ -35,9 +35,9 @@ class Header(object):
     def __init__(self):
         self.id = ""
         self._owner = ""
-        self._color = "purple"
+        self._color = "gold"
         self._wordmark = "1"
-        self._blockw = "0"
+        self._blockw = "1"
         self._patch = "1"
         self._search = "basic"
         self._date_created = ""
@@ -57,12 +57,12 @@ class Header(object):
         self._wordmark = wordmark
     def get_blockw(self):
         return self._blockw
+    def set_blockw(self, blockw):
+        self._blockw = blockw
     def set_patch(self, patch):
         self._patch = patch
     def get_patch(self):
         return self._patch
-    def set_blockw(self, blockw):
-        self._blockw = blockw
     def get_search(self):
         return "%s" % (self._search)
     def set_search(self, search):
@@ -100,8 +100,8 @@ class Header(object):
     owner = property(get_owner, set_owner)
     color = property(get_color, set_color)
     wordmark = property(get_wordmark, set_wordmark)
-    patch = property(get_patch, set_patch)
     blockw = property(get_blockw, set_blockw)
+    patch = property(get_patch, set_patch)
     search = property(get_search, set_search)
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)
@@ -116,7 +116,7 @@ class Footer(object):
     def __init__(self):
         self.id = ""
         self._owner = ""
-        self._wordmark = "1"
+        self._wordmark = "0"
         self._blockw = "0"
         self._patch = "purple"
         self._date_created = ""
@@ -126,10 +126,6 @@ class Footer(object):
         return "%s" % (self._owner)
     def set_owner(self, owner):
         self._owner = owner
-    def get_color(self):
-        return self._color
-    def set_color(self, color):
-        self._color = color
     def get_wordmark(self):
         return self._wordmark
     def set_wordmark(self, wordmark):
@@ -164,9 +160,14 @@ class Footer(object):
             self.blockw = db.data[0][1]
             self.patch = str(db.data[0][2])
             self.wordmark = db.data[0][3]
+    def display_patch(self):
+        patch = {'purple':'purple','gold':'gold'}
+    	return (patch[self.patch])
+    def display_blockw(self):
+    	blockw = {'1':'wYes','0':'wNo'}
+    	return (blockw[self.blockw])
 
     owner = property(get_owner, set_owner)
-    color = property(get_color, set_color)
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)
     patch = property(get_patch, set_patch)
