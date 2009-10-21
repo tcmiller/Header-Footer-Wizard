@@ -39,7 +39,7 @@ body {
 }
 
 
-.logoAbsolute {
+.wheader .logoAbsolute {
 	position: absolute;
 	height: 75px;
 	width: 76px;

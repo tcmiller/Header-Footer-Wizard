@@ -180,6 +180,10 @@ fieldset#options legend {
 	display: block;
 	padding-bottom: 2px;
 }
+#generate {
+	margin: 20px 272px;
+	font-size: 16px;
+}
 #strip,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_no,#copy-paste,#include,#both {
 	border: 0;
 }

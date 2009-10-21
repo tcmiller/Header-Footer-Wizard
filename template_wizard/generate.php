@@ -139,7 +139,7 @@ function processHeaderInfo($values) {
 		
 		// no account exists, create one
 		$fields_values = array('selection' => $values['selection'],
-							   'blockw' => 1,
+							   'blockw' => $blockw,
 							   'patch' => $values['patch'],
 							   'wordmark' => 1,                       
 							   'color' => $values['color'],       

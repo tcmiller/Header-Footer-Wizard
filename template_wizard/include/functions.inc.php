@@ -212,7 +212,7 @@ function setHeaderDefaults() {
 		// no header selections exist, set some defaults
 		$headerDefaults .= '$(\'#gold_bg\').attr(\'checked\',\'checked\');
 						    $(\'#patch\').attr(\'checked\',\'checked\');
-						    $(\'#w_no\').attr(\'checked\',\'checked\');
+						    $(\'#w_yes\').attr(\'checked\',\'checked\');
 						    $(\'#s_basic\').attr(\'checked\',\'checked\');';
 
 		$headerDefaults .= '$(\'#blockwBlk\').css(\'display\',\'none\');';

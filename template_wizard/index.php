@@ -203,10 +203,10 @@ include_once('include/functions.inc.php');
 			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" onclick="javascript:pageTracker._trackPageview('/both');" /> <a href="">Both</a></label>
 			     
 			    </fieldset>
-			    <div>
+			    
 			     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" onclick="javascript:pageTracker._trackPageview('/wizard-complete');" />
 			     </form>
-			    </div>
+			    
               </li>
             </ul>
 		
