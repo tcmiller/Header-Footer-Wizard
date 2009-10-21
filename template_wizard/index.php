@@ -9,10 +9,11 @@ include_once('include/functions.inc.php');
 <head>
 	<title>Template Wizard 1.0</title>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script src="js/jquery.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/easySlider1.5.js"></script>
 	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
 	<script src="js/tmplgen.js" type="text/javascript"></script>
+	<script src="js/screenshot.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){	
 			$("#slider").easySlider();
@@ -100,6 +101,20 @@ include_once('include/functions.inc.php');
 
 /* // Easy Slider */
 
+/*  */
+
+#screenshot{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#fff;
+	padding:5px;
+	display:none;
+	color:#fff;
+	}
+
+/*  */
+
+
 </style>	
 	
 </head>
@@ -133,11 +148,13 @@ include_once('include/functions.inc.php');
                  <fieldset>
 				    <legend>Step 2: Header</legend>
 				   
+				    																<!-- <a href="http://www.cssglobe.com" class="screenshot" rel="cssg_screenshot.jpg" title="Web Standards Magazine">Css Globe</a> -->
+				    
 				   <div id="step2_main"> 
 					 
 				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
 					 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
-				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <span class="unavailable">Kitchen sink</span></label>
+				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot unavailable" rel="images/kitchen_sink.jpg">Kitchen sink</a></label>
 				   
 				   </div>
 					 
@@ -157,8 +174,8 @@ include_once('include/functions.inc.php');
 				       <label for="search">Search</label>
 				       <input type="radio" name="search" value="basic" id="s_basic" onclick="javascript:pageTracker._trackPageview('/hdr-srch-basic');" /> Basic<br />
 				       <input type="radio" name="search" value="no" id="s_no" onclick="javascript:pageTracker._trackPageview('/hdr-srch-no');" /> No search<br />
-				       <input type="radio" name="search" value="super-inline" id="ss_inline" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-inline');" /> <span class="unavailable">Super (inline)</span><br />
-				       <input type="radio" name="search" value="super-tab" id="ss_tab" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-tab');" /> <span class="unavailable">Super (tab)</span>
+				       <input type="radio" name="search" value="super-inline" id="ss_inline" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-inline');" /> <a href="" class="screenshot unavailable" rel="images/thin_strip_super_search_inline.jpg">Super (inline)</a><br />
+				       <input type="radio" name="search" value="super-tab" id="ss_tab" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-tab');" /> <a href="" class="screenshot unavailable" rel="images/thin_strip_super_search_tab.jpg">Super (tab)</a>
 				      </div>
 				     </div>
 				    

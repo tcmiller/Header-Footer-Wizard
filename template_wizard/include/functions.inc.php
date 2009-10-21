@@ -379,6 +379,10 @@ function setStyleDefaults() {
 		$styleDefaults .= '$(\'#bodyTxt\').css(\'display\',\'none\');';
 	}
 	
+	$styleDefaults .= '$(\'.unavailable\').css(\'cursor\',\'arrow\').click(function(){
+     						return false;
+					  });'; 
+	
 	echo $styleDefaults;
 	
 }

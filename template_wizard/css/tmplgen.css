@@ -112,11 +112,12 @@ legend {
 	padding: 0 3px;
 }
 
-span.unavailable {
+a.unavailable {
 	color: #ccc;
+	text-decoration: none;
 	border-bottom: 3px double;
 }
-span:hover.unavailable {
+a:hover.unavailable {
 	cursor: default;
 }
 #step1 p {
