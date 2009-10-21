@@ -1,5 +1,13 @@
 $(function () {               	
     
+    /***    
+    Tab and Enter really mess with form so we
+    disable, sorry
+    ***/
+    $("#tmplgenForm").bind("keypress", function(e) {
+      if ((e.keyCode == 13) || (e.keyCode == 9)) return false;
+      });
+
 	$('#q').click(function(){
 		$('#q').attr('value','');
 	});

@@ -80,7 +80,9 @@
 			};
 	
 			$("a","#"+options.nextId).click(function(){		
-				animate("next",true);
+                if (validate()) {
+                    animate("next",true);
+                }
 			});
 			$("a","#"+options.prevId).click(function(){		
 				animate("prev",true);				
@@ -92,6 +94,18 @@
 				animate("last",true);				
 			});		
 			
+            function validate() {
+                var valid=true;
+                $("#tmplgenForm").find('.req').each(function() {
+                    value = $(this).val();
+                    if ($(this).val() == "") {
+                        valid=false;
+                        $(this).after('<span class="error"> Required!</span>');
+                    }   
+                }); 
+                return valid;
+            };
+
 			function animate(dir,clicked){
 				var ot = t;				
 				switch(dir){
