@@ -1,10 +1,9 @@
 Introduction
 ============
 
-Please read carefully, yes Tim this means you too!  The header.cgi and 
-footer.cgi cannot simply be copied into a directory and expected to work.
-There are several python-centric dependencies necessary for the proper 
-use of the includes.
+Please read carefully.  The header.cgi and footer.cgi cannot simply be 
+copied into a directory and expected to work.  There are several python-centric 
+dependencies necessary for the proper use of the includes.
 
 To get a proper environment on Ovid, create a virtualenv directory and install
 the necessary support files.  Since we need to connect to MySQL, we need a
