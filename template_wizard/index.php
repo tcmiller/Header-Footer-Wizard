@@ -7,16 +7,18 @@ include_once('include/functions.inc.php');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Template Wizard 1.0</title>
+	<title>Header &amp; Footer Wizard</title>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
-	<script src="js/jquery.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/easySliderUW.js"></script>
-	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.5.5/jquery.validate.min.js"></script>
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/easySliderUW.js" type="text/javascript"></script>
+	<script src="js/jquery.colorbox.js" type="text/javascript"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 	<script src="js/tmplgen.js" type="text/javascript"></script>
 	<script src="js/screenshot.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){	
 			$("#slider").easySlider();
+			$(".inline").colorbox({width:"20%", inline:true, href:"#feedback"});
 			
 			<?php
 			
@@ -26,13 +28,16 @@ include_once('include/functions.inc.php');
 			
 		});	
 	</script>
+	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/header.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/footer_no_patch.css" type="text/css" media="screen" />
 	
 <style type="text/css">
-		
+
+	.hidden { display: none; }
+	
     /* image replacement */
         .graphic, #prevBtn, #nextBtn{
             margin:0;
@@ -129,6 +134,7 @@ include_once('include/functions.inc.php');
 </head>
 <body>
 <span class="title">Header &amp; Footer Wizard</span>
+<div id="fdBkLnk"><a class='inline' href="#">click me</a></div>
 <div id="container">
 
 	<div id="content">
@@ -251,6 +257,23 @@ include_once('include/functions.inc.php');
 	<div id="ftr-preview"><?php loadFtrPrvw(); ?></div>
 
 </div>
+
+<!-- This contains the hidden content for inline calls -->
+<div class="hidden">
+	<div id="feedback">
+        <h2>Suggestions, questions, gripes?  Speak up!</h2>
+		<form id="feedbackForm" action="/tmplgen/" method="post"> 
+            <label for="email"><span class="feedback">Your Email:</span></label> <input class="feedback-in" type="text" id="email" name="email" />
+            <br />
+            <br />
+            <label for="comment"><span class="feedback">Comments:</span></label> <textarea class="feedback-in" id="comment" name="comment"></textarea>
+            <br />
+            <br /> 
+            <input id="feedbackSubmit" type="submit" value="Talk to us &raquo;" /> 
+        </form>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -138,7 +138,7 @@ $(function () {
                $('#generate').removeAttr('disabled');},
 		   success: function(msg) {
 		     setTimeout(function() {
-		     	$('#generate').attr('value','Success');
+		     	$('#generate').attr('value','Now, go have fun!');
 		     	$('#generate').removeAttr('disabled');
 		     	$('#bodyTxt').css('display','none');
 		     	$('#outputBlk').css('display','block');
@@ -198,5 +198,67 @@ $(function () {
 				.css("left",(e.pageX + yOffset) + "px");
 		});			
 	};
+	
+	
+	/**
+	 * Feedback submit form
+	 *
+	 */
+	$("#feedbackSubmit").click(function(){                                     
+        $(".error").hide();
+        var hasError = false;
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        
+        var emailVal = $("#email").val();
+        if (emailVal == '')
+        {
+            $("#email").after('<span class="error">Please enter an email address.</span>');
+            hasError = true;
+        }
+        else if (!emailReg.test(emailVal)) 
+        {
+            $("#email").after('<span class="error">Please enter a valid email address.</span>');
+            hasError = true;
+        }
+
+        var messageVal = $("#comment").val();
+        if (messageVal == '') {
+            $("#comment").after('<span class="error">You forgot to enter a comment.</span>');
+            hasError = true;
+        }
+        
+        if(hasError == false) 
+        {
+            var data = new Object();
+            data.email = emailVal;
+            data.message = messageVal;
+            var dataString = $.toJSON(data)
+            $(this).hide();
+            $("#feedbackForm").append('<img src="/maps/img/loading.gif" alt="Loading" id="loading" />');
+            
+            $.post("comment.php",
+                { data: dataString },
+                function(resp)
+                {
+                    var obj = $.evalJSON(resp); 
+                    if (obj == true) 
+                    {
+                        $("#feedback").slideUp("normal", function()
+                        {
+                            $("#feedback").before('<h3>Awesome!</h3><p>Thanks for the comment!</p>');                                          
+                        });
+                    }
+                    else
+                    {
+                        $("#feedback").slideUp("normal", function()
+                        {
+                            $("#feedback").before('<h3>Fail!</h3><p>Massive problem.</p>'); 
+                        });
+                    }
+                }
+            );
+        }
+        return false;
+    });
     
 });
