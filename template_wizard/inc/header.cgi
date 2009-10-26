@@ -42,7 +42,7 @@ def main():
   </div>""" 
     sSearch = """
   <div id="wsearch">        
-   <form name="form1" id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
+   <form name="uwglobalsearch" id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
     <div class="wfield">
      <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
      <input type="hidden" name="cof" value="FORID:0" />
