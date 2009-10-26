@@ -10,6 +10,10 @@ the necessary support files.  Since we need to connect to MySQL, we need a
 package to do so.  Ovid does not support the latest version of this package
 so here is the path to get it to work.
 
+Thankfully with Bank, there is a bit less work.  Since the supporting libraries
+are a bit new just run the easy_install command with the MySQL-python package
+minus the version number to get the latest one.  Everything else is the same.
+
 Dependencies
 ------------
 
@@ -59,8 +63,12 @@ FAQs
  * Why is the directory called py/ ?
 
  - This is more for convention than anything else.  I wanted something short and 
- simple that represented the fact the directory is a bit unusual
+ simple that represented the fact the directory is a bit unusual.
 
  * Why python?
  
- - Because anyone can read python, and perl large numbers of people
+ - Because anyone can read python and it handles text quite well
+
+ * Why write an FAQ in plain text that no one will read?
+
+ - Because it forces me to write documentation and I like to edit documents in vi.

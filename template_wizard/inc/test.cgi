@@ -1,4 +1,6 @@
 #!/usr/bin/env python2.5
+## Use to test functionality of CGI in any given directory
+
 print "Content-type: text/html"
 print
 
