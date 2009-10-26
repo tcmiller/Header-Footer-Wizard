@@ -304,7 +304,8 @@ function getCode() {
 	
 	global $mdb2;
 	
-	define('INC_BASE_URL','http://depts.washington.edu/uweb/inc/');
+	define('INC_BASE_URL_DEPTS','/uweb/inc/');
+	define('INC_BASE_URL_BANK','http://depts.washington.edu/uweb/inc/');
 	
 	// we need three pieces of info, acct.code_pref, hdr.selection and ftr.selected
 	$query = sprintf('SELECT acct.owner,
@@ -330,17 +331,24 @@ function getCode() {
 	$header_url = 'header.cgi?i='.$usersPrefs['owner'];
 	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
 	
+	$ttl_h = '';
 	$cp_h = curlRequestGenerator($header_url,'plain');
-	$inc_h = INC_BASE_URL.$header_url;
+	$inc_h_depts = INC_BASE_URL_DEPTS.$header_url;
+	//$inc_h_bank = INC_BASE_URL_DEPTS.$header_url;
 	
 	$cp_f = curlRequestGenerator($footer_url,'plain');
-	$inc_f = INC_BASE_URL.$footer_url;
+	$inc_f_depts = INC_BASE_URL_DEPTS.$footer_url;
+	//$inc_f_bank = INC_BASE_URL_BANK.$footer_url;
 	
-	$cp_h_html = '<div><form><textarea cols="40" rows="16">'.$cp_h.'</textarea></form></div>';
-	$inc_h_html = '<div><form><input value="'.$inc_h.'" size="60" /></form></div>';
+	$cp_h_html = '<div><h2>Header</h2><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></div>';
+	$inc_h_html = '<div><form><strong>On depts:</strong> <input type="text" value="'.$inc_h_depts.'" size="35" />
+	                          <br />
+	                          <strong>On bank:</strong> <input type="text" value="Coming soon!" size="35" /></form></div>';
 	
-	$cp_f_html = '<div><form><textarea cols="40" rows="16">'.$cp_f.'</textarea></form></div>';
-	$inc_f_html = '<div><form><input value="'.$inc_f.'" size="60" /></form></div>';
+	$cp_f_html = '<div><h2>Footer</h2><form><textarea cols="70" rows="16">'.$cp_f.'</textarea></form></div>';
+	$inc_f_html = '<div><form><strong>On depts:</strong> <input type="text" value="'.$inc_f_depts.'" size="35" />
+	                          <br />
+	                          <strong>On bank:</strong> <input type="text" value="Coming soon!" size="35" /></form></div>';
 
 	$html = '';
 	
@@ -349,13 +357,13 @@ function getCode() {
 		
 		// include + copy & paste
 		if ($usersPrefs['code_pref'] == 'both') {
-			$html .= $cp_h_html.$inc_h_html.'<div class="clear"></div><br /><br />'.$cp_f_html.$inc_f_html;
+			$html .= $cp_h_html.$inc_h_html.'<span class="fldDvdr"></span>'.$cp_f_html.$inc_f_html;
 		// include
 		} elseif ($usersPrefs['code_pref'] == 'include') {
-			$html .= $inc_h_html.'<div class="clear"></div><br /><br />'.$inc_f_html;
+			$html .= $inc_h_html.'<span class="fldDvdr"></span>'.$inc_f_html;
 		// copy & paste
 		} else {
-			$html .= $cp_h_html.'<div class="clear"></div><br /><br />'.$cp_f_html;
+			$html .= $cp_h_html.'<span class="fldDvdr"></span>'.$cp_f_html;
 		}
 		
 	// user wants just the header

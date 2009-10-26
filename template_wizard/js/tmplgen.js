@@ -234,7 +234,7 @@ $(function () {
             data.message = messageVal;
             var dataString = $.toJSON(data)
             $(this).hide();
-            $("#feedbackForm").append('<img src="/maps/img/loading.gif" alt="Loading" id="loading" />');
+            $("#feedbackForm").append('<img src="/uweb/tmplgen/images/loading.gif" alt="Loading" id="loading" />');
             
             $.post("comment.php",
                 { data: dataString },

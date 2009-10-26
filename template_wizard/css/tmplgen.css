@@ -112,7 +112,6 @@ legend {
 	color: #39275b;
 	padding: 0 3px;
 }
-
 a.unavailable {
 	color: #ccc;
 	text-decoration: none;
@@ -121,18 +120,16 @@ a.unavailable {
 a:hover.unavailable {
 	cursor: default;
 }
+.error {
+	color: red;
+	font-size: 12px;
+}
 #step1 p {
 	clear: both;
 }
 #step1 label {
 	float: left;
 	width: 8em;
-}
-#step1 label.error {
-	font-size: 11px;
-	float: none;
-	color: red;
-	padding-left: .5em;
 }
 #step1 div {
 	clear: both;
@@ -207,6 +204,22 @@ fieldset#options legend {
 }
 #outputBlk input {
 	font-size: 14px;
+}
+#outputBlk form strong {
+	text-align: right;
+	float: left;
+	display: block;
+	width: 60px;
+	font-size: 12px;
+}
+#outputBlk form textarea {
+	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
+	font-size: 12px;
+}
+span.fldDvdr {
+	display: block;
+	clear: both;
+	height: 20px;
 }
 #ftr-preview {
 	clear: both;

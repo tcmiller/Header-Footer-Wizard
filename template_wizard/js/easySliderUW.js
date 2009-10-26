@@ -108,7 +108,7 @@
                     if ($(this).val() == "") {
                         valid=false;
                         $(this).after('<span class="error"> Required!</span>');
-                    }   
+                    }
                 }); 
                 return valid;
             };

@@ -104,15 +104,39 @@ include_once('include/functions.inc.php');
 	#nextBtn a{ 
 		background:url(images/btn_next.png) no-repeat 0 0;	
 		}												
+	#fdBkTtleBlk {
+		position: relative;
+	    display: block;
+	    width: 700px;
+	    height: 38px;
+	    margin: 40px auto 10px;	
+	}
 	.title {
-		background:url(images/text.gif) no-repeat 0 0;
+		position: relative;
+        background:url(images/text.gif) no-repeat 0 0;
 		text-indent: -9999px;
 		overflow: hidden;
 		display: block;
-		height: 32px;
+		height: 38px;
 		width: 650px;
-		margin: 40px auto 20px;
+		margin: 0 auto;
 	}
+	#fdBkTtleBlk .fdBkLnk {
+		display: block;
+		position: absolute;
+        top: 34px;
+        left: 628px;          
+		margin: 0;
+		padding: 0;
+	}
+    #fdBkTtleBlk .fdBkLnk a {
+        color: #000;
+		font-size: 11px;
+    }
+    #fdBkTtleBlk .fdBkLnk a:hover {
+    	text-decoration: none;
+    }
+	
 /* // Easy Slider */
 
 /*  */
@@ -133,8 +157,9 @@ include_once('include/functions.inc.php');
 	
 </head>
 <body>
-<span class="title">Header &amp; Footer Wizard</span>
-<div id="fdBkLnk"><a class='inline' href="#">click me</a></div>
+<div id="fdBkTtleBlk"><span class="fdBkLnk"><a class="inline" href="#">Got feedback?</a></span>
+	<span class="title">Header &amp; Footer Wizard</span>
+</div>
 <div id="container">
 
 	<div id="content">
@@ -149,11 +174,11 @@ include_once('include/functions.inc.php');
 				     <input type="hidden" name="owner" id="owner" value="<?php echo $_SERVER['REMOTE_USER']; ?>" />
 				      <div>
 				       <label for="email">Contact email:</label>
-				       <input type="text" name="email" id="email" maxlength="40" class="req" />
+				       <input type="text" name="email" id="email" size="20" maxlength="40" class="req" />
 				      </div>
 				      <div>
 				       <label for="site_url">Site URL:</label>
-				       <input type="text" name="site_url" id="site_url" maxlength="150" class="req" />
+				       <input type="text" name="site_url" id="site_url" size="35" maxlength="150" class="req" />
 				      </div>
 				     
 				     </fieldset>
@@ -261,8 +286,8 @@ include_once('include/functions.inc.php');
 <!-- This contains the hidden content for inline calls -->
 <div class="hidden">
 	<div id="feedback">
-        <h2>Suggestions, questions, gripes?  Speak up!</h2>
-		<form id="feedbackForm" action="/tmplgen/" method="post"> 
+        <h2>Suggestions, questions, gripes?  Speak up!</h2>        
+        <form id="feedbackForm" action="/uweb/tmplgen/" method="post"> 
             <label for="email"><span class="feedback">Your Email:</span></label> <input class="feedback-in" type="text" id="email" name="email" />
             <br />
             <br />
@@ -270,7 +295,7 @@ include_once('include/functions.inc.php');
             <br />
             <br /> 
             <input id="feedbackSubmit" type="submit" value="Talk to us &raquo;" /> 
-        </form>
+        </form>	   
     </div>
 </div>
 
