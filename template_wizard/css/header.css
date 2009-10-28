@@ -1,15 +1,25 @@
 @charset "utf-8";
 body {
 	margin: 0px;
+	background-position:top 25px;
 }
 #autoMargin a {
 	font-family: Arial, Helvetica, sans-serif !important;
+	line-height:10px;
+	outline:none;
 }
 #autoMargin form {
 	width: auto;
 	height: auto;	
-	min-width: 50px;
+	min-width: 1px;
 }
+#autoMargin a:active, 
+#autoMargin a:hover, 
+#autoMargin a:focus {
+	background-color:transparent !important;
+}
+
+
 /*-- Color --*/
 .colorGold {
 	background-position: 0px -75px;
@@ -22,6 +32,12 @@ body {
 }
 .colorGold li a:hover {
 	color: #000;
+}
+.colorGold li a:active {
+	color: #696969;
+}
+.colorGold li a:focus {
+	color: #fff;
 }
 .colorGold  .wlogoSmall {
 	background-position: 68px 5px;
@@ -43,9 +59,11 @@ body {
 	color: #CCC;
 }
 .colorPurple li a:active {
-	color: #FFFFCC;
+	color: #d7a900;
 }
-
+.colorPurple li a:focus {
+	color: #d7a900;
+}
 
 .logoAbsolute {
 	position: absolute;
@@ -115,7 +133,7 @@ body {
 	background-image: url(../img/bg.gif);
 	background-repeat: repeat-x;
 	height: 25px;
-	padding: 0 0 0 20px;
+	padding: 0 20px 0 20px;
 	overflow: hidden;
 }
 .wheader ul{
@@ -123,13 +141,13 @@ body {
 }
 .wheader li{
 	display: inline;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	font-weight: bold;
 	white-space: nowrap;
 	margin: 0;
 }
-.wheader li a {
+.wheader li a {	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
 	text-decoration: none;
 	display:block;
 	float: left;
@@ -142,7 +160,6 @@ body {
 	background-position: center top;
 	background-repeat: no-repeat;
 }
-
 #wsearch {
 	height: 25px;
 	float: right;
@@ -160,7 +177,7 @@ body {
 	background:#999;
 	color:#666;
 	font-weight:bold;
-	padding: 0 10px 0 0;
+	padding: 0 15px 0 0;
 	background:url(../img/submit_8.png) no-repeat left top;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
