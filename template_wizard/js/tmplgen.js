@@ -8,10 +8,6 @@ $(function () {
       if ((e.keyCode == 13) || (e.keyCode == 9)) return false;
       });
 
-	$('#q').click(function(){
-		$('#q').attr('value','');
-	});
-	
 	// Some form defaults, mostly the disabled radio buttons
 	$('#sink').attr('disabled','disabled');
 	$('#ss_inline').attr('disabled','disabled');
@@ -67,7 +63,7 @@ $(function () {
     	                        processType: 'initH'},function(data) {
     	$('#hdr-preview').css('display','block');
     	$('#hdr-preview').html(data);
-    	$('#outputBlk').css('display','none');
+    	$('#outputBlk').hide();
     	var display = '';
     	if (($('input[name=selection]:checked').val() == 'no-hdr') && ($('input[name=footer]:checked').val() !== 'no')) {
     		display = 'block';	
@@ -89,7 +85,7 @@ $(function () {
     	                        processType: 'initF'},function(data) {
     	$('#ftr-preview').css('display','block');
     	$('#ftr-preview').html(data);
-    	$('#outputBlk').css('display','none');
+    	$('#outputBlk').hide();
     	var display = '';
     	if (($('input[name=footer]:checked').val() == 'no') && ($('input[name=selection]:checked').val() !== 'no-hdr')) {
     		display = 'block';	
@@ -117,21 +113,15 @@ $(function () {
     // finalize our account    
     $('form#tmplgenForm').submit(function() {
     	
-    	// what needs to be done before finalizing account and displaying code
-    	// validate step 4
-    	
-    	// what needs to display and not display after all is kosher
-    	// depending on the code preference selection, a textarea containing the copy and paste code AND/OR the include scripts they need to copy
-    	// depending on header AND/OR footer, just the code for what they want, maybe in a modal window or maybe just below
-    	// get rid of the input previews and show the output previews
-    	
     	$('#generate').attr('value','Please wait............');
     	$('#generate').attr('disabled','disabled');
+    	
     	$.ajax({
 		   type: "POST",
 		   url: "generate.php",
+		   cache: false,
 		   timeout: 2000,
-		   data: ({ owner : $('#owner').val(),
+		   data: ({ owner: $('#owner').val(),
 		            processType: 'fnlzA' }),
 		   error: function() {
                $('#generate').attr('value','Failed to submit');
@@ -141,7 +131,7 @@ $(function () {
 		     	$('#generate').attr('value','Now, go have fun!');
 		     	$('#generate').removeAttr('disabled');
 		     	$('#bodyTxt').css('display','none');
-		     	$('#outputBlk').css('display','block');
+		     	$('#outputBlk').show();
 		     	$('#ftr-preview').css('padding-top','80px');
 		     	$('#outputBlk').html(msg);
 		     	$('#outputBlk input,textarea').attr('readonly','readonly');

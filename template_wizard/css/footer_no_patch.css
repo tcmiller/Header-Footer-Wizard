@@ -1,41 +1,41 @@
 @charset "utf-8";
 
-#footerMain {
+#footerMainNoPatch {
     clear: both;
 	background-image: url(../img/bg_ftr.gif);
 	background-repeat: repeat-x;
 	height: 25px;
 	overflow: hidden;
 }
-#footerMain ul{
+#footerMainNoPatch ul{
 	margin: 0;
 	padding: 0;
 	display: block;
 }
-#footerMain li{
+#footerMainNoPatch li{
 	display: inline;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 9px;
 	font-weight: bold;
 	white-space: nowrap;
 }
-#footerMain li a {
+#footerMainNoPatch li a {
 	text-transform: uppercase;
 	text-decoration: none;
 	color: #FFF;
 	float: left;
 	padding: 8px 6px 7px 0;
 }
-#footerMain li a:hover {
+#footerMainNoPatch li a:hover {
 	color: #CCC;
 	background-image: url(../img/notch_ftr.gif);
 	background-position: center bottom;
 	background-repeat: no-repeat;
 }
-#footerMain li a:active {
+#footerMainNoPatch li a:active {
 	color: #FFFFCC;
 }
-#footerMain li span {
+#footerMainNoPatch li span {
 	text-transform: uppercase;
 	text-decoration: none;
 	color: #FFF;

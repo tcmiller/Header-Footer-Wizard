@@ -22,7 +22,7 @@ function processAccountInfo($values) {
     // TODO: Switch fields to NOT NULL so error works properly
 	// call and prepare the table and data for insertion or updating
 	$table_name = 'account';
-
+	
 	switch ($values['processType']) {
 		
 		case 'initA':
@@ -66,6 +66,8 @@ function processAccountInfo($values) {
 							
 	if (PEAR::isError($affectedRows)) {
 		
+		echo 'crap';
+		
 		die($affectedRows->getMessage());
 		
 		// add an error message to the exceptions handler or something
@@ -74,7 +76,7 @@ function processAccountInfo($values) {
 		
 		return true;
 	}
-	
+
 }
 
 /**
@@ -171,7 +173,7 @@ function processHeaderInfo($values) {
 		
 		} else {
 			
-			echo 'No header selection';
+			echo '<div class="no-selection-msg">No header selection</div>';
 			
 		}
 		
@@ -287,7 +289,7 @@ function processFooterInfo($values) {
 		
 		} else {
 			
-			echo 'No footer selection';
+			echo '<div class="no-selection-msg">No footer selection</div>';
 			
 		}
 		
@@ -303,9 +305,6 @@ function processFooterInfo($values) {
 function getCode() {
 	
 	global $mdb2;
-	
-	define('INC_BASE_URL_DEPTS','/uweb/inc/');
-	define('INC_BASE_URL_BANK','http://depts.washington.edu/uweb/inc/');
 	
 	// we need three pieces of info, acct.code_pref, hdr.selection and ftr.selected
 	$query = sprintf('SELECT acct.owner,
@@ -327,81 +326,154 @@ function getCode() {
 		$usersPrefs = $row;
 	}
 
+	// store some random js here since we can't call the help modals out of index.php, only generate.php
+	$html = '<script type="text/javascript">
+		$(document).ready(function(){	
+			
+			$("#cpInstallCall").colorbox({width:"50%", inline:true, href:"#cpInstall"});
+			$("#incInstallCall").colorbox({width:"50%", inline:true, href:"#incInstall"});
+			$("#cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
+			$("#incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
+			
+		});	
+	</script>';
+	
+	define('ABS_URL_DEPTS','http://depts.washington.edu/uweb/inc/');
+	define('INC_BASE_URL_DEPTS','/uweb/inc/');
+	//define('INC_BASE_URL_BANK','http://depts.washington.edu/uweb/inc/');
+	
 	// store some reusable html and initialize some vars
+	$css_js_url = 'head.cgi?i='.$usersPrefs['owner'];
 	$header_url = 'header.cgi?i='.$usersPrefs['owner'];
 	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
 	
-	$ttl_h = '';
-	$cp_h = curlRequestGenerator($header_url,'plain');
-	$inc_h_depts = INC_BASE_URL_DEPTS.$header_url;
-	//$inc_h_bank = INC_BASE_URL_DEPTS.$header_url;
+	// css + javascript urls
+	$inc_css_js_depts_html = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$css_js_url.'&#34;-->';
+	//$inc_css_js_bank = INC_BASE_URL_BANK.$css_js_url;
+	$header_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header.css" type="text/css" media="screen" />
+';
+	$footer_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer.css" type="text/css" media="screen" />
+';
+	$footer_no_patch_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer_no_patch.css" type="text/css" media="screen" />
+';
+	$js_html = '<script type="text/javascript">
+// clear out the global search input text field
+function make_blank() {document.uwglobalsearch.q.value = "";}
+</script>
+';
 	
+	// header urls
+	$cp_h = curlRequestGenerator($header_url,'plain');
+	$inc_h_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$header_url.'&#34;-->';
+	//$inc_h_bank = INC_BASE_URL_BANK.$header_url;
+	
+	// footer urls
 	$cp_f = curlRequestGenerator($footer_url,'plain');
-	$inc_f_depts = INC_BASE_URL_DEPTS.$footer_url;
+	$inc_f_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$footer_url.'&#34;-->';
 	//$inc_f_bank = INC_BASE_URL_BANK.$footer_url;
 	
-	$cp_h_html = '<div><h2>Header</h2><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></div>';
-	$inc_h_html = '<div><form><strong>On depts:</strong> <input type="text" value="'.$inc_h_depts.'" size="35" />
-	                          <br />
-	                          <strong>On bank:</strong> <input type="text" value="Coming soon!" size="35" /></form></div>';
+	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.$footer_no_patch_css_html.'</textarea></form></td>';
+	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$footer_css_html.$footer_no_patch_css_html.$js_html.'</textarea></form></td>';
 	
-	$cp_f_html = '<div><h2>Footer</h2><form><textarea cols="70" rows="16">'.$cp_f.'</textarea></form></div>';
-	$inc_f_html = '<div><form><strong>On depts:</strong> <input type="text" value="'.$inc_f_depts.'" size="35" />
+	$inc_css_js_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_css_js_depts_html.'" size="35" />
+	                              <br />
+	                              <br />
+	                              <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	
+	$cp_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></td>';
+	$inc_h_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_h_depts.'" size="35" />
 	                          <br />
-	                          <strong>On bank:</strong> <input type="text" value="Coming soon!" size="35" /></form></div>';
+	                          <br />
+	                          <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	
+	$cp_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_f.'</textarea></form></td>';
+	$inc_f_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_f_depts.'" size="35" />
+	                          <br />
+	                          <br />
+	                          <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
 
-	$html = '';
+	// table builder
+	$empty_col = '<th class="removeOutline">&nbsp;</th>';
+	$cp_col = '<th>Copy &amp; Paste <a href="#" id="cpInstallCall">Install</a> <span>|</span>  <a href="#" id="cpHelpCall">Help</a></th>';
+	$inc_col = '<th>Include(s) <a href="#" id="incInstallCall">Install</a> <span>|</span> <a href="#" id="incHelpCall">Help</a></th>';
+	$css_js_row = '<td><strong>CSS +<br />Javascript</strong></td>';
+	$header_row = '<td><strong>Header</strong></td>';
+	$footer_row = '<td><strong>Footer</strong></td>';
+	
+	$html .= '<table cellpadding="4" cellspacing="4"><tr>';
 	
 	// user wants both the header and footer
 	if ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
 		
+		$html .= $empty_col;
+		
 		// include + copy & paste
 		if ($usersPrefs['code_pref'] == 'both') {
-			$html .= $cp_h_html.$inc_h_html.'<span class="fldDvdr"></span>'.$cp_f_html.$inc_f_html;
+			$html .= $cp_col.$inc_col.'</tr><tr>'.$css_js_row.$cp_css_js_both_html.$inc_css_js_html.'</tr><tr>'.$header_row.$cp_h_html.$inc_h_html.'</tr><tr>'.$footer_row.$cp_f_html.$inc_f_html;
+		
 		// include
 		} elseif ($usersPrefs['code_pref'] == 'include') {
-			$html .= $inc_h_html.'<span class="fldDvdr"></span>'.$inc_f_html;
+			$html .= $inc_col.'</tr><tr>'.$css_js_row.$inc_css_js_html.'</tr><tr>'.$header_row.$inc_h_html.'</tr><tr>'.$footer_row.$inc_f_html;
+		
 		// copy & paste
 		} else {
-			$html .= $cp_h_html.'<span class="fldDvdr"></span>'.$cp_f_html;
+			$html .= $cp_col.'</tr><tr>'.$css_js_row.$cp_css_js_both_html.'</tr><tr>'.$header_row.$cp_h_html.'</tr><tr>'.$footer_row.$cp_f_html;
+		
 		}
 		
 	// user wants just the header
 	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '0') {
 		
+		$html .= $empty_col;
+		
 		// include + copy & paste
 		if ($usersPrefs['code_pref'] == 'both') {
-			$html .= $cp_h_html.$inc_h_html;	
+			$html .= $cp_col.$inc_col.'</tr><tr>'.$css_js_row.$cp_css_js_h_html.$inc_css_js_html.'</tr><tr>'.$header_row.$cp_h_html.$inc_h_html;	
+		
 		// include
 		} elseif ($usersPrefs['code_pref'] == 'include') {
-			$html .= $inc_h_html;
+			$html .= $inc_col.'</tr><tr>'.$css_js_row.$inc_css_js_html.'</tr><tr>'.$header_row.$inc_h_html;
+		
 		// copy & paste
 		} else {
-			$html .= $cp_h_html;
+			$html .= $cp_col.'</tr><tr>'.$css_js_row.$cp_css_js_h_html.'</tr><tr>'.$header_row.$cp_h_html;
+		
 		}		
 	
 	// user wants just the footer
 	} elseif ($usersPrefs['selection'] == 'no-hdr' && $usersPrefs['selected'] == '1') {
 		
+		$html .= $empty_col;
+		
 		// include + copy & paste
 		if ($usersPrefs['code_pref'] == 'both') {
-			$html .= $cp_f_html.$inc_f_html;	
+			$html .= $cp_col.$inc_col.'</tr><tr>'.$css_js_row.$cp_css_js_f_html.$inc_css_js_html.'</tr><tr>'.$footer_row.$cp_f_html.$inc_f_html;	
+		
 		// include
 		} elseif ($usersPrefs['code_pref'] == 'include') {
-			$html .= $inc_f_html;
+			$html .= $inc_col.'</tr><tr>'.$css_js_row.$inc_css_js_html.'</tr><tr>'.$footer_row.$inc_f_html;
+		
 		// copy & paste
 		} else {
-			$html .= $cp_f_html;
+			$html .= $cp_col.'</tr><tr>'.$css_js_row.$cp_css_js_f_html.'</tr><tr>'.$footer_row.$cp_f_html;
 		}
 		
 	} else {
-		$html .= 'You selected nothing... that\'s funny.  Did you really mean to do this?';
+		$html .= '<th>You selected nothing... that\'s funny.  Did you really mean to do this?</th>';
 	}
+	
+	$html .= '</tr></table>';
 	
 	// pass the $html back to the callback function in our ajax post script
 	echo $html;
 		
 }
+
+/*function dumbFuck () {
+	
+	echo "crap";
+}*/
 
 /**
  * runGenerator - acts as a constructor of sorts, interprets what functions should be called
@@ -411,10 +483,13 @@ function getCode() {
  */
 function runGenerator($values) {
 
+	//echo $values['processType'];
+	
 	// process the user's selected header/footer preferences
 	// only run this if certain processType values come through (initA || updtA || fnlzA)
 	if ($values['processType'] == 'initA' || $values['processType'] == 'updtA' || $values['processType'] == 'fnlzA') {
-		processAccountInfo($values);		
+		processAccountInfo($values);
+		//dumbFuck();
 	}
 	
 	// only run this if certain processType values come through (initH)

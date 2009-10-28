@@ -3,7 +3,7 @@
     The following rules are the styles that are consistant between themes.
     Avoid changing this area to maintain compatability with future versions of ColorBox.
 */
-#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:10000; overflow:hidden;}
 #cboxOverlay{position:fixed; width:100%; height:100%;}
 #cboxMiddleLeft, #cboxBottomLeft{clear:left;}
 #cboxContent{position:relative; overflow:hidden;}
@@ -52,11 +52,11 @@
     !! Important Note: AlphaImageLoader src paths are relative to the HTML document,
     while regular CSS background images are relative to the CSS document.
 */
-.cboxIE #cboxTopLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderTopLeft.png, sizingMethod='scale');}
-.cboxIE #cboxTopCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderTopCenter.png, sizingMethod='scale');}
-.cboxIE #cboxTopRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderTopRight.png, sizingMethod='scale');}
-.cboxIE #cboxBottomLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderBottomLeft.png, sizingMethod='scale');}
-.cboxIE #cboxBottomCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderBottomCenter.png, sizingMethod='scale');}
-.cboxIE #cboxBottomRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderBottomRight.png, sizingMethod='scale');}
-.cboxIE #cboxMiddleLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderMiddleLeft.png, sizingMethod='scale');}
-.cboxIE #cboxMiddleRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=../images/internet_explorer/borderMiddleRight.png, sizingMethod='scale');}
+.cboxIE #cboxTopLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderTopLeft.png, sizingMethod='scale');}
+.cboxIE #cboxTopCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderTopCenter.png, sizingMethod='scale');}
+.cboxIE #cboxTopRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderTopRight.png, sizingMethod='scale');}
+.cboxIE #cboxBottomLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderBottomLeft.png, sizingMethod='scale');}
+.cboxIE #cboxBottomCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderBottomCenter.png, sizingMethod='scale');}
+.cboxIE #cboxBottomRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderBottomRight.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderMiddleLeft.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=https://depts.washington.edu/uweb/tmplgen/images/internet_explorer/borderMiddleRight.png, sizingMethod='scale');}

@@ -94,7 +94,7 @@ class Header(object):
         ## I feel like this shoud be inside a class
         color = {'gold':'colorGold','purple':'colorPurple'}
         patch = {'1':'patchYes','0':'patchNo'}
-        blockw = {'1':'','0':'wNo'}
+        blockw = {'1':'wYes','0':'wNo'}
     	return (color[self.color],blockw[self.blockw],patch[self.patch])
 
     owner = property(get_owner, set_owner)

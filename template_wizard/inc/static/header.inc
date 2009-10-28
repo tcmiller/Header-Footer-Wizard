@@ -1,4 +1,4 @@
-<div class="wheader colorGold  patchYes">
+<div class="wheader colorGold patchYes">
  <span id="autoMargin">
 
   <div class="wlogoSmall">

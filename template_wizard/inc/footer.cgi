@@ -34,10 +34,10 @@ def main():
     
     if foot.patch == '0':
         sTemplate = """
-<div id="footerMain" class="logoYes %s">
+<div id="footerMainNoPatch" class="logoYes %s">
  <div id="footerLeft">    	
   <ul>
-   <li class="logoArea"><a href="http://www.washington.edu/">&#169; 2009 University of Washington</a></li>  
+   <li class="logoArea"><a href="http://www.washington.edu/">&#38;&#35;169&#59; 2009 University of Washington</a></li>  
   </ul>
  </div>
  <div id="footerRight">  
@@ -63,7 +63,7 @@ def main():
   <div class="logoAbsoluteFooter"></div>
   <h3>Discover what's next. It's the Washington Way</h3>
   <ul>
-   <li class="leftText"><span>&#169; 2009 University of Washington</span></li>       	
+   <li class="leftText"><span>&#38;&#35;169&#59; 2009 University of Washington</span></li>       	
    <li class="centerText"><span>Seattle, Washington</span></li>         	
    <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
    <li class="rightText"><a href="http://www.washington.edu/jobs/">Employment</a></li>
