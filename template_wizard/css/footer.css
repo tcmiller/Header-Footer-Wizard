@@ -21,9 +21,9 @@
 	display: none;
 	text-indent: -1000px;
 }
-#footerLinks {
+#footerWrap {
 	height: 25px;
-	width: 960px;
+	width: 940px;
 	margin: 0 auto;
 }
 
@@ -44,11 +44,14 @@
 }
 #footerMain li {
 	display: inline;
+	margin: 0;
 }
+#footerMain li a:active, 
+#footerMain li a:hover, 
+#footerMain li a:focus,
 #footerMain li a {
 	text-transform: uppercase;
 	text-decoration: none;
-	color: #FFF;
 	float: left;
 	padding: 8px 6px 7px 0;
 	white-space: nowrap;	
@@ -62,6 +65,12 @@
 	font-style: normal;
 	letter-spacing: normal;		
 }
+#footerMain li a {
+	color: #FFF;
+}
+#footerMain li a:focus {
+	color: #d7a900;
+}
 #footerMain li a:hover {
 	color: #CCC;
 	background-image: url(../img/notch_ftr.gif);
@@ -72,9 +81,6 @@
 	color: #FFFFCC;
 }
 #footerMain li span {
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #FFF;
 	float: left;
 	padding: 8px 6px 7px 0;
 	white-space: nowrap;
@@ -113,7 +119,7 @@
 	background-position: 0px 6px;
 }
 .centerText {
-	padding-left: 5%;
+	padding-left: 30px;
 }
 #footerLinks li {
 	float: left;
