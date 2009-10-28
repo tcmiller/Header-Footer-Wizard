@@ -29,6 +29,8 @@ def main():
     foot = Footer()
     if f.getfirst("i","").lower():
         foot.owner = f.getfirst("i","").lower()
+    if f.getlist("c"):
+        foot.cache = f.getlist("c")
     foot.lookup()
     
     

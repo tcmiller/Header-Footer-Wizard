@@ -78,6 +78,7 @@ class Header(object):
         self._blockw = "1"
         self._patch = "1"
         self._search = "basic"
+        self._cache = "1"
         self._date_created = ""
         self._date_modified = ""
         self._date_accessed = ""
@@ -105,6 +106,10 @@ class Header(object):
         return "%s" % (self._search)
     def set_search(self, search):
         self._search = search
+    def get_cache(self):
+        return "%s" % (self._cache)
+    def set_cache(self, cache):
+        self._cache = cache
     def get_date_created(self):
         return "%s" % (self._date_created)
     def set_date_created(self, date_created):
@@ -120,9 +125,11 @@ class Header(object):
     def lookup(self):
         if len(self.owner) > 0:
             cache = MyCache(self)
-            cache.load()
-            ## Verify Test:
-            ## if nothing from cache and what other condition?
+            if self.cache == "1":
+                cache.load()
+            else:
+                cache.clear()
+            ## Should fixed this
             if os.path.isfile(cache._storage):
                 self = cache.data
             else:
@@ -150,6 +157,7 @@ class Header(object):
     blockw = property(get_blockw, set_blockw)
     patch = property(get_patch, set_patch)
     search = property(get_search, set_search)
+    cache = property(get_cache, set_cache)
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)
     date_accessed = property(get_date_accessed, set_date_accessed)
@@ -165,6 +173,7 @@ class Footer(object):
         self._wordmark = "0"
         self._blockw = "0"
         self._patch = "purple"
+        self._cache = "1"
         self._date_created = ""
         self._date_modified = ""
         self._date_accessed = ""
@@ -184,6 +193,10 @@ class Footer(object):
         return self._patch
     def set_patch(self, patch):
         self._patch = patch
+    def get_cache(self):
+        return "%s" % (self._cache)
+    def set_cache(self, cache):
+        self._cache = cache
     def get_date_created(self):
         return "%s" % (self._date_created)
     def set_date_created(self, date_created):
@@ -199,9 +212,11 @@ class Footer(object):
     def lookup(self):
         if len(self.owner) > 0:
             cache = MyCache(self)
-            cache.load()
-            ## Verify Test:
-            ## if nothing from cache and what other condition?
+            if self.cache == "1":
+                cache.load()
+            else:
+                cache.clear()
+            ## Should fixed this
             if os.path.isfile(cache._storage):
                 self = cache.data
             else:
@@ -223,6 +238,7 @@ class Footer(object):
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)
     patch = property(get_patch, set_patch)
+    cache = property(get_cache, set_cache)
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)
     date_accessed = property(get_date_accessed, set_date_accessed)

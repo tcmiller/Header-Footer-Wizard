@@ -29,6 +29,8 @@ def main():
     head = Header()
     if f.getfirst("i","").lower():
         head.owner = f.getfirst("i","").lower()
+    if f.getlist("c"):
+        head.cache = f.getlist("c")
     head.lookup()
 
     ## How to handle this in the final stage?
