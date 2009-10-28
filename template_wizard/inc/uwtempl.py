@@ -1,6 +1,10 @@
 import _mysql
+import os
+import pickle
 from string import Template
-import pdb
+############## DEBUG ##############
+## import pdb; pdb.set_trace();
+############## DEBUG ##############
 
 class MySQL(object):
     """
@@ -25,6 +29,40 @@ class MySQL(object):
         r = self.db.store_result()
         self.data = r.fetch_row()
         self.db.close()
+
+class MyCache(object):
+    """
+    For performance we turn to cPickle this is the class that wraps it.
+    Actual storage on disk is in the cache/ directory, this assumes we 
+    pass it a python object
+    """
+
+    def __init__(self,obj):
+        self._id = obj.owner
+        self._data = obj
+        self._storage = '/hw12/d77/uweb/inc/cache/'+self._id+'-data.pkl'
+        self._fh = "" 
+    def get_data(self):
+        ## This may fail due to the str return
+        ## May have to return the object unmodified
+        return "%s" % (self._data)
+    def set_data(self,data):
+        self._data = data
+    def dump(self):
+        self._fh = open(self._storage,'wb')
+        pickle.dump(self._data, self._fh)
+        self._cleanup()
+    def load(self):
+        if os.path.isfile(self._storage):
+            self._fh = open(self._storage,'rb')
+            self._data = pickle.load(self._fh)
+            self._cleanup()
+    def clear(self):
+        os.remove(self._storage)
+    def _cleanup(self):
+        self._fh.close()
+
+    data = property(get_data, set_data)
 
 class Header(object):
     """
@@ -81,17 +119,26 @@ class Header(object):
         self._date_accessed = date_accessed
     def lookup(self):
         if len(self.owner) > 0:
-            db = MySQL()
-            db.connect()
-            db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
-            self.id = db.data[0][0]
-            self.blockw = db.data[0][1]
-            self.patch = db.data[0][2]
-            self.color = str(db.data[0][3])
-            self.search = str(db.data[0][4])
-            self.wordmark = db.data[0][5]
+            cache = MyCache(self)
+            cache.load()
+            ## Verify Test:
+            ## if nothing from cache and what other condition?
+            if os.path.isfile(cache._storage):
+                self = cache.data
+            else:
+                db = MySQL()
+                db.connect()
+                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
+                self.id = db.data[0][0]
+                self.blockw = db.data[0][1]
+                self.patch = db.data[0][2]
+                self.color = db.data[0][3]
+                self.search = db.data[0][4]
+                self.wordmark = db.data[0][5]
+                cache = MyCache(self)
+                cache.dump()
+
     def display(self):
-        ## I feel like this shoud be inside a class
         color = {'gold':'colorGold','purple':'colorPurple'}
         patch = {'1':'patchYes','0':'patchNo'}
         blockw = {'1':'wYes','0':'wNo'}
@@ -106,7 +153,6 @@ class Header(object):
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)
     date_accessed = property(get_date_accessed, set_date_accessed)
-
 
 class Footer(object):
     """
@@ -151,18 +197,24 @@ class Footer(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
-        ## pdb.set_trace()
         if len(self.owner) > 0:
-            db = MySQL()
-            db.connect()
-            db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s'""" % (self.owner))
-            self.id = db.data[0][0]
-            self.blockw = db.data[0][1]
-            self.patch = str(db.data[0][2])
-            self.wordmark = db.data[0][3]
-    def display_patch(self):
-        patch = {'purple':'purple','gold':'gold'}
-    	return (patch[self.patch])
+            cache = MyCache(self)
+            cache.load()
+            ## Verify Test:
+            ## if nothing from cache and what other condition?
+            if os.path.isfile(cache._storage):
+                self = cache.data
+            else:
+                db = MySQL()
+                db.connect()
+                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s'""" % (self.owner))
+                self.id = db.data[0][0]
+                self.blockw = db.data[0][1]
+                self.patch = db.data[0][2]
+                self.wordmark = db.data[0][3]
+                cache = MyCache(self)
+                cache.dump()
+    
     def display_blockw(self):
     	blockw = {'1':'wYes','0':'wNo'}
     	return (blockw[self.blockw])
