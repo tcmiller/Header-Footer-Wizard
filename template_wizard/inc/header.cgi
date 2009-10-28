@@ -33,7 +33,7 @@ def main():
 
     ## How to handle this in the final stage?
     sHead = """
-<div class="wheader %s %s %s">""" % (head.display())   
+<div id="wheader" class="%s %s %s">""" % (head.display())   
     sBody = """
  <span id="autoMargin">
   <div class="wlogoSmall">

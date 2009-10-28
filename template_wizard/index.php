@@ -79,7 +79,8 @@ include_once('include/functions.inc.php');
 				   <div id="step2_main"> 
 					 
 				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
-					 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
+					 <label for="static"><input type="radio" name="selection" value="static" id="static" onclick="javascript:pageTracker._trackPageview('/hdr-static');" /> <a href="" class="screenshot available" rel="images/static-headers.jpg">chtml include</a></label><br />
+				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
 				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot unavailable" rel="images/kitchen_sink.jpg">Kitchen sink</a></label>
 				   
 				   </div>
@@ -133,6 +134,7 @@ include_once('include/functions.inc.php');
 			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" onclick="javascript:pageTracker._trackPageview('/ftr-with-w');" /> With "W"</label>
 			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch');" /> With gold patch</label>
 			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch');" /> With purple patch</label>
+			     <label for="ftr_static"><input type="radio" name="footer" value="static" id="ftr_static" onclick="javascript:pageTracker._trackPageview('/ftr-static');" /> <a href="" class="screenshot available" rel="images/static-footer.jpg">chtml include</a></label>
 			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" onclick="javascript:pageTracker._trackPageview('/ftr-no');" /> No thanks, I'll pass on the footer</label>
 			   
 			   </fieldset>

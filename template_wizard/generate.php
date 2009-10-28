@@ -171,6 +171,10 @@ function processHeaderInfo($values) {
 		
 			curlRequestGenerator('header.cgi?i='.$values['owner']);
 		
+		} elseif ($values['selection'] == 'static') {
+			
+			echo '<div class="no-selection-msg">chtml include selected: Currently no preview available</div>';
+			
 		} else {
 			
 			echo '<div class="no-selection-msg">No header selection</div>';
@@ -199,30 +203,42 @@ function processFooterInfo($values) {
 			$blockw = '0';
 			$wordmark = '1';
 			$patch = '0';
+			$static = '0';
 			break;
 		case 'w':
 			$selected = '1';
 			$blockw = '1';
 			$wordmark = '1';
 			$patch = '0';
+			$static = '0';
 			break;
 		case 'goldPatch':
 			$selected = '1';
 			$blockw = '0';
 			$wordmark = '0';
 			$patch = 'gold';
+			$static = '0';
 			break;
 		case 'purplePatch':
 			$selected = '1';
 			$blockw = '0';
 			$wordmark = '0';
 			$patch = 'purple';
+			$static = '0';
+			break;
+		case 'static':
+			$selected = '1';
+			$blockw = '0';
+			$wordmark = '0';
+			$patch = '0';
+			$static = '1';
 			break;
 		case 'no':
 			$selected = '0';
 			$blockw = '0';
 			$wordmark = '0';
 			$patch = '0';
+			$static = '0';
 			break;			
 	}
 	
@@ -251,8 +267,9 @@ function processFooterInfo($values) {
 			'blockw' => $blockw,
 		    'wordmark' => $wordmark,
 		    'patch' => $patch,
+		    'static' => $static,
 			'last_modified' => date('Y-m-d H:i:s'));		
-		$types = array('integer','integer','integer','text','text');
+		$types = array('integer','integer','integer','text','integer','text');
 			
 	} else {
 		// set the query mode to "INSERT"
@@ -263,10 +280,11 @@ function processFooterInfo($values) {
 		    'blockw' => $blockw,
 		    'wordmark' => $wordmark,
 		    'patch' => $patch,
+		    'static' => $static,
 			'created_date' => date('Y-m-d H:i:s'),
 			'last_modified' => '0000-00-00 00:00:00',
 			'account_id' => $accountInfo[0]);		
-		$types = array('integer','integer','integer','text','text','text','integer');
+		$types = array('integer','integer','integer','text','integer','text','text','integer');
 	}
 	
 	$table_name = 'footer';
@@ -283,10 +301,14 @@ function processFooterInfo($values) {
 	} else {
 		
 		// only show a preview if they select a footer
-		if ($selected == '1') {
+		if ($selected == '1' && $static == '0') {
 			
 			curlRequestGenerator('footer.cgi?i='.$values['owner']);
 		
+		} elseif ($static == '1') {
+			
+			echo '<div class="no-selection-msg">chtml include selected: Currently no preview available</div>';
+			
 		} else {
 			
 			echo '<div class="no-selection-msg">No footer selection</div>';
@@ -310,7 +332,8 @@ function getCode() {
 	$query = sprintf('SELECT acct.owner,
 	                         acct.code_pref,
 	                         hdr.selection,
-	                         ftr.selected
+	                         ftr.selected,
+	                         ftr.static
 	                    FROM account as acct,
 	                         header as hdr,
 	                         footer as ftr
@@ -340,7 +363,7 @@ function getCode() {
 	
 	define('ABS_URL_DEPTS','http://depts.washington.edu/uweb/inc/');
 	define('INC_BASE_URL_DEPTS','/uweb/inc/');
-	//define('INC_BASE_URL_BANK','http://depts.washington.edu/uweb/inc/');
+	define('CHTML_INC_URL_BANK','/incs/');
 	
 	// store some reusable html and initialize some vars
 	$css_js_url = 'head.cgi?i='.$usersPrefs['owner'];
@@ -348,6 +371,10 @@ function getCode() {
 	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
 	
 	// css + javascript urls
+	//<!--chtml include "//president/inc/header.html" -->
+	$chtml_inc_css_js_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'head.inc" -->
+';	
+	
 	$inc_css_js_depts_html = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$css_js_url.'&#34;-->';
 	//$inc_css_js_bank = INC_BASE_URL_BANK.$css_js_url;
 	$header_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header.css" type="text/css" media="screen" />
@@ -360,17 +387,22 @@ function getCode() {
 // clear out the global search input text field
 function make_blank() {document.uwglobalsearch.q.value = "";}
 </script>
-';
+';	
 	
 	// header urls
+	$chtml_inc_h_purple_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'header-purple.inc" -->';
+	$chtml_inc_h_gold_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'header-gold.inc" -->';
 	$cp_h = curlRequestGenerator($header_url,'plain');
 	$inc_h_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$header_url.'&#34;-->';
 	//$inc_h_bank = INC_BASE_URL_BANK.$header_url;
 	
 	// footer urls
+	$chtml_inc_f_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'footer.inc" -->';
 	$cp_f = curlRequestGenerator($footer_url,'plain');
 	$inc_f_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$footer_url.'&#34;-->';
 	//$inc_f_bank = INC_BASE_URL_BANK.$footer_url;
+	
+	$chtml_css_js_html = ''
 	
 	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$js_html.'</textarea></form></td>';
 	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.$footer_no_patch_css_html.'</textarea></form></td>';
@@ -403,8 +435,19 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 	
 	$html .= '<table cellpadding="4" cellspacing="4"><tr>';
 	
+	// user wants the static header and footer
+	if ($usersPrefs['selection'] == 'static' && $usersPrefs['static'] == '1') {
+		
+		$html .= $empty_col.$inc_col.'</tr><tr>'.;
+		
+	// user wants just the static header
+	} elseif {
+		
+	// user wants just the static footer
+	} elseif {	
+	
 	// user wants both the header and footer
-	if ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
+	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
 		
 		$html .= $empty_col;
 		
@@ -470,11 +513,6 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 		
 }
 
-/*function dumbFuck () {
-	
-	echo "crap";
-}*/
-
 /**
  * runGenerator - acts as a constructor of sorts, interprets what functions should be called
  *
@@ -482,14 +520,11 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
  * @return true
  */
 function runGenerator($values) {
-
-	//echo $values['processType'];
 	
 	// process the user's selected header/footer preferences
 	// only run this if certain processType values come through (initA || updtA || fnlzA)
 	if ($values['processType'] == 'initA' || $values['processType'] == 'updtA' || $values['processType'] == 'fnlzA') {
 		processAccountInfo($values);
-		//dumbFuck();
 	}
 	
 	// only run this if certain processType values come through (initH)

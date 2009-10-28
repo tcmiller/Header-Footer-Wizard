@@ -237,7 +237,8 @@ function footerLookup() {
 	$query = sprintf('SELECT ftr.selected,
 	                         ftr.blockw,
 	                         ftr.wordmark,
-	                         ftr.patch
+	                         ftr.patch,
+	                         ftr.static
 	                    FROM footer as ftr,
 	                         account as acct
 	                   WHERE acct.owner = \'%s\'
@@ -272,9 +273,14 @@ function setFooterDefault() {
 		// we need an interpreter to handle the footer data
 		if ($footer['selected'] == 0) {
 			
-			// no footer selection at all
+			// no selection
 			$footerType = 'ftr_no';
 	
+		} elseif ($footer['static'] == 1) {
+			
+			// static selection
+			$footerType = 'ftr_static';
+			
 		} elseif ($footer['blockw'] == 0 && $footer['wordmark'] == 0) {
 			
 			// is it the purple patch?
@@ -331,7 +337,7 @@ function loadHdrPrvw() {
 	if (!empty($header) && $header['selection'] == 'strip') {
 		$hdrPrvw = curlRequestGenerator('header.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
 	} else {
-		$hdrPrvw = 'No header selection';
+		$hdrPrvw = '<div class="no-selection-msg">No header selection</div>';
 	}
 	
 	echo $hdrPrvw;
@@ -353,7 +359,7 @@ function loadFtrPrvw() {
 	if (!empty($footer) && $footer['selected'] == '1') {
 		$ftrPrvw = curlRequestGenerator('footer.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
 	} else {
-		$ftrPrvw = 'No footer selection';
+		$ftrPrvw = '<div class="no-selection-msg">No footer selection</div>';
 	}
 	
 	echo $ftrPrvw;
@@ -380,6 +386,9 @@ function setStyleDefaults() {
 	}
 	
 	$styleDefaults .= '$(\'.unavailable\').css(\'cursor\',\'arrow\').click(function(){
+     						return false;
+					  });';
+	$styleDefaults .= '$(\'.available\').css(\'cursor\',\'arrow\').click(function(){
      						return false;
 					  });'; 
 	

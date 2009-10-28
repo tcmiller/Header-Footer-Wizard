@@ -125,6 +125,13 @@ a.unavailable {
 a:hover.unavailable {
 	cursor: default;
 }
+a.available {
+	text-decoration: none;
+	border-bottom: 3px double;
+}
+a:hover.available {
+	cursor: default;
+}
 .error {
 	color: red;
 	font-size: 12px;

@@ -1,4 +1,4 @@
-<div class="wheader colorPurple wYes patchNo">
+<div id="wheader" class="colorPurple wYes patchNo">
  <span id="autoMargin">
   <div class="wlogoSmall">
    <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
