@@ -44,10 +44,6 @@
 }
 #footerMain li {
 	display: inline;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 9px;
-	font-weight: bold;
-	white-space: nowrap;
 }
 #footerMain li a {
 	text-transform: uppercase;
@@ -55,7 +51,16 @@
 	color: #FFF;
 	float: left;
 	padding: 8px 6px 7px 0;
+	white-space: nowrap;	
+	font-size: 9px;
+	font-weight: bold;
+	background-color:transparent !important;
 	white-space: nowrap;
+	font-family: Arial, Helvetica, sans-serif !important;
+	line-height:10px;
+	outline:none;
+	font-style: normal;
+	letter-spacing: normal;		
 }
 #footerMain li a:hover {
 	color: #CCC;
