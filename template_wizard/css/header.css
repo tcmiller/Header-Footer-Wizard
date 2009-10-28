@@ -88,6 +88,7 @@ body {
 	display: block;
 	text-indent: -1000px;
 	overflow:hidden;
+	height: 25px;
 }
 #wtext {
 	height: 25px;
@@ -115,7 +116,7 @@ body {
 	height: 17px;
 	background: none;
 	border: none;
-	color: #999999;
+	color: #999;
 
 }
 #wsearch input {

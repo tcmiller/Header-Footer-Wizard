@@ -9,6 +9,12 @@ include_once('include/functions.inc.php');
 <head>
 	<title>Header &amp; Footer Wizard</title>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
+	
+	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/uweb/inc/css/footer.css" type="text/css" media="screen" />
+	
 	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="js/easySliderUW.js" type="text/javascript"></script>
 	<script src="js/jquery.colorbox.js" type="text/javascript"></script>
@@ -34,116 +40,7 @@ include_once('include/functions.inc.php');
 	// clear out the global search input text field
     function make_blank() {document.uwglobalsearch.q.value = "";}
 			
-	</script>
-	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/header.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/footer_no_patch.css" type="text/css" media="screen" />
-	
-<style type="text/css">
-	
-    /* image replacement */
-        .graphic, #prevBtn, #nextBtn{
-            margin:0;
-            padding:0;
-            display:block;
-            overflow:hidden;
-            text-indent:-8000px;
-            }
-    /* // image replacement */
-			
-
-	#container{
-	margin:0 auto;
-	position:relative;
-	text-align:left;
-	width:696px;
-	margin-bottom:2em;
-	padding: 20px;
-	background-image: url(images/bg.png);
-		}	
-	#header{
-		height:80px;
-		background:#5DC9E1;
-		color:#fff;
-		}				
-	#content{
-		position:relative;
-		}			
-
-/* Easy Slider */
-
-	#slider{}	
-	#slider ul, #slider li{
-		margin:0;
-		padding:0;
-		list-style:none;
-		}
-	#slider li{ 
-		/* 
-			define width and height of list item (slide)
-			entire slider area will adjust according to the parameters provided here
-		*/ 
-		width:696px;
-		height:270px;
-		overflow:hidden; 
-		}	
-	#prevBtn, #nextBtn{ 
-		display:block;
-		width:132px;
-		height:64px;
-		position:absolute;
-		left:-120px;
-		top:100px;
-		}	
-	#nextBtn{ 
-		left:680px;
-		}														
-	#prevBtn a, #nextBtn a{  
-		display:block;
-		width:132px;
-		height:64px;
-		background:url(images/btn_prev.png) no-repeat 0 0;	
-		}	
-	#nextBtn a{ 
-		background:url(images/btn_next.png) no-repeat 0 0;	
-		}												
-	#fdBkTtleBlk {
-		position: relative;
-	    display: block;
-	    width: 700px;
-	    height: 38px;
-	    margin: 40px auto 10px;	
-	}
-	.title {
-		position: relative;
-        background:url(images/text.gif) no-repeat 0 0;
-		text-indent: -9999px;
-		overflow: hidden;
-		display: block;
-		height: 38px;
-		width: 650px;
-		margin: 0 auto;
-	}
-	
-/* // Easy Slider */
-
-/*  */
-
-#screenshot{
-	position:absolute;
-	border:1px solid #ccc;
-	background:#fff;
-	padding:5px;
-	display:none;
-	color:#fff;
-	}
-
-/*  */
-
-
-</style>	
+	</script>	
 	
 </head>
 <body>
@@ -303,6 +200,8 @@ include_once('include/functions.inc.php');
                  <p>Detailed installation instructions can be found on the wizard's final step.</p></li>
          <li><h4>What if you make updates?</h4>
                  We plan on notifying all users before making any updates, on both the Copy &amp; Paste version as well as the Include version.  This is especially important for the Include version since it will dynamically update without you needing to touch anything.  Since you are providing a contact email, we can easily notify you of changes.</li>
+         <li><h4>How wide is the header?  And the footer?</h4>
+                 The header is currently set to 950px wide, close to the 960px standard.  If you need a wider/narrower header, you can take our CSS and edit appropriately.  The "footer without patch" has no set width; thus, it expands to 100%.  You can make it narrower by wrapping it with a container &lt;div&gt;.  The "footer with patch" is 960px wide.  To make this narrower/wider, you'll need to edit the CSS directly.</li>
          <li><h4>I have other questions, who do I contact?</h4>
                  Please use our <a href="#" class="feedbackCall">feedback form</a> to communicate with us.</li>
         </ul>

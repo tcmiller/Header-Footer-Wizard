@@ -26,21 +26,6 @@
 	width: 960px;
 	margin: 0 auto;
 }
-#wsearch {
-	height: 25px;
-	float: right;
-	margin-left: 10px;
-	margin-top: 4px;
-}
-.wTextInput {
-	width: 142px;
-	height: 17px;
-	background: none;
-	border: none;
-	color: #999;
-	margin-left: 5px;
-	font-size: 10px;
-}
 
 /*-- Text for Purple --*/
 
@@ -113,10 +98,6 @@
 	margin-top: -25px;
 	color: #39275B;
 }
-#blanky{
-	background-color: #CC3300;
-	height: 300px;
-}
 .leftText {
 	margin-left: 45px;
 }
@@ -131,4 +112,87 @@
 }
 #footerLinks li {
 	float: left;
+}
+
+/*-- No patch -- */
+
+#footerMainNoPatch {
+    clear: both;
+	background-image: url(../img/bg_ftr.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	overflow: hidden;
+}
+#footerMainNoPatch ul{
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+#footerMainNoPatch li{
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#footerMainNoPatch li a {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #FFF;
+	float: left;
+	padding: 8px 6px 7px 0;
+}
+#footerMainNoPatch li a:hover {
+	color: #CCC;
+	background-image: url(../img/notch_ftr.gif);
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+#footerMainNoPatch li a:active {
+	color: #FFFFCC;
+}
+#footerMainNoPatch li span {
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #FFF;
+	float: left;
+	padding: 8px 6px 7px 0;
+	white-space: nowrap;
+}
+#footerLeft {
+	float: left;
+	padding-left: 40px;
+}
+#footerRight {
+	float: right;
+	padding-right: 40px;	
+}
+#footerCenter {
+	width: 200px;
+	margin: 0 auto;
+}
+.footerLinkBorder {
+	float: left;
+	padding-left: 10px;
+	background-image: url(../img/leftbar_ftr.png);
+	background-repeat: no-repeat;
+	background-position: 0px 6px;
+}
+.logoYes #footerLeft a {
+	text-indent: -9999px;
+	background-image: url(../img/w_logo_white_ftr.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	width: 237px;
+}
+.logoYes #footerLeft li a:hover {
+	color: #CCC;
+	background-image: url(../img/w_logo_white_ftr.gif);
+	background-repeat: no-repeat;
+}
+.wNo #footerLeft li a {
+	background-position: -25px center;
+}
+.wYes #footerLeft li a {
+	background-position: left center;
 }

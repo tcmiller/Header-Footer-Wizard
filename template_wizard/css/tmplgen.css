@@ -24,6 +24,79 @@ a:link, a:visited, a:hover, a:active {
 	font-size: 13px;
 	color: #39275b;
 }
+.title {
+	position: relative;
+    background:url(../images/text.gif) no-repeat 0 0;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+	height: 38px;
+	width: 650px;
+	margin: 0 auto;
+}
+
+/*** Slider CSS ***/
+
+/* image replacement */
+.graphic, #prevBtn, #nextBtn {
+	margin:0;
+	padding:0;
+	display:block;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+#container {
+	margin:0 auto;
+	position:relative;
+	text-align:left;
+	width:696px;
+	margin-bottom:2em;
+	padding: 20px;
+	background-image: url(../images/bg.png);
+}	
+#header {
+	height:80px;
+	background:#5DC9E1;
+	color:#fff;
+}				
+#content {
+	position:relative;
+}		
+#slider {}	
+#slider ul, #slider li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#slider li { 
+	/* 
+	define width and height of list item (slide)
+	entire slider area will adjust according to the parameters provided here
+	*/ 
+	width:696px;
+	height:270px;
+	overflow:hidden; 
+}	
+#prevBtn, #nextBtn { 
+	display:block;
+	width:132px;
+	height:64px;
+	position:absolute;
+	left:-120px;
+	top:100px;
+}	
+#nextBtn {
+	left:680px;
+}														
+#prevBtn a, #nextBtn a {  
+	display:block;
+	width:132px;
+	height:64px;
+	background:url(../images/btn_prev.png) no-repeat 0 0;	
+}	
+#nextBtn a { 
+	background:url(../images/btn_next.png) no-repeat 0 0;	
+}
 
 /*** Form Attributes ***/
 #tmplgenForm form {
@@ -181,6 +254,13 @@ fieldset#options legend {
 #ftr-preview {
 	clear: both;
 }
+#fdBkTtleBlk {
+	position: relative;
+    display: block;
+    width: 700px;
+    height: 38px;
+    margin: 40px auto 10px;	
+}
 #fdBkTtleBlk .fdBkLnk {
 	display: block;
 	position: absolute;
@@ -246,4 +326,14 @@ fieldset#options legend {
 }
 #incInstall li p {
 	font-size: 11px;
+}
+
+/*** Screenshot CSS ***/
+#screenshot{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#fff;
+	padding:5px;
+	display:none;
+	color:#fff;
 }
