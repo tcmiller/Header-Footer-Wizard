@@ -39,7 +39,7 @@ def main():
 <div id="footerMainNoPatch" class="logoYes %s">
  <div id="footerLeft">    	
   <ul>
-   <li class="logoArea"><a href="http://www.washington.edu/">&#38;&#35;169&#59; 2009 University of Washington</a></li>  
+   <li class="logoArea"><a href="http://www.washington.edu/">&#169; 2009 University of Washington</a></li>  
   </ul>
  </div>
  <div id="footerRight">  
