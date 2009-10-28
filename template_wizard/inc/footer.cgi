@@ -72,7 +72,7 @@ def main():
    <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
   </ul>
  </div>
-</div>""" % (foot.display_patch())
+</div>""" % (foot.patch)
 
     print "Content-type: text/html"
     print
