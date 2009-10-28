@@ -363,7 +363,7 @@ function getCode() {
 	
 	define('ABS_URL_DEPTS','http://depts.washington.edu/uweb/inc/');
 	define('INC_BASE_URL_DEPTS','/uweb/inc/');
-	define('CHTML_INC_URL_BANK','/incs/');
+	define('CHTML_INC_URL_BANK','incs/');
 	
 	// store some reusable html and initialize some vars
 	$css_js_url = 'head.cgi?i='.$usersPrefs['owner'];
@@ -372,8 +372,7 @@ function getCode() {
 	
 	// css + javascript urls
 	//<!--chtml include "//president/inc/header.html" -->
-	$chtml_inc_css_js_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'head.inc" -->
-';	
+	$chtml_inc_css_js_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'head.inc&#34; -->';	
 	
 	$inc_css_js_depts_html = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$css_js_url.'&#34;-->';
 	//$inc_css_js_bank = INC_BASE_URL_BANK.$css_js_url;
@@ -390,19 +389,20 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 ';	
 	
 	// header urls
-	$chtml_inc_h_purple_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'header-purple.inc" -->';
-	$chtml_inc_h_gold_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'header-gold.inc" -->';
+	$chtml_inc_h_purple_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'header-purple.inc&#34; -->';
+	$chtml_inc_h_gold_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'header-gold.inc&#34; -->';
 	$cp_h = curlRequestGenerator($header_url,'plain');
 	$inc_h_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$header_url.'&#34;-->';
 	//$inc_h_bank = INC_BASE_URL_BANK.$header_url;
 	
 	// footer urls
-	$chtml_inc_f_html = '<!--chtml include "//'.CHTML_INC_URL_BANK.'footer.inc" -->';
+	$chtml_inc_f_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'footer.inc&#34; -->';
 	$cp_f = curlRequestGenerator($footer_url,'plain');
 	$inc_f_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$footer_url.'&#34;-->';
 	//$inc_f_bank = INC_BASE_URL_BANK.$footer_url;
 	
-	$chtml_css_js_html = ''
+	// chtml css+js include
+	$chtml_css_js_html = '<td><form><input type="text" value="'.$chtml_inc_css_js_html.'" size="35" /></form></td>';
 	
 	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$js_html.'</textarea></form></td>';
 	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.$footer_no_patch_css_html.'</textarea></form></td>';
@@ -413,11 +413,18 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 	                              <br />
 	                              <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
 	
+	// chtml header include(s) html
+	$chtml_h_html = '<td><form><span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Purple:</span> <input type="text" value="'.$chtml_inc_h_purple_html.'" size="50" /><br />
+	                           <span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Gold:</span> <input type="text" value="'.$chtml_inc_h_gold_html.'" size="50" /></form></td>';
+	
 	$cp_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></td>';
 	$inc_h_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_h_depts.'" size="35" />
 	                          <br />
 	                          <br />
 	                          <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	
+	// chtml footer include html
+	$chtml_f_html = '<td><form><input type="text" value="'.$chtml_inc_f_html.'" size="35" /></form></td>';
 	
 	$cp_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_f.'</textarea></form></td>';
 	$inc_f_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_f_depts.'" size="35" />
@@ -438,13 +445,17 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 	// user wants the static header and footer
 	if ($usersPrefs['selection'] == 'static' && $usersPrefs['static'] == '1') {
 		
-		$html .= $empty_col.$inc_col.'</tr><tr>'.;
+		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$header_row.$chtml_h_html.'</tr><tr>'.$footer_row.$chtml_f_html;
 		
 	// user wants just the static header
-	} elseif {
+	} elseif ($usersPrefs['selection'] == 'static' && $usersPrefs['selected'] == '0') {
+		
+		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$header_row.$chtml_h_html;
 		
 	// user wants just the static footer
-	} elseif {	
+	} elseif ($usersPrefs['selection'] == 'no-hdr' && $usersPrefs['selected'] == '1') {
+		
+		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$footer_row.$chtml_f_html;
 	
 	// user wants both the header and footer
 	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
