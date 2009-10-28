@@ -169,11 +169,11 @@ function processHeaderInfo($values) {
 		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
 		if ($values['selection'] == 'strip') {
 		
-			curlRequestGenerator('header.cgi?i='.$values['owner']);
+			curlRequestGenerator('header.cgi?i='.$values['owner'].'&amp;c=0');
 		
 		} elseif ($values['selection'] == 'static') {
 			
-			echo '<div class="no-selection-msg">chtml include selected: Currently no preview available</div>';
+			echo '<div class="no-selection-msg">chtml header include selected: Currently no preview available</div>';
 			
 		} else {
 			
@@ -303,11 +303,11 @@ function processFooterInfo($values) {
 		// only show a preview if they select a footer
 		if ($selected == '1' && $static == '0') {
 			
-			curlRequestGenerator('footer.cgi?i='.$values['owner']);
+			curlRequestGenerator('footer.cgi?i='.$values['owner'].'&amp;c=0');
 		
 		} elseif ($static == '1') {
 			
-			echo '<div class="no-selection-msg">chtml include selected: Currently no preview available</div>';
+			echo '<div class="no-selection-msg">chtml footer include selected: Currently no preview available</div>';
 			
 		} else {
 			

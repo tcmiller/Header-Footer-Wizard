@@ -23,6 +23,9 @@ $(function () {
    $('#no-hdr').click(function() {
    	 $('#step2_sub').hide();
    });
+   $('#static').click(function() {
+   	 $('#step2_sub').hide();
+   });
    $('#no_patch').click(function(){
      $('#blockwBlk').show();
    });
@@ -75,7 +78,7 @@ $(function () {
     		$('#ftr_w').removeAttr('disabled');
     		$('#ftr_gold_patch').removeAttr('disabled');
     		$('#ftr_purple_patch').removeAttr('disabled');
-    	}			   
+    	}   
     	
     	var display = '';
     	if (($('input[name=selection]:checked').val() == 'no-hdr') && ($('input[name=footer]:checked').val() !== 'no')) {
@@ -99,12 +102,6 @@ $(function () {
     	$('#ftr-preview').css('display','block');
     	$('#ftr-preview').html(data);
     	$('#outputBlk').hide();
-    	
-    	/*if ($('input[name=footer]:checked').val() == 'static') {
-    		$('#strip').attr('disabled','disabled');
-    	} else {
-    		$('#strip').removeAttr('disabled');
-    	}*/
     	
     	var display = '';
     	if (($('input[name=footer]:checked').val() == 'no') && ($('input[name=selection]:checked').val() !== 'no-hdr')) {

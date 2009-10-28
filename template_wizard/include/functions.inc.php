@@ -335,7 +335,9 @@ function loadHdrPrvw() {
 
 	// make sure the results exist and are in array format
 	if (!empty($header) && $header['selection'] == 'strip') {
-		$hdrPrvw = curlRequestGenerator('header.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
+		$hdrPrvw = curlRequestGenerator('header.cgi?i='.$_SERVER['REMOTE_USER'].'&amp;c=0','plain');
+	} elseif (!empty($header) && $header['selection'] == 'static') {
+		$hdrPrvw = '<div class="no-selection-msg">chtml header include selected: Currently no preview available</div>';
 	} else {
 		$hdrPrvw = '<div class="no-selection-msg">No header selection</div>';
 	}
@@ -356,8 +358,10 @@ function loadFtrPrvw() {
 	$footer = footerLookup();
 	
 	// make sure the results exist and are in array format
-	if (!empty($footer) && $footer['selected'] == '1') {
-		$ftrPrvw = curlRequestGenerator('footer.cgi?i='.$_SERVER['REMOTE_USER'],'plain');
+	if (!empty($footer) && $footer['selected'] == '1' && $footer['static'] == 0) {
+		$ftrPrvw = curlRequestGenerator('footer.cgi?i='.$_SERVER['REMOTE_USER'].'&amp;c=0','plain');
+	} elseif (!empty($footer) && $footer['static'] == '1') {
+		$ftrPrvw = '<div class="no-selection-msg">chtml footer include selected: Currently no preview available</div>';
 	} else {
 		$ftrPrvw = '<div class="no-selection-msg">No footer selection</div>';
 	}
