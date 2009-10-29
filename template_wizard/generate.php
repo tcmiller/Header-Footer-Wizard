@@ -66,8 +66,6 @@ function processAccountInfo($values) {
 							
 	if (PEAR::isError($affectedRows)) {
 		
-		echo 'crap';
-		
 		die($affectedRows->getMessage());
 		
 		// add an error message to the exceptions handler or something
@@ -169,7 +167,7 @@ function processHeaderInfo($values) {
 		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
 		if ($values['selection'] == 'strip') {
 		
-			curlRequestGenerator('header.cgi?i='.$values['owner'].'&amp;c=0');
+			curlRequestGenerator('header.cgi?i='.$values['owner'].'&c=0');
 		
 		} elseif ($values['selection'] == 'static') {
 			
@@ -303,7 +301,7 @@ function processFooterInfo($values) {
 		// only show a preview if they select a footer
 		if ($selected == '1' && $static == '0') {
 			
-			curlRequestGenerator('footer.cgi?i='.$values['owner'].'&amp;c=0');
+			curlRequestGenerator('footer.cgi?i='.$values['owner'].'&c=0');
 		
 		} elseif ($static == '1') {
 			
@@ -349,14 +347,16 @@ function getCode() {
 		$usersPrefs = $row;
 	}
 
+	$html = '';
+	
 	// store some random js here since we can't call the help modals out of index.php, only generate.php
-	$html = '<script type="text/javascript">
+	$html .= '<script type="text/javascript">
 		$(document).ready(function(){	
 			
+			$(".cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
+			$(".incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
 			$("#cpInstallCall").colorbox({width:"50%", inline:true, href:"#cpInstall"});
 			$("#incInstallCall").colorbox({width:"50%", inline:true, href:"#incInstall"});
-			$("#cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
-			$("#incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
 			
 		});	
 	</script>';
@@ -370,17 +370,18 @@ function getCode() {
 	$header_url = 'header.cgi?i='.$usersPrefs['owner'];
 	$footer_url = 'footer.cgi?i='.$usersPrefs['owner'];
 	
+	$header_url_prvw = 'header.cgi?i='.$usersPrefs['owner'].'&c=0';
+	$footer_url_prvw = 'footer.cgi?i='.$usersPrefs['owner'].'&c=0';
+	
 	// css + javascript urls
-	//<!--chtml include "//president/inc/header.html" -->
+	
 	$chtml_inc_css_js_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'head.inc&#34; -->';	
 	
 	$inc_css_js_depts_html = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$css_js_url.'&#34;-->';
-	//$inc_css_js_bank = INC_BASE_URL_BANK.$css_js_url;
+	
 	$header_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header.css" type="text/css" media="screen" />
 ';
 	$footer_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer.css" type="text/css" media="screen" />
-';
-	$footer_no_patch_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer_no_patch.css" type="text/css" media="screen" />
 ';
 	$js_html = '<script type="text/javascript">
 // clear out the global search input text field
@@ -391,51 +392,40 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 	// header urls
 	$chtml_inc_h_purple_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'header-purple.inc&#34; -->';
 	$chtml_inc_h_gold_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'header-gold.inc&#34; -->';
-	$cp_h = curlRequestGenerator($header_url,'plain');
+	$cp_h = curlRequestGenerator($header_url_prvw,'plain');
 	$inc_h_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$header_url.'&#34;-->';
-	//$inc_h_bank = INC_BASE_URL_BANK.$header_url;
 	
 	// footer urls
 	$chtml_inc_f_html = '<!--chtml include &#34;//'.CHTML_INC_URL_BANK.'footer.inc&#34; -->';
-	$cp_f = curlRequestGenerator($footer_url,'plain');
+	$cp_f = curlRequestGenerator($footer_url_prvw,'plain');
 	$inc_f_depts = '<!--#include virtual=&#34;'.INC_BASE_URL_DEPTS.$footer_url.'&#34;-->';
-	//$inc_f_bank = INC_BASE_URL_BANK.$footer_url;
 	
 	// chtml css+js include
 	$chtml_css_js_html = '<td><form><input type="text" value="'.$chtml_inc_css_js_html.'" size="35" /></form></td>';
 	
 	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$js_html.'</textarea></form></td>';
-	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.$footer_no_patch_css_html.'</textarea></form></td>';
-	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$footer_css_html.$footer_no_patch_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.'</textarea></form></td>';
+	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$footer_css_html.$js_html.'</textarea></form></td>';
 	
-	$inc_css_js_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_css_js_depts_html.'" size="35" />
-	                              <br />
-	                              <br />
-	                              <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	$inc_css_js_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_css_js_depts_html.'" size="35" /></form></td>';
 	
 	// chtml header include(s) html
 	$chtml_h_html = '<td><form><span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Purple:</span> <input type="text" value="'.$chtml_inc_h_purple_html.'" size="50" /><br />
 	                           <span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Gold:</span> <input type="text" value="'.$chtml_inc_h_gold_html.'" size="50" /></form></td>';
 	
 	$cp_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></td>';
-	$inc_h_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_h_depts.'" size="35" />
-	                          <br />
-	                          <br />
-	                          <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	$inc_h_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_h_depts.'" size="35" /></form></td>';
 	
 	// chtml footer include html
 	$chtml_f_html = '<td><form><input type="text" value="'.$chtml_inc_f_html.'" size="35" /></form></td>';
 	
-	$cp_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_f.'</textarea></form></td>';
-	$inc_f_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_f_depts.'" size="35" />
-	                          <br />
-	                          <br />
-	                          <strong>On bank:</strong>&nbsp;&nbsp;<input type="text" value="Coming soon!" size="35" /></form></td>';
+	$cp_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.htmlentities($cp_f).'</textarea></form></td>';
+	$inc_f_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_f_depts.'" size="35" /></form></td>';
 
 	// table builder
 	$empty_col = '<th class="removeOutline">&nbsp;</th>';
-	$cp_col = '<th>Copy &amp; Paste <a href="#" id="cpInstallCall">Install</a> <span>|</span>  <a href="#" id="cpHelpCall">Help</a></th>';
-	$inc_col = '<th>Include(s) <a href="#" id="incInstallCall">Install</a> <span>|</span> <a href="#" id="incHelpCall">Help</a></th>';
+	$cp_col = '<th>Copy &amp; Paste <a href="#" id="cpInstallCall">Install</a> <span>|</span>  <a href="#" class="cpHelpCall">Help</a></th>';
+	$inc_col = '<th>Include(s) <a href="#" id="incInstallCall">Install</a> <span>|</span> <a href="#" class="incHelpCall">Help</a></th>';
 	$css_js_row = '<td><strong>CSS +<br />Javascript</strong></td>';
 	$header_row = '<td><strong>Header</strong></td>';
 	$footer_row = '<td><strong>Footer</strong></td>';

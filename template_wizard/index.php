@@ -26,8 +26,8 @@ include_once('include/functions.inc.php');
 			$("#slider").easySlider();
 			$(".feedbackCall").colorbox({width:"20%", inline:true, href:"#feedback", title:false});
 			$(".faqCall").colorbox({width:"50%", inline:true, href:"#faq"});
-			$("#cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
-			$("#incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
+			$(".cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
+			$(".incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
 			
 			<?php
 			
@@ -45,7 +45,7 @@ include_once('include/functions.inc.php');
 </head>
 <body>
 
-<div id="fdBkTtleBlk"><span class="fdBkLnk"><a class="feedbackCall" href="#">Got feedback?</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a class="faqCall" href="#">FAQ</a></span>
+<div id="fdBkTtleBlk"><span class="fdBkLnk"><a href="mailto:uweb@uw.edu?subject=Header/Footer feedback">Got feedback?</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a class="faqCall" href="#">FAQ</a></span>
 	<span class="title">Header &amp; Footer Wizard</span>
 </div>
 <div id="container">
@@ -143,8 +143,8 @@ include_once('include/functions.inc.php');
                  <fieldset>
 			     <legend>Step 4: Code Preference</legend>
 			     
-			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" onclick="javascript:pageTracker._trackPageview('/copy-paste');" /> <a href="#" id="cpHelpCall">Copy &amp; Paste</a></label>
-			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" onclick="javascript:pageTracker._trackPageview('/include');" /> <a href="#" id="incHelpCall">Include</a></label>
+			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" onclick="javascript:pageTracker._trackPageview('/copy-paste');" /> <a href="#" class="cpHelpCall">Copy &amp; Paste</a></label>
+			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" onclick="javascript:pageTracker._trackPageview('/include');" /> <a href="#" class="incHelpCall">Include</a></label>
 			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" onclick="javascript:pageTracker._trackPageview('/both');" /> Both</label>
 			     
 			    </fieldset>
@@ -193,19 +193,17 @@ include_once('include/functions.inc.php');
          <li><h4>Copy &amp; Paste or Include?  What's best for me?</h4>
                  Well, this depends on your site's server environment, your visual/editorial needs and your technical background.  Detailed responses to these considerations will be listed below, but here is a general response: If you feel comfortable with HTML and CSS, and your site doesn't use the .shtml file extension or chtml includes, then Copy &amp; Paste is best for you.  However, if your site already uses the .shtml file extension, then the Include option would work quite well.  For the more technically minded, there is a way to bring in the dynamic Include option without the .shtml file extension or chtml include (using CURL).</li>
          <li><h4>My site is on bank... what are my options?</h4>
-                 Copy &amp; Paste: Just copy and paste from the code output boxes at the end of the wizard, placing the code bits into their appropriate places.
-                 <p>Include: If your site already uses the .shtml file extension, then copy and paste the include code at the end of the wizard into the appropriate spot.  If your site uses chtml includes, we currently only offer two header options and one footer option.</p>
-                 <p>Detailed installation instructions can be found on the wizard's final step.</p></li>
+                 You can either copy and paste the header and footer code into your existing includes or pages.  Or, you can use the predefined chtml includes we have available.  See Step 2 of the wizard for a preview of the purle and gold header chtml includes; see Step 3 for the footer option.</li>
          <li><h4>My site is on depts... what are my options?</h4>
                  Copy &amp; Paste: Just copy and paste from the code output boxes at the end of the wizard, placing code bits into their appropriate places.
                  <p>Include: If your site already uses the .shtml file extension, then copy and paste the include code at the end of the wizard into the appropriate spot.</p>
                  <p>Detailed installation instructions can be found on the wizard's final step.</p></li>
          <li><h4>What if you make updates?</h4>
-                 We plan on notifying all users before making any updates, on both the Copy &amp; Paste version as well as the Include version.  This is especially important for the Include version since it will dynamically update without you needing to touch anything.  Since you are providing a contact email, we can easily notify you of changes.</li>
+                 We plan on notifying all users before making any updates, on both the Copy &amp; Paste version as well as the Include versions (chtml and .shtml).  This is especially important for the Include version since it will dynamically update without you needing to touch anything.  Since you are providing a contact email, we can easily notify you of changes.</li>
          <li><h4>How wide is the header?  And the footer?</h4>
-                 The header is currently set to 950px wide, close to the 960px standard.  If you need a wider/narrower header, you can take our CSS and edit appropriately.  The "footer without patch" has no set width; thus, it expands to 100%.  You can make it narrower by wrapping it with a container &lt;div&gt;.  The "footer with patch" is 960px wide.  To make this narrower/wider, you'll need to edit the CSS directly.</li>
+                 The header is currently set to 950px wide, close to the 960px standard.  If you need a wider/narrower header, you can take our CSS and edit appropriately.  The "footer without patch" has no set width; thus, it expands to 100%.  You can make it narrower by wrapping it with a container &lt;div&gt;.  The "footer with patch" is 940px wide.  To make this narrower/wider, you'll need to edit the CSS directly.</li>
          <li><h4>I have other questions, who do I contact?</h4>
-                 Please use our <a href="#" class="feedbackCall">feedback form</a> to communicate with us.</li>
+                 Please <a href="mailto:uweb@uw.edu?subject=Header/Footer feedback">send us a quick email</a>, detailing your questions/concerns/etc.</li>
         </ul>
     </div>
     <div id="cpHelp">
@@ -223,9 +221,11 @@ include_once('include/functions.inc.php');
     	 <li><h4>What in the world is a Server Side Include?</h4>
     	         UW Technology has a <a href="http://www.washington.edu/itconnect/web/publishing/ssi.html" target="_blank">great article on SSIs</a>.  The primary thing to consider is the file extension: .shtml.  If you aren't already using this file extension throughout your site, you may want to consider the Copy &amp; Paste option or use CURL with server side scripting.</li>
     	 <li><h4>Header and/or footer include on bank... is this possible?</h4>
-    	         We're currently working through some technical hurdles, but SSIs are possible on bank.  You'll still need to use the <strong>.shtml</strong> file extension (see the UW Technology article above).</li>
+    	         Yep... but the options are limited to a basic gold and basic purple header, with a very basic footer.  There are a few technical limitations to bank, so we are unable to provide the full range of options.</li>
     	 <li><h4>Is there a chtml include?</h4>
-    	         Short answer: Yes!  Long answer: Well, almost.  Right now, we are making available, as chtml includes, two basic header options and one footer option.  If demand drives the need for more customizable, "wizardish" chtml include options, we will roll out additional permutations.</li>
+    	         Short answer: Yes!  Long answer: Well, almost.  Right now, we are making available, as chtml includes, two basic header options and one footer option.  If demand drives the need for more customizable, "wizardish" chtml include options, we will roll out additional permutations.  We make no promises, though :)</li>
+    	 <li><h4>What about performance?  Are the includes cached?</h4>
+    	         Yes, and yes!</li>
     	 <li><h4>The Include version breaks my site... what's the deal?</h4>
     	         While we have diligently tried to code the header and footer to function as independently as possible from your site, CSS conflicts may still occur.  Please report any issues you experience and we will update the code on our side as quickly as possible.</li>
     	</ul>
@@ -244,26 +244,31 @@ include_once('include/functions.inc.php');
     	 <li><h4>On depts:</h4>
     	  <p>Note: If you are not familiar with Server Side Includes (SSI), please <a href="http://www.washington.edu/itconnect/web/publishing/ssi.html" target="_blank">read this first</a>.  If you'd like to use the includes without the <strong>.shtml</strong> file extension, then you'll most likely need to use CURL (in whichever server side scripting language suits you best) to pull in the HTML.</p>
     	  <ol>
-    	   <li>For both the header and footer, you will need the CSS + Javascript include</li>
+    	   <li>For both the header and/or footer, you will need the CSS + Javascript include.</li>
     	   <li>Select and copy the CSS+JS include code from the "On depts:" field.</li>
-    	   <li>Paste this line of code between your HTML document's $lt;head&gt;&lt;/head&gt; tags</li>
+    	   <li>Paste this line of code between your HTML document's &lt;head&gt;&lt;/head&gt; tags.</li>
     	   <li>If you are installing a header, select and copy the header include code from the "On depts:" field.</li>
-    	   <li>Then, paste this header include code directly below your document's opening &lt;body&gt; tag</li>
+    	   <li>Then, paste this header include code directly below your document's opening &lt;body&gt; tag.</li>
     	   <li>If you are also installing a footer, select and copy the footer include code from the "On depts:" field.</li>
-    	   <li>Then, paste this footer include code directly above your document's closing &lt;/body&gt; tag</li>
+    	   <li>Then, paste this footer include code directly above your document's closing &lt;/body&gt; tag.</li>
+    	   <li>Lastly, preview your site to make sure it works.</li>
     	  </ol>
     	 </li>
     	 <li><h4>On bank:</h4>
     	  <ol>
-    	   <li></li>
-    	   <li></li>
-    	   <li></li>
+    	   <li>For both the header and/or footer, you will need the CSS + Javascript include.</li>
+    	   <li>Select and copy the CSS+JS include code from the "CSS + Javascript" field.</li>
+    	   <li>Paste this line of code between your HTML document's &lt;head&gt;&lt;/head&gt; tags.</li>
+    	   <li>If you are installing a header, select and copy the header include code from either the "Header -> Purple" field or the "Header -> Gold" field.</li>
+    	   <li>Then, paste this header include code directly below your document's opening &lt;body&gt; tag.</li>
+    	   <li>If you are also installing a footer, select and copy the footer include code from the "Footer" field.</li>
+    	   <li>Then, paste this footer include code directly above your document's closing &lt;/body&gt; tag.</li>
+    	   <li>Lastly, preview your site to make sure it works.</li>
     	  </ol>
     	 </li>
     	</ul>
     </div>
 </div>
-
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -271,11 +276,9 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 </script>
 <script type="text/javascript">
 try {
-var pageTracker = _gat._getTracker("");
+var pageTracker = _gat._getTracker("UA-11327562-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
-
-<!-- UA-11194387-1 -->
 
 </body>
 </html>

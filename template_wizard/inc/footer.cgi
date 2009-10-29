@@ -58,19 +58,21 @@ def main():
     else:
     	sTemplate = """
 <div id="footerMain" class="%s">
- <div id="footerLogo">
-  <a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a>
- </div>
- <div id="footerLinks">
-  <div class="logoAbsoluteFooter"></div>
-  <h3>Discover what's next. It's the Washington Way</h3>
-  <ul>
-   <li class="leftText"><span>&#38;&#35;169&#59; 2009 University of Washington</span></li>       	
-   <li class="centerText"><span>Seattle, Washington</span></li>         	
-   <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
-   <li class="rightText"><a href="http://www.washington.edu/jobs/">Employment</a></li>
-   <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
-  </ul>
+ <div id="footerWrap">
+  <div id="footerLogo">
+   <a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a>
+  </div>
+  <div id="footerLinks">
+   <div class="logoAbsoluteFooter"></div>
+   <h3>Discover what's next. It's the Washington Way</h3>
+   <ul>
+    <li class="leftText"><span>&#169; 2009 University of Washington</span></li>       	
+    <li class="centerText"><span>Seattle, Washington</span></li>         	
+    <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
+    <li class="rightText"><a href="http://www.washington.edu/jobs/">Employment</a></li>
+    <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
+   </ul>
+  </div>
  </div>
 </div>""" % (foot.patch)
 

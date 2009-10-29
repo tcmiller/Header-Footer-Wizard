@@ -49,7 +49,7 @@
 #footerMain li a:active, 
 #footerMain li a:hover, 
 #footerMain li a:focus,
-#footerMain li a {
+#footerMain li a, #footerMain li span {
 	text-transform: uppercase;
 	text-decoration: none;
 	float: left;
@@ -65,7 +65,7 @@
 	font-style: normal;
 	letter-spacing: normal;		
 }
-#footerMain li a {
+#footerMain li a, #footerMain li span {
 	color: #FFF;
 }
 #footerMain li a:focus {
@@ -79,11 +79,6 @@
 }
 #footerMain li a:active {
 	color: #FFFFCC;
-}
-#footerMain li span {
-	float: left;
-	padding: 8px 6px 7px 0;
-	white-space: nowrap;
 }
 #footerMain .logoAbsoluteFooter {
 	position: absolute;
