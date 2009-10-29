@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" 
+        content="text/html; charset=utf-8"/>
+    <title>Template Test</title>
+    <!--#include virtual="/uweb/inc/head.cgi?i=tcmiller" -->
+</head>
+<body>
+<!--#include virtual="/uweb/inc/header.cgi?i=tcmiller" -->
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum purus a est imperdiet euismod. Donec vestibulum congue quam, vel gravida massa facilisis in. Donec augue dui, sollicitudin vel consectetur sed, iaculis vel nisl. Praesent ornare mauris lectus. Nulla ipsum enim, faucibus ac lobortis at, lobortis id dolor. Pellentesque tempor tellus ut ligula accumsan consectetur vitae quis dui. Donec malesuada nisi nisi, scelerisque pretium risus. Praesent orci ligula, viverra vitae tempor sit amet, fringilla ac nisl. Mauris vulputate orci id leo sodales ut auctor mauris faucibus. In in rutrum tortor. Morbi accumsan semper sem ac pretium. Donec elementum libero ac urna sagittis eu pharetra tortor sagittis. Maecenas ante magna, dictum ac rhoncus ac, semper a massa. Donec lacinia luctus risus, vitae bibendum felis bibendum a. Mauris sapien nibh, dictum sit amet consectetur ac, cursus sed quam. Vivamus varius laoreet massa, scelerisque fermentum metus sodales in. Aliquam erat volutpat. Curabitur eget malesuada elit. </p>
+
+<p>Vestibulum ornare, ipsum nec dignissim pellentesque, urna turpis egestas sem, vel volutpat felis lorem nec nulla. Suspendisse at ante nunc, sed malesuada odio. Pellentesque posuere erat et urna euismod et facilisis libero accumsan. Quisque eu rutrum elit. Etiam malesuada venenatis diam. Aenean pulvinar scelerisque tellus, ut sodales sem posuere in. Morbi malesuada pulvinar blandit. Nullam metus leo, tincidunt id pharetra ut, pharetra at nisi. Etiam id tempus odio. Duis ultrices, nisi at molestie lobortis, nunc lectus faucibus lacus, nec viverra nunc massa vitae neque. Praesent pulvinar nunc ac neque lobortis vitae sagittis libero feugiat. Vivamus dapibus tincidunt enim at vehicula. Ut egestas molestie lectus, at porttitor magna sodales id. Cras dolor dolor, lobortis non vestibulum a, malesuada id tortor. Vestibulum fringilla interdum magna. Integer a tristique massa. Curabitur at enim erat, et vulputate mauris. Quisque scelerisque varius posuere. </p>
+
+<p>Integer elementum lectus vitae lacus condimentum facilisis. Duis ipsum arcu, rhoncus nec convallis sit amet, blandit dapibus dui. Ut ut lorem tortor. Sed malesuada porttitor luctus. Donec quam justo, iaculis dapibus posuere sed, pellentesque non ligula. Sed lacinia ornare lorem, a vehicula lacus elementum vel. Nullam lacus sapien, luctus tempor mollis a, gravida non leo. Integer aliquam ullamcorper eros in egestas. Donec tincidunt elementum nisl, sit amet porta orci varius a. Maecenas ultrices elementum ante, a pretium metus ultricies id. Nunc mattis nisi non sapien dictum ultrices. Pellentesque eu metus neque. Proin suscipit nulla ut mauris tempor tincidunt vestibulum ante dignissim. Integer in tristique purus. In hac habitasse platea dictumst. Proin in nisi leo. Vestibulum leo erat, ultricies a tincidunt sit amet, aliquet consequat lorem. </p>
+
+<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst. Pellentesque et consequat dui. Pellentesque fermentum felis eget dui posuere sit amet vulputate dolor varius. Donec arcu dui, rhoncus nec posuere in, accumsan ut felis. Phasellus lorem arcu, hendrerit sit amet interdum ut, accumsan suscipit sapien. Proin et dui libero, at ullamcorper elit. Integer interdum accumsan lacus, eu blandit tortor gravida id. Ut sit amet orci sit amet velit semper vulputate ac id dui. In laoreet, dolor vel tincidunt pellentesque, erat mauris sagittis libero, eget varius nunc risus at dui. Aliquam imperdiet dictum dapibus. Vivamus luctus dui non nulla feugiat at rutrum purus condimentum. Mauris sed orci nibh, eget dictum quam. Aenean cursus eleifend mattis. Proin a risus et nibh porttitor vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In porta convallis venenatis. Vivamus nulla nulla, faucibus et aliquam sit amet, vestibulum non est.</p>
+
+<!--#include virtual="/uweb/inc/footer.cgi?i=tcmiller" -->
+</body>
+</head>
