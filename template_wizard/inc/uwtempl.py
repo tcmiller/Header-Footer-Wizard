@@ -13,7 +13,7 @@ class MySQL(object):
     def __init__(self):
         self.user = "inc_script"
         self.passwd = "bdZEdU4LhqlVf2op2VKK"
-        self.port = 57023
+        self.port = 94582
         self.host = "ovid.u.washington.edu"
         self.datab = "tmplgen"
         self.db = ""
@@ -140,7 +140,7 @@ class Header(object):
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s' order by header.created_date DESC""" % (self.owner))
+                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
                 self.id = db.data[0][0]
                 self.blockw = db.data[0][1]
                 self.patch = db.data[0][2]
@@ -230,7 +230,7 @@ class Footer(object):
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s' order by footer.created_date DESC""" % (self.owner))
+                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
                 self.id = db.data[0][0]
                 self.blockw = db.data[0][1]
                 self.patch = db.data[0][2]
