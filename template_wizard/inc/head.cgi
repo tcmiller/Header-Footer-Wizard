@@ -31,14 +31,19 @@ def main():
         foot.owner = f.getfirst("i","").lower()
     foot.lookup()
 
-    sHead = """<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" media="screen" />"""
-    sFoot = """<link rel="stylesheet" href="/uweb/inc/css/footer.css" type="text/css" media="screen" />"""
+    sHead = """<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" />"""
+    sFoot = """
+<link rel="stylesheet" href="/uweb/inc/css/footer.css" type="text/css" />"""
+    sPrint = """
+<link rel="stylesheet" href="/uweb/inc/css/print.css" type="text/css" media="print" />"""
 
     ## jQuery or plain javascript?
-    sGlobal = """<script type="text/javascript">// clear out the global search input text field
-    function make_blank() {document.uwglobalsearch.q.value = "";}</script>"""
+    sGlobal = """
+<script type="text/javascript">// clear out the global search input text field
+    function make_blank() {document.uwglobalsearch.q.value = "";}
+</script>"""
 
-    sOutput = """%s%s%s""" % (sHead,sFoot,sGlobal)
+    sOutput = """%s%s%s%s""" % (sHead,sFoot,sPrint,sGlobal)
 
     print "Content-type: text/html"
     print

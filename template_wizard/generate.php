@@ -19,24 +19,78 @@ function processAccountInfo($values) {
 	
 	global $mdb2;
 	
-    // TODO: Switch fields to NOT NULL so error works properly
-	// call and prepare the table and data for insertion or updating
-	$table_name = 'account';
-	
 	switch ($values['processType']) {
 		
+		// create an account row, header row and footer row, upon entering the system for the first time
 		case 'initA':
-			$fields_values = array('owner'=>$values['owner'],
-			                       'active'=>0,
-			                       'created_date' => date('Y-m-d H:i:s'),
-								   'modified_date' => '0000-00-00 00:00:00',
-								   'last_accessed' => '0000-00-00 00:00:00');
-			$procType = 'MDB2_AUTOQUERY_INSERT';
-			$join = 'null';			
-			$types = array('text','integer','text','text','text');
+			$a_table_name = 'account';
+			$a_fields_values = array('owner'=>$values['owner'],
+			                         'active'=>0,
+			                         'created_date' => date('Y-m-d H:i:s'),
+								     'modified_date' => '0000-00-00 00:00:00',
+								     'last_accessed' => '0000-00-00 00:00:00');
+			$a_procType = 'MDB2_AUTOQUERY_INSERT';
+			$a_join = 'null';			
+			$a_types = array('text','integer','text','text','text');
+			
+			$mdb2->loadModule('Extended');
+			$affectedRows = $mdb2->extended->autoExecute($a_table_name, $a_fields_values,
+									constant($a_procType), $a_join, $a_types);
+									
+			if (PEAR::isError($affectedRows)) {
+				
+				die($affectedRows->getMessage());
+				
+				// add an error message to the exceptions handler or something
+				
+			} 
+			
+			// create a header row
+			$h_table_name = 'header';
+			$h_fields_values = array('owner' => $values['owner'],
+			                         'created_date' => date('Y-m-d H:i:s'),
+								     'last_modified' => '0000-00-00 00:00:00');
+			$h_procType = 'MDB2_AUTOQUERY_INSERT';
+			$h_join = 'null';
+			$h_types = array('text','text','text');
+			
+			$mdb2->loadModule('Extended');
+			$affectedRows = $mdb2->extended->autoExecute($h_table_name, $h_fields_values,
+									constant($h_procType), $h_join, $h_types);
+									
+			if (PEAR::isError($affectedRows)) {
+				
+				die($affectedRows->getMessage());
+				
+				// add an error message to the exceptions handler or something
+				
+			}
+			
+			// create a footer row
+			$f_table_name = 'footer';
+			$f_fields_values = array('owner' => $values['owner'],
+			                         'created_date' => date('Y-m-d H:i:s'),
+				                     'last_modified' => '0000-00-00 00:00:00');
+			$f_procType = 'MDB2_AUTOQUERY_INSERT';
+			$f_join = 'null';
+			$f_types = array('text','text','text');
+			
+			$mdb2->loadModule('Extended');
+			$affectedRows = $mdb2->extended->autoExecute($f_table_name, $f_fields_values,
+									constant($f_procType), $f_join, $f_types);
+									
+			if (PEAR::isError($affectedRows)) {
+				
+				die($affectedRows->getMessage());
+				
+				// add an error message to the exceptions handler or something
+				
+			} 
+			
 			break;
 			
 		case 'updtA':
+			$table_name = 'account';
 			$fields_values = array('email'=>$values['email'],
 			                       'site_url'=>$values['site_url'],
 			                       'code_pref'=>$values['code_pref'],
@@ -44,6 +98,22 @@ function processAccountInfo($values) {
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
 			$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';			
 			$types = array('text','text','text','text');
+			
+			$mdb2->loadModule('Extended');
+			$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
+									constant($procType), $join, $types);
+									
+			if (PEAR::isError($affectedRows)) {
+				
+				die($affectedRows->getMessage());
+				
+				// add an error message to the exceptions handler or something
+				
+			} else {
+				
+				return true;
+			}
+			
 			break;
 			
 		case 'fnlzA':
@@ -51,28 +121,31 @@ function processAccountInfo($values) {
 			// call up our code and display it
 			getCode();
 			
+			$table_name = 'account';
+					
 			$fields_values = array('active'=>1,
 			                       'modified_date'=>date('Y-m-d H:i:s'));
 			$procType = 'MDB2_AUTOQUERY_UPDATE';
 			$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';			
 			$types = array('integer','text');
+			
+			$mdb2->loadModule('Extended');
+			$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
+									constant($procType), $join, $types);
+									
+			if (PEAR::isError($affectedRows)) {
+				
+				die($affectedRows->getMessage());
+				
+				// add an error message to the exceptions handler or something
+				
+			} else {
+				
+				return true;
+			}
+			
 			break;
 		
-	}
-	
-	$mdb2->loadModule('Extended');
-	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
-							constant($procType), $join, $types);
-							
-	if (PEAR::isError($affectedRows)) {
-		
-		die($affectedRows->getMessage());
-		
-		// add an error message to the exceptions handler or something
-		
-	} else {
-		
-		return true;
 	}
 
 }
@@ -87,19 +160,12 @@ function processHeaderInfo($values) {
 
 	global $mdb2;
 	
-	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
-	// we use the owner id to look up the id that must now be the $account_id
-	$mdb2->loadModule('Extended');
-	$query = 'SELECT id FROM account WHERE owner = ?';
-	$data = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
-	// $data[0] is a reference simply to the value of id
-	
 	// Step 1: Attempt to retrieve a user's row from the header table
 	$query = sprintf('SELECT hdr.color
 	                    FROM header as hdr,
 	                         account as acct
 	                   WHERE acct.owner = \'%s\'
-	                     AND hdr.account_id = acct.id',$_SERVER['REMOTE_USER']);
+	                     AND hdr.owner = acct.owner',$_SERVER['REMOTE_USER']);
 	
 	// Proceed with getting some data...
 	$res =& $mdb2->query($query);
@@ -129,27 +195,8 @@ function processHeaderInfo($values) {
 		                       'search' => $values['search'],
 		                       'last_modified' => date('Y-m-d H:i:s'));
 		$procType = 'MDB2_AUTOQUERY_UPDATE';
-		$join = 'account_id = '.$mdb2->quote($data[0], 'integer').'';
+		$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';
 		$types = array('text','integer','integer','integer','text','text','text');
-		
-	} else {
-		
-		// because of how Kilian's css works, this needs to be set to 1 by default, even if the user doesn't really want this to start with
-		$blockw = 1;
-		
-		// no account exists, create one
-		$fields_values = array('selection' => $values['selection'],
-							   'blockw' => $blockw,
-							   'patch' => $values['patch'],
-							   'wordmark' => 1,                       
-							   'color' => $values['color'],       
-			                   'search' => $values['search'],
-							   'created_date' => date('Y-m-d H:i:s'),
-							   'last_modified' => '0000-00-00 00:00:00',
-						 	   'account_id' => $data[0]);
-		$procType = 'MDB2_AUTOQUERY_INSERT';
-		$join = 'null';
-		$types = array('text','integer','integer','integer','text','text','text','text','integer');
 		
 	}
 
@@ -240,26 +287,19 @@ function processFooterInfo($values) {
 			break;			
 	}
 	
-	// retrieve the last id inserted into the account table, which is presumably the individual that just registered during this session, but on a different db connection, which is why.....
-	// we use the owner id to look up the id that must now be the $account_id
-	$mdb2->loadModule('Extended');
-	$query = 'SELECT id FROM account WHERE owner = ?';
-	$accountInfo = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
-	// $accountInfo[0] is a reference simply to the value of id
-	
 	// check to see if the footer row exists for this particular "owner"... this helps us know if we're going to be updating/deleting or inserting
 	$mdb2->loadModule('Extended');
-	$query = 'SELECT * FROM footer WHERE account_id = ?';
-	$footerInfo = $mdb2->extended->getRow($query, null, array($accountInfo[0]), array('text'));
+	$query = 'SELECT * FROM footer WHERE owner = ?';
+	$footerInfo = $mdb2->extended->getRow($query, null, array($values['owner']), array('text'));
 		
 	// initialize our query mode string
-	$qmode = 'MDB2_AUTOQUERY';
+	
 	
 	if (!empty($footerInfo) && is_array($footerInfo)) {
 		
 		// set the query mode to "UPDATE"		
-		$qmode .= '_UPDATE';
-		$join = 'account_id = '.$mdb2->quote($accountInfo[0], 'integer').'';
+		
+		$join = 'owner = '.$mdb2->quote($values['owner'], 'text').'';
 		$fields_values = array(
 		    'selected' => $selected,
 			'blockw' => $blockw,
@@ -269,27 +309,13 @@ function processFooterInfo($values) {
 			'last_modified' => date('Y-m-d H:i:s'));		
 		$types = array('integer','integer','integer','text','integer','text');
 			
-	} else {
-		// set the query mode to "INSERT"
-		$qmode .= '_INSERT';
-		$join = '';
-		$fields_values = array(
-			'selected' => $selected,
-		    'blockw' => $blockw,
-		    'wordmark' => $wordmark,
-		    'patch' => $patch,
-		    'static' => $static,
-			'created_date' => date('Y-m-d H:i:s'),
-			'last_modified' => '0000-00-00 00:00:00',
-			'account_id' => $accountInfo[0]);		
-		$types = array('integer','integer','integer','text','integer','text','text','integer');
 	}
 	
 	$table_name = 'footer';
 	
 	$mdb2->loadModule('Extended');
 	$affectedRows = $mdb2->extended->autoExecute($table_name, $fields_values,
-							constant($qmode), $join, $types);
+							MDB2_AUTOQUERY_UPDATE, $join, $types);
 
 	if (PEAR::isError($affectedRows)) {
 		die($affectedRows->getMessage());
@@ -336,8 +362,8 @@ function getCode() {
 	                         header as hdr,
 	                         footer as ftr
 	                   WHERE acct.owner = \'%s\'
-	                     AND hdr.account_id = acct.id
-	                     AND ftr.account_id = acct.id',$_SERVER['REMOTE_USER']);
+	                     AND hdr.owner = acct.owner
+	                     AND ftr.owner = acct.owner',$_SERVER['REMOTE_USER']);
 	
 	// Proceed with getting some data...
 	$res =& $mdb2->query($query);
@@ -522,7 +548,6 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
  */
 function runGenerator($values) {
 	
-	// process the user's selected header/footer preferences
 	// only run this if certain processType values come through (initA || updtA || fnlzA)
 	if ($values['processType'] == 'initA' || $values['processType'] == 'updtA' || $values['processType'] == 'fnlzA') {
 		processAccountInfo($values);

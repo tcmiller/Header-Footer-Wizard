@@ -140,7 +140,7 @@ function headerLookup() {
 	                    FROM header as hdr,
 	                         account as acct
 	                   WHERE acct.owner = \'%s\'
-	                     AND hdr.account_id = acct.id',$_SERVER['REMOTE_USER']);
+	                     AND hdr.owner = acct.owner',$_SERVER['REMOTE_USER']);
 	
 	// Proceed with getting some data...
 	$res =& $mdb2->query($query);
@@ -242,7 +242,7 @@ function footerLookup() {
 	                    FROM footer as ftr,
 	                         account as acct
 	                   WHERE acct.owner = \'%s\'
-	                     AND ftr.account_id = acct.id',$_SERVER['REMOTE_USER']);
+	                     AND ftr.owner = acct.owner',$_SERVER['REMOTE_USER']);
 	
 	// Proceed with getting some data...
 	$res =& $mdb2->query($query);
