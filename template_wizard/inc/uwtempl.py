@@ -13,7 +13,7 @@ class MySQL(object):
     def __init__(self):
         self.user = "inc_script"
         self.passwd = "bdZEdU4LhqlVf2op2VKK"
-        self.port = 94582
+        self.port = 57023
         self.host = "ovid.u.washington.edu"
         self.datab = "tmplgen"
         self.db = ""
@@ -39,13 +39,14 @@ class MyCache(object):
 
     def __init__(self,obj):
         self._id = obj.owner
+        self._path = os.getcwd()
         self._data = obj
-        self._storage = '/hw12/d77/uweb/inc/cache/'+self._id+'-data.pkl'
+        self._storage = self._path+'/cache/'+self._id+'-data.pkl'
         self._fh = "" 
     def get_data(self):
         ## This may fail due to the str return
         ## May have to return the object unmodified
-        return "%s" % (self._data)
+        return self._data
     def set_data(self,data):
         self._data = data
     def dump(self):
@@ -58,7 +59,9 @@ class MyCache(object):
             self._data = pickle.load(self._fh)
             self._cleanup()
     def clear(self):
-        os.remove(self._storage)
+        self.data = ""
+        if os.path.isfile(self._storage):
+            os.remove(self._storage)
     def _cleanup(self):
         self._fh.close()
 
@@ -123,25 +126,29 @@ class Header(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
+        ##import pdb; pdb.set_trace()
         if len(self.owner) > 0:
             cache = MyCache(self)
-            if self.cache == "1":
+            ## Force clearing of cache if requested
+            if self.cache == '1':
                 cache.load()
             else:
                 cache.clear()
-            ## Should fixed this
-            if os.path.isfile(cache._storage):
+            ## If cache exists, then use it
+            if cache.data is None:
                 self = cache.data
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s'""" % (self.owner))
+                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header join account on account.id=header.account_id WHERE account.owner='%s' order by header.created_date DESC""" % (self.owner))
                 self.id = db.data[0][0]
                 self.blockw = db.data[0][1]
                 self.patch = db.data[0][2]
                 self.color = db.data[0][3]
                 self.search = db.data[0][4]
                 self.wordmark = db.data[0][5]
+                # If cache is turned off, file still generated
+                # to create updated version of cache
                 cache = MyCache(self)
                 cache.dump()
 
@@ -212,21 +219,24 @@ class Footer(object):
     def lookup(self):
         if len(self.owner) > 0:
             cache = MyCache(self)
+            ## Force clearing of cache if requested
             if self.cache == "1":
                 cache.load()
             else:
                 cache.clear()
-            ## Should fixed this
-            if os.path.isfile(cache._storage):
+            ## If cache exists, then use it
+            if cache.data is None:
                 self = cache.data
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s'""" % (self.owner))
+                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer join account on account.id=footer.account_id WHERE account.owner='%s' order by footer.created_date DESC""" % (self.owner))
                 self.id = db.data[0][0]
                 self.blockw = db.data[0][1]
                 self.patch = db.data[0][2]
                 self.wordmark = db.data[0][3]
+                # If cache is turned off, file still generated
+                # to create updated version of cache
                 cache = MyCache(self)
                 cache.dump()
     

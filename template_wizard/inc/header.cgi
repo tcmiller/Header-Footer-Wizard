@@ -30,19 +30,19 @@ def main():
     if f.getfirst("i","").lower():
         head.owner = f.getfirst("i","").lower()
     if f.getlist("c"):
-        head.cache = f.getlist("c")
+        head.cache = f.getlist("c")[0]
     head.lookup()
 
     ## How to handle this in the final stage?
     sHead = """
-<div id="wheader" class="%s %s %s">""" % (head.display())   
+<div id="wheader" class="%s %s %s">""" % (head.display()) 
     sBody = """
  <span id="autoMargin">
   <div class="wlogoSmall">
    <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
    <div><a href="http://www.washington.edu/">University of Washington</a></div>
-  </div>""" 
-    sSearch = """
+  </div>"""
+    sSearch = """ 
   <div id="wsearch">        
    <form name="uwglobalsearch" id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
     <div class="wfield">

@@ -30,7 +30,7 @@ def main():
     if f.getfirst("i","").lower():
         foot.owner = f.getfirst("i","").lower()
     if f.getlist("c"):
-        foot.cache = f.getlist("c")
+        foot.cache = f.getlist("c")[0]
     foot.lookup()
     
     
