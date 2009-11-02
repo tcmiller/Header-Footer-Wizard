@@ -464,12 +464,12 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$header_row.$chtml_h_html.'</tr><tr>'.$footer_row.$chtml_f_html;
 		
 	// user wants just the static header
-	} elseif ($usersPrefs['selection'] == 'static' && $usersPrefs['selected'] == '0') {
+	} elseif ($usersPrefs['selection'] == 'static') {
 		
 		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$header_row.$chtml_h_html;
 		
 	// user wants just the static footer
-	} elseif ($usersPrefs['selection'] == 'no-hdr' && $usersPrefs['selected'] == '1') {
+	} elseif ($usersPrefs['static'] == '1') {
 		
 		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$footer_row.$chtml_f_html;
 	

@@ -98,6 +98,10 @@ function setAccountDefaults() {
 	// call and store the results from accountLookup()
 	$account = accountLookup();
 	
+	// call our header and footer info as well
+	$header = headerLookup();
+	$footer = footerLookup();
+	
 	// set up $accountDefaults
 	$accountDefaults = '';
 	
@@ -113,7 +117,14 @@ function setAccountDefaults() {
 	
 	// see if code preference exists and if so, show it
 	if (!empty($account['code_pref'])) {
-		$accountDefaults .= '$(\'#'.$account['code_pref'].'\').attr(\'checked\',\'checked\');';
+		// look to see if the user had selected the static chtml include output options, and if so, check the include radio button
+		if ($header['selection'] == 'static' || $footer['static'] == 1) {
+			$accountDefaults .= '$(\'#include\').attr(\'checked\',\'checked\');';
+			$accountDefaults .= '$(\'#copy-paste\').attr(\'disabled\',\'disabled\');';
+    		$accountDefaults .= '$(\'#both\').attr(\'disabled\',\'disabled\');';
+		} else {
+			$accountDefaults .= '$(\'#'.$account['code_pref'].'\').attr(\'checked\',\'checked\');';
+		}
 	}
 	
 	echo $accountDefaults;

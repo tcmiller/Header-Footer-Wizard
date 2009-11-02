@@ -38,7 +38,7 @@ include_once('include/functions.inc.php');
 		});
 		
 	// clear out the global search input text field
-    function make_blank() {document.uwglobalsearch.q.value = "";}
+    function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}
 			
 	</script>	
 	
