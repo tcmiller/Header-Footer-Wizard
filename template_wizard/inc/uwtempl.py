@@ -142,7 +142,7 @@ class Header(object):
                 db = MySQL()
                 db.connect()
                 db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
-                if db.data is not None:
+                if len(db.data) > 0:
                     self.id = db.data[0][0]
                     self.blockw = db.data[0][1]
                     self.patch = db.data[0][2]
@@ -230,7 +230,7 @@ class Footer(object):
             if cache.data is None:
                 self = cache.data
             else:
-                if db.data is not None:
+                if len(db.data) > 0:
                     db = MySQL()
                     db.connect()
                     db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
