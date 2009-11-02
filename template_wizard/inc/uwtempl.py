@@ -8,7 +8,8 @@ from string import Template
 
 class MySQL(object):
     """
-    This is the generic SQL class
+    This is the generic class to wrap the _mysql connection and hold the
+    details used in the transaction.
     """
     def __init__(self):
         self.user = "inc_script"
@@ -32,11 +33,10 @@ class MySQL(object):
 
 class MyCache(object):
     """
-    For performance we turn to cPickle this is the class that wraps it.
+    For performance we turn to pickle.  This is the class that wraps it.
     Actual storage on disk is in the cache/ directory, this assumes we 
-    pass it a python object
+    pass it a python object.
     """
-
     def __init__(self,obj):
         self._id = obj.owner
         self._path = os.getcwd()
@@ -44,8 +44,9 @@ class MyCache(object):
         self._storage = self._path+'/cache/'+self._id+'-data.pkl'
         self._fh = "" 
     def get_data(self):
-        ## This may fail due to the str return
-        ## May have to return the object unmodified
+        # This fails if a string is returned, ignoring
+        # normal formatting and just assuming everything
+        # is untanted
         return self._data
     def set_data(self,data):
         self._data = data
@@ -54,6 +55,8 @@ class MyCache(object):
         pickle.dump(self._data, self._fh)
         self._cleanup()
     def load(self):
+        # There might be a case where we can't find 
+        # the file, should return something so we know
         if os.path.isfile(self._storage):
             self._fh = open(self._storage,'rb')
             self._data = pickle.load(self._fh)
@@ -72,7 +75,6 @@ class Header(object):
     Header object creates the actual header used for an include across the site
     when anyone need to automagically generate the HTML for the brand.
     """
-
     def __init__(self):
         self.id = ""
         self._owner = ""
@@ -126,7 +128,6 @@ class Header(object):
     def set_date_accessed(self, date_accessed):
         self._date_accessed = date_accessed
     def lookup(self):
-        ##import pdb; pdb.set_trace()
         if len(self.owner) > 0:
             cache = MyCache(self)
             ## Force clearing of cache if requested
@@ -141,16 +142,17 @@ class Header(object):
                 db = MySQL()
                 db.connect()
                 db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
-                self.id = db.data[0][0]
-                self.blockw = db.data[0][1]
-                self.patch = db.data[0][2]
-                self.color = db.data[0][3]
-                self.search = db.data[0][4]
-                self.wordmark = db.data[0][5]
-                # If cache is turned off, file still generated
-                # to create updated version of cache
-                cache = MyCache(self)
-                cache.dump()
+                if db.data is not None:
+                    self.id = db.data[0][0]
+                    self.blockw = db.data[0][1]
+                    self.patch = db.data[0][2]
+                    self.color = db.data[0][3]
+                    self.search = db.data[0][4]
+                    self.wordmark = db.data[0][5]
+                    # If cache is turned off, file still generated
+                    # to create updated version of cache
+                    cache = MyCache(self)
+                    cache.dump()
 
     def display(self):
         color = {'gold':'colorGold','purple':'colorPurple'}
@@ -228,17 +230,18 @@ class Footer(object):
             if cache.data is None:
                 self = cache.data
             else:
-                db = MySQL()
-                db.connect()
-                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
-                self.id = db.data[0][0]
-                self.blockw = db.data[0][1]
-                self.patch = db.data[0][2]
-                self.wordmark = db.data[0][3]
-                # If cache is turned off, file still generated
-                # to create updated version of cache
-                cache = MyCache(self)
-                cache.dump()
+                if db.data is not None:
+                    db = MySQL()
+                    db.connect()
+                    db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
+                    self.id = db.data[0][0]
+                    self.blockw = db.data[0][1]
+                    self.patch = db.data[0][2]
+                    self.wordmark = db.data[0][3]
+                    # If cache is turned off, file still generated
+                    # to create updated version of cache
+                    cache = MyCache(self)
+                    cache.dump()
     
     def display_blockw(self):
     	blockw = {'1':'wYes','0':'wNo'}

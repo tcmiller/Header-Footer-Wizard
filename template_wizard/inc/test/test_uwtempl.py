@@ -1,5 +1,4 @@
 import sys, os
-#import xml.dom.minidom
 import unittest
 sPath = os.getcwd()       
 sys.path.append(sPath) 
@@ -36,7 +35,7 @@ class TestHeader(unittest.TestCase):
         self.assertEqual(self.Header2._color, self.Header2.color)
         self.assertEqual(self.Header2.wordmark, '1')
         self.assertEqual(self.Header2._wordmark, self.Header2.wordmark)
-        self.assertEqual(self.Header2.patch, '0')
+        self.assertEqual(self.Header2.patch, '1')
         self.assertEqual(self.Header2._patch, self.Header2.patch)
         self.assertEqual(self.Header2.blockw, '1')
         self.assertEqual(self.Header2._blockw, self.Header2.blockw)
@@ -50,10 +49,9 @@ class TestFooter(unittest.TestCase):
 
     def setUp(self):
         self.Footer = Footer()
-        self.Footer.color = ('purple')
+        self.Footer.patch = ('purple')
         self.Footer.wordmark = 1
         self.Footer.blockw = 1
-        self.Footer.patch = 1
 
     ## def test_create(self):
     ##     oFooter = Footer(self.xdoc)
@@ -65,14 +63,12 @@ class TestFooter(unittest.TestCase):
     ##     self.assertEqual(oFooter.item.toxml('utf-8'), '<item><guid>http://www.washington.edu/externalaffairs/mobile/images/001.png</guid><pubDate>2008-10-20</pubDate></item>')
 
     def testload(self):
-        self.assertEqual(self.Footer.color, 'purple')
-        self.assertEqual(self.Footer._color, self.Footer.color)
+        self.assertEqual(self.Footer.patch, 'purple')
+        self.assertEqual(self.Footer._patch, self.Footer.patch)
         self.assertEqual(self.Footer.wordmark, 1)
         self.assertEqual(self.Footer._wordmark, self.Footer.wordmark)
         self.assertEqual(self.Footer.blockw, 1)
         self.assertEqual(self.Footer._blockw, self.Footer.blockw)
-        self.assertEqual(self.Footer.patch, 1)
-        self.assertEqual(self.Footer._patch, self.Footer.patch)
         ## self.assertEqual(self.Footer.date_created, '2009-08-25')
         ## self.assertEqual(self.Footer._date_created, self.Footer.date_created)
         ## self.assertEqual(self.Footer.date_modified, '2009-08-25')

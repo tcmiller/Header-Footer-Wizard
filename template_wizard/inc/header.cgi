@@ -6,16 +6,16 @@ import cgi
 
 ######################## DEBUG #############################
 ## import pdb
-import cgitb
+## import cgitb
 ## Necessary to print debug errors to display in browser
-cgitb.enable()
+## cgitb.enable()
 ######################## DEBUG #############################
 
 __author__ = "Chris Heiland"
 __copyright__ = "Copyright 2009, University of Washington"
 __credits__ = ["Chris Heiland"]
 __license__ = "GPL"
-__version__ = "0.1"
+__version__ = "0.5"
 __maintainer__ = "Chris Heiland"
 __email__ = "cheiland@uw.edu"
 __status__ = "Development"
