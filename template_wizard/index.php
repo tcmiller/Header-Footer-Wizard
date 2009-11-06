@@ -12,8 +12,8 @@ include_once('include/functions.inc.php');
 	
 	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="/uweb/inc/css/footer.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../inc/css/header.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../inc/css/footer.css" type="text/css" media="screen" />
 	
 	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="js/easySliderUW.js" type="text/javascript"></script>

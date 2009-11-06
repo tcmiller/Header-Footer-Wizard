@@ -1,7 +1,7 @@
 <div id="footerMainNoPatch" class="logoYes wYes">
  <div id="footerLeft">    	
   <ul>
-   <li class="logoArea"><a href="http://www.washington.edu/">&#169; 2009 University of Washington</a></li>  
+   <li class="logoArea"><a href="http://www.washington.edu/">&#169; <!--chtml date="%Y"--> University of Washington</a></li>  
   </ul>
  </div>
  <div id="footerRight">  

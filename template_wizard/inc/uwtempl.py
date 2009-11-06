@@ -230,10 +230,10 @@ class Footer(object):
             if cache.data is None:
                 self = cache.data
             else:
+                db = MySQL()
+		db.connect()
+                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
                 if len(db.data) > 0:
-                    db = MySQL()
-                    db.connect()
-                    db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
                     self.id = db.data[0][0]
                     self.blockw = db.data[0][1]
                     self.patch = db.data[0][2]

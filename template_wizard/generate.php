@@ -407,11 +407,13 @@ function getCode() {
 	
 	$header_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header.css" type="text/css" media="screen" />
 ';
+	$print_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/print.css" type="text/css" media="print" />
+';
 	$footer_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer.css" type="text/css" media="screen" />
 ';
 	$js_html = '<script type="text/javascript">
 // clear out the global search input text field
-function make_blank() {document.uwglobalsearch.q.value = "";}
+function make_blank() {if(document.uwglobalsearch.q.value=="Search the UW") {document.uwglobalsearch.q.value = "";}}
 </script>
 ';	
 	
@@ -429,9 +431,9 @@ function make_blank() {document.uwglobalsearch.q.value = "";}
 	// chtml css+js include
 	$chtml_css_js_html = '<td><form><input type="text" value="'.$chtml_inc_css_js_html.'" size="35" /></form></td>';
 	
-	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$js_html.'</textarea></form></td>';
-	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$footer_css_html.'</textarea></form></td>';
-	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$footer_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$print_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$print_css_html.$footer_css_html.'</textarea></form></td>';
+	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$print_css_html.$footer_css_html.$js_html.'</textarea></form></td>';
 	
 	$inc_css_js_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_css_js_depts_html.'" size="35" /></form></td>';
 	
