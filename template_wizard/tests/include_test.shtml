@@ -6,11 +6,11 @@
 	content="text/html; charset=utf-8"/>
     <title>Template Test</title>
 
-<!--#include virtual="/uweb/inc/head.cgi?i=tcmiller"-->
+<!--#include virtual="/uweb/inc/head.cgi?i=displays"-->
 
 </head>
 <body>
-<!--#include virtual="/uweb/inc/header.cgi?i=tcmiller"-->
+<!--#include virtual="/uweb/inc/header.cgi?i=displays"-->
 
 my awesome web page here
 <br />
@@ -22,7 +22,7 @@ lorem ipsum
 <br />
 lorem ipsum
 
-<!--#include virtual="/uweb/inc/footer.cgi?i=tcmiller"-->
+<!--#include virtual="/uweb/inc/footer.cgi?i=displays"-->
 
 </body>
 </html>

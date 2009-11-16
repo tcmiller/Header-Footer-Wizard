@@ -170,6 +170,23 @@ function getNumStaticUsers() {
 	
 }
 
+function getCodePrefNums($code_pref='') {
+	
+	global $mdb2;
+	
+	$query = sprintf('SELECT DISTINCT owner
+	                             FROM account
+	                            WHERE code_pref = \'%s\'
+	                     		  AND active = \'%s\'',$code_pref,1);
+	
+	$res =& $mdb2->query($query);
+
+	$num = $res->numRows();
+
+	return $num;
+	
+}
+
 $emailsOnAString = '';
 $accts = getAcctInfo($active=1);
 
@@ -247,10 +264,13 @@ $html .= '<ul>
          Without "w": '.round((getBlockWNum($blockw = 0)/$totalActiveAccts)*100,2).'% ('.getBlockWNum($blockw = 0).')</li>
 </ul>';
 
-$html .= '<h2>S T A T I C</h2>';
+$html .= '<h2>C O D E&nbsp;&nbsp;P R E F E R E N C E</h2>';
 
 $html .= '<ul>
- <li>CHTML users: '.getNumStaticUsers().'</li></ul>';
+ <li>Copy &amp; Paste: '.getCodePrefNums('copy-paste').'</li>
+ <li>Include: '.getCodePrefNums('include').'</li>
+ <li>Both: '.getCodePrefNums('both').'</li>
+ <li>CHTML: '.getNumStaticUsers().'</li></ul>';
 
 $html .= '</body></html>';
 

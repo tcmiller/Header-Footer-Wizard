@@ -1,0 +1,45 @@
+C H A N G E L O G
+
+
+Issue: Absolute URLs needed on include URLs for css files
+Date reported: 2009.11.09
+Date fixed: 2009.11.10
+Reported by: Tim Chang-Miller
+Severity: low
+Status: Open, not fixed
+
+Problem: When pulling in the includes via CURL, the CSS URL calls were relative not absolute.
+
+Solution: Made the CSS URL calls absolute links
+
+===================================
+
+
+Issue: IE doctype bug
+Date reported: 2009.11.09
+Date fixed: 2009.11.09 - IE doctype consideration added to our FAQ and Install docs:
+Reported by: Scott Bush
+Severity: medium
+Status: fixed, closed
+
+Problem: IE7 and IE8 both truncate the patch and wordmark if the doctype is not at least xhtml1 transitional.  The report received was from a user who was using HTML4 transitional as their DTD.
+
+Solution: The following text was added to our documentation (FAQ + Help)
+
+"Thus far (cross your fingers), the only known issue with IE is a DTD problem.  The header and footer code, both the include and copy/paste, work best with the XHTML1 transitional DTD: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"
+
+
+====================================
+
+Issue: Javascript search box text
+Date reported: 2009.11.01
+Date fixed: 2009.11.05
+Reported by: Michael Dunlap
+Severity: low
+Status: fixed, closed
+
+Problem: "The javascript for clearing the search box will clear the search text even if the user has entered in their own text. I would recommend checking the value of the input for being “Search the UW” before blanking it." -Michael D.
+
+Was: function make_blank() {document.uwglobalsearch.q.value = "";}
+
+Is: function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}

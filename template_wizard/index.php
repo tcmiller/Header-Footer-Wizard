@@ -192,6 +192,8 @@ include_once('include/functions.inc.php');
     	<ul>
          <li><h4>Copy &amp; Paste or Include?  What's best for me?</h4>
                  Well, this depends on your site's server environment, your visual/editorial needs and your technical background.  Detailed responses to these considerations will be listed below, but here is a general response: If you feel comfortable with HTML and CSS, and your site doesn't use the .shtml file extension or chtml includes, then Copy &amp; Paste is best for you.  However, if your site already uses the .shtml file extension, then the Include option would work quite well.  For the more technically minded, there is a way to bring in the dynamic Include option without the .shtml file extension or chtml include (using CURL).</li>
+         <li><h4>Any known IE bugs?</h4>
+                 Thus far (cross your fingers), the only known issue with IE is a DTD problem.  The header and footer code, both the include and copy/paste, work best with the XHTML1 transitional DTD: &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;  Thanks to Scott Bush for bringing this to our attention.</li>
          <li><h4>My site is on bank... what are my options?</h4>
                  You can either copy and paste the header and footer code into your existing includes or pages.  Or, you can use the predefined chtml includes we have available.  See Step 2 of the wizard for a preview of the purle and gold header chtml includes; see Step 3 for the footer option.</li>
          <li><h4>My site is on depts... what are my options?</h4>
@@ -213,6 +215,8 @@ include_once('include/functions.inc.php');
     	         We've done our best to "bulletproof" the code and prevent any CSS collisions, but if you find any strange behavior, please <a href="#" class="feedbackCall">let us know.</a>  Since you are choosing the Copy &amp; Paste version, you could certainly modify the code to make it work.</li>
     	 <li><h4>What if you make updates?  How will we hear about them?</h4>
     	         Since we are collecting a contact email, we can easily notify you of changes (editorial, visual, etc.).</li>
+    	 <li><h4>Any known IE bugs?</h4>
+                 Thus far (cross your fingers), the only known issue with IE is a DTD problem.  The header and footer code, both the include and copy/paste, work best with the XHTML1 transitional DTD: &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;  Thanks to Scott Bush for bringing this to our attention.</li>
     	</ul>
     </div>
     <div id="incHelp">
@@ -228,6 +232,8 @@ include_once('include/functions.inc.php');
     	         Yes, and yes!</li>
     	 <li><h4>The Include version breaks my site... what's the deal?</h4>
     	         While we have diligently tried to code the header and footer to function as independently as possible from your site, CSS conflicts may still occur.  Please report any issues you experience and we will update the code on our side as quickly as possible.</li>
+    	 <li><h4>Any known IE bugs?</h4>
+                 Thus far (cross your fingers), the only known issue with IE is a DTD problem.  The header and footer code, both the include and copy/paste, work best with the XHTML1 transitional DTD: &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;  Thanks to Scott Bush for bringing this to our attention.</li>
     	</ul>
     </div>
     <div id="cpInstall">
