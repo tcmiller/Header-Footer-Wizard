@@ -1,17 +1,6 @@
 C H A N G E L O G
 
 
-Issue: Absolute URLs needed on include URLs for css files
-Date reported: 2009.11.09
-Date fixed: 2009.11.10
-Reported by: Tim Chang-Miller
-Severity: low
-Status: Open, not fixed
-
-Problem: When pulling in the includes via CURL, the CSS URL calls were relative not absolute.
-
-Solution: Made the CSS URL calls absolute links
-
 ===================================
 
 
