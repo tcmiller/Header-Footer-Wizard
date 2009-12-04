@@ -1,0 +1,9 @@
+XSL cheatsheet
+
+<div>
+ <xsl:attribute name="style">clear:both</xsl:attribute>
+</div>
+
+EQUAL TO
+
+<div style="clear:both"></div>
