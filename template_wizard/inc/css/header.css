@@ -1,7 +1,6 @@
 @charset "utf-8";
 body {
 	margin: 0px;
-	background-position:top 25px;
 }
 
 #autoMargin form {
@@ -196,7 +195,6 @@ body {
 	height: 18px;
 	padding-bottom: 1px;
 	vertical-align: top;
-	color: transparent;
 	text-transform: capitalize;
 	text-indent:-9999px;
 }

@@ -46,13 +46,13 @@ def main():
  </div>
  <div id="footerRight">  
   <ul>
-   <li class="centerText"><span>Seattle, Washington</span></li>
+   <li class="centerText"><a href="http://www.seattle.gov/">Seattle, Washington</a></li>
   </ul>   
  </div>
  <div id="footerCenter">
   <ul>
    <li><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
-   <li class="footerLinkBorder"><a href="http://www.washington.edu/jobs/">Employment</a></li>
+   <li class="footerLinkBorder"><a href="http://www.washington.edu/jobs/">Jobs</a></li>
    <li class="footerLinkBorder"><a href="http://myuw.washington.edu/">My UW</a></li>
   </ul>
  </div>
@@ -62,14 +62,14 @@ def main():
 <div id="footerMain" class="%s">
  <div id="footerWrap">
   <div id="footerLogo">
-   <a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a>
+   <a id="footerLogoLink" href="http://www.washington.edu/">University of Washington</a>
   </div>
   <div id="footerLinks">
    <div class="logoAbsoluteFooter"></div>
-   <h3>Discover what's next. It's the Washington Way</h3>
+   <h3>Discover what's next. It's the Washington Way.</h3>
    <ul>
-    <li class="leftText"><span>&#169; %d University of Washington</span></li>       	
-    <li class="centerText"><span>Seattle, Washington</span></li>         	
+    <li class="leftText"><a href="http://www.washington.edu/">&#169; %d University of Washington</a></li>       	
+    <li class="centerText"><a href="http://www.seattle.gov/">Seattle, Washington</a></li>         	
     <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
     <li class="rightText"><a href="http://www.washington.edu/jobs/">Employment</a></li>
     <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
