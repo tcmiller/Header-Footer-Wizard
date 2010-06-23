@@ -124,7 +124,7 @@ body {
 	float: left;
 }
 .wTextInput {
-	width: 137px;
+	width: 135px;
 	height: 17px;
 	background: none;
 	border: none;
@@ -151,14 +151,11 @@ body {
 }
 #wheader ul{
 	margin: 0;
-	text-indent: 0px;
 }
 #wheader li{
 	display: inline;
 	white-space: nowrap;
 	margin: 0;
-	padding: 0;
-	border: none;
 }
 #wheader li a {	
 	display:block;
