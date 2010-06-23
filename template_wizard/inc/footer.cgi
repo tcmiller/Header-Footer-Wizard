@@ -71,7 +71,7 @@ def main():
     <li class="leftText"><a href="http://www.washington.edu/">&#169; %d University of Washington</a></li>       	
     <li class="centerText"><a href="http://www.seattle.gov/">Seattle, Washington</a></li>         	
     <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
-    <li class="rightText"><a href="http://www.washington.edu/jobs/">Employment</a></li>
+    <li class="rightText"><a href="http://www.washington.edu/jobs/">Jobs</a></li>
     <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
    </ul>
   </div>
