@@ -8,13 +8,13 @@ include_once('include/functions.inc.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Header &amp; Footer Wizard</title>
-	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />    
-	
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
 	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="../inc/css/header.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="../inc/css/footer.css" type="text/css" media="screen" />
-	
+
 	<script src="js/jquery.min.js" type="text/javascript"></script>
 	<script src="js/easySliderUW.js" type="text/javascript"></script>
 	<script src="js/jquery.colorbox.js" type="text/javascript"></script>
@@ -22,38 +22,39 @@ include_once('include/functions.inc.php');
 	<script src="js/tmplgen.js" type="text/javascript"></script>
 	<script src="js/screenshot.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){	
+		$(document).ready(function(){
 			$("#slider").easySlider();
 			$(".feedbackCall").colorbox({width:"20%", inline:true, href:"#feedback", title:false});
 			$(".faqCall").colorbox({width:"50%", inline:true, href:"#faq"});
+			$(".changeLogCall").colorbox({width:"50%", inline:true, href:"#changeLog"});
 			$(".cpHelpCall").colorbox({width:"50%", inline:true, href:"#cpHelp"});
 			$(".incHelpCall").colorbox({width:"50%", inline:true, href:"#incHelp"});
-			
+
 			<?php
-			
+
 			createAndSetAppDefaults();
-								
+
 			?>
-			
+
 		});
-		
+
 	// clear out the global search input text field
     function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}
-			
-	</script>	
-	
+
+	</script>
+
 </head>
 <body>
 
-<div id="fdBkTtleBlk"><span class="fdBkLnk"><a href="mailto:uweb@uw.edu?subject=Header/Footer feedback">Got feedback?</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a class="faqCall" href="#">FAQ</a></span>
+<div id="fdBkTtleBlk"><span class="fdBkLnk"><a href="mailto:uweb@uw.edu?subject=Header/Footer feedback">Got feedback?</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a class="faqCall" href="#">FAQ</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a class="changeLogCall" href="#">ChangeLog</a></span>
 	<span class="title">Header &amp; Footer Wizard</span>
 </div>
 <div id="container">
 
 	<div id="content">
-	
+
 		<div id="slider">
-			
+
 			<ul>
                <li id="step1">
                     <form name="tmplgenForm" id="tmplgenForm" action="" method="post">
@@ -68,36 +69,36 @@ include_once('include/functions.inc.php');
 				       <label for="site_url">Site URL:</label>
 				       <input type="text" name="site_url" id="site_url" size="35" maxlength="150" class="req" />
 				      </div>
-				     
+
 				     </fieldset>
                </li>
               <li>
-                 
+
                  <fieldset>
 				    <legend>Step 2: Header</legend>
-				    
-				   <div id="step2_main"> 
-					 
+
+				   <div id="step2_main">
+
 				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
 					 <label for="static"><input type="radio" name="selection" value="static" id="static" onclick="javascript:pageTracker._trackPageview('/hdr-static');" /> <a href="" class="screenshot available" rel="images/static-headers.jpg">chtml include</a></label><br />
 				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
 				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot unavailable" rel="images/kitchen_sink.jpg">Kitchen sink</a></label>
-				   
+
 				   </div>
-					 
+
 				   <div id="step2_sub">
-				   
+
 				   <fieldset id="options">
 				   <legend>Options:</legend>
-				
+
 				     <div id="colorSrchBlk">
 				      <div>
 				       <label for="color">Gold or purple background?</label>
 				       <input type="radio" name="color" value="purple" id="purple_bg" onclick="javascript:pageTracker._trackPageview('/hdr-gold-bg');" /> Purple<br />
 				       <input type="radio" name="color" value="gold" id="gold_bg" onclick="javascript:pageTracker._trackPageview('/hdr-purple-bg');" /> Gold
 				      </div>
-					  <br />				      
-				      <div>			    
+					  <br />
+				      <div>
 				       <label for="search">Search</label>
 				       <input type="radio" name="search" value="basic" id="s_basic" onclick="javascript:pageTracker._trackPageview('/hdr-srch-basic');" /> Basic<br />
 				       <input type="radio" name="search" value="no" id="s_no" onclick="javascript:pageTracker._trackPageview('/hdr-srch-no');" /> No search<br />
@@ -105,56 +106,56 @@ include_once('include/functions.inc.php');
 				       <input type="radio" name="search" value="super-tab" id="ss_tab" onclick="javascript:pageTracker._trackPageview('/hdr-srch-ss-tab');" /> <a href="" class="screenshot unavailable" rel="images/thin_strip_super_search_tab.jpg">Super (tab)</a>
 				      </div>
 				     </div>
-				    
+
 				    <div id="patchBlockwBlk">
 				     <div>
 				      <label for="patch">Patch or no patch?</label>
 				      <input type="radio" name="patch" value="1" id="patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-yes');" /> Patch<br />
 				      <input type="radio" name="patch" value="0" id="no_patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-no');" /> No patch
 				     </div>
-				     <br />			     
+				     <br />
 				     <div id="blockwBlk">
 				      <label for="blockw">W or no W?</label>
 				      <input type="radio" name="blockw" value="1" id="w_yes" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-yes');" /> W<br />
 				      <input type="radio" name="blockw" value="0" id="w_no" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-no');" /> No W
 				     </div>
 				    </div>
-				   
-				   </fieldset> 
-				   </div>		   
-				    
+
 				   </fieldset>
-                 
+				   </div>
+
+				   </fieldset>
+
               </li>
               <li id="step3">
                  <fieldset>
 			    <legend>Step 3: Footer</legend>
-			    
+
 			     <label for="ftr_basic"><input type="radio" name="footer" value="basic" id="ftr_basic" onclick="javascript:pageTracker._trackPageview('/ftr-basic');" /> Basic</label>
 			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" onclick="javascript:pageTracker._trackPageview('/ftr-with-w');" /> With "W"</label>
 			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch');" /> With gold patch</label>
 			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch');" /> With purple patch</label>
 			     <label for="ftr_static"><input type="radio" name="footer" value="static" id="ftr_static" onclick="javascript:pageTracker._trackPageview('/ftr-static');" /> <a href="" class="screenshot available" rel="images/static-footer.jpg">chtml include</a></label>
 			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" onclick="javascript:pageTracker._trackPageview('/ftr-no');" /> No thanks, I'll pass on the footer</label>
-			   
+
 			   </fieldset>
               </li>
               <li id="step4">
                  <fieldset>
 			     <legend>Step 4: Code Preference</legend>
-			     
+
 			      <label for="copy-paste"><input type="radio" name="code_pref" value="copy-paste" id="copy-paste" onclick="javascript:pageTracker._trackPageview('/copy-paste');" /> <a href="#" class="cpHelpCall">Copy &amp; Paste</a></label>
 			      <label for="include"><input type="radio" name="code_pref" value="include" id="include" onclick="javascript:pageTracker._trackPageview('/include');" /> <a href="#" class="incHelpCall">Include</a></label>
 			      <label for="both"><input type="radio" name="code_pref" value="both" id="both" onclick="javascript:pageTracker._trackPageview('/both');" /> Both</label>
-			     
+
 			    </fieldset>
-			    
+
 			     <input type="submit" name="generate" id="generate" value="Generate my code" class="button" onclick="javascript:pageTracker._trackPageview('/wizard-complete');" />
 			     </form>
-			    
+
               </li>
             </ul>
-		
+
 		</div>
 
 	</div>
@@ -164,11 +165,11 @@ include_once('include/functions.inc.php');
 <div id="prevBlk">
 
 	<div id="hdr-preview"><?php loadHdrPrvw(); ?></div>
-	
+
 	<div id="bodyTxt">Insert website here :)</div>
-	
+
 	<div id="outputBlk"></div>
-	
+
 	<div id="ftr-preview"><?php loadFtrPrvw(); ?></div>
 
 </div>
@@ -176,16 +177,16 @@ include_once('include/functions.inc.php');
 <!-- This contains the hidden content for inline calls -->
 <div id="hidden">
 	<div id="feedback">
-        <h2>Suggestions, questions, gripes?  Speak up!</h2>        
-        <form id="feedbackForm" action="/uweb/tmplgen/" method="post"> 
+        <h2>Suggestions, questions, gripes?  Speak up!</h2>
+        <form id="feedbackForm" action="/uweb/tmplgen/" method="post">
             <label for="email"><span class="feedback">Your Email:</span></label> <input class="feedback-in" type="text" id="email" name="email" />
             <br />
             <br />
             <label for="comment"><span class="feedback">Comments:</span></label> <textarea class="feedback-in" id="comment" name="comment"></textarea>
             <br />
-            <br /> 
-            <input id="feedbackSubmit" type="submit" value="Talk to us &raquo;" /> 
-        </form>	   
+            <br />
+            <input id="feedbackSubmit" type="submit" value="Talk to us &raquo;" />
+        </form>
     </div>
     <div id="faq">
         <h3>FAQ</h3>
@@ -207,6 +208,36 @@ include_once('include/functions.inc.php');
          <li><h4>I have other questions, who do I contact?</h4>
                  Please <a href="mailto:uweb@uw.edu?subject=Header/Footer feedback">send us a quick email</a>, detailing your questions/concerns/etc.</li>
         </ul>
+    </div>
+    <div id="changeLog">
+     <h3>ChangeLog</h3>
+     <br />
+	 <h4>= 1.1 ============ <span>06-23-2010</span></h4>
+	 <br />
+
+	 <h5>Content:</h5>
+	 <ul>
+	  <li>changed "Employment" to "Jobs" (consistent with our homepage/sitewide footer nav)</li>
+	  <li>linked "&#169; 2010 University of Washington" to www.washington.edu and "Seattle, Washington" to www.seattle.gov in the footer (consistent with our homepage/sitewide footer nav)</li>
+	  <li>added a "Libraries" link to the top nav bar (consistent with our homepage/sitewide top nav)</li>
+	  <li>added a period "." to the end of "Discover what's next. It's the Washington Way" (now reads "Discover what's next. It's the Washington Way.")</li>
+	 </ul>
+
+	 <h5>CSS:</h5>
+	 <ul>
+	  <li>in footer.css: added
+	 #footerLogoLink {
+	     display: block;
+	     width: 74px;
+	     height: 74px;
+	 } and changed the markup to match, "wlogoLink" is now "footerLogoLink" (this makes sure we aren't duplicating an ID inside of header.css)</li>
+	  <li>in header.css: removed "color: transparent" from .formbutton (was invalid css)</li>
+	 </ul>
+
+	 <h5>XHTML:</h5>
+	 <ul>
+	  <li>replaced the content wrapper &lt;span id="autoMargin"&gt;...&lt;/span&gt; with &lt;div id="autoMargin"&gt;...&lt;/div&gt; (this fixes an XHTML validation problem that should have been fixed a long time ago)</li>
+	 </ul>
     </div>
     <div id="cpHelp">
     	<h3>Copy &amp; Paste Help</h3>

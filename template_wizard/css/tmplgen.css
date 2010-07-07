@@ -272,7 +272,7 @@ fieldset#options legend {
 	display: block;
 	position: absolute;
     top: 34px;
-    left: 588px;          
+    left: 510px;          
 	margin: 0;
 	padding: 0;
 }
@@ -310,20 +310,32 @@ fieldset#options legend {
 #hidden {
 	display: none;
 }
-#faq ul, #cpInstall ul, #incHelp ul, #cpHelp ul, #cpInstall ol, #incInstall ol {
+#changeLog ul, #faq ul, #cpInstall ul, #incHelp ul, #cpHelp ul, #cpInstall ol, #incInstall ol {
 	font-size: 11px;
 	margin: 12px 0 0 24px;
 	padding-top: 4px;
 }
-#faq li, #cpInstall li, #incHelp li, #incInstall li, #cpHelp li {
+#changeLog ul {
+        margin-bottom: 10px;
+}
+#changeLog li, #faq li, #cpInstall li, #incHelp li, #incInstall li, #cpHelp li {
 	padding-bottom: 10px;
 }
-#faq li a, #cpInstall li a, #incHelp li a, #incInstall li a, #cpHelp li a {
+#changeLog li a, #faq li a, #cpInstall li a, #incHelp li a, #incInstall li a, #cpHelp li a {
 	font-weight: bold;
 	color: #008F22;
 }
-#faq h4, #cpInstall h4, #incHelp h4, #cpHelp h4, #incInstall h4 {
+#changeLog h4, #faq h4, #cpInstall h4, #incHelp h4, #cpHelp h4, #incInstall h4 {
 	font-size: 13px;
+}
+#changeLog h4 span {
+        font-size: 12px;
+        font-weight: normal;
+}
+#changeLog h5 {
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
 }
 #faq li p {
 	padding: 6px 0;
