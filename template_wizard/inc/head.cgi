@@ -30,8 +30,22 @@ def main():
     if f.getfirst("i","").lower():
         foot.owner = f.getfirst("i","").lower()
     foot.lookup()
-
-    sHead = """<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" />"""
+    
+    from uwtempl import Header
+    h = cgi.FieldStorage()
+    head = Header()
+    if h.getfirst("i","").lower():
+        head.owner = h.getfirst("i","").lower()
+    if h.getlist("c"):
+        head.cache = h.getlist("c")[0]
+    head.lookup()
+    
+    if head.selection == 'sink':
+        sHead = """
+<link rel="stylesheet" href="/uweb/inc/css/header-full.css" type="text/css" />"""
+    else:
+        sHead = """
+<link rel="stylesheet" href="/uweb/inc/css/header.css" type="text/css" />"""
     sFoot = """
 <link rel="stylesheet" href="/uweb/inc/css/footer.css" type="text/css" />"""
     sPrint = """

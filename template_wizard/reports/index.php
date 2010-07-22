@@ -90,6 +90,31 @@ function getHeaderPatchNum() {
 $headerPatchCount = getHeaderPatchNum();
 
 
+function getHeaderSelectionNum() {
+	
+	global $mdb2;
+		
+	$query = sprintf('SELECT hdr.selection,
+	                         COUNT( * ) as count
+	                    FROM account as acct,
+	                         header as hdr
+	                   WHERE acct.active = \'%s\'
+	                     AND acct.owner = hdr.owner
+	                GROUP BY hdr.selection',1);
+	
+	$res =& $mdb2->query($query);
+		
+	while (($row = $res->fetchRow(MDB2_FETCHMODE_ASSOC))) {
+		$results[] = $row;
+	}
+	
+	return $results;
+	
+}
+
+$headerSelectionCount = getHeaderSelectionNum();
+
+
 function getFooterPatchNum($color = 'purple') {
 	
 	global $mdb2;
@@ -205,6 +230,7 @@ $totalInactiveAccts = getNumAccts($active = 0);
 $totalAccts = $totalActiveAccts+$totalInactiveAccts;
 
 $totalHeaderPatch = $headerPatchCount[0]['count']+$headerPatchCount[1]['count'];
+$totalHeaderSelection = $headerSelectionCount[0]['count']+$headerSelectionCount[1]['count']+$headerSelectionCount[2]['count']+$headerSelectionCount[3]['count'];
 
 $html = '';
 
@@ -242,6 +268,11 @@ $html .= '<ul>
 $html .= '<h2>H E A D E R </h2>';
 
 $html .= '<ul>
+ <li><h3>Thin strip, kitchen sink, static or no header:</h3>
+         Thin strip: '.round(($headerSelectionCount[0]['count']/$totalHeaderSelection)*100,2).'% ('.$headerSelectionCount[0]['count'].')<br />
+         Kitchen sink: '.round(($headerSelectionCount[3]['count']/$totalHeaderSelection)*100,2).'% ('.$headerSelectionCount[3]['count'].')<br />
+         Static: '.round(($headerSelectionCount[2]['count']/$totalHeaderSelection)*100,2).'% ('.$headerSelectionCount[1]['count'].')<br />
+         No header: '.round(($headerSelectionCount[1]['count']/$totalHeaderSelection)*100,2).'% ('.$headerSelectionCount[1]['count'].')</li>
  <li><h3>Background color preference:</h3>
          Purple: '.round(($purpleGoldCount[0]['count']/$totalActiveAccts)*100,2).'% ('.$purpleGoldCount[0]['count'].')<br />
          Gold: '.round(($purpleGoldCount[1]['count']/$totalActiveAccts)*100,2).'% ('.$purpleGoldCount[1]['count'].')</li>

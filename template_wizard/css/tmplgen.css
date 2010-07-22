@@ -56,7 +56,6 @@ a:link, a:visited, a:hover, a:active {
 }	
 #header {
 	height:80px;
-	background:#5DC9E1;
 	color:#fff;
 }				
 #content {
@@ -260,6 +259,7 @@ fieldset#options legend {
 }
 #ftr-preview {
 	clear: both;
+	margin-bottom: 180px;
 }
 #fdBkTtleBlk {
 	position: relative;

@@ -345,7 +345,7 @@ function loadHdrPrvw() {
 	$header = headerLookup();
 
 	// make sure the results exist and are in array format
-	if (!empty($header) && $header['selection'] == 'strip') {
+	if (!empty($header) && ($header['selection'] == 'strip' || $header['selection'] == 'sink')) {
 		$hdrPrvw = curlRequestGenerator('header.cgi?i='.$_SERVER['REMOTE_USER'].'&amp;c=0','plain');
 	} elseif (!empty($header) && $header['selection'] == 'static') {
 		$hdrPrvw = '<div class="no-selection-msg">chtml header include selected: Currently no preview available</div>';
@@ -393,8 +393,15 @@ function setStyleDefaults() {
 	$header = headerLookup();
 	$footer = footerLookup();	
 	
+	// provide the appropriate stylesheet, based on the user's header selection
+	if (!empty($header) && $header['selection'] == 'sink') {
+		$styleDefaults .= '$(\'head\').append(\'<link rel="stylesheet" href="../inc/css/header-full.css" type="text/css" title="header-styles" />\');';
+	} else {
+		$styleDefaults .= '$(\'head\').append(\'<link rel="stylesheet" href="../inc/css/header.css" type="text/css" title="header-styles" />\');';
+	}
+	
 	// does a user have a header or footer selected in the system?
-	if ((!empty($header) && $header['selection'] == 'strip') || (!empty($footer) && $footer['selected'] == '1')) {
+	if ((!empty($header) && ($header['selection'] == 'strip' || $header['selection'] == 'sink')) || (!empty($footer) && $footer['selected'] == '1')) {
 		$styleDefaults .= '$(\'#bodyTxt\').css(\'display\',\'block\');';
 	} else {
 		$styleDefaults .= '$(\'#bodyTxt\').css(\'display\',\'none\');';

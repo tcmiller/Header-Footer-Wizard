@@ -78,6 +78,7 @@ class Header(object):
     def __init__(self):
         self.id = ""
         self._owner = ""
+        self._selection = "strip"
         self._color = "gold"
         self._wordmark = "1"
         self._blockw = "1"
@@ -91,6 +92,10 @@ class Header(object):
         return "%s" % (self._owner)
     def set_owner(self, owner):
         self._owner = owner
+    def get_selection(self):
+    	return "%s" % (self._selection)
+    def set_selection(self, selection):
+        self._selection = selection
     def get_color(self):
         return "%s" % (self._color)
     def set_color(self, color):
@@ -141,14 +146,15 @@ class Header(object):
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select header.id,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
+                db.load("""select header.id,header.selection,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
                 if len(db.data) > 0:
                     self.id = db.data[0][0]
-                    self.blockw = db.data[0][1]
-                    self.patch = db.data[0][2]
-                    self.color = db.data[0][3]
-                    self.search = db.data[0][4]
-                    self.wordmark = db.data[0][5]
+                    self.selection = db.data[0][1]
+                    self.blockw = db.data[0][2]
+                    self.patch = db.data[0][3]
+                    self.color = db.data[0][4]
+                    self.search = db.data[0][5]
+                    self.wordmark = db.data[0][6]
                     # If cache is turned off, file still generated
                     # to create updated version of cache
                     cache = MyCache(self)
@@ -161,6 +167,7 @@ class Header(object):
     	return (color[self.color],blockw[self.blockw],patch[self.patch])
 
     owner = property(get_owner, set_owner)
+    selection = property(get_selection, set_selection)
     color = property(get_color, set_color)
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)

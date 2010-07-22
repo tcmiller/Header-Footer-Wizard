@@ -212,7 +212,7 @@ function processHeaderInfo($values) {
 	} else {
 		
 		// only show a preview if we're looking at the thin strip header (since the kitchen sink isn't ready yet)
-		if ($values['selection'] == 'strip') {
+		if ($values['selection'] == 'strip' || $values['selection'] == 'sink') {
 		
 			curlRequestGenerator('header.cgi?i='.$values['owner'].'&c=0');
 		
@@ -407,6 +407,8 @@ function getCode() {
 	
 	$header_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header.css" type="text/css" media="screen" />
 ';
+	$header_full_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/header-full.css" type="text/css" media="screen" />
+';
 	$print_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/print.css" type="text/css" media="print" />
 ';
 	$footer_css_html = '<link rel="stylesheet" href="'.ABS_URL_DEPTS.'css/footer.css" type="text/css" media="screen" />
@@ -430,10 +432,13 @@ function make_blank() {if(document.uwglobalsearch.q.value=="Search the UW") {doc
 	
 	// chtml css+js include
 	$chtml_css_js_html = '<td><form><input type="text" value="'.$chtml_inc_css_js_html.'" size="35" /></form></td>';
-	
+	 
+	// copy & paste css+js html
 	$cp_css_js_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$print_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_h_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_full_css_html.$print_css_html.$js_html.'</textarea></form></td>';
 	$cp_css_js_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$print_css_html.$footer_css_html.'</textarea></form></td>';
 	$cp_css_js_both_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_css_html.$print_css_html.$footer_css_html.$js_html.'</textarea></form></td>';
+	$cp_css_js_both_h_f_html = '<td class="removeOutline"><form><textarea cols="70" rows="8">'.$header_full_css_html.$print_css_html.$footer_css_html.$js_html.'</textarea></form></td>';
 	
 	$inc_css_js_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_css_js_depts_html.'" size="35" /></form></td>';
 	
@@ -441,7 +446,7 @@ function make_blank() {if(document.uwglobalsearch.q.value=="Search the UW") {doc
 	$chtml_h_html = '<td><form><span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Purple:</span> <input type="text" value="'.$chtml_inc_h_purple_html.'" size="50" /><br />
 	                           <span style="display: block; float: left; margin: 0; padding: 0; width: 50px; font-size: 12px; font-weight: bold;">Gold:</span> <input type="text" value="'.$chtml_inc_h_gold_html.'" size="50" /></form></td>';
 	
-	$cp_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.$cp_h.'</textarea></form></td>';
+	$cp_h_html = '<td class="removeOutline"><form><textarea cols="70" rows="16">'.htmlentities($cp_h).'</textarea></form></td>';
 	$inc_h_html = '<td><form><strong>On depts:</strong>&nbsp;&nbsp;<input type="text" value="'.$inc_h_depts.'" size="35" /></form></td>';
 	
 	// chtml footer include html
@@ -475,9 +480,47 @@ function make_blank() {if(document.uwglobalsearch.q.value=="Search the UW") {doc
 		
 		$html .= $empty_col.$inc_col.'</tr><tr>'.$css_js_row.$chtml_css_js_html.'</tr><tr>'.$footer_row.$chtml_f_html;
 	
-	// user wants both the header and footer
-	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
+	// user wants both the full header and footer
+	} elseif ($usersPrefs['selection'] == 'sink' && $usersPrefs['selected'] == '1') {
 		
+		$html .= $empty_col;
+		
+		// include + copy & paste
+		if ($usersPrefs['code_pref'] == 'both') {
+			$html .= $cp_col.$inc_col.'</tr><tr>'.$css_js_row.$cp_css_js_both_h_f_html.$inc_css_js_html.'</tr><tr>'.$header_row.$cp_h_html.$inc_h_html.'</tr><tr>'.$footer_row.$cp_f_html.$inc_f_html;
+		
+		// include
+		} elseif ($usersPrefs['code_pref'] == 'include') {
+			$html .= $inc_col.'</tr><tr>'.$css_js_row.$inc_css_js_html.'</tr><tr>'.$header_row.$inc_h_html.'</tr><tr>'.$footer_row.$inc_f_html;
+		
+		// copy & paste
+		} else {
+			$html .= $cp_col.'</tr><tr>'.$css_js_row.$cp_css_js_both_h_f_html.'</tr><tr>'.$header_row.$cp_h_html.'</tr><tr>'.$footer_row.$cp_f_html;
+		
+		}
+		
+	// user wants just the full header and no footer
+	} elseif ($usersPrefs['selection'] == 'sink' && $usersPrefs['selected'] == '0') {
+
+		$html .= $empty_col;
+		
+		// include + copy & paste
+		if ($usersPrefs['code_pref'] == 'both') {             
+			$html .= $cp_col.$inc_col.'</tr><tr>'.$css_js_row.$cp_css_js_h_f_html.$inc_css_js_html.'</tr><tr>'.$header_row.$cp_h_html.$inc_h_html;	
+		
+		// include
+		} elseif ($usersPrefs['code_pref'] == 'include') {
+			$html .= $inc_col.'</tr><tr>'.$css_js_row.$inc_css_js_html.'</tr><tr>'.$header_row.$inc_h_html;
+		
+		// copy & paste
+		} else {
+			$html .= $cp_col.'</tr><tr>'.$css_js_row.$cp_css_js_h_f_html.'</tr><tr>'.$header_row.$cp_h_html;
+		
+		}
+		
+	// user wants both the thin strip header and footer
+	} elseif ($usersPrefs['selection'] == 'strip' && $usersPrefs['selected'] == '1') {
+				
 		$html .= $empty_col;
 		
 		// include + copy & paste

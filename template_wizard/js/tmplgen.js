@@ -9,7 +9,7 @@ $(function () {
       });
 
 	// Some form defaults, mostly the disabled radio buttons
-	$('#sink').attr('disabled','disabled');
+	//$('#sink').attr('disabled','disabled');
 	$('#ss_inline').attr('disabled','disabled');
 	$('#ss_tab').attr('disabled','disabled');
 	
@@ -59,6 +59,14 @@ $(function () {
     	$('#hdr-preview').css('display','block');
     	$('#hdr-preview').html(data);
     	$('#outputBlk').hide();
+    	
+    	var headerStyleName = 'header-styles';
+    	
+    	if ($('input[name=selection]:checked').val() == 'sink') {
+    		$('link[title='+headerStyleName+']').attr('href','../inc/css/header-full.css');
+    	} else {
+    		$('link[title='+headerStyleName+']').attr('href','../inc/css/header.css');
+    	}
     	
     	if ($('input[name=selection]:checked').val() == 'static') {
     		$('#ftr_basic').attr('disabled','disabled');
