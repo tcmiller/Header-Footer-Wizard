@@ -89,6 +89,15 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+#footerMain .logoAbsoluteFooter a {
+	overflow: hidden;
+	text-indent: -1000px;
+}
+#footerMain .logoAbsoluteFooter a#footerWLogoLink {
+	display: block;
+	width: 76px;
+	height: 75px;
+}
 .purple .logoAbsoluteFooter {
 	background-color: #39275B;
 }
@@ -103,6 +112,9 @@
 	margin-left: 95px;
 	margin-top: -25px;
 	color: #39275B;
+}
+#footerLinks h3 a {
+	text-decoration: none;
 }
 .leftText {
 	margin-left: 45px;

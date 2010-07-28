@@ -65,8 +65,8 @@ def main():
    <a id="footerLogoLink" href="http://www.washington.edu/">University of Washington</a>
   </div>
   <div id="footerLinks">
-   <div class="logoAbsoluteFooter"></div>
-   <h3>Discover what's next. It's the Washington Way.</h3>
+   <div class="logoAbsoluteFooter"><a id="footerWLogoLink" href="http://www.washington.edu/">W</a></div>
+   <h3><a href="http://www.washington.edu/discovery/washingtonway/">Discover what's next. It's the Washington Way.</a></h3>
    <ul>
     <li class="leftText"><a href="http://www.washington.edu/">&#169; %d University of Washington</a></li>       	
     <li class="centerText"><a href="http://www.seattle.gov/">Seattle, Washington</a></li>         	

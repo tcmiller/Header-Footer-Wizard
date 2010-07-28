@@ -105,7 +105,7 @@ def main():
    <ul id="navg">
     <li class="mainNavLinkLeft">
      <div class="mainNavLinkRight">
-      <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/discovery/about/">Discover the UW</a></h4>
+      <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/discover/">Discover the UW</a></h4>
       <br class="clear" />
       <div class="text">
        <div class="mainNavBG">
@@ -142,7 +142,7 @@ def main():
     </li>
     <li class="mainNavLinkLeft">
      <div class="mainNavLinkRight">
-      <h4><a class="mainNavLinkNotch" href="http://admit.washington.edu/">Current Students</a></h4>
+      <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/students/">Current Students</a></h4>
       <br class="clear" />
 	  <div class="text">
 	   <div class="mainNavBG">
@@ -180,7 +180,7 @@ def main():
     </li>
 	<li class="mainNavLinkLeft">
 	 <div class="mainNavLinkRight">
-	  <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/students">Future Students</a></h4>
+	  <h4><a class="mainNavLinkNotch" href="http://admit.washington.edu/">Future Students</a></h4>
 	  <br class="clear" />
       <div class="text">
 	   <div class="mainNavBG">
@@ -213,7 +213,7 @@ def main():
 	</li>
 	<li class="mainNavLinkLeft">
 	 <div class="mainNavLinkRight">
-	  <h4><a class="mainNavLinkNotch" href="http://www.uw.edu/uwin">Faculty &amp; Staff</a></h4>
+	  <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/facultystaff/">Faculty &amp; Staff</a></h4>
 	  <br class="clear" />
       <div class="text">
 	   <div class="mainNavBG">
@@ -282,7 +282,7 @@ def main():
 	</li>
 	<li class="mainNavLinkLeft">
      <div class="mainNavLinkRight">
-      <h4><a class="mainNavLinkNotch" href="http://www.uw.edu/community">NW Neighbors</a></h4><br class="clear" />
+      <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/nwneighbors/">NW Neighbors</a></h4><br class="clear" />
       <div class="text">
        <div class="mainNavBG">
 	    <ul class="mainNavLinks">
