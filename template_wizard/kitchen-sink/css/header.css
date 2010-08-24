@@ -1,0 +1,371 @@
+
+/* typography.css */
+.headerFull h4 			{ font-size:1em;line-height:1.25;margin-bottom:1.25em; }
+
+.clear 					{ clear:both;}
+
+.headerFull h4, 
+.headerFull ul,
+.headerFull form 		{ margin: 0; padding: 0; }
+
+body .headerFull { font-size: .75em; }
+
+.headerFull p           { line-height: 17px; color: #484848;}
+.headerFull a:focus, 
+.headerFull a           { color: #0F79A3; text-decoration: none; }
+
+
+/*----------Rollover-----------*/
+
+#navg div.mainNavLinkRight .text {
+	display: none;
+}
+.text 					{	background-image: url("http://depts.washington.edu/uweb/inc/img/full/menu_right.png");
+							background-repeat: no-repeat;
+							background-position: left bottom; }
+
+#navg div.mainNavLinkRight:hover .text 
+						{	position: absolute;
+							display: block;
+							width: 466px;
+							color: #000;
+							margin-top: 0;
+							z-index: 100000000; }
+							
+.mainNavBG				 {	background-image: url("http://depts.washington.edu/uweb/inc/img/full/menu_shadow.png");
+							background-repeat: no-repeat;
+							background-position: 2px 0;
+							overflow: hidden;	}
+							
+#header .mainNavBG ul	 {	padding: 18px 0 10px 5px;
+							margin: 0;
+							width:185px; }
+							
+#header .mainNavBG li	 {	float: none;
+							display: list-item;
+							margin: 0 10px;
+							list-style-type: none;
+							background-image: none;
+							line-height: 13px;
+							padding: 2px 0;
+							border-bottom-width: 1px;
+							border-bottom-style: dotted;
+							border-bottom-color: #CCC; }
+							
+#header .mainNavBG li a {	font-family: Arial, Helvetica, sans-serif;
+							font-size: .98em;
+							font-weight: normal;
+							color: #5F5F5F;
+							text-decoration: none;
+							outline: none;
+							padding: 2px 0 2px 8px;
+							white-space: normal;
+							display: block; }
+							
+#header .mainNavBG li a:hover 
+						{	color: #355EA2;
+							outline: none;
+							background-image: url("http://depts.washington.edu/uweb/inc/img/full/arrow_small.gif");
+							background-repeat: no-repeat;
+							background-position: left;
+							cursor: pointer; }
+							
+.mainNavLinks			{	display: block;
+							float: left; }
+							
+.mainNavBlurb {
+	border-left:1px solid #E7E6E6;
+	float:right;
+	margin:20px 0 0;
+	padding:0 40px 0 25px;
+	width:195px;
+}
+.mainNavBlurb img {
+	margin-bottom: 10px;
+}
+.mainNavBlurb p {
+	padding-top: 3px;
+	font-size:.98em;
+	font-weight: lighter;
+	line-height: 14px;
+	margin-bottom:15px;
+}
+.mainNavBlurb p b {
+	font-size: 1.1em;
+	padding-bottom:5px;
+	display:block;
+}
+#header a.external-link {
+	background:url("http://depts.washington.edu/uweb/inc/img/full/arrow_bullet.gif") right 4px no-repeat;
+	padding-right:8px;
+	font-weight:bold;
+	display:inline-block;
+}
+#header a.internal-link {
+	background:url("http://depts.washington.edu/uweb/inc/img/full/arrow_bullet.gif") right 4px no-repeat;;
+	padding-right:8px;
+	font-weight:bold;
+	display:inline-block;
+}
+
+
+/*----------Make Full Header-----------*/
+
+#header a.mainNavLinkNotch {
+	padding:0 10px 7px 8px;
+	color: #FFFFFF;
+	text-decoration: none;	
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#header h4 {
+	letter-spacing:0;
+	display:inline;
+}
+.mainNavLinkNotch:hover {
+	cursor: pointer;
+}
+
+#header .mainNavLinkLeft:hover {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_left.gif");
+	background-repeat: no-repeat;
+	background-position: left top;
+	border-left-color: transparent;	
+}
+#navg li:hover .mainNavLinkRight {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_right.gif");
+	background-repeat: no-repeat;
+	background-position: right top;	
+	display:block;		
+}
+#navg li:hover .mainNavLinkNotch {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_notch.gif");
+	background-repeat: no-repeat;
+	background-position: center 14px;
+	display:inline-block;
+	color: #333;
+	height: 21px;
+}
+#navg li:active .mainNavLinkNotch {
+	color: #666;
+}
+
+#header {
+	height:142px;
+	background-position: center top;
+	background-repeat: no-repeat;
+	width: 960px;
+	margin: 0 auto;
+}
+#header li {
+	float: left;
+	display:inline;
+	margin-left: 5px;
+	padding-left: 2px;
+	list-style-type: none;
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/nav_left_bar.gif");
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.mainNavLinkRight {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:1em;
+	font-weight: bold;
+	color: #FFF;
+	text-decoration: none;
+	outline:none;
+	padding-top:2px;
+}
+p.tagline {
+	clear:both;
+	display: block;
+	text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:1em;
+	padding: 20px 0 20px 0;	
+	margin: 0;
+}
+.tagline a {
+	color: #FFF;
+}
+.taglineGold {
+	color: #d7a900;
+}
+
+#header li.medicineLogo {
+	background-image: none;
+	margin-left: 80px;
+}
+.medicineLogo a {
+	background-image:url("http://depts.washington.edu/uweb/inc/img/full/medicine.gif");
+	background-repeat:no-repeat;
+	display:block;
+	height:13px;
+	margin-top:4px;
+	overflow:hidden;
+	text-indent:-9999px;
+	width:105px;
+}
+.medicineLogo a:hover {
+	background-position: 0px -14px;	
+}
+#uwLogo {
+	display: block;
+	width: 302px;
+	height: 21px;
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/wlogo_lg.gif");
+	background-repeat: no-repeat;
+	padding: 5px 0 0 130px;
+	background-position: right bottom;
+}
+#uwLogo a {
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+}
+
+/*-- Patch --*/
+
+.wheader .wlogoSmall {
+	padding-left: 100px;
+}
+.wheader {
+	background-position: 0px -150px;
+}
+.wheader .logoAbsolute {
+	background-color: #D7A900;
+}
+.wheader li a {
+	color: #333;
+}
+.wheader li a:hover {
+	color: #000;
+}
+.logoAbsolute {
+	position: absolute;
+	height: 75px;
+	width: 76px;
+	background-color: #39275B;
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/w.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-left: -85px;
+}
+.wlogoSmall {
+	height: 25px;
+	float: left;
+}
+.wlogoSmall a {
+	display: block;
+	text-indent: -1000px;
+	overflow:hidden;
+}
+#wtext {
+	height: 25px;
+	float: right;
+}
+.border {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/leftbar.png");
+	background-repeat: no-repeat;
+	background-position: left center;	
+	display: block;
+	float: left;	
+}
+
+/*-- Search --*/
+
+.wfield {
+	background:url("http://depts.washington.edu/uweb/inc/img/full/tfbg3_8.png") no-repeat scroll 0 0 transparent;
+	float:left;
+	height:21px;
+	padding:2px 0 0 3px;
+}
+input.wTextInput {
+	width: 142px;
+	height: 17px;
+	background: none;
+	border: none;
+	color: #777;
+    padding-top: 2px;
+    margin-top: 0px;
+	margin-left: 5px;
+	font-size: 10px;
+}
+
+/*-- Global Header --*/
+
+.wheader {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/bg.gif");
+	background-repeat: repeat-x;
+	height: 25px;
+	padding: 0 0 0 20px;
+	overflow: hidden;
+}
+.wheader ul{
+	margin: 0;
+}
+.wheader li{
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	white-space: nowrap;
+}
+.wheader li a {
+	text-decoration: none;
+	display:block;
+	float: left;
+	padding: 8px 6px 7px 6px;
+	white-space: nowrap;
+	text-transform: uppercase;
+}
+.wheader li a:hover {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/notch.gif");
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+#wsearch {
+	height: 25px;
+	float: right;
+}
+#wlogoLink {
+	display: block;
+	width: 74px;
+	height: 74px;
+}
+.formbutton {
+	background:url("http://depts.washington.edu/uweb/inc/img/full/submit2_8.png") no-repeat left top;
+	border:medium none;
+	color:transparent;
+	cursor:pointer;
+	font-weight:bold;
+	height:18px;
+	margin:0;
+	padding:0 0 0 2px;
+	text-indent:-9999px;
+	text-transform:capitalize;
+	vertical-align:top;
+	width:30px;
+}
+#autoMargin {
+	width: 960px;
+	margin: 0 auto;
+}
+.margRight {
+	margin-right: 20px;
+}
+
+
+/*-- Reset --*/
+li {margin: 0; padding:0;}
+
+
+
+#bg {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/bg_portal.gif");
+	background-repeat: repeat-x;
+}
+#header {
+	background-image: url("http://depts.washington.edu/uweb/inc/img/full/default.jpg");
+	padding-top:15px;
+}
