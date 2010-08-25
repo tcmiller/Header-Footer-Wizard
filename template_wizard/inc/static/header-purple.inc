@@ -18,7 +18,7 @@
    <ul>
     <li><a href="http://www.washington.edu/">UW Home</a></li>
     <li><span class="wborder"><a href="http://www.washington.edu/home/directories.html">Directories</a></span></li>
-    <li><span class="wborder"><a href="http://www.washington.edu/visit/events.html">Calendar</a></span></li>
+    <li><span class="wborder"><a href="http://www.washington.edu/discover/visit/uw-events">Calendar</a></span></li>
     <li><span class="wborder"><a href="http://www.lib.washington.edu/">Libraries</a></span></li>
     <li><span class="wborder"><a href="http://www.washington.edu/maps/">Maps</a></span></li>
     <li><span class="wborder"><a href="http://myuw.washington.edu/">My UW</a></span></li>
