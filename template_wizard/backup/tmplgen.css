@@ -1,0 +1,358 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #fff url(../images/bg_slice.jpg) repeat-x;
+	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
+}
+img {
+    border: 0;
+}
+a:link, a:visited, a:hover, a:active {
+	color: #39275b;
+}
+
+/*** Body CSS ***/
+.clear {
+	clear: both;
+}
+.subHead {
+	display: block;
+	padding: 0 0 10px 0;
+	font-weight: bold;
+	font-size: 13px;
+	color: #39275b;
+}
+.title {
+	position: relative;
+    background:url(../images/text.gif) no-repeat 0 0;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+	height: 38px;
+	width: 650px;
+	margin: 0 auto;
+}
+
+/*** Slider CSS ***/
+
+/* image replacement */
+.graphic, #prevBtn, #nextBtn {
+	margin:0;
+	padding:0;
+	display:block;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+#container {
+	margin:0 auto;
+	position:relative;
+	text-align:left;
+	width:696px;
+	margin-bottom:2em;
+	padding: 20px;
+	background-image: url(../images/bg.png);
+}	
+#header {
+	height:80px;
+	background:#5DC9E1;
+	color:#fff;
+}				
+#content {
+	position:relative;
+}		
+#slider {}	
+#slider ul, #slider li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#slider li { 
+	/* 
+	define width and height of list item (slide)
+	entire slider area will adjust according to the parameters provided here
+	*/ 
+	width:696px;
+	height:270px;
+	overflow:hidden; 
+}	
+#prevBtn, #nextBtn { 
+	display:block;
+	width:132px;
+	height:64px;
+	position:absolute;
+	left:-120px;
+	top:100px;
+}	
+#nextBtn {
+	left:680px;
+}														
+#prevBtn a, #nextBtn a {  
+	display:block;
+	width:132px;
+	height:64px;
+	background:url(../images/btn_prev.png) no-repeat 0 0;	
+}	
+#nextBtn a { 
+	background:url(../images/btn_next.png) no-repeat 0 0;	
+}
+
+/*** Form Attributes ***/
+#tmplgenForm form {
+	font-size: 16px;
+}
+#tmplgenForm input {
+	font-size: 16px;
+}
+fieldset {
+	padding: 20px;
+	margin: 10px 0 0 20px;
+	width: 615px;
+	border: 1px solid #ccc;
+}
+legend {
+	font-weight: bold;
+	font-size: 17px;
+	color: #39275b;
+	padding: 0 3px;
+}
+a.unavailable {
+	color: #ccc;
+	text-decoration: none;
+	border-bottom: 3px double;
+}
+a:hover.unavailable {
+	cursor: default;
+}
+a.available {
+	text-decoration: none;
+	border-bottom: 3px double;
+}
+a:hover.available {
+	cursor: default;
+}
+.error {
+	color: red;
+	font-size: 12px;
+}
+#step1 p {
+	clear: both;
+}
+#step1 label {
+	float: left;
+	width: 8em;
+}
+#step1 div {
+	clear: both;
+	margin-bottom: 8px;
+}
+#step2_main {
+	float: left;
+	width: 30%;
+}
+#step2_sub {
+	font-size: 11px;
+	float: right;
+	width: 70%;
+	display: none;
+}
+#step2_sub #colorSrchBlk {
+	float: left;
+	width: 50%;
+}
+#step2_sub #patchBlockwBlk {
+	float: left;
+	width: 50%;
+}
+#step2_sub label {
+	display: block;
+	font-weight: bold;
+	padding-bottom: 4px;
+}
+#step2_sub input {
+	margin-left: 4px;
+}
+fieldset#options {
+	width: 400px;
+	padding: 10px 0 20px 15px;
+	margin: 0;
+}
+fieldset#options legend {
+	font-weight: bold;
+	font-size: 13px;
+	color: #39275b;
+}
+#step3 label {
+	display: block;
+	padding-bottom: 2px;
+}
+#step4 label {
+	display: block;
+	padding-bottom: 2px;
+}
+#generate {
+	margin: 20px 272px;
+	font-size: 16px;
+}
+#strip,#static,#no-hdr,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_static,#ftr_no,#copy-paste,#include,#both {
+	border: 0;
+}
+#prevBlk {
+	width: 100%;
+}
+.no-selection-msg {
+	text-align: center;
+}
+#bodyTxt {
+	margin: 100px 0;
+	text-align: center;
+}
+#outputBlk {
+	clear: both;
+	margin: 70px auto 0;
+	width: 960px;
+	text-align: center;
+}
+#outputBlk table {
+	margin: 0 auto;
+	text-align: left;
+}
+#outputBlk table td {
+	vertical-align: top;
+ 	border: 1px dashed #ccc;
+	padding: 10px;
+}
+#outputBlk table th {
+	border: 1px dashed #ccc;
+	padding: 10px;
+}
+#outputBlk table th a {
+    vertical-align: super;
+	padding: 0 2px;
+	font-size: 11px;
+	color: #008F22;
+}
+#outputBlk table th a:hover {
+	text-decoration: none;
+}
+#outputBlk table th span {
+	vertical-align: super;
+	font-size: 11px;
+	color: #000;
+}
+#outputBlk table .removeOutline {
+	border: 0;
+}
+#outputBlk table td form input {
+	font-size: 14px;
+}
+#outputBlk table td form strong {
+	text-align: right;
+	float: left;
+	display: block;
+	width: 60px;
+	font-size: 12px;
+}
+#outputBlk table td form textarea {
+	font-family: Arial, Verdana, Trebuchet, "Trebuchet MS", Sans;
+	font-size: 12px;
+}
+#ftr-preview {
+	clear: both;
+}
+#fdBkTtleBlk {
+	position: relative;
+    display: block;
+    width: 700px;
+    height: 38px;
+    margin: 40px auto 10px;	
+}
+#fdBkTtleBlk .fdBkLnk {
+	display: block;
+	position: absolute;
+    top: 34px;
+    left: 510px;          
+	margin: 0;
+	padding: 0;
+}
+#fdBkTtleBlk .fdBkLnk span {
+	font-size: 11px;
+}
+#fdBkTtleBlk .fdBkLnk a {
+    color: #000;
+	font-size: 11px;
+}
+#fdBkTtleBlk .fdBkLnk a:hover {
+	text-decoration: none;
+}
+#feedback h2 {
+	font-size: 16px;
+	font-weight: bold;
+}
+#feedbackForm {
+	margin: 20px 0 50px 0;
+}
+#feedbackForm label {
+	float: left;
+	width: 100px;
+	vertical-align: top;
+	font-size: 14px;
+}
+#feedbackForm span.error {
+	display: block;
+	clear: both;
+	margin: 5px 0 -18px;
+	padding: 0;
+	font-size: 12px;
+	color: red;
+}
+#hidden {
+	display: none;
+}
+#changeLog ul, #faq ul, #cpInstall ul, #incHelp ul, #cpHelp ul, #cpInstall ol, #incInstall ol {
+	font-size: 11px;
+	margin: 12px 0 0 24px;
+	padding-top: 4px;
+}
+#changeLog ul {
+        margin-bottom: 10px;
+}
+#changeLog li, #faq li, #cpInstall li, #incHelp li, #incInstall li, #cpHelp li {
+	padding-bottom: 10px;
+}
+#changeLog li a, #faq li a, #cpInstall li a, #incHelp li a, #incInstall li a, #cpHelp li a {
+	font-weight: bold;
+	color: #008F22;
+}
+#changeLog h4, #faq h4, #cpInstall h4, #incHelp h4, #cpHelp h4, #incInstall h4 {
+	font-size: 13px;
+}
+#changeLog h4 span {
+        font-size: 12px;
+        font-weight: normal;
+}
+#changeLog h5 {
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+}
+#faq li p {
+	padding: 6px 0;
+}
+#incInstall h3 {
+	padding-bottom: 10px;
+}
+#incInstall li p {
+	font-size: 11px;
+}
+
+/*** Screenshot CSS ***/
+#screenshot{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#fff;
+	padding:5px;
+	display:none;
+	color:#fff;
+}

@@ -1,0 +1,225 @@
+@charset "utf-8";
+body {
+	margin: 0px;
+	background-position: top 25px;
+}
+
+#autoMargin form {
+	width: auto;
+	height: auto;	
+	min-width: 1px;
+}
+#autoMargin a,
+#autoMargin a:active, 
+#autoMargin a:hover, 
+#autoMargin a:focus {
+	background-color:transparent !important;
+	font-size: 9px;
+	font-weight: bold;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif !important;
+	line-height:10px;
+	outline:none;
+	white-space: nowrap;
+	text-transform: uppercase;
+	font-style: normal;
+	letter-spacing: normal;	
+}
+#autoMargin {
+	display: block;
+	width: 950px;
+	margin: 0 auto;
+}
+
+
+/*-- Color --*/
+.colorGold {
+	background-position: 0px -75px;
+}
+.colorGold .logoAbsolute {
+	background-color: #39275B;
+}
+.colorGold li a {
+	color: #333;
+}
+.colorGold li a:hover {
+	color: #000;
+}
+.colorGold li a:active {
+	color: #696969;
+}
+.colorGold li a:focus {
+	color: #fff;
+}
+.colorGold  .wlogoSmall {
+	background-position: 68px 5px;
+}
+
+.colorPurple {
+	background-position: 0px 0px;
+}
+.colorPurple .wlogoSmall {
+	background-position: 68px -19px;
+}
+.colorPurple .logoAbsolute {
+	background-color: #D7A900;
+}
+.colorPurple li a {
+	color: #FFF;
+}
+.colorPurple li a:hover {
+	color: #CCC;
+}
+.colorPurple li a:active {
+	color: #d7a900;
+}
+.colorPurple li a:focus {
+	color: #d7a900;
+}
+
+.logoAbsolute {
+	position: absolute;
+	height: 75px;
+	width: 76px;
+	background-color: #39275B;
+	background-image: url(../img/w.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-left: -85px;
+	z-index: 9999;
+}
+.wlogoSmall {
+	height: 25px;
+	width: 250px;
+	float: left;
+	background-image: url(../img/w.gif);
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.wlogoSmall a {
+	display: block;
+	text-indent: -1000px;
+	overflow:hidden;
+	height: 25px;
+}
+#wtext {
+	height: 25px;
+	float: right;
+}
+.wborder {
+	background-image: url(../img/leftbar.png);
+	background-repeat: no-repeat;
+	background-position: left center;	
+	display: block;
+	float: left;	
+}
+
+
+
+/*-- Search --*/
+
+.wfield {
+	height: 19px;
+	background: url(../img/tfbg2_8.png) no-repeat;
+	float: left;
+}
+.wTextInput {
+	width: 135px;
+	height: 17px;
+	background: none;
+	border: none;
+	color: #999;
+
+}
+#wsearch input {
+	padding: 3px 0 0 0 !important;
+	background-color:transparent;
+	margin: 0 0 0 5px !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px !important;
+	border-style: none;
+}
+
+/*-- Global Header --*/
+
+#wheader {
+	background-image: url(../img/bg.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	padding: 0 20px 0 20px;
+	overflow: hidden;
+}
+#wheader ul{
+	margin: 0;
+}
+#wheader li{
+	display: inline;
+	white-space: nowrap;
+	margin: 0;
+}
+#wheader li a {	
+	display:block;
+	float: left;
+	padding: 8px 6px 7px 6px;
+}
+#wheader li a:hover {
+	background-image: url(../img/notch.gif);
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+#wsearch {
+	height: 25px;
+	float: right;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+#wlogoLink {
+	display: block;
+	width: 74px;
+	height: 74px;
+}
+.formbutton {
+	cursor:pointer;
+	border:none;
+	background:#999;
+	color:#666;
+	font-weight:bold;
+	padding: 0 15px 0 0;
+	background:url(../img/submit_8.png) no-repeat left top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin: 0 15px 0 0;
+	width: 30px;
+	height: 18px;
+	padding-bottom: 1px;
+	vertical-align: top;
+	text-transform: capitalize;
+	text-indent:-9999px;
+}
+/*-- Patch --*/
+
+.patchNo .logoAbsolute {
+	display: none;
+}
+.patchNo .wlogoSmall {
+	background-position: 0px -19px;
+	padding-left: 0px;
+}
+.patchYes .wlogoSmall {
+	padding-left: 100px;
+}
+
+/*-- With or without W --*/
+
+.wNo .wlogoSmall {
+	background-position: -28px 5px;
+}
+.colorPurple.wNo .wlogoSmall {
+	background-position: -28px -19px;
+}
+.colorGold.patchNo .wlogoSmall {
+	background-position: 0px 5px;
+}
+.colorGold.wNo .wlogoSmall {
+	background-position: -28px 5px;
+}

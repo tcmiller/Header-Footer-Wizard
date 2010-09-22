@@ -159,7 +159,7 @@ def main():
 	     <li><a href="http://www.washington.edu/students/osfa/">Financial Aid</a></li>
 	     <li><a href="http://www.washington.edu/students/reg/regelig.html">Registration Info</a></li>
 	     <li><a href="http://careers.washington.edu/">Career Center</a></li>
-	     <li><a href="http://hfs.washington.edu/dining/default.aspx?id=37">Dining</a></li>
+	     <li><a href="http://hfs.washington.edu/dining/">Dining</a></li>
 	     <li><a href="http://www.lib.washington.edu/">Libraries</a></li>
 	     <li><a href="http://www.washington.edu/itconnect/forstudents.html">Computing / IT Connect</a></li>
 	     <li><a href="http://myuw.washington.edu/">MyUW</a></li>
@@ -194,7 +194,7 @@ def main():
 	     <li><a href="http://www.washington.edu/provost/studentlife/">Student Life</a></li>
 	     <li><a href="http://f2.washington.edu/fm/sfs/tuition">Tuition, Fees</a></li>
 	     <li><a href="http://www.washington.edu/students/osfa/">Financial Aid</a></li>
-	     <li><a href="http://hfs.washington.edu/student_housing/default.aspx?id=373">Student Housing</a></li>
+	     <li><a href="http://www.hfs.washington.edu/housing/">Student Housing</a></li>
          <li><a href="http://hfs.washington.edu/dining/">Dining</a></li>
          <li><a href="http://admit.washington.edu/Visit/GuidedTour">Campus Tours</a></li>
 	    </ul>
