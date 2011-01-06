@@ -11,7 +11,7 @@ include_once('include/functions.inc.php');
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />	
+	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="../inc/css/footer.css" type="text/css" media="screen" />
 
 	<script src="js/jquery.min.js" type="text/javascript"></script>
@@ -81,7 +81,7 @@ include_once('include/functions.inc.php');
 				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
 				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot available" rel="images/kitchen_sink.jpg">Kitchen sink</a> <span style="font-size: 11px;">(full header)</span></label><br />
 					 <label for="static"><input type="radio" name="selection" value="static" id="static" onclick="javascript:pageTracker._trackPageview('/hdr-static');" /> <a href="" class="screenshot available" rel="images/static-headers.jpg">chtml include</a></label><br />
-				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label>				   	 
+				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label>
 
 				   </div>
 
@@ -213,13 +213,24 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
+	 <h4>= 1.3 ============ <span>12-23-2010</span></h4>
+
+	 <ul>
+	  <li>For the "Kitchen Sink" header option, three links were added:
+	   <ul>
+	    <li>Under "Current Students", "SafeCampus" was added.</li>
+	    <li>Under "Faculty &amp; Staff", "Directories" was added.</li>
+	    <li>Under "NW Neighbors", "Botanic Gardens" was added.</li>
+	   </ul>
+	  </li>
+	 </ul>
+
 	 <h4>= 1.2 ============ <span>07-22-2010</span></h4>
-	 <br />
-     
+
 	 <ul>
 	  <li>A full header option, also known as the "Kitchen Sink", is now available.</li>
 	 </ul>
-	 
+
      <br />
 	 <h4>= 1.1 ============ <span>06-23-2010</span></h4>
 	 <br />

@@ -161,6 +161,7 @@ def main():
 	     <li><a href="http://careers.washington.edu/">Career Center</a></li>
 	     <li><a href="http://hfs.washington.edu/dining/">Dining</a></li>
 	     <li><a href="http://www.lib.washington.edu/">Libraries</a></li>
+	     <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
 	     <li><a href="http://www.washington.edu/itconnect/forstudents.html">Computing / IT Connect</a></li>
 	     <li><a href="http://myuw.washington.edu/">MyUW</a></li>
              <li><a href="http://alpine.washington.edu/">Alpine / Email</a></li>
@@ -189,7 +190,7 @@ def main():
 	     <li><a href="http://www.washington.edu/uaa/gateway/advising/majors/majoff.php">Undergraduate Majors</a></li>
 	     <li><a href="http://www.washington.edu/students/crscat/">Course Descriptions</a></li>
 	     <li><a href="http://admit.washington.edu/Requirements/Transfer/Plan/CreditPolicies">Transfer Credit Policies</a></li>
-         <li><a href="http://www.outreach.washington.edu/conted/">Continuing Education</a></li>
+             <li><a href="http://www.outreach.washington.edu/conted/">Continuing Education</a></li>
 	     <li><a href="http://www.grad.washington.edu/admissions/programs-degrees.shtml">Graduate School</a></li>
 	     <li><a href="http://www.washington.edu/provost/studentlife/">Student Life</a></li>
 	     <li><a href="http://f2.washington.edu/fm/sfs/tuition">Tuition, Fees</a></li>
@@ -233,6 +234,7 @@ def main():
 	     <li><a href="http://www.lib.washington.edu/">Libraries</a></li>
 	     <li><a href="http://www.washington.edu/itconnect/">Computing / IT Connect</a></li>
 	     <li><a href="http://myuw.washington.edu/">MyUW</a></li>
+	     <li><a href="http://www.washington.edu/home/directories.html">Directories</a></li>
 	     <li><a href="http://alpine.washington.edu/">Alpine / Email</a></li>
 	    </ul>
 		<div class="mainNavBlurb">
@@ -288,14 +290,15 @@ def main():
 	    <ul class="mainNavLinks">
 	     <li><a href="http://www.washington.edu/community/">UW in the Neighborhood</a></li>
 	     <li><a href="http://www.meany.org/tickets/index.aspx">Arts UW Ticket Office</a></li>
-         <li><a href="http://www.washington.edu/burkemuseum/">Burke Museum Visitor Info</a></li>
+             <li><a href="http://depts.washington.edu/uwbg/">Botanic Gardens</a></li>
+             <li><a href="http://www.washington.edu/burkemuseum/">Burke Museum Visitor Info</a></li>
 	     <li><a href="http://www.henryart.org">Henry Art Gallery  Visitor Info</a></li>
 	     <li><a href="http://ev12.evenue.net/cgi-bin/ncommerce3/ExecMacro/evenue/ev69/se/Main.d2w/report?linkID=uwash">Husky Sports Ticket Office</a></li>
 	     <li><a href="http://www.washington.edu/provost/specialprograms/UUF.html">Using UW Resources</a></li>
 	     <li><a href="http://www.lib.washington.edu/services/borrow/visitor.html">UW Libraries Visitor Info</a></li>
 	     <li><a href="http://uwmedicine.washington.edu/Patient-Care/Locations/UW-Neighborhood-Clinics/Pages/default.aspx">UW Medicine Neighborhood Clinics</a></li>
-         <li><a href="http://www.udistrictchamber.org/">University District</a></li>
-         <li><a href="http://www.cityofseattle.net/">City of Seattle</a></li>
+             <li><a href="http://www.udistrictchamber.org/">University District</a></li>
+             <li><a href="http://www.cityofseattle.net/">City of Seattle</a></li>
 	     <li><a href="http://www.visitseattle.org/visitors/">Seattle Tourism</a></li>
 	     <li><a href="http://www.experiencewa.com/">The Evergreen State</a></li>
 	    </ul>
