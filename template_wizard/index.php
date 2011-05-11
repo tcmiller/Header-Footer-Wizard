@@ -213,8 +213,24 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
-	 <h4>= 1.3 ============ <span>12-23-2010</span></h4>
+	 <h4>= 1.4 ============ <span>5-6-2011</span></h4>
+ 	 <ul>
+ 	  <li>Footer updates:
+ 	   <ul>
+ 	    <li>"Privacy" link added: <a href="http://www.washington.edu/online/privacy/">http://www.washington.edu/online/privacy/</a></li>
+ 	    <li>"Terms" link added: <a href="http://www.washington.edu/online/terms/">http://www.washington.edu/online/terms/</a></li>
+ 	   </ul>
+ 	  </li>
+ 	  <li>Kitchen sink updates:
+ 	   <ul>
+ 	    <li>Under the Faculty &amp; Staff dropdown, "Directories" link renamed "Office, Staff Directories"</li>
+ 	    <li>Under the Faculty &amp; Staff dropdown, "Policy Directory" link added: <a href="http://www.washington.edu/admin/rules/policies/">http://www.washington.edu/admin/rules/policies/</a></li>
+ 	    <li>Under the Alumni dropdown, "Giving" link added: <a href="http://www.washington.edu/giving/make-a-gift">http://www.washington.edu/giving/make-a-gift</a>
+ 	   </ul>
+ 	  </li>
+	 </ul>
 
+	 <h4>= 1.3 ============ <span>12-23-2010</span></h4>
 	 <ul>
 	  <li>For the "Kitchen Sink" header option, three links were added:
 	   <ul>
@@ -226,7 +242,6 @@ include_once('include/functions.inc.php');
 	 </ul>
 
 	 <h4>= 1.2 ============ <span>07-22-2010</span></h4>
-
 	 <ul>
 	  <li>A full header option, also known as the "Kitchen Sink", is now available.</li>
 	 </ul>
@@ -234,7 +249,6 @@ include_once('include/functions.inc.php');
      <br />
 	 <h4>= 1.1 ============ <span>06-23-2010</span></h4>
 	 <br />
-
 	 <h5>Content:</h5>
 	 <ul>
 	  <li>changed "Employment" to "Jobs" (consistent with our homepage/sitewide footer nav)</li>

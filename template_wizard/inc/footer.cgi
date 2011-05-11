@@ -54,6 +54,8 @@ def main():
    <li><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
    <li class="footerLinkBorder"><a href="http://www.washington.edu/jobs/">Jobs</a></li>
    <li class="footerLinkBorder"><a href="http://myuw.washington.edu/">My UW</a></li>
+   <li class="footerLinkBorder"><a href="http://www.washington.edu/online/privacy">Privacy</a></li>
+   <li class="footerLinkBorder"><a href="http://www.washington.edu/online/terms">Terms</a></li>
   </ul>
  </div>
 </div>""" % (foot.display_blockw(),now.year)
@@ -73,6 +75,8 @@ def main():
     <li class="centerText"><a href="http://www.washington.edu/home/siteinfo/form/">Contact Us</a></li>
     <li class="rightText"><a href="http://www.washington.edu/jobs/">Jobs</a></li>
     <li class="rightText"><a href="http://myuw.washington.edu/">My UW</a></li>
+    <li class="rightText"><a href="http://www.washington.edu/online/privacy/">Privacy</a></li>
+    <li class="rightText"><a href="http://www.washington.edu/online/terms/">Terms</a></li>
    </ul>
   </div>
  </div>

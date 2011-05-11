@@ -234,7 +234,8 @@ def main():
 	     <li><a href="http://www.lib.washington.edu/">Libraries</a></li>
 	     <li><a href="http://www.washington.edu/itconnect/">Computing / IT Connect</a></li>
 	     <li><a href="http://myuw.washington.edu/">MyUW</a></li>
-	     <li><a href="http://www.washington.edu/home/directories.html">Directories</a></li>
+	     <li><a href="http://www.washington.edu/home/directories.html">Office, Staff Directories</a></li>
+	     <li><a href="http://www.washington.edu/admin/rules/policies/">Policy Directory</a></li>
 	     <li><a href="http://alpine.washington.edu/">Alpine / Email</a></li>
 	    </ul>
 		<div class="mainNavBlurb">
