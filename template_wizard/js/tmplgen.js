@@ -16,20 +16,29 @@ $(function () {
    // UI
    $('#strip').click(function(){
      $('#step2_sub').show();
+     $('#step2_sink').hide();
    });
    $('#sink').click(function(){
      $('#step2_sub').hide();
+     $('#step2_sink').show();
    });
    $('#no-hdr').click(function() {
    	 $('#step2_sub').hide();
+   	 $('#step2_sink').hide();
    });
    $('#static').click(function() {
    	 $('#step2_sub').hide();
+   	 $('#step2_sink').hide();
    });
    $('#no_patch').click(function(){
      $('#blockwBlk').show();
+     $('#no_sesqui').attr('checked','checked');
    });
    $('#patch').click(function(){
+     $('#blockwBlk').hide();
+   });
+   $('#sesqui').click(function(){
+     $('#patch').attr('checked','checked');
      $('#blockwBlk').hide();
    });
    
@@ -47,12 +56,14 @@ $(function () {
     });
     
     // send header info
-    $('input[name=selection],input[name=blockw],input[name=patch],input[name=color],input[name=search]').click(function() {
+    $('input[name=selection],input[name=blockw],input[name=patch],input[name=sesqui],input[name=sesqui_sink],input[name=color],input[name=search]').click(function() {
     	$.post('generate.php',{ owner: $('#owner').val(),
     	                        selection: $('input[name=selection]:checked').val(),
     		                    color: $('input[name=color]:checked').val(),
     		                    blockw: $('input[name=blockw]:checked').val(),
     		                    patch: $('input[name=patch]:checked').val(),
+    		                    sesqui: $('input[name=sesqui]:checked').val(),
+    		                    sesqui_sink: $('input[name=sesqui_sink]:checked').val(),
     		                    search: $('input[name=search]:checked').val(),
     		                    wordmark: $('input[name=wordmark]:checked').val(),
     	                        processType: 'initH'},function(data) {
@@ -73,6 +84,8 @@ $(function () {
     		$('#ftr_w').attr('disabled','disabled');
     		$('#ftr_gold_patch').attr('disabled','disabled');
     		$('#ftr_purple_patch').attr('disabled','disabled');
+    		$('#ftr_gold_patch_sesqui').attr('disabled','disabled');
+    		$('#ftr_purple_patch_sesqui').attr('disabled','disabled');
     		$('#copy-paste').attr('disabled','disabled');
     		$('#both').attr('disabled','disabled');
     		$('#include').attr('checked','checked');
@@ -81,6 +94,8 @@ $(function () {
     		$('#ftr_w').removeAttr('disabled');
     		$('#ftr_gold_patch').removeAttr('disabled');
     		$('#ftr_purple_patch').removeAttr('disabled');
+    		$('#ftr_gold_patch_sesqui').removeAttr('disabled');
+    		$('#ftr_purple_patch_sesqui').removeAttr('disabled');
     		$('#copy-paste').removeAttr('disabled');
     		$('#both').removeAttr('disabled');
     	}   

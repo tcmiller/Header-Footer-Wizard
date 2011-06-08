@@ -370,3 +370,8 @@ li {margin: 0; padding:0;}
 a img {
     border: medium none;
 }
+.sesqui .logoAbsolute {
+    background-image: url("../img/150th.png");
+    margin-left: -90px;
+    width: 81px;  
+}

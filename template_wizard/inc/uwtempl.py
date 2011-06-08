@@ -83,6 +83,8 @@ class Header(object):
         self._wordmark = "1"
         self._blockw = "1"
         self._patch = "1"
+        self._sesqui = "0"
+        self._sesqui_sink = "0"
         self._search = "basic"
         self._cache = "1"
         self._date_created = ""
@@ -112,6 +114,14 @@ class Header(object):
         self._patch = patch
     def get_patch(self):
         return self._patch
+    def set_sesqui(self, sesqui):
+        self._sesqui = sesqui
+    def get_sesqui(self):
+        return self._sesqui
+    def set_sesqui_sink(self, sesqui_sink):
+        self._sesqui_sink = sesqui_sink
+    def get_sesqui_sink(self):
+        return self._sesqui_sink
     def get_search(self):
         return "%s" % (self._search)
     def set_search(self, search):
@@ -146,15 +156,17 @@ class Header(object):
             else:
                 db = MySQL()
                 db.connect()
-                db.load("""select header.id,header.selection,header.blockw,header.patch,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
+                db.load("""select header.id,header.selection,header.blockw,header.patch,header.sesqui,header.sesqui_sink,header.color,header.search,header.wordmark from header WHERE header.owner='%s' order by header.created_date DESC""" % (self.owner))
                 if len(db.data) > 0:
                     self.id = db.data[0][0]
                     self.selection = db.data[0][1]
                     self.blockw = db.data[0][2]
                     self.patch = db.data[0][3]
-                    self.color = db.data[0][4]
-                    self.search = db.data[0][5]
-                    self.wordmark = db.data[0][6]
+                    self.sesqui = db.data[0][4]
+                    self.sesqui_sink = db.data[0][5]
+                    self.color = db.data[0][6]
+                    self.search = db.data[0][7]
+                    self.wordmark = db.data[0][8]
                     # If cache is turned off, file still generated
                     # to create updated version of cache
                     cache = MyCache(self)
@@ -163,8 +175,13 @@ class Header(object):
     def display(self):
         color = {'gold':'colorGold','purple':'colorPurple'}
         patch = {'1':'patchYes','0':'patchNo'}
+        sesqui = {'1':'sesqui','0':''}
         blockw = {'1':'wYes','0':'wNo'}
-    	return (color[self.color],blockw[self.blockw],patch[self.patch])
+    	return (color[self.color],blockw[self.blockw],patch[self.patch],sesqui[self.sesqui])
+    	
+    def sink_sesqui(self):
+        sesqui_sink = {'1':'sesqui','0':''}
+        return (sesqui_sink[self.sesqui_sink])
 
     owner = property(get_owner, set_owner)
     selection = property(get_selection, set_selection)
@@ -172,6 +189,8 @@ class Header(object):
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)
     patch = property(get_patch, set_patch)
+    sesqui = property(get_sesqui, set_sesqui)
+    sesqui_sink = property(get_sesqui_sink, set_sesqui_sink)
     search = property(get_search, set_search)
     cache = property(get_cache, set_cache)
     date_created = property(get_date_created, set_date_created)
@@ -180,7 +199,7 @@ class Header(object):
 
 class Footer(object):
     """
-    Footer object creates the actual header used for an include across the site
+    Footer object creates the actual footer used for an include across the site
     when anyone need to automagically generate the HTML for the brand.
     """
     def __init__(self):
@@ -189,6 +208,7 @@ class Footer(object):
         self._wordmark = "0"
         self._blockw = "0"
         self._patch = "purple"
+        self._sesqui = "0"
         self._cache = "1"
         self._date_created = ""
         self._date_modified = ""
@@ -209,6 +229,10 @@ class Footer(object):
         return self._patch
     def set_patch(self, patch):
         self._patch = patch
+    def get_sesqui(self):
+        return self._sesqui
+    def set_sesqui(self, sesqui):
+        self._sesqui = sesqui
     def get_cache(self):
         return "%s" % (self._cache)
     def set_cache(self, cache):
@@ -239,12 +263,13 @@ class Footer(object):
             else:
                 db = MySQL()
 		db.connect()
-                db.load("""select footer.id,footer.blockw,footer.patch,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
+                db.load("""select footer.id,footer.blockw,footer.patch,footer.sesqui,footer.wordmark from footer WHERE footer.owner='%s' order by footer.created_date DESC""" % (self.owner))
                 if len(db.data) > 0:
                     self.id = db.data[0][0]
                     self.blockw = db.data[0][1]
                     self.patch = db.data[0][2]
-                    self.wordmark = db.data[0][3]
+                    self.sesqui = db.data[0][3]
+                    self.wordmark = db.data[0][4]
                     # If cache is turned off, file still generated
                     # to create updated version of cache
                     cache = MyCache(self)
@@ -253,11 +278,16 @@ class Footer(object):
     def display_blockw(self):
     	blockw = {'1':'wYes','0':'wNo'}
     	return (blockw[self.blockw])
+    	
+    def display_sesqui(self):
+        sesqui = {'1':'sesqui','0':''}
+        return (sesqui[self.sesqui])
 
     owner = property(get_owner, set_owner)
     wordmark = property(get_wordmark, set_wordmark)
     blockw = property(get_blockw, set_blockw)
     patch = property(get_patch, set_patch)
+    sesqui = property(get_sesqui, set_sesqui)
     cache = property(get_cache, set_cache)
     date_created = property(get_date_created, set_date_created)
     date_modified = property(get_date_modified, set_date_modified)

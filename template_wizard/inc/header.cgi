@@ -35,7 +35,7 @@ def main():
 
     ## How to handle this in the final stage?
     sHead = """
-<div id="wheader" class="%s %s %s">""" % (head.display()) 
+<div id="wheader" class="%s %s %s %s">""" % (head.display()) 
     sBody = """
  <div id="autoMargin">
   <div class="wlogoSmall">
@@ -48,7 +48,7 @@ def main():
     <div class="wfield">
      <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
      <input type="hidden" name="cof" value="FORID:0" />
-     <input name="q" type="text" value="Search the UW" class="wTextInput" onclick="make_blank();" />
+     <input name="q" type="text" value="Search the UW" id="searchInput" class="wTextInput" />
     </div>   
     <input type="submit" class="formbutton" name="sa" value="Go" />
    </form>
@@ -69,7 +69,7 @@ def main():
 
     sSink = """
 <div id="visual-portal-wrapper" class="headerFull">
- <div class="wheader patchYes colorGold">
+ <div class="wheader patchYes colorGold %s">
   <div id="autoMargin">
    <div class="wlogoSmall">
     <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a></div>
@@ -95,7 +95,7 @@ def main():
      <div class="wfield">
       <input type="hidden" value="001967960132951597331:04hcho0_drk" name="cx" />
       <input type="hidden" value="FORID:0" name="cof" />
-      <input type="text" class="wTextInput" value="Search the UW" onclick="make_blank();" title="Search the UW" name="q" />
+      <input type="text" class="wTextInput" value="Search the UW" id="searchInput" title="Search the UW" name="q" />
      </div>
      <input type="submit" value="Go" name="sa" class="formbutton" />
     </form>
@@ -269,6 +269,7 @@ def main():
 	     <li><a href="http://www.washington.edu/alumni/meet/facebook.html">UWAA on Facebook</a></li>
 	     <li><a href="http://www.washington.edu/alumni/columns/">Columns Magazine</a></li>
 	     <li><a href="http://www.washington.edu/alumni/viewpoints/">Viewpoints Magazine</a></li>
+	     <li><a href="http://www.washington.edu/giving/make-a-gift">Support the UW</a></li>
 	    </ul>
 		<div class="mainNavBlurb">
 		 <p>
@@ -321,7 +322,7 @@ def main():
   </div>
  </div>
 </div>
-"""
+""" % (head.sink_sesqui())
 
     if head.selection == 'sink':
         sOutput = sSink

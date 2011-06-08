@@ -172,12 +172,36 @@ a:hover.available {
 #step2_sub input {
 	margin-left: 4px;
 }
+#step2_sink {
+	font-size: 11px;
+	float: right;
+	width: 70%;
+	display: none;
+}
+#step2_sink label {
+	display: block;
+	font-weight: bold;
+	padding-bottom: 4px;
+}
+#step2_sink input {
+	margin-left: 4px;
+}
 fieldset#options {
 	width: 400px;
 	padding: 10px 0 20px 15px;
 	margin: 0;
 }
+fieldset#sink-options {
+	width: 400px;
+	padding: 10px 0 20px 15px;
+	margin: 0;
+}
 fieldset#options legend {
+	font-weight: bold;
+	font-size: 13px;
+	color: #39275b;
+}
+fieldset#sink-options legend {
 	font-weight: bold;
 	font-size: 13px;
 	color: #39275b;
@@ -194,7 +218,7 @@ fieldset#options legend {
 	margin: 20px 272px;
 	font-size: 16px;
 }
-#strip,#static,#no-hdr,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_static,#ftr_no,#copy-paste,#include,#both {
+#strip,#static,#no-hdr,#sink,#purple_bg,#gold_bg,#patch,#no_patch,#sesqui_sink,#no_sesqui_sink,#sesqui,#no_sesqui,#w_yes,#w_no,#s_basic,#s_no,#ss_inline,#ss_tab,#ftr_basic,#ftr_w,#ftr_gold_patch,#ftr_purple_patch,#ftr_gold_patch_sesqui,#ftr_purple_patch_sesqui,#ftr_static,#ftr_no,#copy-paste,#include,#both {
 	border: 0;
 }
 #prevBlk {

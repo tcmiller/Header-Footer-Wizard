@@ -61,7 +61,7 @@ def main():
 </div>""" % (foot.display_blockw(),now.year)
     else:
     	sTemplate = """
-<div id="footerMain" class="%s">
+<div id="footerMain" class="%s %s">
  <div id="footerWrap">
   <div id="footerLogo">
    <a id="footerLogoLink" href="http://www.washington.edu/">University of Washington</a>
@@ -80,7 +80,7 @@ def main():
    </ul>
   </div>
  </div>
-</div>""" % (foot.patch,now.year)
+</div>""" % (foot.patch,foot.display_sesqui(),now.year)
 
     print "Content-type: text/html"
     print

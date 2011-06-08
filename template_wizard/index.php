@@ -38,7 +38,27 @@ include_once('include/functions.inc.php');
 		});
 
 	// clear out the global search input text field
-    function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}
+    window.onload = function() {
+
+	     if (document.getElementById('searchInput')) {
+
+	       var query = document.getElementById('searchInput');
+
+	       query.onfocus = function() {
+	         if (query.value == query.defaultValue) {
+	           query.value = '';
+	         }
+	       }
+
+	       query.onblur = function() {
+	         if (query.value == '') {
+	           query.value = query.defaultValue;
+	         }
+	       }
+
+	     }
+
+}
 
 	</script>
 
@@ -84,6 +104,19 @@ include_once('include/functions.inc.php');
 				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label>
 
 				   </div>
+				   
+				   <div id="step2_sink">
+				     <fieldset id="sink-options">
+				     <legend>Options:</legend>
+				       <div id="sesquiSinkBlk">
+				         <div>
+				           <label for="sesqui_sink">150th patch?</label>
+				           <input type="radio" name="sesqui_sink" value="1" id="sesqui_sink" onclick="javascript:pageTracker._trackPageview('/hdr-sesqui-sink-yes');" /> Awesome, give me!<br />
+				           <input type="radio" name="sesqui_sink" value="0" id="no_sesqui_sink" onclick="javascript:pageTracker._trackPageview('/hdr-sesqui-sink-no');" /> No way!
+				         </div>
+				       </div>
+				     </fieldset>
+				   </div>
 
 				   <div id="step2_sub">
 
@@ -113,6 +146,12 @@ include_once('include/functions.inc.php');
 				      <input type="radio" name="patch" value="0" id="no_patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-no');" /> No patch
 				     </div>
 				     <br />
+				     <div>
+				      <label for="patch150">150th or no?</label>
+				      <input type="radio" name="sesqui" value="1" id="sesqui" onclick="javascript:pageTracker._trackPageview('/hdr-150-patch-yes');" /> Sweet, give me!<br />
+				      <input type="radio" name="sesqui" value="0" id="no_sesqui" onclick="javascript:pageTracker._trackPageview('/hdr-150-patch-no');" /> No thank you!
+				     </div>
+				     <br />
 				     <div id="blockwBlk">
 				      <label for="blockw">W or no W?</label>
 				      <input type="radio" name="blockw" value="1" id="w_yes" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-yes');" /> W<br />
@@ -134,6 +173,8 @@ include_once('include/functions.inc.php');
 			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" onclick="javascript:pageTracker._trackPageview('/ftr-with-w');" /> With "W"</label>
 			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch');" /> With gold patch</label>
 			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch');" /> With purple patch</label>
+			     <label for="ftr_gold_patch_sesqui"><input type="radio" name="footer" value="gold150Patch" id="ftr_gold_patch_sesqui" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch-sesqui');" /> With gold 150th patch</label>
+			     <label for="ftr_purple_patch_sesqui"><input type="radio" name="footer" value="purple150Patch" id="ftr_purple_patch_sesqui" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch-sesqui');" /> With purple 150th patch</label>
 			     <label for="ftr_static"><input type="radio" name="footer" value="static" id="ftr_static" onclick="javascript:pageTracker._trackPageview('/ftr-static');" /> <a href="" class="screenshot available" rel="images/static-footer.jpg">chtml include</a></label>
 			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" onclick="javascript:pageTracker._trackPageview('/ftr-no');" /> No thanks, I'll pass on the footer</label>
 
@@ -213,6 +254,29 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
+     <h4>= 2.0 ============ <span>6-7-2011</span></h4>
+	 <ul>
+	  <li>Wizard update: 150th header and footer patches added</li>
+	 </ul>
+	      
+	 <h4>= 1.6 ============ <span>5-24-2011</span></h4>
+	 <ul>
+	  <li>Kitchen sink and thin strip update:
+	   <ul>
+	    <li>Search field javascript now accounts for onfocus and onblur events, making the input field more accessible to screen readers.  The javascript is now also unobtrusive and does not use an inline onclick event call.</li>
+	   </ul>
+	  </li>
+	 </ul>
+
+	 <h4>= 1.5 ============ <span>5-19-2011</span></h4>
+	 <ul>
+	  <li>Kitchen sink update:
+	   <ul>
+	    <li>"Support the UW" link added to Alumni dropdown: <a href="http://www.washington.edu/giving/make-a-gift">http://www.washington.edu/giving/make-a-gift</a></li>
+	   </ul>
+	  </li>
+	 </ul>
+
 	 <h4>= 1.4 ============ <span>5-6-2011</span></h4>
  	 <ul>
  	  <li>Footer updates:
@@ -225,7 +289,6 @@ include_once('include/functions.inc.php');
  	   <ul>
  	    <li>Under the Faculty &amp; Staff dropdown, "Directories" link renamed "Office, Staff Directories"</li>
  	    <li>Under the Faculty &amp; Staff dropdown, "Policy Directory" link added: <a href="http://www.washington.edu/admin/rules/policies/">http://www.washington.edu/admin/rules/policies/</a></li>
- 	    <li>Under the Alumni dropdown, "Giving" link added: <a href="http://www.washington.edu/giving/make-a-gift">http://www.washington.edu/giving/make-a-gift</a>
  	   </ul>
  	  </li>
 	 </ul>

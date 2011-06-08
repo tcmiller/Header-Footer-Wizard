@@ -54,7 +54,27 @@ def main():
     ## jQuery or plain javascript?
     sGlobal = """
 <script type="text/javascript">// clear out the global search input text field
-    function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}
+    window.onload = function() {
+    
+     if (document.getElementById('searchInput')) {
+    
+       var query = document.getElementById('searchInput');
+    
+       query.onfocus = function() {
+         if (query.value == query.defaultValue) {
+           query.value = '';
+         }
+       }
+    
+       query.onblur = function() {
+         if (query.value == '') {
+           query.value = query.defaultValue;
+         }
+       }
+    
+     }
+    
+}
 </script>"""
 
     sOutput = """%s%s%s%s""" % (sHead,sFoot,sPrint,sGlobal)

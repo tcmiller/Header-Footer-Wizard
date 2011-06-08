@@ -145,6 +145,8 @@ function headerLookup() {
 	$query = sprintf('SELECT hdr.selection,
 	                         hdr.blockw,
 	                         hdr.patch,
+	                         hdr.sesqui,
+	                         hdr.sesqui_sink,
 	                         hdr.wordmark,
 	                         hdr.color,
 	                         hdr.search
@@ -185,6 +187,12 @@ function setHeaderDefaults() {
 		// selection lookups, primarily for block display
 		if ($header['selection'] == 'strip') {
 			$headerDefaults .= '$(\'#step2_sub\').css(\'display\',\'block\');';
+			$headerDefaults .= '$(\'#step2_sink\').css(\'display\',\'none\');';
+		}
+		
+	    if ($header['selection'] == 'sink') {
+			$headerDefaults .= '$(\'#step2_sub\').css(\'display\',\'none\');';
+			$headerDefaults .= '$(\'#step2_sink\').css(\'display\',\'block\');';
 		}
 		
 		// search lookups
@@ -203,6 +211,22 @@ function setHeaderDefaults() {
 			$display = 'block';
 		}
 		
+		// sesqui lookups
+		if ($header['sesqui'] == '1') {
+			$sesqui = 'sesqui';
+			$display = 'none';
+		} else {
+			$sesqui = 'no_sesqui';
+			$display = 'block';
+		}
+		
+	    // sesqui sink lookups
+		if ($header['sesqui_sink'] == '1') {
+			$sesqui_sink = 'sesqui_sink';
+		} else {
+			$sesqui_sink = 'no_sesqui_sink';
+		}
+		
 		// blockw lookups
 		if ($header['blockw'] == '1') {
 			$blockw = 'w_yes';
@@ -215,6 +239,8 @@ function setHeaderDefaults() {
 		$headerDefaults .= '$(\'#'.$header['color'].'_bg\').attr(\'checked\',\'checked\');';
 		$headerDefaults .= '$(\'#'.$search.'\').attr(\'checked\',\'checked\');';
 		$headerDefaults .= '$(\'#'.$patch.'\').attr(\'checked\',\'checked\');';
+		$headerDefaults .= '$(\'#'.$sesqui.'\').attr(\'checked\',\'checked\');';
+		$headerDefaults .= '$(\'#'.$sesqui_sink.'\').attr(\'checked\',\'checked\');';
 		$headerDefaults .= '$(\'#'.$blockw.'\').attr(\'checked\',\'checked\');';
 		$headerDefaults .= '$(\'#blockwBlk\').css(\'display\',\''.$display.'\');';
 		
@@ -223,6 +249,8 @@ function setHeaderDefaults() {
 		// no header selections exist, set some defaults
 		$headerDefaults .= '$(\'#gold_bg\').attr(\'checked\',\'checked\');
 						    $(\'#patch\').attr(\'checked\',\'checked\');
+						    $(\'#no_sesqui\').attr(\'checked\',\'checked\');
+						    $(\'#no_sesqui_sink\').attr(\'checked\',\'checked\');
 						    $(\'#w_yes\').attr(\'checked\',\'checked\');
 						    $(\'#s_basic\').attr(\'checked\',\'checked\');';
 
@@ -249,6 +277,7 @@ function footerLookup() {
 	                         ftr.blockw,
 	                         ftr.wordmark,
 	                         ftr.patch,
+	                         ftr.sesqui,
 	                         ftr.static
 	                    FROM footer as ftr,
 	                         account as acct
@@ -294,12 +323,22 @@ function setFooterDefault() {
 			
 		} elseif ($footer['blockw'] == 0 && $footer['wordmark'] == 0) {
 			
-			// is it the purple patch?
-			if ($footer['patch'] == 'purple') {
+		    // is it the purple 150th patch?
+			if ($footer['patch'] == 'purple' && $footer['sesqui'] == 1) {
 				
+				// must be purple patch sesqui
+				$footerType = 'ftr_purple_patch_sesqui';
+				
+			} elseif ($footer['patch'] == 'gold' && $footer['sesqui'] == 1) {
+				
+				// must be gold sesqui patch
+				$footerType = 'ftr_gold_patch_sesqui';
+				
+			} elseif ($footer['patch'] == 'purple') {
+				
+				// must be purple patch
 				$footerType = 'ftr_purple_patch';
-					
-			
+				
 			} else {
 				
 				// must be the gold patch
