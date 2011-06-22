@@ -291,7 +291,7 @@ def main():
        <div class="mainNavBG">
 	    <ul class="mainNavLinks">
 	     <li><a href="http://www.washington.edu/community/">UW in the Neighborhood</a></li>
-	     <li><a href="http://www.meany.org/tickets/index.aspx">Arts UW Ticket Office</a></li>
+	     <li><a href="http://www.meany.org/tickets/">Arts UW Ticket Office</a></li>
              <li><a href="http://depts.washington.edu/uwbg/">Botanic Gardens</a></li>
              <li><a href="http://www.washington.edu/burkemuseum/">Burke Museum Visitor Info</a></li>
 	     <li><a href="http://www.henryart.org">Henry Art Gallery  Visitor Info</a></li>
