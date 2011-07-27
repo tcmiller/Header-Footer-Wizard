@@ -1,15 +1,15 @@
-<div id="wheader" class="colorPurple wYes patchNo">
+<div id="wheader" class="colorPurple wYes patchNo ">
  <div id="autoMargin">
   <div class="wlogoSmall">
    <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">W</a></div>
    <div><a href="http://www.washington.edu/">University of Washington</a></div>
-  </div>
+  </div> 
   <div id="wsearch">        
    <form name="uwglobalsearch" id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
     <div class="wfield">
      <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
      <input type="hidden" name="cof" value="FORID:0" />
-     <input name="q" type="text" value="Search the UW" class="wTextInput" onclick="make_blank();" />
+     <input name="q" type="text" value="Search the UW" id="searchInput" class="wTextInput" />
     </div>   
     <input type="submit" class="formbutton" name="sa" value="Go" />
    </form>
