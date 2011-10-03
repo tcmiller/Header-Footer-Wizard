@@ -68,7 +68,7 @@ def main():
   </div>
   <div id="footerLinks">
    <div class="logoAbsoluteFooter"><a id="footerWLogoLink" href="http://www.washington.edu/">W</a></div>
-   <h3><a href="http://www.washington.edu/discovery/washingtonway/">Discover what's next. It's the Washington Way.</a></h3>
+   <h3><a href="%s">%s</a></h3>
    <ul>
     <li class="leftText"><a href="http://www.washington.edu/">&#169; %d University of Washington</a></li>       	
     <li class="centerText"><a href="http://www.seattle.gov/">Seattle, Washington</a></li>         	
@@ -80,7 +80,7 @@ def main():
    </ul>
   </div>
  </div>
-</div>""" % (foot.patch,foot.display_sesqui(),now.year)
+</div>""" % (foot.patch,foot.sesqui_cls(),foot.sesqui_link(),foot.sesqui_tagline(),now.year)
 
     print "Content-type: text/html"
     print
@@ -88,4 +88,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

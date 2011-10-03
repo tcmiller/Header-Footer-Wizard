@@ -44,9 +44,9 @@ def main():
   </div>"""
     sSearch = """ 
   <div id="wsearch">        
-   <form name="uwglobalsearch" id="searchbox_001967960132951597331:04hcho0_drk" action="http://www.google.com/cse">
+   <form name="uwglobalsearch" id="searchbox_008816504494047979142:bpbdkw8tbqc" action="http://www.washington.edu/search">
     <div class="wfield">
-     <input type="hidden" name="cx" value="001967960132951597331:04hcho0_drk" />
+     <input type="hidden" name="cx" value="008816504494047979142:bpbdkw8tbqc" />
      <input type="hidden" name="cof" value="FORID:0" />
      <input name="q" type="text" value="Search the UW" id="searchInput" class="wTextInput" />
     </div>   
@@ -101,7 +101,7 @@ def main():
     </form>
    </div>
    <span id="uwLogo"><a href="http://www.washington.edu/">University of Washington</a></span>
-   <p class="tagline"><a href="http://www.washington.edu/discovery/washingtonway/"><span class="taglineGold">Discover what's next.</span> It's the Washington Way.</a></p>
+   <p class="tagline"><a href="%s"><span class="taglineGold">%s</a></p>
    <ul id="navg">
     <li class="mainNavLinkLeft">
      <div class="mainNavLinkRight">

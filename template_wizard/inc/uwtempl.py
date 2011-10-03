@@ -13,7 +13,7 @@ class MySQL(object):
     """
     def __init__(self):
         self.user = "inc_script"
-        self.passwd = "bdZEdU4LhqlVf2op2VKK"
+        self.passwd = "replacewithrealpasswordwhenupdatingproduction"
         self.port = 94582
         self.host = "ovid.u.washington.edu"
         self.datab = "tmplgen"
@@ -180,8 +180,10 @@ class Header(object):
     	return (color[self.color],blockw[self.blockw],patch[self.patch],sesqui[self.sesqui])
     	
     def sink_sesqui(self):
-        sesqui_sink = {'1':'sesqui','0':''}
-        return (sesqui_sink[self.sesqui_sink])
+        sesqui_sink_cls = {'1':'sesqui','0':''}
+        sesqui_sink_link = {'1':'http://www.washington.edu/150/','0':'http://www.washington.edu/discovery/washingtonway/'}
+        sesqui_sink_tagline = {'1':'Together we make history. Discover what\'s next.','0':'Discover what\'s next. It\'s the Washington Way.'}
+        return (sesqui_sink_cls[self.sesqui_sink],sesqui_sink_link[self.sesqui_sink],sesqui_sink_tagline[self.sesqui_sink])
 
     owner = property(get_owner, set_owner)
     selection = property(get_selection, set_selection)
@@ -279,9 +281,17 @@ class Footer(object):
     	blockw = {'1':'wYes','0':'wNo'}
     	return (blockw[self.blockw])
     	
-    def display_sesqui(self):
-        sesqui = {'1':'sesqui','0':''}
-        return (sesqui[self.sesqui])
+    def sesqui_cls(self):
+        sesqui_sink_cls = {'1':'sesqui','0':''}
+        return sesqui_sink_cls[self.sesqui]
+        
+    def sesqui_link(self):      
+        sesqui_sink_link = {'1':'http://www.washington.edu/150/','0':'http://www.washington.edu/discovery/washingtonway/'}
+        return sesqui_sink_link[self.sesqui]
+        
+    def sesqui_tagline(self):       
+        sesqui_sink_tagline = {'1':'Together we make history. Discover what\'s next.','0':'Discover what\'s next. It\'s the Washington Way.'}
+        return sesqui_sink_tagline[self.sesqui]
 
     owner = property(get_owner, set_owner)
     wordmark = property(get_wordmark, set_wordmark)
