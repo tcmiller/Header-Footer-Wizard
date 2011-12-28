@@ -91,9 +91,9 @@ def main():
  <div id="bg">
   <div id="header">
    <div id="wsearch">
-    <form action="http://www.google.com/cse" id="searchbox_001967960132951597331:04hcho0_drk" name="uwglobalsearch">
+    <form action="http://www.washington.edu/search" id="searchbox_008816504494047979142:bpbdkw8tbqc" name="uwglobalsearch">
      <div class="wfield">
-      <input type="hidden" value="001967960132951597331:04hcho0_drk" name="cx" />
+      <input type="hidden" value="008816504494047979142:bpbdkw8tbqc" name="cx" />
       <input type="hidden" value="FORID:0" name="cof" />
       <input type="text" class="wTextInput" value="Search the UW" id="searchInput" title="Search the UW" name="q" />
      </div>
