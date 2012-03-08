@@ -254,6 +254,42 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
+     <h4>= 2.5 ============ <span>3-9-2012</span></h4>
+	 <ul>
+	  <li>Kitchen sink update:
+	   <ul>
+	    <li>"News Central" link removed</li>
+	    <li>Photo Galleries link removed</li>
+	    <li>"<a href="http://www.washington.edu/news/" target="_blank">UW Today News</a>" link added: http://www.washington.edu/news</li>
+	    <li>Current Students dropdown description updated.</li>
+	    <li>Future Students dropdown link updated from admit.washington.edu to www.washington.edu/discover/admissions/</li>
+	    <li>"Undergraduate Admissions" changed to "Admissions (undergraduate)" and link now absolute: http://www.washington.edu/discover/admissions/ instead of /discover/admissions/</li>
+	    <li>Continuing Education link updated from www.outreach.washington.edu/conted/ to pce.uw.edu</li>
+	    <li>Alumni dropdown links reordered</li>
+	   </ul>
+	  </li>
+	 </ul>
+     
+     <h4>= 2.4 ============ <span>12-28-2011</span></h4>
+	 <ul>
+	  <li>Wizard update: Search box now posts to /search/ instead of the google.com/cse URL</li>
+	 </ul>
+     
+     <h4>= 2.3 ============ <span>10-3-2011</span></h4>
+	 <ul>
+	  <li>Wizard update: 150th slogan and URL added to the 150th option</li>
+	 </ul>
+     
+     <h4>= 2.2 ============ <span>7-27-2011</span></h4>
+	 <ul>
+	  <li>Wizard update: Static headers now use non-obtrusive javascript for clearing search text</li>
+	 </ul>
+     
+     <h4>= 2.1 ============ <span>7-6-2011</span></h4>
+	 <ul>
+	  <li>Kitchen sink update: Burke Museum URL changed to burkemuseum.org</li>
+	 </ul>
+     
      <h4>= 2.0 ============ <span>6-7-2011</span></h4>
 	 <ul>
 	  <li>Wizard update: 150th header and footer patches added</li>

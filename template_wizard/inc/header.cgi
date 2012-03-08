@@ -117,9 +117,8 @@ def main():
 	 <li><a href="http://www.washington.edu/discover/educationalexcellence">Educational Excellence</a></li>
 	 <li><a href="http://www.gohuskies.com/">Husky Sports</a></li>
 	 <li><a href="http://www.washington.edu/discover/leadership">Leadership</a></li>
-	 <li><a href="http://www.washington.edu/discover/news">News Central</a></li>
-	 <li><a href="http://depts.washington.edu/mediarel/galleries/">Photo Galleries</a></li>
 	 <li><a href="http://www.washington.edu/research/">Research at the UW</a></li>
+	 <li><a href="http://www.washington.edu/news/">UW Today News</a></li>
 	 <li><a href="http://www.washington.edu/discover/visionvalues">Vision &amp; Values</a></li>
 	 <li><a href="http://www.washington.edu/discover/visit">Visit the UW</a></li>
 	 <li><a href="http://www.washington.edu/discover/sustainability">Spotlight on Sustainability</a></li>
@@ -150,7 +149,7 @@ def main():
 	     <li><a href="http://www.washington.edu/students/">Student Guide</a></li>
 	     <li><a href="http://www.washington.edu/uaa/">Undergraduate Learning</a></li>
 	     <li><a href="http://www.washington.edu/provost/studentlife/">Student Life</a></li>
-             <li><a href="http://depts.washington.edu/omad/">Diversity Resources</a></li>
+         <li><a href="http://depts.washington.edu/omad/">Diversity Resources</a></li>
 	     <li><a href="http://www.washington.edu/uaa/gateway/advising/majors/majoff.php">Choosing a Major</a></li>
 	     <li><a href="http://www.washington.edu/uaa/advising/">Advising</a></li>
 	     <li><a href="http://www.washington.edu/students/reg/calendar.html">Academic Calendar</a></li>
@@ -170,7 +169,7 @@ def main():
 		 <p>
 		  <a href="http://www.washington.edu/provost/studentlife/"><img src="http://depts.washington.edu/uweb/inc/img/full/nav_current_students.jpg" width="200" height="120" alt="Student writing" /></a>
 		  <br />
-		  The UW is committed to improving the student experience. Plans currently are under way to remodel the Husky Union Building, expand the Ethnic Cultural Center and remodel the Hall Health Primary Care Center. Learn more about <a href="http://www.washington.edu/provost/studentlife/" class="more-link">Student Life</a>
+		  At the University of Washington, we are committed to supporting our students' development: intellectually, physically and emotionally. Learn more about <a href="http://www.washington.edu/provost/studentlife/" class="more-link">Student Life</a>
 		 </p>
 	    </div>
 	    <br class="clear" />
@@ -181,23 +180,23 @@ def main():
     </li>
 	<li class="mainNavLinkLeft">
 	 <div class="mainNavLinkRight">
-	  <h4><a class="mainNavLinkNotch" href="http://admit.washington.edu/">Future Students</a></h4>
+	  <h4><a class="mainNavLinkNotch" href="http://www.washington.edu/discover/admissions/">Future Students</a></h4>
 	  <br class="clear" />
       <div class="text">
 	   <div class="mainNavBG">
 	    <ul class="mainNavLinks">
-	     <li><a href="/discover/admissions">Undergraduate Admissions</a></li>
-	     <li><a href="http://www.washington.edu/uaa/gateway/advising/majors/majoff.php">Undergraduate Majors</a></li>
+	     <li><a href="http://www.washington.edu/discover/admissions">Admissions (undergraduate)</a></li>
+	     <li><a href="http://admit.washington.edu/Visit/GuidedTour">Campus Tours</a></li>
+	     <li><a href="http://www.pce.uw.edu/">Continuing Education</a></li>
 	     <li><a href="http://www.washington.edu/students/crscat/">Course Descriptions</a></li>
-	     <li><a href="http://admit.washington.edu/Requirements/Transfer/Plan/CreditPolicies">Transfer Credit Policies</a></li>
-             <li><a href="http://www.outreach.washington.edu/conted/">Continuing Education</a></li>
-	     <li><a href="http://www.grad.washington.edu/admissions/programs-degrees.shtml">Graduate School</a></li>
-	     <li><a href="http://www.washington.edu/provost/studentlife/">Student Life</a></li>
-	     <li><a href="http://f2.washington.edu/fm/sfs/tuition">Tuition, Fees</a></li>
+         <li><a href="http://www.grad.washington.edu/admissions/programs-degrees.shtml">Graduate School</a></li>
+         <li><a href="http://www.washington.edu/uaa/advising/majors/majoff.php">Majors (undergraduate)</a></li>
 	     <li><a href="http://www.washington.edu/students/osfa/">Financial Aid</a></li>
+	     <li><a href="http://f2.washington.edu/fm/sfs/tuition">Tuition, Fees</a></li>
+	     <li><a href="http://admit.washington.edu/Requirements/Transfer/Plan/CreditPolicies">Transfer Credit Policies</a></li>
 	     <li><a href="http://www.hfs.washington.edu/housing/">Student Housing</a></li>
          <li><a href="http://hfs.washington.edu/dining/">Dining</a></li>
-         <li><a href="http://admit.washington.edu/Visit/GuidedTour">Campus Tours</a></li>
+         <li><a href="http://www.washington.edu/provost/studentlife/">Student Life</a></li>
 	    </ul>
 	    <div class="mainNavBlurb">
 	     <p>
@@ -223,7 +222,7 @@ def main():
 	     <li><a href="http://www.washington.edu/admin/hr/">Human Resources</a></li>
 	     <li><a href="http://www.washington.edu/admin/" >Administrative Gateway</a></li>
 	     <li><a href="http://www.washington.edu/admin/hr/benefits/">Benefits &amp; Work/Life</a></li>
-	     <li><a href="http://uw.edu/jobs/">Jobs</a></li>
+	     <li><a href="http://www.washington.edu/jobs/">Jobs</a></li>
 	     <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
 	     <li><a href="http://www.washington.edu/discover/leadership">Administration</a></li>
 	     <li><a href="http://www.washington.edu/faculty/facsen/">Faculty Senate</a></li>
@@ -258,18 +257,18 @@ def main():
 	  <div class="text">
 	   <div class="mainNavBG">
 	    <ul class="mainNavLinks">
-	     <li><a href="http://www.washington.edu/alumni/meet/">Connect with other Alumni</a></li>
 	     <li><a href="http://www.washington.edu/alumni/events/">Alumni Events</a></li>
 	     <li><a href="http://www.washington.edu/alumni/services/index.html">Alumni Services</a></li>
-	     <li><a href="http://www.washington.edu/alumni/careers/">Networking and Careers</a></li>
-	     <li><a href="http://www.washington.edu/alumni/act/">Volunteer Opportunities</a></li>
-	     <li><a href="http://www.washington.edu/alumni/tours/">UW Alumni Tours</a></li>
-	     <li><a href="http://www.washington.edu/alumni/learn/">Lifelong Learning</a></li>
-	     <li><a href="http://www.washington.edu/alumni/membership/">UWAA Membership</a></li>
-	     <li><a href="http://www.washington.edu/alumni/meet/facebook.html">UWAA on Facebook</a></li>
+	     <li><a href="http://www.washington.edu/alumni/tours/">Alumni Tours</a></li>
 	     <li><a href="http://www.washington.edu/alumni/columns/">Columns Magazine</a></li>
-	     <li><a href="http://www.washington.edu/alumni/viewpoints/">Viewpoints Magazine</a></li>
+	     <li><a href="http://www.washington.edu/alumni/meet/">Connect with other Alumni</a></li>
+	     <li><a href="http://www.washington.edu/alumni/learn/">Lifelong Learning</a></li>
+	     <li><a href="http://www.washington.edu/alumni/careers/">Networking and Careers</a></li>
 	     <li><a href="http://www.washington.edu/giving/make-a-gift">Support the UW</a></li>
+	     <li><a href="http://www.washington.edu/alumni/meet/facebook.html">UWAA on Facebook</a></li>
+	     <li><a href="http://www.washington.edu/alumni/membership/">UWAA Membership</a></li>
+	     <li><a href="http://www.washington.edu/alumni/viewpoints/">Viewpoints Magazine</a></li>
+	     <li><a href="http://www.washington.edu/alumni/act/">Volunteer Opportunities</a></li>	     
 	    </ul>
 		<div class="mainNavBlurb">
 		 <p>
@@ -290,17 +289,16 @@ def main():
       <div class="text">
        <div class="mainNavBG">
 	    <ul class="mainNavLinks">
-	     <li><a href="http://www.washington.edu/community/">UW in the Neighborhood</a></li>
 	     <li><a href="http://www.meany.org/tickets/">Arts UW Ticket Office</a></li>
-             <li><a href="http://depts.washington.edu/uwbg/">Botanic Gardens</a></li>
-             <li><a href="http://www.burkemuseum.org">Burke Museum Visitor Info</a></li>
+	     <li><a href="http://depts.washington.edu/uwbg/">Botanic Gardens</a></li>
+	     <li><a href="http://www.burkemuseum.org">Burke Museum Visitor Info</a></li>            
 	     <li><a href="http://www.henryart.org">Henry Art Gallery  Visitor Info</a></li>
 	     <li><a href="http://ev12.evenue.net/cgi-bin/ncommerce3/ExecMacro/evenue/ev69/se/Main.d2w/report?linkID=uwash">Husky Sports Ticket Office</a></li>
+	     <li><a href="http://www.udistrictchamber.org/">University District</a></li>
 	     <li><a href="http://www.washington.edu/provost/specialprograms/UUF.html">Using UW Resources</a></li>
-	     <li><a href="http://www.lib.washington.edu/services/borrow/visitor.html">UW Libraries Visitor Info</a></li>
+	     <li><a href="http://www.washington.edu/community/">UW in the Neighborhood</a></li>
+	     <li><a href="http://www.lib.washington.edu/services/">UW Libraries Visitor Info</a></li>
 	     <li><a href="http://uwmedicine.washington.edu/Patient-Care/Locations/UW-Neighborhood-Clinics/Pages/default.aspx">UW Medicine Neighborhood Clinics</a></li>
-             <li><a href="http://www.udistrictchamber.org/">University District</a></li>
-             <li><a href="http://www.cityofseattle.net/">City of Seattle</a></li>
 	     <li><a href="http://www.visitseattle.org/visitors/">Seattle Tourism</a></li>
 	     <li><a href="http://www.experiencewa.com/">The Evergreen State</a></li>
 	    </ul>

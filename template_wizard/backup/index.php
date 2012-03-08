@@ -12,7 +12,6 @@ include_once('include/functions.inc.php');
 
 	<link rel="stylesheet" href="css/colorbox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/tmplgen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../inc/css/header.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="../inc/css/footer.css" type="text/css" media="screen" />
 
 	<script src="js/jquery.min.js" type="text/javascript"></script>
@@ -39,7 +38,27 @@ include_once('include/functions.inc.php');
 		});
 
 	// clear out the global search input text field
-    function make_blank() {if(document.uwglobalsearch.q.value == "Search the UW") {document.uwglobalsearch.q.value = "";}}
+    window.onload = function() {
+
+	     if (document.getElementById('searchInput')) {
+
+	       var query = document.getElementById('searchInput');
+
+	       query.onfocus = function() {
+	         if (query.value == query.defaultValue) {
+	           query.value = '';
+	         }
+	       }
+
+	       query.onblur = function() {
+	         if (query.value == '') {
+	           query.value = query.defaultValue;
+	         }
+	       }
+
+	     }
+
+}
 
 	</script>
 
@@ -80,10 +99,23 @@ include_once('include/functions.inc.php');
 				   <div id="step2_main">
 
 				   	 <label for="strip"><input type="radio" name="selection" value="strip" id="strip" onclick="javascript:pageTracker._trackPageview('/hdr-thin-strip');" /> Thin strip</label><br />
+				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot available" rel="images/kitchen_sink.jpg">Kitchen sink</a> <span style="font-size: 11px;">(full header)</span></label><br />
 					 <label for="static"><input type="radio" name="selection" value="static" id="static" onclick="javascript:pageTracker._trackPageview('/hdr-static');" /> <a href="" class="screenshot available" rel="images/static-headers.jpg">chtml include</a></label><br />
-				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label><br />
-				   	 <label for="sink"><input type="radio" name="selection" value="sink" id="sink" onclick="javascript:pageTracker._trackPageview('/hdr-kitchen-sink');" /> <a href="" class="screenshot unavailable" rel="images/kitchen_sink.jpg">Kitchen sink</a></label>
+				   	 <label for="no-hdr"><input type="radio" name="selection" value="no-hdr" id="no-hdr" onclick="javascript:pageTracker._trackPageview('/hdr-no-header');" /> No header for me</label>
 
+				   </div>
+				   
+				   <div id="step2_sink">
+				     <fieldset id="sink-options">
+				     <legend>Options:</legend>
+				       <div id="sesquiSinkBlk">
+				         <div>
+				           <label for="sesqui_sink">150th patch?</label>
+				           <input type="radio" name="sesqui_sink" value="1" id="sesqui_sink" onclick="javascript:pageTracker._trackPageview('/hdr-sesqui-sink-yes');" /> Awesome, give me!<br />
+				           <input type="radio" name="sesqui_sink" value="0" id="no_sesqui_sink" onclick="javascript:pageTracker._trackPageview('/hdr-sesqui-sink-no');" /> No way!
+				         </div>
+				       </div>
+				     </fieldset>
 				   </div>
 
 				   <div id="step2_sub">
@@ -114,6 +146,12 @@ include_once('include/functions.inc.php');
 				      <input type="radio" name="patch" value="0" id="no_patch" onclick="javascript:pageTracker._trackPageview('/hdr-patch-no');" /> No patch
 				     </div>
 				     <br />
+				     <div>
+				      <label for="patch150">150th or no?</label>
+				      <input type="radio" name="sesqui" value="1" id="sesqui" onclick="javascript:pageTracker._trackPageview('/hdr-150-patch-yes');" /> Sweet, give me!<br />
+				      <input type="radio" name="sesqui" value="0" id="no_sesqui" onclick="javascript:pageTracker._trackPageview('/hdr-150-patch-no');" /> No thank you!
+				     </div>
+				     <br />
 				     <div id="blockwBlk">
 				      <label for="blockw">W or no W?</label>
 				      <input type="radio" name="blockw" value="1" id="w_yes" onclick="javascript:pageTracker._trackPageview('/hdr-blockw-yes');" /> W<br />
@@ -135,6 +173,8 @@ include_once('include/functions.inc.php');
 			     <label for="ftr_w"><input type="radio" name="footer" value="w" id="ftr_w" onclick="javascript:pageTracker._trackPageview('/ftr-with-w');" /> With "W"</label>
 			     <label for="ftr_gold_patch"><input type="radio" name="footer" value="goldPatch" id="ftr_gold_patch" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch');" /> With gold patch</label>
 			     <label for="ftr_purple_patch"><input type="radio" name="footer" value="purplePatch" id="ftr_purple_patch" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch');" /> With purple patch</label>
+			     <label for="ftr_gold_patch_sesqui"><input type="radio" name="footer" value="gold150Patch" id="ftr_gold_patch_sesqui" onclick="javascript:pageTracker._trackPageview('/ftr-gold-patch-sesqui');" /> With gold 150th patch</label>
+			     <label for="ftr_purple_patch_sesqui"><input type="radio" name="footer" value="purple150Patch" id="ftr_purple_patch_sesqui" onclick="javascript:pageTracker._trackPageview('/ftr-purple-patch-sesqui');" /> With purple 150th patch</label>
 			     <label for="ftr_static"><input type="radio" name="footer" value="static" id="ftr_static" onclick="javascript:pageTracker._trackPageview('/ftr-static');" /> <a href="" class="screenshot available" rel="images/static-footer.jpg">chtml include</a></label>
 			     <label for="ftr_no"><input type="radio" name="footer" value="no" id="ftr_no" onclick="javascript:pageTracker._trackPageview('/ftr-no');" /> No thanks, I'll pass on the footer</label>
 
@@ -197,6 +237,8 @@ include_once('include/functions.inc.php');
                  Thus far (cross your fingers), the only known issue with IE is a DTD problem.  The header and footer code, both the include and copy/paste, work best with the XHTML1 transitional DTD: &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;  Thanks to Scott Bush for bringing this to our attention.</li>
          <li><h4>My site is on bank... what are my options?</h4>
                  You can either copy and paste the header and footer code into your existing includes or pages.  Or, you can use the predefined chtml includes we have available.  See Step 2 of the wizard for a preview of the purle and gold header chtml includes; see Step 3 for the footer option.</li>
+         <li><h4>Will you be providing a CHTML Include for the full header (aka "kitchen sink")?</h4>
+                 Yes, this should be coming out some time in late July 2010.</li>
          <li><h4>My site is on depts... what are my options?</h4>
                  Copy &amp; Paste: Just copy and paste from the code output boxes at the end of the wizard, placing code bits into their appropriate places.
                  <p>Include: If your site already uses the .shtml file extension, then copy and paste the include code at the end of the wizard into the appropriate spot.</p>
@@ -212,9 +254,64 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
+     <h4>= 2.0 ============ <span>6-7-2011</span></h4>
+	 <ul>
+	  <li>Wizard update: 150th header and footer patches added</li>
+	 </ul>
+	      
+	 <h4>= 1.6 ============ <span>5-24-2011</span></h4>
+	 <ul>
+	  <li>Kitchen sink and thin strip update:
+	   <ul>
+	    <li>Search field javascript now accounts for onfocus and onblur events, making the input field more accessible to screen readers.  The javascript is now also unobtrusive and does not use an inline onclick event call.</li>
+	   </ul>
+	  </li>
+	 </ul>
+
+	 <h4>= 1.5 ============ <span>5-19-2011</span></h4>
+	 <ul>
+	  <li>Kitchen sink update:
+	   <ul>
+	    <li>"Support the UW" link added to Alumni dropdown: <a href="http://www.washington.edu/giving/make-a-gift">http://www.washington.edu/giving/make-a-gift</a></li>
+	   </ul>
+	  </li>
+	 </ul>
+
+	 <h4>= 1.4 ============ <span>5-6-2011</span></h4>
+ 	 <ul>
+ 	  <li>Footer updates:
+ 	   <ul>
+ 	    <li>"Privacy" link added: <a href="http://www.washington.edu/online/privacy/">http://www.washington.edu/online/privacy/</a></li>
+ 	    <li>"Terms" link added: <a href="http://www.washington.edu/online/terms/">http://www.washington.edu/online/terms/</a></li>
+ 	   </ul>
+ 	  </li>
+ 	  <li>Kitchen sink updates:
+ 	   <ul>
+ 	    <li>Under the Faculty &amp; Staff dropdown, "Directories" link renamed "Office, Staff Directories"</li>
+ 	    <li>Under the Faculty &amp; Staff dropdown, "Policy Directory" link added: <a href="http://www.washington.edu/admin/rules/policies/">http://www.washington.edu/admin/rules/policies/</a></li>
+ 	   </ul>
+ 	  </li>
+	 </ul>
+
+	 <h4>= 1.3 ============ <span>12-23-2010</span></h4>
+	 <ul>
+	  <li>For the "Kitchen Sink" header option, three links were added:
+	   <ul>
+	    <li>Under "Current Students", "SafeCampus" was added.</li>
+	    <li>Under "Faculty &amp; Staff", "Directories" was added.</li>
+	    <li>Under "NW Neighbors", "Botanic Gardens" was added.</li>
+	   </ul>
+	  </li>
+	 </ul>
+
+	 <h4>= 1.2 ============ <span>07-22-2010</span></h4>
+	 <ul>
+	  <li>A full header option, also known as the "Kitchen Sink", is now available.</li>
+	 </ul>
+
+     <br />
 	 <h4>= 1.1 ============ <span>06-23-2010</span></h4>
 	 <br />
-
 	 <h5>Content:</h5>
 	 <ul>
 	  <li>changed "Employment" to "Jobs" (consistent with our homepage/sitewide footer nav)</li>
@@ -292,16 +389,7 @@ include_once('include/functions.inc.php');
     	  </ol>
     	 </li>
     	 <li><h4>On bank:</h4>
-    	  <ol>
-    	   <li>For both the header and/or footer, you will need the CSS + Javascript include.</li>
-    	   <li>Select and copy the CSS+JS include code from the "CSS + Javascript" field.</li>
-    	   <li>Paste this line of code between your HTML document's &lt;head&gt;&lt;/head&gt; tags.</li>
-    	   <li>If you are installing a header, select and copy the header include code from either the "Header -> Purple" field or the "Header -> Gold" field.</li>
-    	   <li>Then, paste this header include code directly below your document's opening &lt;body&gt; tag.</li>
-    	   <li>If you are also installing a footer, select and copy the footer include code from the "Footer" field.</li>
-    	   <li>Then, paste this footer include code directly above your document's closing &lt;/body&gt; tag.</li>
-    	   <li>Lastly, preview your site to make sure it works.</li>
-    	  </ol>
+    	  <p>At this time, the dynamic Include option is not available for bank.  Note: It likely never will be since bank isn't set up for virtual includes that call .cgi scripts.  However, you are welcome to use the static CHTML Include by going back to step 2 and step 3 and selecting "chtml include".</p>
     	 </li>
     	</ul>
     </div>
