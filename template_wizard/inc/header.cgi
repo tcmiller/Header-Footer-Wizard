@@ -220,7 +220,6 @@ def main():
 	    <ul class="mainNavLinks">
 	     <li><a href="http://f2.washington.edu/fm/payroll/payroll/ESS">Employee Self Service</a></li>
 	     <li><a href="http://www.washington.edu/admin/hr/">Human Resources</a></li>
-	     <li><a href="http://www.washington.edu/admin/" >Administrative Gateway</a></li>
 	     <li><a href="http://www.washington.edu/admin/hr/benefits/">Benefits &amp; Work/Life</a></li>
 	     <li><a href="http://www.washington.edu/jobs/">Jobs</a></li>
 	     <li><a href="http://www.washington.edu/safecampus/">SafeCampus</a></li>
