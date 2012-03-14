@@ -101,7 +101,7 @@ def main():
     </form>
    </div>
    <span id="uwLogo"><a href="http://www.washington.edu/">University of Washington</a></span>
-   <p class="tagline"><a href="%s"><span class="taglineGold">%s</a></p>
+   <p class="tagline"><a href="%s"><span class="taglineGold">%s</span></a></p>
    <ul id="navg">
     <li class="mainNavLinkLeft">
      <div class="mainNavLinkRight">
