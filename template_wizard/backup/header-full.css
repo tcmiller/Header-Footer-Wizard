@@ -25,7 +25,7 @@ ul#navg {
     display: none;
 }
 .text {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/menu_right.png");
+    background-image: url("../img/full/menu_right.png");
     background-repeat: no-repeat;
     background-position: left bottom;
 }
@@ -38,7 +38,7 @@ ul#navg {
     z-index: 100000000;
 }
 .mainNavBG {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/menu_shadow.png");
+    background-image: url("../img/full/menu_shadow.png");
     background-repeat: no-repeat;
     background-position: 2px 0;
     overflow: hidden;
@@ -74,7 +74,7 @@ ul#navg {
 #header .mainNavBG li a:hover {
     color: #355EA2;
     outline: none;
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/arrow_small.gif");
+    background-image: url("../img/full/arrow_small.gif");
     background-repeat: no-repeat;
     background-position: left;
     cursor: pointer;
@@ -103,7 +103,7 @@ ul#navg {
     margin-bottom:15px;
 }
 #header a.more-link {
-    background:url("http://depts.washington.edu/uweb/inc/img/full/arrow_bullet.gif") right 4px no-repeat;
+    background:url("../img/full/arrow_bullet.gif") right 4px no-repeat;
     padding-right:8px;
     font-weight:bold;
     display:inline-block;
@@ -127,19 +127,19 @@ ul#navg {
 }
 
 #header .mainNavLinkLeft:hover {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_left.gif");
+    background-image: url("../img/full/mainNav_left.gif");
     background-repeat: no-repeat;
     background-position: left top;
     border-left-color: transparent;	
 }
 #navg li:hover .mainNavLinkRight {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_right.gif");
+    background-image: url("../img/full/mainNav_right.gif");
     background-repeat: no-repeat;
     background-position: right top;	
     display:block;		
 }
 #navg li:hover .mainNavLinkNotch {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/mainNav_notch.gif");
+    background-image: url("../img/full/mainNav_notch.gif");
     background-repeat: no-repeat;
     background-position: center 14px;
     display:inline-block;
@@ -163,14 +163,13 @@ ul#navg {
     margin-left: 5px;
     padding-left: 2px;
     list-style-type: none;
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/nav_left_bar.gif");
+    background-image: url("../img/full/nav_left_bar.gif");
     background-repeat: no-repeat;
     background-position: left top;
 }
 .mainNavLinkRight {
     font-family: Arial, Helvetica, sans-serif;
     font-size:1em;
-    font-weight: bold;
     color: #FFF;
     text-decoration: none;
     outline:none;
@@ -198,7 +197,7 @@ p.tagline {
     margin-left: 80px;
 }
 .medicineLogo a {
-    background-image:url("http://depts.washington.edu/uweb/inc/img/full/medicine.gif");
+    background-image:url("../img/full/medicine.gif");
     background-repeat:no-repeat;
     display:block;
     height:13px;
@@ -214,7 +213,7 @@ p.tagline {
     display: block;
     width: 302px;
     height: 21px;
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/wlogo_lg.gif");
+    background-image: url("../img/full/wlogo_lg.gif");
     background-repeat: no-repeat;
     padding: 5px 0 0 130px;
     background-position: right bottom;
@@ -247,7 +246,7 @@ p.tagline {
     height: 75px;
     width: 76px;
     background-color: #39275B;
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/w.png");
+    background-image: url("../img/full/w.png");
     background-repeat: no-repeat;
     background-position: center center;
     margin-left: -85px;
@@ -266,7 +265,7 @@ p.tagline {
     float: right;
 }
 .border {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/leftbar.png");
+    background-image: url("../img/full/leftbar.png");
     background-repeat: no-repeat;
     background-position: left center;	
     display: block;
@@ -276,7 +275,7 @@ p.tagline {
 /*-- Search --*/
 
 .wfield {
-    background:url("http://depts.washington.edu/uweb/inc/img/full/tfbg3_8.png") no-repeat scroll 0 0 transparent;
+    background:url("../img/full/tfbg3_8.png") no-repeat scroll 0 0 transparent;
     float:left;
     height:21px;
     padding:2px 0 0 3px;
@@ -294,7 +293,7 @@ input.wTextInput {
 /*-- Global Header --*/
 
 .wheader {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/bg.gif");
+    background-image: url("../img/full/bg.gif");
     background-repeat: repeat-x;
     height: 25px;
     padding: 0 0 0 20px;
@@ -319,7 +318,7 @@ input.wTextInput {
     text-transform: uppercase;
 }
 .wheader li a:hover {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/notch.gif");
+    background-image: url("../img/full/notch.gif");
     background-position: center top;
     background-repeat: no-repeat;
 }
@@ -334,7 +333,7 @@ input.wTextInput {
     height: 74px;
 }
 .formbutton {
-    background:url("http://depts.washington.edu/uweb/inc/img/full/submit2_8.png") no-repeat left top;
+    background:url("../img/full/submit2_8.png") no-repeat left top;
     border:medium none;
     cursor:pointer;
     font-weight:bold;
@@ -360,11 +359,11 @@ input.wTextInput {
 li {margin: 0; padding:0;}
 
 #bg {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/bg_portal.gif");
+    background-image: url("../img/full/bg_portal.gif");
     background-repeat: repeat-x;
 }
 #header {
-    background-image: url("http://depts.washington.edu/uweb/inc/img/full/default.jpg");
+    background-image: url("../img/full/default.jpg");
     padding-top:15px;
 }
 a img {

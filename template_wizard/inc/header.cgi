@@ -71,6 +71,9 @@ def main():
 <div id="visual-portal-wrapper" class="headerFull">
  <div class="wheader patchYes colorGold %s">
   <div id="autoMargin">
+   <div id="skipnav">
+    <a id="skip-nav-link" accesskey="c" href="#bodyTxt">Skip navigation</a>
+   </div>
    <div class="wlogoSmall">
     <div class="logoAbsolute"><a id="wlogoLink" href="http://www.washington.edu/">University of Washington</a></div>
    </div>

@@ -353,7 +353,41 @@ input.wTextInput {
 .margRight {
     margin-right: 20px;
 }
-
+#skipnav {
+	position: relative;
+}
+#skipnav a {
+    color: #39275B;
+    display: block;
+    font-size: 1em;
+    left: 88px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    width: 10em;
+    z-index: -1;
+}
+#skipnav a:active, #skipnav a:focus {
+    background: url("../img/arrow_h3.gif") no-repeat scroll 19px 5px transparent;
+    color: #000;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    left: 85px;
+    letter-spacing: 0.02em;
+    margin: 4px 0 0 15px;
+    padding: 3px 0 0 12px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px #FFF;
+    top: 0;
+    width: 10em;
+    z-index: 10;
+}
 
 /*-- Reset --*/
 li {margin: 0; padding:0;}

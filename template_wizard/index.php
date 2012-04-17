@@ -254,6 +254,11 @@ include_once('include/functions.inc.php');
     <div id="changeLog">
      <h3>ChangeLog</h3>
      <br />
+     <h4>= 2.7 ============ <span>4-17-2012</span></h4>
+	 <ul>
+	  <li>Kitchen sink: Added a skipnav link button to the full header option.</li>
+	 </ul>
+     <br />
      <h4>= 2.6 ============ <span>3-13-2012</span></h4>
 	 <ul>
 	  <li>Wizard update: CSS fixes... made header-full.css image calls relative instead of absolute and removed a font-weight: bold; attribute|value pair that messed up IE.</li>
